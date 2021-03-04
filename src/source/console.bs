@@ -1,4 +1,5 @@
-import "pkg:/source/rodash/_all.bs"
+import "pkg:/source/rodash/_date.bs"
+import "pkg:/source/rodash/_string.bs"
 
 namespace console
   sub assert(expression = true as boolean, message = "" as dynamic)
