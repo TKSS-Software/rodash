@@ -1,0 +1,12 @@
+import "internal/getDateObject.bs"
+
+namespace _
+  function toISOString() as object
+    dateObj = _.internal.getDateObject()
+
+    return {
+      "utc": dateObj.utc.toISOString(),
+      "local": dateObj.local.toISOString()
+    }
+  end function
+end namespace

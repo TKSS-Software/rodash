@@ -1,0 +1,12 @@
+import "internal/getDateObject.bs"
+
+namespace _
+  function getYear() as object
+    dateObj = _.internal.getDateObject()
+
+    return {
+      "utc": dateObj.utc.getYear(),
+      "local": dateObj.local.getYear()
+    }
+  end function
+end namespace

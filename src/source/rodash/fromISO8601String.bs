@@ -1,0 +1,12 @@
+import "internal/getDateObject.bs"
+
+namespace _
+  function fromISO8601String(dateString = "" as string) as object
+    dateObj = _.internal.getDateObject()
+
+    return {
+      "utc": dateObj.utc.fromISO8601String(dateString),
+      "local": dateObj.local.fromISO8601String(dateString)
+    }
+  end function
+end namespace

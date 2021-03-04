@@ -1,6 +1,6 @@
 import "../toString.bs"
 
-namespace _
+namespace _.interal
   ' /**
   ' * @name aaToString
   ' * @description Attempts to convert the supplied value to a string.

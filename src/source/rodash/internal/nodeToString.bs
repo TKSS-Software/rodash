@@ -17,7 +17,7 @@ namespace _
       ' accessing properties from anywhere but the render thread is too expensive to include here
       id = node.id
       if id <> "" then
-        description += " (" + id + ")" + _.aaToString(_.nodeToAA(node))
+        description += " (" + id + ")" + _.internal.aaToString(_.internal.nodeToAA(node))
       end if
     end if
     return description

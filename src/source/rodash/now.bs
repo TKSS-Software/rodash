@@ -1,0 +1,11 @@
+import "internal/getDateObject.bs"
+
+namespace _
+  function now() as object
+    dateObj = _.interal.getDateObject()
+    return {
+      "utc": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds(),
+      "local": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds()
+    }
+  end function
+end namespace

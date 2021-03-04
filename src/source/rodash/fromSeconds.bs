@@ -1,0 +1,12 @@
+import "internal/getDateObject.bs"
+
+namespace _
+  function fromSeconds(numSeconds = 0 as integer) as object
+    dateObj = _.internal.getDateObject()
+
+    return {
+      "utc": dateObj.utc.fromSeconds(numSeconds),
+      "local": dateObj.local.fromSeconds(numSeconds)
+    }
+  end function
+end namespace

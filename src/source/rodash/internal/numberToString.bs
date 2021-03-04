@@ -1,4 +1,4 @@
-namespace _
+namespace _.internal
   ' /**
   ' * @name numberToString
   ' * @description Attempts to convert the supplied value to a string.

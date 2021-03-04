@@ -1,0 +1,12 @@
+import "internal/getDateObject.bs"
+
+namespace _
+  function getDayOfMonth() as object
+    dateObj = _.internal.getDateObject()
+
+    return {
+      "utc": dateObj.utc.getDayOfMonth(),
+      "local": dateObj.local.getDayOfMonth()
+    }
+  end function
+end namespace

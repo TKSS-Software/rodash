@@ -1,0 +1,16 @@
+import "../toString.bs"
+
+namespace _.internal
+  function getDateObject() as object
+    dateObj = CreateObject("roDateTime")
+
+    utc = dateObj
+    dateObj.toLocalTime()
+    local = dateObj
+
+    return {
+      "utc": utc,
+      "local": local
+    }
+  end function
+end namespace

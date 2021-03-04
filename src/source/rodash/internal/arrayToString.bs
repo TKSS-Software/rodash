@@ -1,6 +1,6 @@
 import "../toString.bs"
 
-namespace _
+namespace _.internal
   ' /**
   ' * @name arrayToString
   ' * @description Attempts to convert the supplied value to a string.

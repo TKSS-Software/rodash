@@ -1,5 +1,4 @@
 import "pkg:/source/rodash/_all.bs"
-import "pkg:/source/date.bs"
 
 namespace console
   sub assert(expression = true as boolean, message = "" as dynamic)
@@ -39,7 +38,7 @@ namespace console
       levelInfo = "[LOG]"
     end if
 
-    readableTime = `${date.getHours().local}:${_.paddString(date.getMinutes().local)}:${_.paddString(date.getSeconds().local)}`
+    readableTime = `${_.getHours().local}:${_.paddString(_.getMinutes().local)}:${_.paddString(_.getSeconds().local)}`
     logString = `[CONSOLE]${levelInfo} | ${readableTime} | `
     print logString, message
   end sub

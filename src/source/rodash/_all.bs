@@ -1,5 +1,6 @@
 import "_array.bs"
 import "_collection.bs"
+import "_date.bs"
 import "_function.bs"
 import "_lang.bs"
 import "_math.bs"

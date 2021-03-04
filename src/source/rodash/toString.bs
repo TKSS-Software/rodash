@@ -20,11 +20,11 @@ namespace _
   ' */
   function toString(value as Dynamic) as String
     if _.isString(value) then return value
-    if _.isNumber(value) then return _.numberToString(value)
-    if _.isNode(value) then return _.nodeToString(value)
-    if _.isBoolean(value) then return _.booleanToString(value)
-    if _.isAA(value) then return _.aaToString(value)
-    if _.isArray(value) then return _.arrayToString(value)
+    if _.isNumber(value) then return _.internal.numberToString(value)
+    if _.isNode(value) then return _.internal.nodeToString(value)
+    if _.isBoolean(value) then return _.internal.booleanToString(value)
+    if _.isAA(value) then return _.internal.aaToString(value)
+    if _.isArray(value) then return _.internal.arrayToString(value)
     return ""
   end function
 end namespace

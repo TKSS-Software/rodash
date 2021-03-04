@@ -2,7 +2,7 @@ import "../isAA.bs"
 import "../isNode.bs"
 import "../isNonEmptyArray.bs"
 
-namespace _
+namespace _.internal
   ' /**
   ' * @name nodeToAA
   ' * @description Attempts to converts a nodes top level fields to an AssociativeArray.
