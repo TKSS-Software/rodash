@@ -1,0 +1,11 @@
+namespace _
+  function sum(array as object)
+    sumValue = 0
+
+    for each item in array
+      sumValue += item
+    end for
+
+    return sumValue
+  end function
+end namespace

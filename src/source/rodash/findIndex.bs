@@ -1,0 +1,33 @@
+import "isAA.bs"
+import "isArray.bs"
+import "isEqual.bs"
+import "isFunction.bs"
+import "isString.bs"
+
+namespace _
+  '/**
+  ' * @name findIndex
+  ' * @description This method is like _.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
+  ' * @param {Array} array - The array to inspect
+  ' * @param {Dynamic} predicate - The function invoked per iteration
+  ' * @param {Integer} fromIndex - The index to search from
+  ' * @return {Integer} Returns the index of the found element, else -1
+  ' */
+  function findIndex(array, predicate = invalid as dynamic, fromIndex = 0 as integer) as integer
+    for index = fromIndex to array.count() -1
+      item = array[index]
+
+      if _.isFunction(predicate) then
+        if predicate(item) then return index
+      else if _.isAA(predicate) then
+        if _.isEqual(item, predicate) then return index
+      else if _.isArray(predicate) then
+        if _.isEqual(item[predicate[0]], predicate[1]) then return index
+      else if _.isString(predicate) then
+        if item[predicate] then return index
+      end if
+    end for
+
+    return -1
+  end function
+end namespace

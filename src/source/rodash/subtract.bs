@@ -1,0 +1,9 @@
+import "isNaN.bs"
+
+namespace _
+  function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
+    if _.isNaN(minuend) OR _.isNaN(subtrahend) return 0
+
+    return minuend - subtrahend
+  end function
+end namespace

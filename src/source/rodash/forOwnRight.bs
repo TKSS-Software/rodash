@@ -1,0 +1,12 @@
+namespace _
+  ' /**
+  ' * @name forOwnRight
+  ' * @description This method is like _.forOwn except that it iterates over properties of object in the opposite order.
+  ' * @param {Dynamic} obj - The object to iterate over
+  ' * @param {Dynamic} iteratee - The function invoked per iteration
+  ' * @return {Object} Returns object
+  ' */
+  function forOwnRight(obj = {} as object, iteratee = invalid as dynamic)
+    return _.internal.baseForEach(obj, iteratee, "right", "omit")
+  end function
+end namespace

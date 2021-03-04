@@ -1,0 +1,14 @@
+
+import "isArray.bs"
+
+namespace _
+  ' /**
+  ' * @name isMap
+  ' * @description Alias to isArray function
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isMap(value as dynamic) as boolean
+    return _.isArray(value)
+  end function
+end namespace

@@ -1,0 +1,7 @@
+import "meanBy.bs"
+
+namespace _
+  function mean(array)
+    return _.meanBy(array)
+  end function
+end namespace

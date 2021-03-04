@@ -1,0 +1,18 @@
+import "../toString.bs"
+
+namespace _
+  ' /**
+  ' * @name aaToString
+  ' * @description Attempts to convert the supplied value to a string.
+  ' * @param {Dynamic} value The value to convert.
+  ' * @return {String} Results of the conversion.
+  ' */
+  function aaToString(aa as Object) as String
+    description = "{"
+    for each key in aa
+      description += key + ": " + _.toString(aa[key]) + ", "
+    end for
+    description = description.left(description.len() - 2) + "}"
+    return description
+  end function
+end namespace

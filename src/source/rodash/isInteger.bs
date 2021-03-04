@@ -1,0 +1,12 @@
+namespace _
+  ' /**
+  ' * @name isInteger
+  ' * @description Checks if the supplied value is a valid Integer type
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isInteger(value as Dynamic) as boolean
+    valueType = type(value)
+    return (valueType = "Integer") OR (valueType = "roInt") OR (valueType = "roInteger") OR (valueType = "LongInteger")
+  end function
+end namespace

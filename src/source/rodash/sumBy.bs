@@ -1,0 +1,30 @@
+import "isAA.bs"
+import "isEmpty.bs"
+import "isFunction.bs"
+import "isString.bs"
+
+namespace _
+  function sumBy(array = [] as object, iteratee = invalid) as dynamic
+    if _.isEmpty(array) then return invalid
+
+    sumValue = invalid
+    if _.isInvalid(iteratee) then
+      sumValue = 0
+      for each value in array
+        sumValue += value
+      end for
+    else if _.isFunction(iteratee) AND _.isAA(array[0]) then
+      sumValue = 0
+      for each value in array
+        sumValue += iteratee(value)
+      end for
+    else if _.isString(iteratee) AND _.isAA(array[0]) then
+      sumValue = 0
+      for each value in array
+        sumValue += value[iteratee]
+      end for
+    end if
+
+    return sumValue
+  end function
+end namespace

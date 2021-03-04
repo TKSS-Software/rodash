@@ -1,0 +1,11 @@
+import "divide.bs"
+import "isEmpty.bs"
+import "sumBy.bs"
+
+namespace _
+  function meanBy(array, iteratee = invalid)
+    if _.isEmpty(array) then return invalid
+
+    return _.divide(_.sumBy(array, iteratee), array.count())
+  end function
+end namespace

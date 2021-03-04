@@ -1,0 +1,7 @@
+import "assign.bs"
+
+namespace _
+  function assignWith(baseAA as Dynamic, sources = [] as Object) as Dynamic
+    return _.assign(baseAA, sources)
+  end function
+end namespace

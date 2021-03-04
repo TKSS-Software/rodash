@@ -1,0 +1,16 @@
+import "gte.bs"
+import "isFinite.bs"
+import "isInteger.bs"
+
+namespace _
+  ' /**
+  ' * @name isLength
+  ' * @description Checks if value is a valid array-like length
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isLength(value as dynamic) as boolean
+    if _.isInteger(value) AND _.isFinite(value) AND _.gte(value, 0) then return true
+    return false
+  end function
+end namespace

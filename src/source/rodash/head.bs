@@ -1,0 +1,11 @@
+namespace _
+  '/**
+  ' * @name head
+  ' * @description Gets the first element of array.
+  ' * @param {Array} array - The array to query
+  ' * @return {Dynamic} Returns the first element of array
+  ' */
+  function head(array = [] as object) as dynamic
+    return array[0]
+  end function
+end namespace

@@ -1,0 +1,23 @@
+import "isNotInvalid.bs"
+
+namespace _
+  '/**
+  ' * @name sortedIndex
+  ' * @description Gets all but the first element of array
+  ' * @param {Array} array - The sorted array to inspect
+  ' * @return {Object} Returns the index at which value should be inserted into array
+  ' */
+  function sortedIndex(array = [] as object, value = 0 as integer)
+    for i = 0 to array.count() - 1
+      item = array[i]
+      nextItem = array[i + 1]
+      if _.isNotInvalid(nextItem) then
+        if (item >= value AND value <= nextItem) then
+          return i
+        end if
+      end if
+    end for
+
+    return i
+  end function
+end namespace

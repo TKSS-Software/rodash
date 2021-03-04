@@ -1,0 +1,7 @@
+import "isEqual.bs"
+
+namespace _
+  function eq(value as dynamic, other as dynamic)
+    return _.isEqual(value, other)
+  end function
+end namespace

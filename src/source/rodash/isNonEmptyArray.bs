@@ -1,0 +1,13 @@
+import "isArray.bs"
+
+namespace _
+  ' /**
+  ' * @name isNonEmptyArray
+  ' * @description Checks if the supplied value is a valid Array type and not empty
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isNonEmptyArray(value as Dynamic) as Boolean
+    return (_.isArray(value) AND NOT value.isEmpty())
+  end function
+end namespace

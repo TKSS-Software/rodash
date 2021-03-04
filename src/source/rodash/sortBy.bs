@@ -1,0 +1,40 @@
+import "clone.bs"
+import "isArray.bs"
+import "isEqual.bs"
+import "isFunction.bs"
+import "isInvalid.bs"
+import "isString.bs"
+import "stringIncludes.bs"
+
+namespace _
+  ' /**
+  ' * @name sortBy
+  ' * @description Creates an array of elements, sorted in ascending order by the results of running each element in a collection thru each iteratee. This method performs a stable sort, that is, it preserves the original sort order of equal elements. The iteratees are invoked with one argument: (value).
+  ' * @param {Dynamic} collection - The collection to shuffle
+  ' * @param {Dynamic} iteratee - The iteratees to sort by
+  ' * @return {Array} Returns the new sorted array
+  ' */
+  function sortBy(collection = invalid as dynamic, iteratee = invalid as dynamic)
+    if _.isInvalid(collection) OR NOT _.isArray(collection) then return collection
+    returnCollection = _.clone(collection)
+
+    if _.isArray(iteratee) then
+      for each iteration in iteratee
+        if _.isString(iteration) then returnCollection.sortBy(iteration)
+      end for
+    else if _.isFunction(iteratee) then
+      key = ""
+      for each aa in collection
+        for each key in aa.keys()
+          if _.isEqual(aa[key], iteratee(aa)) then exit for
+        end for
+
+        if NOT key = "" then exit for
+      end for
+
+      if NOT key = "" then returnCollection.sortBy(key)
+    end if
+
+   return returnCollection
+  end function
+end namespace

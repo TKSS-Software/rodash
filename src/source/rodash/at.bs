@@ -1,0 +1,15 @@
+
+import "get.bs"
+
+namespace _
+  function at(obj = {} as object, paths = [] as object)
+    returnArray = []
+
+    for each path in paths
+      result = _.get(obj, path)
+      returnArray.push(result)
+    end for
+
+    return returnArray
+  end function
+end namespace

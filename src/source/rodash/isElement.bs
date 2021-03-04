@@ -1,0 +1,14 @@
+import "isNode.bs"
+
+namespace _
+  ' /**
+  ' * @name isElement
+  ' * @description Alias to isNode function
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @param {String} subType An optional subType parameter to further refine the check
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isElement(value as Dynamic, subType = "" as String) as Boolean
+    return _.isNode(value, subtype)
+  end function
+end namespace

@@ -1,0 +1,35 @@
+import "clone.bs"
+import "isAA.bs"
+import "isArray.bs"
+import "isEqual.bs"
+import "isFunction.bs"
+import "isString.bs"
+import "slice.bs"
+
+namespace _
+  '/**
+  ' * @name dropWhile
+  ' * @description Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+  ' * @param {Array} array - The array to query
+  ' * @param {Dynamic} predicate - The function invoked per iteration
+  ' * @return {Array} Returns the slice of array
+  ' */
+  function dropWhile(array = [] as object, predicate = invalid)
+    array = _.clone(array)
+    for i = 0 to array.count() - 1
+      item = array[i]
+
+      if _.isFunction(predicate) then
+        if NOT predicate(item) then return _.slice(array, i)
+      else if _.isAA(predicate) then
+        if NOT _.isEqual(item, predicate) then return _.slice(array, i)
+      else if _.isArray(predicate) then
+        if NOT _.isEqual(item[predicate[0]], predicate[1]) then return _.slice(array, i)
+      else if _.isString(predicate) then
+        if NOT item[predicate] then return _.slice(array, i)
+      end if
+    end for
+
+    return array
+  end function
+end namespace

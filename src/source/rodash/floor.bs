@@ -1,0 +1,12 @@
+namespace _
+  ' /**
+  ' * @name floor
+  ' * @description Computes number rounded down to precision
+  ' * @param {Integer} number - The number to round down
+  ' * @param {Integer} precision - The precision to round down to
+  ' * @return {Integer} Returns the rounded down number
+  ' */
+  function floor(number = 0, precision = 0 as integer)
+    return int(number * 10^precision) / 10^precision
+  end function
+end namespace

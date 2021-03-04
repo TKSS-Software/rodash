@@ -1,0 +1,26 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [{
+		"type": "brightscript",
+		"request": "launch",
+		"name": "Side Load",
+		"presentation": {
+			"group": "compSideLoad"
+		},
+    "preLaunchTask": "compile-project",
+		"stopOnEntry": false,
+		"host": "${env:LAUNCH_HOST_OVERRIDE}",
+		"password": "${env:ROKU_PASSWORD}",
+		"deepLinkUrl": "${env:DEEP_LINK_URL}",
+		"enableDebuggerAutoRecovery": true,
+		"envFile": "${workspaceFolder}/.env",
+		"injectRaleTrackerTask": true,
+		"sourceDirs": [
+			"${workspaceFolder}/src/"
+		],
+		"rootDir": "${workspaceFolder}/out/stage"
+	}]
+}

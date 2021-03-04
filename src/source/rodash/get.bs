@@ -1,0 +1,39 @@
+import "./internal/isKeyedValueType.bs"
+import "./internal/sanitizeKeyPath.bs"
+import "join.bs"
+import "isNotInvalid.bs"
+import "isNonEmptyArray.bs"
+import "toNumber.bs"
+
+namespace _
+  ' /**
+  ' * @name get
+  ' * @description Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
+  ' * @param {Object} aa - Object to drill down into.
+  ' * @param {String} keyPath - A dot notation based string to the expected value.
+  ' * @param {Dynamic} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
+  ' * @param {Function} validator - A function used to validate the output value matches what you expected.
+  ' * @return {Dynamic} The result of the drill down process
+  ' */
+  function get(aa as object, keyPath as string, fallback = Invalid as dynamic, validator = _.isNotInvalid as function) as dynamic
+    if NOT (_.internal.isKeyedValueType(aa) OR _.isNonEmptyArray(aa)) OR keyPath = "" then return fallback
+
+    nextValue = aa
+    keyPath = _.internal.sanitizeKeyPath(keyPath)
+    keys = keyPath.tokenize(".").toArray()
+    startingKeys = _.join(keys, " - ")
+    for each key in keys
+      if _.internal.isKeyedValueType(nextValue) then
+        nextValue = nextValue[key]
+      else if _.isNonEmptyArray(nextValue) then
+        nextValue = nextValue[_.toNumber(key)]
+      else
+        return fallback
+      end if
+    end for
+
+    if NOT validator(nextValue) then return fallback
+
+    return nextValue
+  end function
+end namespace

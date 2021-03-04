@@ -1,0 +1,23 @@
+import "gt.bs"
+import "gte.bs"
+import "isInvalid.bs"
+import "lt.bs"
+
+namespace _
+  function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
+    if (_.isInvalid(endPos)) then
+      endPos = startPos
+      startPos = 0
+    end if
+
+    if _.gt(startPos, endPos) then
+      startPosTemp = startPos
+      endPosTemp = endPos
+
+      startPos = endPosTemp
+      endPos = startPosTemp
+    end if
+
+    return _.gte(number, startPos) AND _.lt(number, endPos)
+  end function
+end namespace

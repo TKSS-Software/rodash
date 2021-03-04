@@ -1,0 +1,13 @@
+import "isDateTime.bs"
+
+namespace _
+  ' /**
+  ' * @name isDate
+  ' * @description Alias to isDate function
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isDate(value as Dynamic) as Boolean
+    return _.isDateTime(value)
+  end function
+end namespace

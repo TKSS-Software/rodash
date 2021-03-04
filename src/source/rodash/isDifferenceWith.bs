@@ -1,0 +1,27 @@
+import "isEqual.bs"
+import "isNotInvalid.bs"
+
+namespace _
+  ' /**
+  ' * @name differenceWith
+  ' * @description This method is like _.difference except that it accepts comparator which is invoked to compare elements of array to values. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
+  ' * @param {Array} array - The array to inspect
+  ' * @param {Array} values - The values to exclude
+  ' * @param {Dynamic} iteratee - The iteratee invoked per element
+  ' * @return {Array} Returns the new array of filtered values
+  ' */
+  function differenceWith(array = [] as object, values = [] as object, comparator = invalid) as object
+    returnArray = []
+
+    if _.isFunction(comparator) then
+      for i = 0 to array.count() - 1
+        itemOne = array[0]
+        itemTwo = array[1]
+
+        if _.isNotInvalid(itemOne) AND _.isNotInvalid(itemTwo) AND NOT _.isEqual(itemOne, itemTwo) then returnArray.push(itemOne)
+      end for
+    end if
+
+    return returnArray
+  end function
+end namespace

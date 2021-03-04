@@ -1,0 +1,14 @@
+import "stringIndexOf.bs"
+
+namespace _
+  ' /**
+  ' * @name stringIncludes
+  ' * @description Check for the existence of a given sub string
+  ' * @param {String} value The string to search
+  ' * @param {String} subString The sub string to search for
+  ' * @return {Boolean} Results of the search
+  ' */
+  function stringIncludes(value as String, subString as String) as Boolean
+    return _.stringIndexOf(value, subString) > -1
+  end function
+end namespace

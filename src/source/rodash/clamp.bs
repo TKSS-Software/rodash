@@ -1,0 +1,8 @@
+import "max.bs"
+import "min.bs"
+
+namespace _
+  function clamp(number, lower, upper) as dynamic
+    return _.max([lower, _.min([upper, number])])
+  end function
+end namespace

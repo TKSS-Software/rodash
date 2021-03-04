@@ -1,0 +1,5 @@
+namespace _
+  function lt(value as dynamic, other as dynamic)
+    return value < other
+  end function
+end namespace

@@ -1,0 +1,19 @@
+
+import "isInteger.bs"
+import "isFloat.bs"
+import "isDouble.bs"
+
+namespace _
+  ' /**
+  ' * @name isNumber
+  ' * @description Checks if the supplied value is a valid number type
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isNumber(obj as Dynamic) as Boolean
+    if (_.isInteger(obj)) then return true
+    if (_.isFloat(obj)) then return true
+    if (_.isDouble(obj)) then return true
+    return false
+  end function
+end namespace

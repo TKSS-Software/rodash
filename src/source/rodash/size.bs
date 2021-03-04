@@ -1,0 +1,23 @@
+import "isAA.bs"
+import "isArray.bs"
+import "isInvalid.bs"
+import "toArray.bs"
+
+namespace _
+  ' /**
+  ' * @name size
+  ' * @description Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
+  ' * @param {Dynamic} collection - The collection to shuffle
+  ' * @return {Array} Returns the new shuffled array
+  ' */
+  function size(collection = invalid as dynamic)
+    if _.isInvalid(collection) OR (NOT _.isArray(collection) AND NOT _.isAA(collection) AND NOT _.isString(collection)) then return []
+    if _.isAA(collection) then
+      collection = _.toArray(collection)
+    else if _.isString(collection) then
+      return collection.len()
+    end if
+
+    return collection.count()
+  end function
+end namespace

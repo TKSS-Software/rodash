@@ -1,0 +1,39 @@
+import "isAA.bs"
+import "isArray.bs"
+import "isBoolean.bs"
+import "isEqual.bs"
+import "isInvalid.bs"
+import "isNode.bs"
+import "isNumber.bs"
+import "isString.bs"
+
+namespace _
+  ' /**
+  ' * @name clone
+  ' * @description Clones objects that can be cloned.
+  ' * @param {Dynamic} value - The value to be cloned
+  ' * @return {Dynamic} The cloned value
+  ' */
+  function clone(value = invalid as dynamic) as dynamic
+    if _.isInvalid(value) return invalid
+
+    clonedValue = invalid
+    if _.isString(value) then
+      clonedValue = "" + value
+    else if _.isAA(value) then
+      clonedValue = CreateObject("roAssociativeArray")
+      clonedValue.append(value)
+    else if _.isArray(value) then
+      clonedValue = CreateObject("roArray", value.count(), true)
+      clonedValue.append(value)
+    else if _.isNumber(value) then
+      clonedValue = 0 + value
+    else if _.isBoolean(value) then
+      clonedValue = false OR value
+    else if _.isNode(value) then
+      clonedValue = value.clone(true)
+    end if
+
+    return clonedValue
+  end function
+end namespace

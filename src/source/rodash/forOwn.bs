@@ -1,0 +1,12 @@
+namespace _
+  ' /**
+  ' * @name forOwn
+  ' * @description Iterates over own enumerable string keyed properties of an object and invokes iteratee for each property. The iteratee is invoked with three arguments: (value, key, object). Iteratee functions may exit iteration early by explicitly returning false.
+  ' * @param {Dynamic} obj - The object to iterate over
+  ' * @param {Dynamic} iteratee - The function invoked per iteration
+  ' * @return {Object} Returns object
+  ' */
+  function forOwn(obj = {} as object, iteratee = invalid as dynamic)
+    return _.internal.baseForEach(obj, iteratee, "left", "omit")
+  end function
+end namespace

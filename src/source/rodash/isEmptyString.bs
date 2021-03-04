@@ -1,0 +1,13 @@
+import "isString.bs"
+
+namespace _
+  ' /**
+  ' * @name isEmptyString
+  ' * @description Checks if the supplied value is a valid String type and is not empty
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isEmptyString(value as Dynamic) as Boolean
+    return _.isString(value) AND value = ""
+  end function
+end namespace

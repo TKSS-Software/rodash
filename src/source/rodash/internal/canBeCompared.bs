@@ -1,0 +1,28 @@
+import "../isBoolean.bs"
+import "../isInvalid.bs"
+import "../isNumber.bs"
+import "../isString.bs"
+
+namespace _.internal
+  ' /**
+  ' * @name canBeCompared
+  ' * @description Checks if the supplied values can be compared in a if statement.
+  ' * @param {Dynamic} valueOne - First value
+  ' * @param {Dynamic} valueTwo - Second value
+  ' * @return {Boolean} True if the values can be compared in a if statement
+  ' */
+  function canBeCompared(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
+    ' If the first argument is true we don't need to check the following conditionals
+    if _.isString(valueOne) then
+      if _.isString(valueTwo) then return true
+    else if _.isNumber(valueOne) then
+      if _.isNumber(valueTwo) then return true
+    else if _.isBoolean(valueOne) then
+      if _.isBoolean(valueTwo) then return true
+    else if _.isInvalid(valueOne) then
+      if _.isInvalid(valueTwo) then return true
+    end if
+
+    return false
+  end function
+end namespace

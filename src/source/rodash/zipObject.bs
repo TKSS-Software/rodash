@@ -1,0 +1,18 @@
+namespace _
+  '/**
+  ' * @name zipObject
+  ' * @description This method is like _.fromPairs except that it accepts two arrays, one of property identifiers and one of corresponding values.
+  ' * @param {Array} array - The property identifiers
+  ' * @param {Array} values - The property identifiers
+  ' * @return {Object} Returns the new object
+  ' */
+  function zipObject(props = [] as object, values = [] as object) as object
+    returnObject = {}
+
+    for i = 0 to props.count() - 1
+      returnObject[props[i]] = values[i]
+    end for
+
+    return returnObject
+  end function
+end namespace

@@ -1,0 +1,18 @@
+namespace _
+  ' /**
+  ' * @name drop
+  ' * @description Creates a slice of array with n elements dropped from the beginning.
+  ' * @param {Array} array - The array to query
+  ' * @param {Integer} n - The number of elements to drop
+  ' * @return {Array} Returns the slice of array
+  ' */
+  function drop(array = {} as object, n = 1 as integer)
+    array = _.clone(array)
+    for i = 0 to n -1
+      array.shift()
+      if array.count() = 0 then exit for
+    end for
+
+    return array
+  end function
+end namespace

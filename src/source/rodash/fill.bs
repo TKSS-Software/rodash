@@ -1,0 +1,23 @@
+import "isInvalid.bs"
+
+namespace _
+  '/**
+  ' * @name fill
+  ' * @description Fills elements of array with value from start up to, but not including, end.
+  ' * This method mutates array. 
+  ' * @param {Array} array - The array to fill
+  ' * @param {Dynamic} value - The value to fill array with
+  ' * @param {Integer} startPos - The start position
+  ' * @param {Integer} endPos - The end position
+  ' * @return {Array} Returns the mutated array
+  ' */
+  function fill(array = [] as object, value = "" as dynamic, startPos = 0, endPos = invalid)
+    if _.isInvalid(endPos) then endPos = array.count()
+    endPos = endPos - 1
+
+    for i = startPos to endPos
+      array[i] = value
+    end for
+    return array
+  end function
+end namespace

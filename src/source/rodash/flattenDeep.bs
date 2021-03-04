@@ -1,0 +1,19 @@
+namespace _
+  '/**
+  ' * @name flattenDeep
+  ' * @description Recursively flattens array.
+  ' * @param {Array} array - The array to flatten
+  ' * @return {Dynamic} Returns the new flattened array
+  ' */
+  function flattenDeep(array = [])
+    returnArray = []
+    for each item in array
+      if type(item) = "roArray" then
+        returnArray.append(_.flattenDeep(item))
+      else
+        returnArray.push(item)
+      end if
+    end for
+    return returnArray
+  end function
+end namespace

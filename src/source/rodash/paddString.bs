@@ -1,0 +1,19 @@
+import "toString.bs"
+
+namespace _
+  ' /**
+  ' * @name paddString
+  ' * @description Add padding to the supplied value after converting to a string. For example "1" to "01".
+  ' * @param {String} value The value to add padding to.
+  ' * @param {Integer} padLength The minimum output string length.
+  ' * @param {String} paddingCharacter The string to use as padding.
+  ' * @return {String} Resulting padded string.
+  ' */
+  function paddString(value as Dynamic, padLength = 2 as Integer, paddingCharacter = "0" as Dynamic) as String
+    value = _.toString(value)
+    while value.len() < padLength
+      value = paddingCharacter + value
+    end while
+    return value
+  end function
+end namespace

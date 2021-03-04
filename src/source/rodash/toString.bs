@@ -1,0 +1,30 @@
+import "internal/numberToString.bs"
+import "internal/nodeToString.bs"
+import "internal/booleanToString.bs"
+import "internal/aaToString.bs"
+import "internal/arrayToString.bs"
+
+import "isAA.bs"
+import "isArray.bs"
+import "isBoolean.bs"
+import "isNode.bs"
+import "isNumber.bs"
+import "isString.bs"
+
+namespace _
+  ' /**
+  ' * @name toString
+  ' * @description Attempts to convert the supplied value to a string.
+  ' * @param {Dynamic} value The value to convert.
+  ' * @return {String} Results of the conversion.
+  ' */
+  function toString(value as Dynamic) as String
+    if _.isString(value) then return value
+    if _.isNumber(value) then return _.numberToString(value)
+    if _.isNode(value) then return _.nodeToString(value)
+    if _.isBoolean(value) then return _.booleanToString(value)
+    if _.isAA(value) then return _.aaToString(value)
+    if _.isArray(value) then return _.arrayToString(value)
+    return ""
+  end function
+end namespace

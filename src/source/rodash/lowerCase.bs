@@ -1,0 +1,8 @@
+namespace _
+  function lowerCase(value = "" as string)
+    value = value.replace("-", " ").replace("_", " ")
+    value = value.trim()
+    valueArray = value.split(" ")
+    return lcase(_.join(valueArray, " "))
+  end function
+end namespace

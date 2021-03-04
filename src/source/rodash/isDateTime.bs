@@ -1,0 +1,11 @@
+namespace _
+  ' /**
+  ' * @name isDateTime
+  ' * @description Checks if the supplied value is a valid date time type
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isDateTime(value as Dynamic) as Boolean
+    return ("roDateTime" = type(value))
+  end function
+end namespace

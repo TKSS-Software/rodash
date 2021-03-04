@@ -1,0 +1,13 @@
+import "isNumber.bs"
+
+namespace _
+  ' /**
+  ' * @name isNaN
+  ' * @description Method determines whether the passed value is NaN and its type is a valid number
+  ' * @param {Dynamic} value - The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isNaN(value as dynamic) as boolean
+    return NOT _.isNumber(value)
+  end function
+end namespace

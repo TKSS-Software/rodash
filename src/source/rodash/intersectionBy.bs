@@ -1,0 +1,52 @@
+import "clone.bs"
+import "findIndex.bs"
+import "indexOf.bs"
+import "isEqual.bs"
+import "isFunction.bs"
+import "isInvalid.bs"
+import "isNonEmptyArray.bs"
+import "isNotInvalid.bs"
+import "isString.bs"
+
+namespace _
+  '/**
+  ' * @name intersectionBy
+  ' * @description This method is like _.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+  ' * @param {Array} mainArray - The main array to inspect
+  ' * @param {Array} inspect - The array to find matches
+  ' * @param {Dynamic} iteratee - The iteratee invoked per element
+  ' * @return {Array} Returns the new array of intersecting values
+  ' */
+  function intersectionBy(mainArray = [] as object, inspectArray = [] as object, iteratee = invalid) as object
+    intersectArray = []
+
+    mainArray = _.clone(mainArray)
+    inspectArray = _.clone(inspectArray)
+
+    if _.isInvalid(iteratee) then
+      if _.isNonEmptyArray(mainArray) then
+        for each item in mainArray
+          if NOT _.isEqual(_.indexOf(inspectArray, item), - 1) then intersectArray.push(item)
+        end for
+      end if
+    else if _.isFunction(iteratee) then
+      for i = 0 to inspectArray.count() - 1
+        inspectArray[i] = iteratee(inspectArray[i])
+      end for
+      for each item in mainArray
+        if NOT _.isEqual(_.indexOf(inspectArray, iteratee(item)), - 1) then intersectArray.push(item)
+      end for
+    else if _.isString(iteratee) then
+      for each item in mainArray
+        findKey = item[iteratee]
+        if _.isNotInvalid(findKey) then
+          matchValue = {}
+          matchValue[iteratee] = findKey
+          if NOT _.isEqual(_.findIndex(inspectArray, matchValue), - 1) then intersectArray.push(item)
+        end if
+      end for
+    end if
+
+    return intersectArray
+  end function
+end namespace

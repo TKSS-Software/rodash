@@ -1,0 +1,13 @@
+import "head.bs"
+
+namespace _
+  '/**
+  ' * @name first
+  ' * @description An alias to the head function.
+  ' * @param {Array} array - The array to query
+  ' * @return {Dynamic} Returns the first element of array
+  ' */
+  function first(array = [])
+    return _.head(array)
+  end function
+end namespace

@@ -1,0 +1,13 @@
+import "uniq.bs"
+
+namespace _
+  '/**
+  ' * @name union
+  ' * @description Creates a slice of array with n elements taken from the end
+  ' * @param {Array} arrays - The arrays to inspect
+  ' * @return {Object} Returns the new array of combined values
+  ' */
+  function union(arrays = [] as object) as object
+    return _.uniq(_.flattenDeep(arrays))
+  end function
+end namespace

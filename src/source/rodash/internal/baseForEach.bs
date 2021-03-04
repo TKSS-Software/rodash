@@ -1,0 +1,49 @@
+import "../isAA.bs"
+import "../isEmpty.bs"
+import "../isEqual.bs"
+import "../isFunction.bs"
+import "../isInvalid.bs"
+
+namespace _.internal
+  ' /**
+  ' * @name baseForEach
+  ' * @description The base implementation of `forEach`.
+  ' * @param {Array|Object} - collection The collection to iterate over
+  ' * @param {Function} iteratee The function invoked per iteration
+  ' * @param {String} direction - the direction to traverse the collection
+  ' * @param {String} funcValueRule - Filters functions from collection. `allow`, `omit`, `only`.
+  ' * @return {Array|Object} Returns `collection`
+  ' */
+  function baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
+    if _.isInvalid(collection) OR _.isEmpty(collection) then return invalid
+
+    isRight = direction = "right"
+    if _.isAA(collection) then
+      keys = collection.keys()
+      if isRight then keys.reverse()
+      for each key in keys
+        item = collection[key]
+        if _.isFunction(iteratee) then
+          valueIsFunction = _.isFunction(item)
+          allowValue = false
+
+          if valueIsFunction AND NOT _.isEqual(funcValueRule, "omit")
+            allowValue = true
+          else if NOT valueIsFunction AND NOT _.isEqual(funcValueRule, "only")
+            allowValue = true
+          end if
+
+          if allowValue then iteratee(item, key)
+        end if
+      end for
+    else
+      if isRight then collection.reverse()
+      for each item in collection
+        if _.isFunction(iteratee) then iteratee(item)
+      end for
+      if isRight then collection.reverse()
+    end if
+
+    return collection
+  end function
+end namespace

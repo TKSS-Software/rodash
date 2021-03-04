@@ -1,4 +1,4 @@
-import "pkg:/source/lodash.bs"
+import "pkg:/source/rodash/_all.bs"
 import "pkg:/source/date.bs"
 
 namespace console

@@ -1,0 +1,10 @@
+import "join.bs"
+
+namespace _
+  function lowerFirst(value = "" as string)
+    value = value.trim()
+    valueArray = value.split("")
+    valueArray[0] = lcase(valueArray[0])
+    return _.join(valueArray)
+  end function
+end namespace

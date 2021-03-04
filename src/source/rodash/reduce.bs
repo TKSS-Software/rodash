@@ -1,0 +1,35 @@
+import "isAA.bs"
+import "isArray.bs"
+import "isFunction.bs"
+import "isInvalid.bs"
+
+namespace _
+  ' /**
+  ' * @name reduce
+  ' * @description Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
+  ' * @param {Dynamic} collection - The collection to iterate over
+  ' * @param {Dynamic} iteratee - The function invoked per iteration
+  ' * @param {Integer} accumulator - The initial value
+  ' * @return {Array} Returns the accumulated value
+  ' */
+  function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, accumulator = invalid as dynamic)
+    result = accumulator
+
+    if _.isInvalid(iteratee) then
+      return collection
+    else if _.isFunction(iteratee) then
+      if _.isArray(collection) then
+        for each item in collection
+          result = iteratee(result, item)
+        end for
+      else if _.isAA(collection) then
+        for each key in collection.keys()
+          item = collection[key]
+          result = iteratee(result, item, key)
+        end for
+      end if
+    end if
+
+    return result
+  end function
+end namespace

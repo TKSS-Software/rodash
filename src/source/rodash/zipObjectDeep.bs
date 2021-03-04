@@ -1,0 +1,12 @@
+namespace _
+  '/**
+  ' * @name zipObjectDeep
+  ' * @description This method is like _.zipObject except that it supports property paths.
+  ' * @param {Array} array - The property identifiers
+  ' * @param {Array} values - The property identifiers
+  ' * @return {Object} Returns the new object
+  ' */
+  function zipObjectDeep(props = [] as object, values = [] as object) as object
+    ' COME BACK
+   end function
+end namespace

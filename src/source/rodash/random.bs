@@ -1,0 +1,38 @@
+import "add.bs"
+import "isBoolean.bs"
+import "isFloat.bs"
+import "isInvalid.bs"
+import "gt.bs"
+import "lt.bs"
+
+namespace _
+  function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
+    offset = rnd(0)
+
+    if (_.isBoolean(upper)) then
+      floating = upper
+      upper = 1
+    end if
+
+    inputValueIsFloat = _.isFloat(lower) OR _.isFloat(upper)
+    respectFloating = _.isBoolean(floating) OR inputValueIsFloat
+    if respectFloating AND _.isInvalid(floating) then
+      floating = inputValueIsFloat
+    end if
+
+    roundLower = rnd(lower)
+    roundUpper = rnd(upper)
+
+    roundValue = _.add(roundLower, roundUpper)
+    if _.gt(roundValue, upper) then roundValue = roundUpper
+    if _.lt(roundValue, lower) then roundValue = roundLower
+
+    if _.isInvalid(floating) OR (respectFloating AND NOT floating) then
+      roundValue = cint(roundValue)
+    else
+      roundValue = ((roundValue - offset).toStr() + "." + offset.toStr()).toFloat()
+    end if
+
+    return roundValue
+  end function
+end namespace

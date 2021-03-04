@@ -1,0 +1,9 @@
+import "isInvalid.bs"
+
+namespace _
+  function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
+    if _.isInvalid(position) then position = source.len()
+
+    return source.endsWith(target, position)
+  end function
+end namespace

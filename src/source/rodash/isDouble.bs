@@ -1,0 +1,12 @@
+namespace _
+  ' /**
+  ' * @name isDouble
+  ' * @description Checks if the supplied value is a valid Double type
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isDouble(value as Dynamic) as Boolean
+    valueType = type(value)
+    return (valueType = "Double") OR (valueType = "roDouble") OR (valueType = "roIntrinsicDouble")
+  end function
+end namespace

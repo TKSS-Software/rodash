@@ -1,0 +1,13 @@
+import "minBy.bs"
+
+namespace _
+  ' /**
+  ' * @name min
+  ' * @description Computes the minimum value of array. If array is empty or falsey, invalid is returned.
+  ' * @param {Array} array - The array to iterate over
+  ' * @return {Dynamic} Returns the minumum value
+  ' */
+  function min(array = [] as object) as dynamic
+    return _.minBy(array)
+  end function
+end namespace

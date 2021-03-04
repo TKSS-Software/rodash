@@ -1,0 +1,12 @@
+import "isNotInvalid.bs"
+
+namespace _
+  ' /**
+  ' * @description Checks if the supplied value is Invalid
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isInvalid(value as Dynamic) as Boolean
+    return NOT _.isNotInvalid(value)
+  end function
+end namespace

@@ -18,8 +18,8 @@ sub init()
 	' console.log(_.differenceBy([{ "x": 2 }, { "x": 1 }], [{ "x": 1 }], "x")[0])
 	' console.log(_.differenceBy([2.1, 1.2], [2.3, 3.4], _.cint))
 
-	? _.isEqual("a", "b")
-	? _.isEqual("a", "a")
+	' ? _.isEqual("a", "b")
+	' ? _.isEqual("a", "a")
 	' objects = [{ "x": 1, "y": 2 }, { "x": 2, "y": 1 }]
 	' console.log(_.arrayToString(_.differenceWith(objects, [{ "x": 1, "y": 2 }], _.isEqual)))
 	' console.log(_.drop([1, 2, 3, 4], 2))
@@ -362,11 +362,23 @@ sub init()
 	' 	  return result
 	' end function, {})))
 
-	? new Foo()
+	' _.forIn(new Foo(), function(value, key)
+	' 	console.log(key)
+	' end function)
 
-	_.forIn(new Foo(), function(value, key)
-		console.log(key)
-	end function)
+	' _.forInRight(new Foo(), function(value, key)
+	' 	console.log(key)
+	' end function)
+
+	' _.forOwn(new Foo(), function(value, key)
+	' 	console.log(key)
+	' end function)
+
+	' _.forOwnRight(new Foo(), function(value, key)
+	' 	console.log(key)
+	' end function)
+
+	console.log((_.functions(new Foo())))
 end sub
 
 
@@ -374,7 +386,7 @@ Class Foo
 	public a as integer = 1
 	public b as integer = 2
 
-	' sub new()
-	' 	? "EW"
-	' end sub
+	public function walk()
+		print "hello"
+	end function
 end class

@@ -1,0 +1,36 @@
+import "clone.bs"
+import "isArray.bs"
+import "isNotInvalid.bs"
+
+namespace _
+  '/**
+  ' * @name slice
+  ' * @description Creates a slice of array from start up to, but not including, end.
+  ' * @param {Array} array - The array to slice
+  ' * @param {Integer} startPos - The start position
+  ' * @param {Integer} endPos - The end position
+  ' * @return {Dynamic} Returns the slice of array
+  ' */
+  function slice(array = [] as object, startPos = 0, endPos = invalid)
+    if NOT _.isArray(array) then return invalid
+    if _.isNotInvalid(endPos) then endPos = endPos - 1
+
+    array = _.clone(array)
+    size = array.count()
+    lastIndex = size - 1
+    slicedArray = []
+
+    if startPos < 0 then startPos = size + startPos
+    if endPos = invalid then endPos = lastIndex
+    if endPos < 0 then endPos = size + endPos
+    if endPos >= size then endPos = lastIndex
+
+    if startPos >= size OR startPos > endPos then return slicedArray
+
+    for i = startPos to endPos
+        slicedArray.push(array[i])
+    end for
+
+    return slicedArray
+  end function
+end namespace

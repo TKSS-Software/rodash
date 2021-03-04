@@ -1,0 +1,29 @@
+namespace _
+  ' /**
+  ' * @name compact
+  ' * @description Creates an array with all falsey values removed. The values false, 0, "", and invalid are falsey.
+  ' * @param {Array} array - The array to compact
+  ' * @return {Array} Returns the new array of filtered values
+  ' */
+  function compact(array = [] as object) as object
+    returnArray = []
+
+    for each item in array
+      shallPass = true
+      typeName = type(item)
+
+      if item = invalid then
+        shallPass = false
+      else if typeName = "roString" then
+        if item = "" then shallPass = false
+      else if typeName = "roInteger" then
+        if item = 0 then shallPass = false
+      else if typeName = "roBoolean" then
+        shallPass = item
+      end if
+
+      if shallPass then returnArray.push(item)
+    end for
+    return returnArray
+  end function
+end namespace

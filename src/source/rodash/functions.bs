@@ -1,0 +1,13 @@
+' TODO: Rewrite this due to scoping issue
+namespace _
+  ' /**
+  ' * @name functions
+  ' * @description Creates an array of function property names from own enumerable properties of object.
+  ' * @param {Dynamic} obj - The object to iterate over
+  ' * @return {Object} Returns object
+  ' */
+  function functions(obj = {} as object)
+    ' return _.base.forEach.baseForEach(obj, invalid, "left", "only")
+    return []
+  end function
+end namespace

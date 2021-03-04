@@ -1,0 +1,13 @@
+import "assign.bs"
+import "assignIn.bs" 'TODO
+import "assignInWith.bs" 'TODO
+import "assignWith.bs"
+import "forIn.bs"
+import "forInRight.bs"
+import "forOwn.bs"
+import "forOwnRight.bs"
+import "functions.bs"
+import "functionsIn.bs"
+import "get.bs"
+import "hasKeys.bs"
+import "set.bs"

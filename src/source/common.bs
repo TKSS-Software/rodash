@@ -1,8 +1,5 @@
-import "pkg:/source/lodash.bs"
+import "pkg:/source/rodash/_all.bs"
 import "pkg:/source/console.bs"
-
-
-
 
 namespace util
   function getNodeById(id = "" as String) as object

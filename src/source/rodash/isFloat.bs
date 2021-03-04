@@ -1,0 +1,12 @@
+namespace _
+  ' /**
+  ' * @name isFloat
+  ' * @description Checks if the supplied value is a valid Float type
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isFloat(value as Dynamic) as Boolean
+    valueType = type(value)
+    return (valueType = "Float") OR (valueType = "roFloat")
+  end function
+end namespace

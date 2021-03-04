@@ -1,0 +1,53 @@
+import "internal/canBeCompared.bs"
+import "isAA.bs"
+import "isArray.bs"
+import "isNode.bs"
+
+namespace _
+  ' /**
+  ' * @name isEqualWith
+  ' * @description Checks if the supplied values are the same.
+  ' * @param {Dynamic} valueOne - First value.
+  ' * @param {Dynamic} valueTwo - Second value.
+  ' * @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
+  ' */
+  function isEqualWith(valueOne as Dynamic, valueTwo as Dynamic, customizer = invalid) as Boolean
+    ' If the first argument is true we don't need to check the follwing conditionals
+    ' TODO: revisit this agressively
+    if _.internal.canBeCompared(valueOne, valueTwo) then
+      return customizer(valueOne, valueTwo)
+    else if _.isNode(valueOne) then
+      if _.isNode(valueTwo) then
+        valueOne = valueOne.getFields()
+        valueOne.delete("change")
+        valueOne.delete("focusable")
+        valueOne.delete("focusedChild")
+        valueOne.delete("ready")
+
+        valueTwo = valueTwo.getFields()
+        valueTwo.delete("change")
+        valueTwo.delete("focusable")
+        valueTwo.delete("focusedChild")
+        valueTwo.delete("ready")
+
+        return _.isEqualWith(valueOne, valueTwo, customizer)
+      end if
+    else if _.isAA(valueOne) then
+      if _.isAA(valueTwo) AND (valueOne.keys().count() = valueTwo.keys().count()) then
+        keys = valueOne.keys()
+
+        for each key in keys
+          if customizer(valueOne[key], valueTwo[key]) then return true
+        end for
+      end if
+    else if _.isArray(valueOne) then
+      if _.isArray(valueTwo) AND (valueOne.count() = valueTwo.count()) then
+        for i = 0 to valueOne.count() -1
+          if customizer(valueOne[i], valueTwo[i]) then return true
+        end for
+      end if
+    end if
+
+    return false
+  end function
+end namespace

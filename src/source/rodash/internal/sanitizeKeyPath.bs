@@ -1,0 +1,18 @@
+import "../isNotInvalid.bs"
+
+namespace _.internal
+  function sanitizeKeyPathArray(value = "" as String)
+    regex = createObject("roRegex", "\[(.*?)\]", "i")
+    matches = regex.matchAll(value)
+
+    if _.isNotInvalid(matches) then
+      for each match in matches
+        if _.isNotInvalid(match) then
+          value = value.replace(match[0], "." + match[1])
+        end if
+      end for
+    end if
+
+    return 	value
+  end function
+end namespace

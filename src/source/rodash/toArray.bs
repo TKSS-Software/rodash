@@ -1,0 +1,26 @@
+import "get.bs"
+import "isNumber.bs"
+
+namespace _
+  ' /**
+  'TODO: ADD MORE SUPPORT
+  ' * @name toArray
+  ' * @description Attempts to convert the supplied value to a array.
+  ' * @param {Dynamic} value The value to convert.
+  ' * @return {Object} Results of the conversion.
+  ' */
+  function toArray(aa as Object) as Object
+    array = []
+    for each key in aa
+      value = aa[key]
+      index = _.get(value, "index")
+      if _.isNumber(index) then
+        array.setEntry(index, value)
+      else
+        array.push(value)
+      end if
+    end for
+
+    return array
+  end function
+end namespace

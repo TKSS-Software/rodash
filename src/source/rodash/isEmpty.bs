@@ -1,0 +1,18 @@
+import "isNonEmptyAA.bs"
+import "isNonEmptyArray.bs"
+import "isBoolean.bs"
+import "isInvalid.bs"
+import "isNumber.bs"
+
+namespace _
+  function isEmpty(value as dynamic)
+    if _.isInvalid(value) then return true
+    if _.isNonEmptyArray(value) then return false
+    if _.isEmptyString(value) then return true
+    if _.isNumber(value) then return true
+    if _.isNonEmptyAA(value) then return false
+    if _.isBoolean(value) then return true
+
+    return false
+  end function
+end namespace

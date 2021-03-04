@@ -1,0 +1,18 @@
+import "../toString.bs"
+
+namespace _
+  ' /**
+  ' * @name arrayToString
+  ' * @description Attempts to convert the supplied value to a string.
+  ' * @param {Dynamic} value The value to convert.
+  ' * @return {String} Results of the conversion.
+  ' */
+  function arrayToString(array as Object) as String
+    description = "["
+    for each item in array
+      description += _.toString(item) + ", "
+    end for
+    description = description.left(description.len() - 2) + "]"
+    return description
+  end function
+end namespace

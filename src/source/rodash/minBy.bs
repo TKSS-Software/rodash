@@ -1,0 +1,39 @@
+import "internal/getConstants.bs"
+import "lt.bs"
+import "isAA.bs"
+import "isEmpty.bs"
+import "isInvalid.bs"
+import "isFunction.bs"
+import "isString.bs"
+
+namespace _
+  ' /**
+  ' * @name minBy
+  ' * @description Computes the minimum value of array. If array is empty or falsey, invalid is returned.
+  ' * @param {Array} array - The array to iterate over
+  ' * @return {Dynamic} Returns the maximum value
+  ' */
+  function minBy(array = [] as object, iteratee = invalid) as dynamic
+    if _.isEmpty(array) then return invalid
+
+    minValue = invalid
+    if _.isInvalid(iteratee) then
+      minValue = _.internal.getConstants().max_int
+      for each value in array
+        if _.lt(value, minValue) then minValue = value
+      end for
+    else if _.isFunction(iteratee) AND _.isAA(array[0]) then
+      minValue = array[0]
+      for each value in array
+        if _.lt(iteratee(value), iteratee(minValue)) then minValue = value
+      end for
+    else if _.isString(iteratee) AND _.isAA(array[0]) then
+      minValue = array[0]
+      for each value in array
+        if _.lt(value[iteratee], minValue[iteratee]) then minValue = value
+      end for
+    end if
+
+    return minValue
+  end function
+end namespace

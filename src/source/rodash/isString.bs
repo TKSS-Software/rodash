@@ -1,0 +1,17 @@
+
+import "isInteger.bs"
+import "isFloat.bs"
+import "isDouble.bs"
+
+namespace _
+  ' /**
+  ' * @name isString
+  ' * @description Checks if the supplied value is a valid String type
+  ' * @param {Dynamic} value The variable to be checked
+  ' * @return {Boolean} Results of the check
+  ' */
+  function isString(value as dynamic)
+    valueType = type(value)
+	  return (valueType = "String") OR (valueType = "roString")
+  end function
+end namespace

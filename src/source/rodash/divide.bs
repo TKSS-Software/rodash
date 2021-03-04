@@ -1,0 +1,19 @@
+
+import "lte.bs"
+import "isNaN.bs"
+
+namespace _
+  ' /**
+  ' * @name divide
+  ' * @description Divides two numbers
+  ' * @param {Dymanic} dividend - The first number in a division
+  ' * @param {Dymanic} divisor - The second number in a division
+  ' * @return {Integer} Returns the quotient
+  ' */
+  function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
+    if _.isNaN(dividend) OR _.isNaN(divisor) return 0
+    if _.lte(divisor, 0) then return dividend
+
+    return dividend / divisor
+  end function
+end namespace

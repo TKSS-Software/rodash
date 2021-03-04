@@ -1,0 +1,18 @@
+import "slice.bs"
+import "isInvalid.bs"
+import "isNonEmptyArray.bs"
+
+namespace _
+  '/**
+  ' * @name take
+  ' * @description Creates a slice of array with n elements taken from the beginning
+  ' * @param {Array} array - The sorted array to query
+  ' * @param {Integer} n - The number of elements to take
+  ' * @return {Object} Returns the slice of array
+  ' */
+  function take(array = [] as object, n = invalid as dynamic) as object
+    if _.isInvalid(n) then n = 1
+    if NOT _.isNonEmptyArray(array) OR n = 0 then return []
+    return _.slice(array, 0, n)
+  end function
+end namespace

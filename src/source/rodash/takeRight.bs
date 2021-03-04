@@ -1,0 +1,22 @@
+import "slice.bs"
+import "isInvalid.bs"
+import "isNonEmptyArray.bs"
+
+namespace _
+  '/**
+  ' * @name takeRight
+  ' * @description Creates a slice of array with n elements taken from the end
+  ' * @param {Array} array - The sorted array to query
+  ' * @param {Integer} n - The number of elements to take
+  ' * @return {Object} Returns the slice of array
+  ' */
+  function takeRight(array = [] as object, n = invalid as dynamic) as object
+    if _.isInvalid(n) then n = 1
+    if NOT _.isNonEmptyArray(array) OR n = 0 then return []
+
+    length = array.count()
+    startPos = length - n
+    if startPos < 0 then startPos = 0
+    return _.slice(array, startPos, length)
+  end function
+end namespace
