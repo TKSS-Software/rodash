@@ -1,0 +1,9 @@
+{
+	"rootDir": "./src",
+	"autoImportComponentScript": true,
+	"files": [
+		"**/*.+(xml|brs|bs)",
+		"assets/**/*",
+		"manifest"
+	]
+}

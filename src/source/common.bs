@@ -1,0 +1,11 @@
+import "pkg:/source/lodash.bs"
+import "pkg:/source/console.bs"
+
+
+
+
+namespace util
+  function getNodeById(id = "" as String) as object
+    return m.top.findNode(id)
+  end function
+end namespace

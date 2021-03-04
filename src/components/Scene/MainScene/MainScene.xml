@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component name="MainScene" extends="Scene">
+	<interface>
+		<field id="mainScene" type="node" />
+		<field id="closeApp" type="boolean" alwaysNotify="true" />
+	</interface>
+
+	<children>
+		<Label id="Username" />
+	</children>
+</component>
