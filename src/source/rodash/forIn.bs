@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name forIn
   ' * @description Iterates over own and inherited enumerable string keyed properties of an object and invokes iteratee for each property. The iteratee is invoked with three arguments: (value, key, object). Iteratee functions may exit iteration early by explicitly returning false.
@@ -7,6 +7,6 @@ namespace _
   ' * @return {Object} Returns object
   ' */
   function forIn(obj = {} as object, iteratee = invalid as dynamic)
-    return _.internal.baseForEach(obj, iteratee, "left", "omit")
+    return rodash.internal.baseForEach(obj, iteratee, "left", "omit")
   end function
 end namespace

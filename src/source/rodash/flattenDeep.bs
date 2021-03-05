@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   '/**
   ' * @name flattenDeep
   ' * @description Recursively flattens array.
@@ -9,7 +9,7 @@ namespace _
     returnArray = []
     for each item in array
       if type(item) = "roArray" then
-        returnArray.append(_.flattenDeep(item))
+        returnArray.append(rodash.flattenDeep(item))
       else
         returnArray.push(item)
       end if

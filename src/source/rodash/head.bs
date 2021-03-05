@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   '/**
   ' * @name head
   ' * @description Gets the first element of array.

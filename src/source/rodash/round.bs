@@ -1,11 +1,11 @@
 import "ceil.bs"
 import "isNotInvalid.bs"
 
-namespace _
+namespace rodash
   function round(number = 0, precision = 0 as integer)
     minor = number.toStr().split(".")[1]
-    ?_.isNotInvalid(minor), minor
+    ?rodash.isNotInvalid(minor), minor
 
-    return _.ceil(number, precision)
+    return rodash.ceil(number, precision)
   end function
 end namespace

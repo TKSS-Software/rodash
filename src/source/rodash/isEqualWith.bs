@@ -3,7 +3,7 @@ import "isAA.bs"
 import "isArray.bs"
 import "isNode.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isEqualWith
   ' * @description Checks if the supplied values are the same.
@@ -14,10 +14,10 @@ namespace _
   function isEqualWith(valueOne as Dynamic, valueTwo as Dynamic, customizer = invalid) as Boolean
     ' If the first argument is true we don't need to check the follwing conditionals
     ' TODO: revisit this agressively
-    if _.internal.canBeCompared(valueOne, valueTwo) then
+    if rodash.internal.canBeCompared(valueOne, valueTwo) then
       return customizer(valueOne, valueTwo)
-    else if _.isNode(valueOne) then
-      if _.isNode(valueTwo) then
+    else if rodash.isNode(valueOne) then
+      if rodash.isNode(valueTwo) then
         valueOne = valueOne.getFields()
         valueOne.delete("change")
         valueOne.delete("focusable")
@@ -30,18 +30,18 @@ namespace _
         valueTwo.delete("focusedChild")
         valueTwo.delete("ready")
 
-        return _.isEqualWith(valueOne, valueTwo, customizer)
+        return rodash.isEqualWith(valueOne, valueTwo, customizer)
       end if
-    else if _.isAA(valueOne) then
-      if _.isAA(valueTwo) AND (valueOne.keys().count() = valueTwo.keys().count()) then
+    else if rodash.isAA(valueOne) then
+      if rodash.isAA(valueTwo) AND (valueOne.keys().count() = valueTwo.keys().count()) then
         keys = valueOne.keys()
 
         for each key in keys
           if customizer(valueOne[key], valueTwo[key]) then return true
         end for
       end if
-    else if _.isArray(valueOne) then
-      if _.isArray(valueTwo) AND (valueOne.count() = valueTwo.count()) then
+    else if rodash.isArray(valueOne) then
+      if rodash.isArray(valueTwo) AND (valueOne.count() = valueTwo.count()) then
         for i = 0 to valueOne.count() -1
           if customizer(valueOne[i], valueTwo[i]) then return true
         end for

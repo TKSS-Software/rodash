@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name floor
   ' * @description Computes number rounded down to precision

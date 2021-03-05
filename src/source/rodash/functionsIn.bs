@@ -1,5 +1,5 @@
 ' TODO: Rewrite this due to scoping issue
-namespace _
+namespace rodash
   ' /**
   ' * @name functionsIn
   ' * @description Creates an array of function property names from own and inherited enumerable properties of object.
@@ -7,7 +7,7 @@ namespace _
   ' * @return {Object} Returns object
   ' */
   function functionsIn(obj = {} as object)
-    ' return _.base.forEach.baseForEach(obj, invalid, "left", "only")
+    ' return rodash.base.forEach.baseForEach(obj, invalid, "left", "only")
     return []
   end function
 end namespace

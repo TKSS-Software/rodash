@@ -1,16 +1,16 @@
 import "assign.bs"
 
-namespace _
+namespace rodash
   ' TODO: Figure out what to do here
   ' /**
   ' * @name assignIn
-  ' * @description This method is like _.assign except that it iterates over own and inherited source properties.
+  ' * @description This method is like rodash.assign except that it iterates over own and inherited source properties.
   ' * This method mutates object.
   ' * @param {Dynamic} baseAA - The destination object
   ' * @return {Object} sources - The source objects
   ' */
 
   function assignIn(baseAA as Dynamic, sources = [] as Object) as Dynamic
-    return _.assign(baseAA, sources)
+    return rodash.assign(baseAA, sources)
   end function
 end namespace

@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name concat
   ' * @description Creates a new array concatenating array with any additional arrays and/or values.

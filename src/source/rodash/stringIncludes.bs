@@ -1,6 +1,6 @@
 import "stringIndexOf.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name stringIncludes
   ' * @description Check for the existence of a given sub string
@@ -9,6 +9,6 @@ namespace _
   ' * @return {Boolean} Results of the search
   ' */
   function stringIncludes(value as String, subString as String) as Boolean
-    return _.stringIndexOf(value, subString) > -1
+    return rodash.stringIndexOf(value, subString) > -1
   end function
 end namespace

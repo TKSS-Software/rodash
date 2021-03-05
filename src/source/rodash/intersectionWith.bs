@@ -1,16 +1,16 @@
 import "intersectionBy.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name intersectionWith
-  ' * @description This method is like _.intersection except that it accepts comparator which is invoked to compare elements of arrays. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
+  ' * @description This method is like rodash.intersection except that it accepts comparator which is invoked to compare elements of arrays. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
   ' * @param {Array} mainArray - The main array to inspect
   ' * @param {Array} inspect - The array to find matches
   ' * @param {Dynamic} comparator - The comparator invoked per element
   ' * @return {Array} Returns the new array of intersecting values
   ' */
   function intersectionWith(mainArray = [] as object, inspectArray = [] as object, comparator = invalid) as object
-    if NOT _.isFunction(comparator) then return []
-    return _.intersectionBy(mainArray, inspectArray, comparator)
+    if NOT rodash.isFunction(comparator) then return []
+    return rodash.intersectionBy(mainArray, inspectArray, comparator)
   end function
 end namespace

@@ -1,6 +1,6 @@
 import "minBy.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name min
   ' * @description Computes the minimum value of array. If array is empty or falsey, invalid is returned.
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Dynamic} Returns the minumum value
   ' */
   function min(array = [] as object) as dynamic
-    return _.minBy(array)
+    return rodash.minBy(array)
   end function
 end namespace

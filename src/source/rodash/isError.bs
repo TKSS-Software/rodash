@@ -3,7 +3,7 @@ import "isAA.bs"
 import "isNonEmptyString.bs"
 import "stringIncludes.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isError
   ' * @description Assesses the passed object to determine if it is an Error Object.
@@ -12,11 +12,11 @@ namespace _
   ' */
   ' TODO: MORE SUPPORT - TRY/CATCH?
   function isError(value as dynamic) as boolean
-    if _.isAA(value) then
-      if _.isNonEmptyString(value.status) AND _.stringIncludes(value.status, "error") then return true
+    if rodash.isAA(value) then
+      if rodash.isNonEmptyString(value.status) AND rodash.stringIncludes(value.status, "error") then return true
 
-      errorCodes = _.internal.getConstants().BrightScriptErrorCodes
-      if _.hasKeys(value, ["number", "message", "exception"]) then
+      errorCodes = rodash.internal.getConstants().BrightScriptErrorCodes
+      if rodash.hasKeys(value, ["number", "message", "exception"]) then
         for each errorCode in errorCodes
           if value.number = errorCode then return true
         end for

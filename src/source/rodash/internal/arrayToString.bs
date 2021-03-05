@@ -1,6 +1,6 @@
 import "../toString.bs"
 
-namespace _.internal
+namespace rodash.internal
   ' /**
   ' * @name arrayToString
   ' * @description Attempts to convert the supplied value to a string.
@@ -10,7 +10,7 @@ namespace _.internal
   function arrayToString(array as Object) as String
     description = "["
     for each item in array
-      description += _.toString(item) + ", "
+      description += rodash.toString(item) + ", "
     end for
     description = description.left(description.len() - 2) + "]"
     return description

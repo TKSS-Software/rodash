@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name isNotInvalid
   ' * @description Checks if the supplied value is not Invalid or uninitialized

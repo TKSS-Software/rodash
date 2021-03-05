@@ -4,10 +4,10 @@ import "isEqual.bs"
 import "isFunction.bs"
 import "isString.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name findIndex
-  ' * @description This method is like _.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
+  ' * @description This method is like rodash.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
   ' * @param {Array} array - The array to inspect
   ' * @param {Dynamic} predicate - The function invoked per iteration
   ' * @param {Integer} fromIndex - The index to search from
@@ -17,13 +17,13 @@ namespace _
     for index = fromIndex to array.count() -1
       item = array[index]
 
-      if _.isFunction(predicate) then
+      if rodash.isFunction(predicate) then
         if predicate(item) then return index
-      else if _.isAA(predicate) then
-        if _.isEqual(item, predicate) then return index
-      else if _.isArray(predicate) then
-        if _.isEqual(item[predicate[0]], predicate[1]) then return index
-      else if _.isString(predicate) then
+      else if rodash.isAA(predicate) then
+        if rodash.isEqual(item, predicate) then return index
+      else if rodash.isArray(predicate) then
+        if rodash.isEqual(item[predicate[0]], predicate[1]) then return index
+      else if rodash.isString(predicate) then
         if item[predicate] then return index
       end if
     end for

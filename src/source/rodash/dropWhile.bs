@@ -6,7 +6,7 @@ import "isFunction.bs"
 import "isString.bs"
 import "slice.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name dropWhile
   ' * @description Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
@@ -15,18 +15,18 @@ namespace _
   ' * @return {Array} Returns the slice of array
   ' */
   function dropWhile(array = [] as object, predicate = invalid)
-    array = _.clone(array)
+    array = rodash.clone(array)
     for i = 0 to array.count() - 1
       item = array[i]
 
-      if _.isFunction(predicate) then
-        if NOT predicate(item) then return _.slice(array, i)
-      else if _.isAA(predicate) then
-        if NOT _.isEqual(item, predicate) then return _.slice(array, i)
-      else if _.isArray(predicate) then
-        if NOT _.isEqual(item[predicate[0]], predicate[1]) then return _.slice(array, i)
-      else if _.isString(predicate) then
-        if NOT item[predicate] then return _.slice(array, i)
+      if rodash.isFunction(predicate) then
+        if NOT predicate(item) then return rodash.slice(array, i)
+      else if rodash.isAA(predicate) then
+        if NOT rodash.isEqual(item, predicate) then return rodash.slice(array, i)
+      else if rodash.isArray(predicate) then
+        if NOT rodash.isEqual(item[predicate[0]], predicate[1]) then return rodash.slice(array, i)
+      else if rodash.isString(predicate) then
+        if NOT item[predicate] then return rodash.slice(array, i)
       end if
     end for
 

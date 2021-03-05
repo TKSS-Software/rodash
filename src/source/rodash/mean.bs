@@ -1,7 +1,7 @@
 import "meanBy.bs"
 
-namespace _
+namespace rodash
   function mean(array)
-    return _.meanBy(array)
+    return rodash.meanBy(array)
   end function
 end namespace

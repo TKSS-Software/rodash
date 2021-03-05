@@ -9,7 +9,7 @@ import "random.bs"
 import "toArray.bs"
 
 
-namespace _
+namespace rodash
   ' /**
   ' * @name shuffle
   ' * @description Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
@@ -17,19 +17,19 @@ namespace _
   ' * @return {Array} Returns the new shuffled array
   ' */
   function shuffle(collection = [] as dynamic)
-    if _.isInvalid(collection) OR (NOT _.isArray(collection) AND NOT _.isAA(collection)) then return []
-    if _.isAA(collection) then collection = _.toArray(collection)
+    if rodash.isInvalid(collection) OR (NOT rodash.isArray(collection) AND NOT rodash.isAA(collection)) then return []
+    if rodash.isAA(collection) then collection = rodash.toArray(collection)
 
     length = collection.count() - 1
-    if _.isEqual(length, -1) then return []
+    if rodash.isEqual(length, -1) then return []
 
     index = -1
     lastIndex = length - 1
-    result = _.clone(collection)
+    result = rodash.clone(collection)
 
     while index < length
       index ++
-      rand = index + _.floor(_.random(0, 1, true) * (lastIndex - index + 1))
+      rand = index + rodash.floor(rodash.random(0, 1, true) * (lastIndex - index + 1))
       value = result[rand]
       result[rand] = result[index]
       result[index] = value

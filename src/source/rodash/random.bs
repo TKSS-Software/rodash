@@ -5,29 +5,29 @@ import "isInvalid.bs"
 import "gt.bs"
 import "lt.bs"
 
-namespace _
+namespace rodash
   function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
     offset = rnd(0)
 
-    if (_.isBoolean(upper)) then
+    if (rodash.isBoolean(upper)) then
       floating = upper
       upper = 1
     end if
 
-    inputValueIsFloat = _.isFloat(lower) OR _.isFloat(upper)
-    respectFloating = _.isBoolean(floating) OR inputValueIsFloat
-    if respectFloating AND _.isInvalid(floating) then
+    inputValueIsFloat = rodash.isFloat(lower) OR rodash.isFloat(upper)
+    respectFloating = rodash.isBoolean(floating) OR inputValueIsFloat
+    if respectFloating AND rodash.isInvalid(floating) then
       floating = inputValueIsFloat
     end if
 
     roundLower = rnd(lower)
     roundUpper = rnd(upper)
 
-    roundValue = _.add(roundLower, roundUpper)
-    if _.gt(roundValue, upper) then roundValue = roundUpper
-    if _.lt(roundValue, lower) then roundValue = roundLower
+    roundValue = rodash.add(roundLower, roundUpper)
+    if rodash.gt(roundValue, upper) then roundValue = roundUpper
+    if rodash.lt(roundValue, lower) then roundValue = roundLower
 
-    if _.isInvalid(floating) OR (respectFloating AND NOT floating) then
+    if rodash.isInvalid(floating) OR (respectFloating AND NOT floating) then
       roundValue = cint(roundValue)
     else
       roundValue = ((roundValue - offset).toStr() + "." + offset.toStr()).toFloat()

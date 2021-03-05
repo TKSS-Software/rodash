@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   function escapeRegExp(source = "" as string)
     replaceArray = ["^", "$", "", ".", "*", "+", "?", "(", ")", "[", "]", "{", "}", "|"]
     for each char in replaceArray

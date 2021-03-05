@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   function capitalize(value = "" as string)
     value = value.trim()
     valueArray = value.split("")

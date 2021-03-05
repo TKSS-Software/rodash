@@ -1,6 +1,6 @@
 import "capitalize.bs"
 
-namespace _
+namespace rodash
   function camelCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()
@@ -13,7 +13,7 @@ namespace _
       if i = 0 then
         responseValue += lcase(valueString)
       else
-        responseValue += _.capitalize(valueString)
+        responseValue += rodash.capitalize(valueString)
       end if
     end for
 

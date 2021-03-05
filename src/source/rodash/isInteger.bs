@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name isInteger
   ' * @description Checks if the supplied value is a valid Integer type

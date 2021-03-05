@@ -1,12 +1,12 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name forInRight
-  ' * @description This method is like _.forIn except that it iterates over properties of object in the opposite order.
+  ' * @description This method is like rodash.forIn except that it iterates over properties of object in the opposite order.
   ' * @param {Dynamic} obj - The object to iterate over
   ' * @param {Dynamic} iteratee - The function invoked per iteration
   ' * @return {Object} Returns object
   ' */
   function forInRight(obj = {} as object, iteratee = invalid as dynamic)
-    return _.internal.baseForEach(obj, iteratee, "right", "omit")
+    return rodash.internal.baseForEach(obj, iteratee, "right", "omit")
   end function
 end namespace

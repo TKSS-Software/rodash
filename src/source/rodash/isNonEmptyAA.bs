@@ -1,6 +1,6 @@
 import "isAA.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isNonEmptyAA
   ' * @description Checks if the supplied value is a valid and populated AssociativeArray type
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isNonEmptyAA(value as dynamic)
-    return _.isAA(value) AND value.keys().count() > 0
+    return rodash.isAA(value) AND value.keys().count() > 0
   end function
 end namespace

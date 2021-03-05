@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   function lte(value as dynamic, other as dynamic)
     return value <= other
   end function

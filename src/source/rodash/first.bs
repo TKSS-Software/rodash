@@ -1,6 +1,6 @@
 import "head.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name first
   ' * @description An alias to the head function.
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Dynamic} Returns the first element of array
   ' */
   function first(array = [])
-    return _.head(array)
+    return rodash.head(array)
   end function
 end namespace

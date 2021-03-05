@@ -1,12 +1,12 @@
 import "isNotInvalid.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @description Alias to isInvalid function
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */
   function isNull(value as Dynamic) as Boolean
-    return NOT _.isNotInvalid(value)
+    return NOT rodash.isNotInvalid(value)
   end function
 end namespace

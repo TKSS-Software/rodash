@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name isBoolean
   ' * @description Checks if the supplied value is a valid Boolean type

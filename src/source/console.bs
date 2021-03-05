@@ -39,7 +39,7 @@ namespace console
       levelInfo = "[LOG]"
     end if
 
-    readableTime = `${_.getHours().local}:${_.paddString(_.getMinutes().local)}:${_.paddString(_.getSeconds().local)}`
+    readableTime = `${rodash.getHours().local}:${rodash.paddString(rodash.getMinutes().local)}:${rodash.paddString(rodash.getSeconds().local)}`
     logString = `[CONSOLE]${levelInfo} | ${readableTime} | `
     print logString, message
   end sub

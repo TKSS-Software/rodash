@@ -5,7 +5,7 @@ import "isNotInvalid.bs"
 import "isNonEmptyArray.bs"
 import "toNumber.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name get
   ' * @description Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
@@ -15,18 +15,18 @@ namespace _
   ' * @param {Function} validator - A function used to validate the output value matches what you expected.
   ' * @return {Dynamic} The result of the drill down process
   ' */
-  function get(aa as object, keyPath as string, fallback = Invalid as dynamic, validator = _.isNotInvalid as function) as dynamic
-    if NOT (_.internal.isKeyedValueType(aa) OR _.isNonEmptyArray(aa)) OR keyPath = "" then return fallback
+  function get(aa as object, keyPath as string, fallback = Invalid as dynamic, validator = rodash.isNotInvalid as function) as dynamic
+    if NOT (rodash.internal.isKeyedValueType(aa) OR rodash.isNonEmptyArray(aa)) OR keyPath = "" then return fallback
 
     nextValue = aa
-    keyPath = _.internal.sanitizeKeyPath(keyPath)
+    keyPath = rodash.internal.sanitizeKeyPath(keyPath)
     keys = keyPath.tokenize(".").toArray()
-    startingKeys = _.join(keys, " - ")
+    startingKeys = rodash.join(keys, " - ")
     for each key in keys
-      if _.internal.isKeyedValueType(nextValue) then
+      if rodash.internal.isKeyedValueType(nextValue) then
         nextValue = nextValue[key]
-      else if _.isNonEmptyArray(nextValue) then
-        nextValue = nextValue[_.toNumber(key)]
+      else if rodash.isNonEmptyArray(nextValue) then
+        nextValue = nextValue[rodash.toNumber(key)]
       else
         return fallback
       end if

@@ -3,7 +3,7 @@ import "isInteger.bs"
 import "isFloat.bs"
 import "isDouble.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isString
   ' * @description Checks if the supplied value is a valid String type

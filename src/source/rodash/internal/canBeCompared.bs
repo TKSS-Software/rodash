@@ -3,7 +3,7 @@ import "../isInvalid.bs"
 import "../isNumber.bs"
 import "../isString.bs"
 
-namespace _.internal
+namespace rodash.internal
   ' /**
   ' * @name canBeCompared
   ' * @description Checks if the supplied values can be compared in a if statement.
@@ -13,14 +13,14 @@ namespace _.internal
   ' */
   function canBeCompared(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
     ' If the first argument is true we don't need to check the following conditionals
-    if _.isString(valueOne) then
-      if _.isString(valueTwo) then return true
-    else if _.isNumber(valueOne) then
-      if _.isNumber(valueTwo) then return true
-    else if _.isBoolean(valueOne) then
-      if _.isBoolean(valueTwo) then return true
-    else if _.isInvalid(valueOne) then
-      if _.isInvalid(valueTwo) then return true
+    if rodash.isString(valueOne) then
+      if rodash.isString(valueTwo) then return true
+    else if rodash.isNumber(valueOne) then
+      if rodash.isNumber(valueTwo) then return true
+    else if rodash.isBoolean(valueOne) then
+      if rodash.isBoolean(valueTwo) then return true
+    else if rodash.isInvalid(valueOne) then
+      if rodash.isInvalid(valueTwo) then return true
     end if
 
     return false

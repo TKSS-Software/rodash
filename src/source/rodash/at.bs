@@ -1,12 +1,12 @@
 
 import "get.bs"
 
-namespace _
+namespace rodash
   function at(obj = {} as object, paths = [] as object)
     returnArray = []
 
     for each path in paths
-      result = _.get(obj, path)
+      result = rodash.get(obj, path)
       returnArray.push(result)
     end for
 

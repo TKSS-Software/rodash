@@ -1,6 +1,6 @@
 import "../toString.bs"
 
-namespace _.internal
+namespace rodash.internal
   function getDateObject() as object
     dateObj = CreateObject("roDateTime")
 

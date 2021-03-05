@@ -1,7 +1,7 @@
 import "isArray.bs"
 import "isEqual.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name indexOf
   ' * @description Gets the index at which the first occurrence of value is found in array using SameValueZero for equality comparisons. If fromIndex is negative, it's used as the offset from the end of array.
@@ -11,11 +11,11 @@ namespace _
   ' * @return {Integer} Returns the index of the matched value, else -1
   ' */
   function indexOf(array = [] as object, value = invalid, fromIndex = 0)
-    if NOT _.isArray(array) then return -1
+    if NOT rodash.isArray(array) then return -1
 
     for index = fromIndex to array.count() -1
       item = array[index]
-      if _.isEqual(item, value) then return index
+      if rodash.isEqual(item, value) then return index
     end for
 
     return -1

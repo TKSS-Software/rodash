@@ -2,7 +2,7 @@ import "../isNode.bs"
 import "aaToString.bs"
 import "nodeToAA.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name nodeToString
   ' * @description Attempts to convert the supplied value to a string.
@@ -10,14 +10,14 @@ namespace _
   ' * @return {String} Results of the conversion.
   ' */
   function nodeToString(node as Object) as String
-    if NOT _.isNode(node) then return ""
+    if NOT rodash.isNode(node) then return ""
 
     description = node.subtype()
     if node.isSubtype("Group") then
       ' accessing properties from anywhere but the render thread is too expensive to include here
       id = node.id
       if id <> "" then
-        description += " (" + id + ")" + _.internal.aaToString(_.internal.nodeToAA(node))
+        description += " (" + id + ")" + rodash.internal.aaToString(rodash.internal.nodeToAA(node))
       end if
     end if
     return description

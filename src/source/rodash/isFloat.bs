@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name isFloat
   ' * @description Checks if the supplied value is a valid Float type

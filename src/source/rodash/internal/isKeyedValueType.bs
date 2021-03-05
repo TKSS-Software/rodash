@@ -1,4 +1,4 @@
-namespace _.internal
+namespace rodash.internal
   ' /**
   ' * @name isKeyedValueType
   ' * @description Checks if the supplied value allows for key field access

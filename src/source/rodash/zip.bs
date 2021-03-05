@@ -1,6 +1,6 @@
 import "isInvalid.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name zip
   ' * @description Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
@@ -13,7 +13,7 @@ namespace _
     for i = 0 to arrays.count() - 1
       array = arrays[i]
       for ii = 0 to array.count() - 1
-        if _.isInvalid(returnArray[ii]) then returnArray[ii] = []
+        if rodash.isInvalid(returnArray[ii]) then returnArray[ii] = []
         returnArray[ii].push(array[ii])
       end for
     end for

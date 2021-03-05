@@ -2,7 +2,7 @@ import "../isAA.bs"
 import "../isNode.bs"
 import "../isNonEmptyArray.bs"
 
-namespace _.internal
+namespace rodash.internal
   ' /**
   ' * @name nodeToAA
   ' * @description Attempts to converts a nodes top level fields to an AssociativeArray.
@@ -12,7 +12,7 @@ namespace _.internal
   ' * @return {Dynamic} Results of the conversion.
   ' */
   function nodeToAA(value as Object, removeId = false as Boolean, removeFields = [] as Object) as Object
-    if _.isNode(value) then
+    if rodash.isNode(value) then
       fields = value.getFields()
       fields.delete("change")
       fields.delete("focusable")
@@ -20,13 +20,13 @@ namespace _.internal
       fields.delete("ready")
       if removeId then fields.delete("id")
       'Looping through any additional fields if passed.
-      if _.isNonEmptyArray(removeFields) then
+      if rodash.isNonEmptyArray(removeFields) then
         for each field in removeFields
           fields.delete(field)
         end for
       end if
       return fields
-    else if _.isAA(value) then
+    else if rodash.isAA(value) then
       return value
     end if
 

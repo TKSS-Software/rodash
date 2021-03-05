@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name compact
   ' * @description Creates an array with all falsey values removed. The values false, 0, "", and invalid are falsey.

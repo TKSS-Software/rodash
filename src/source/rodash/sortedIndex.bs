@@ -1,6 +1,6 @@
 import "isNotInvalid.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name sortedIndex
   ' * @description Gets all but the first element of array
@@ -11,7 +11,7 @@ namespace _
     for i = 0 to array.count() - 1
       item = array[i]
       nextItem = array[i + 1]
-      if _.isNotInvalid(nextItem) then
+      if rodash.isNotInvalid(nextItem) then
         if (item >= value AND value <= nextItem) then
           return i
         end if

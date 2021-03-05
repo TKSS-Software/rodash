@@ -1,7 +1,7 @@
 import "./internal/sanitizeKeyPath.bs"
 import "isAA.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name set
   ' * @description Used to set a nested String value in the supplied object
@@ -11,13 +11,13 @@ namespace _
   ' * @return {Boolean} True if set successfully.
   ' */
   function set(aa as Object, keyPath as String, value as Dynamic) as Boolean
-    if NOT _.isAA(aa) then return false
+    if NOT rodash.isAA(aa) then return false
 
     level = aa
-    keys = _.internal.sanitizeKeyPath(keyPath).tokenize(".")
+    keys = rodash.internal.sanitizeKeyPath(keyPath).tokenize(".")
     while keys.count() > 1
       key = keys.shift()
-      if NOT _.isAA(level[key]) then level[key] = {}
+      if NOT rodash.isAA(level[key]) then level[key] = {}
       level = level[key]
     end while
 

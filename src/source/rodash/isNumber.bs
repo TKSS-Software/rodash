@@ -3,7 +3,7 @@ import "isInteger.bs"
 import "isFloat.bs"
 import "isDouble.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isNumber
   ' * @description Checks if the supplied value is a valid number type
@@ -11,9 +11,9 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isNumber(obj as Dynamic) as Boolean
-    if (_.isInteger(obj)) then return true
-    if (_.isFloat(obj)) then return true
-    if (_.isDouble(obj)) then return true
+    if (rodash.isInteger(obj)) then return true
+    if (rodash.isFloat(obj)) then return true
+    if (rodash.isDouble(obj)) then return true
     return false
   end function
 end namespace

@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name isNode
   ' * @description Checks if the supplied value is a valid Node type

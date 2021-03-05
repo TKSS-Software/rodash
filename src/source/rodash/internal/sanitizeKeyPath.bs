@@ -1,13 +1,13 @@
 import "../isNotInvalid.bs"
 
-namespace _.internal
+namespace rodash.internal
   function sanitizeKeyPathArray(value = "" as String)
     regex = createObject("roRegex", "\[(.*?)\]", "i")
     matches = regex.matchAll(value)
 
-    if _.isNotInvalid(matches) then
+    if rodash.isNotInvalid(matches) then
       for each match in matches
-        if _.isNotInvalid(match) then
+        if rodash.isNotInvalid(match) then
           value = value.replace(match[0], "." + match[1])
         end if
       end for

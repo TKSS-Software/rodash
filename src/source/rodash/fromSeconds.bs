@@ -1,8 +1,8 @@
 import "internal/getDateObject.bs"
 
-namespace _
+namespace rodash
   function fromSeconds(numSeconds = 0 as integer) as object
-    dateObj = _.internal.getDateObject()
+    dateObj = rodash.internal.getDateObject()
 
     return {
       "utc": dateObj.utc.fromSeconds(numSeconds),

@@ -1,8 +1,8 @@
 import "isNaN.bs"
 
-namespace _
+namespace rodash
   function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic
-    if _.isNaN(multiplier) OR _.isNaN(multiplicand) return 0
+    if rodash.isNaN(multiplier) OR rodash.isNaN(multiplicand) return 0
 
     return multiplier * multiplicand
   end function

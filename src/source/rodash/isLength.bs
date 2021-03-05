@@ -2,7 +2,7 @@ import "gte.bs"
 import "isFinite.bs"
 import "isInteger.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isLength
   ' * @description Checks if value is a valid array-like length
@@ -10,7 +10,7 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isLength(value as dynamic) as boolean
-    if _.isInteger(value) AND _.isFinite(value) AND _.gte(value, 0) then return true
+    if rodash.isInteger(value) AND rodash.isFinite(value) AND rodash.gte(value, 0) then return true
     return false
   end function
 end namespace

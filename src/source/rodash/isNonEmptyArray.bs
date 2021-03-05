@@ -1,6 +1,6 @@
 import "isArray.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isNonEmptyArray
   ' * @description Checks if the supplied value is a valid Array type and not empty
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isNonEmptyArray(value as Dynamic) as Boolean
-    return (_.isArray(value) AND NOT value.isEmpty())
+    return (rodash.isArray(value) AND NOT value.isEmpty())
   end function
 end namespace

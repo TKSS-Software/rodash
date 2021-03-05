@@ -1,7 +1,7 @@
 import "assign.bs"
 
-namespace _
+namespace rodash
   function assignInWith(baseAA as Dynamic, sources = [] as Object) as Dynamic
-    return _.assign(baseAA, sources)
+    return rodash.assign(baseAA, sources)
   end function
 end namespace

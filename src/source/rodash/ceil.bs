@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name ceil
   ' * @description Computes number rounded up to precision.

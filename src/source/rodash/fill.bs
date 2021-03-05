@@ -1,6 +1,6 @@
 import "isInvalid.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name fill
   ' * @description Fills elements of array with value from start up to, but not including, end.
@@ -12,7 +12,7 @@ namespace _
   ' * @return {Array} Returns the mutated array
   ' */
   function fill(array = [] as object, value = "" as dynamic, startPos = 0, endPos = invalid)
-    if _.isInvalid(endPos) then endPos = array.count()
+    if rodash.isInvalid(endPos) then endPos = array.count()
     endPos = endPos - 1
 
     for i = startPos to endPos

@@ -1,7 +1,7 @@
 import "isEqual.bs"
 
-namespace _
+namespace rodash
   function eq(value as dynamic, other as dynamic)
-    return _.isEqual(value, other)
+    return rodash.isEqual(value, other)
   end function
 end namespace

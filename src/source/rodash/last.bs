@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   '/**
   ' * @name last
   ' * @description Gets the last element of array.

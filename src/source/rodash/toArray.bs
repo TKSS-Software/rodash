@@ -1,7 +1,7 @@
 import "get.bs"
 import "isNumber.bs"
 
-namespace _
+namespace rodash
   ' /**
   'TODO: ADD MORE SUPPORT
   ' * @name toArray
@@ -13,8 +13,8 @@ namespace _
     array = []
     for each key in aa
       value = aa[key]
-      index = _.get(value, "index")
-      if _.isNumber(index) then
+      index = rodash.get(value, "index")
+      if rodash.isNumber(index) then
         array.setEntry(index, value)
       else
         array.push(value)

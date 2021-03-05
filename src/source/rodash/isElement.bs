@@ -1,6 +1,6 @@
 import "isNode.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isElement
   ' * @description Alias to isNode function
@@ -9,6 +9,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isElement(value as Dynamic, subType = "" as String) as Boolean
-    return _.isNode(value, subtype)
+    return rodash.isNode(value, subtype)
   end function
 end namespace

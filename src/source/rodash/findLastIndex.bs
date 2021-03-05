@@ -1,19 +1,19 @@
 import "clone.bs"
 import "findIndex.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name findLastIndex
-  ' * @description This method is like _.findIndex except that it iterates over elements of collection from right to left.
+  ' * @description This method is like rodash.findIndex except that it iterates over elements of collection from right to left.
   ' * @param {Array} array - The array to inspect
   ' * @param {Dynamic} predicate - The function invoked per iteration
   ' * @param {Integer} fromIndex - The index to search from
   ' * @return {Integer} Returns the index of the found element, else -1
   ' */
   function findLastIndex(array, predicate = invalid, fromIndex = 0 as integer)
-    array = _.clone(array)
+    array = rodash.clone(array)
     array.reverse()
-    foundIndex = _.findIndex(array, predicate, fromIndex)
+    foundIndex = rodash.findIndex(array, predicate, fromIndex)
 
     if foundIndex = -1 then return -1
     return array.count() - 1 - foundIndex

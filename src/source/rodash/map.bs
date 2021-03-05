@@ -3,7 +3,7 @@ import "isArray.bs"
 import "isFunction.bs"
 import "isString.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name map
   ' * @description Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
@@ -12,14 +12,14 @@ namespace _
   ' * @return {Array} Returns the new mapped array
   ' */
   function map(collection = {} as dynamic, iteratee = invalid as dynamic)
-    if NOT _.isArray(collection) then return []
+    if NOT rodash.isArray(collection) then return []
 
     returnArray = []
 
     for each item in collection
-      if _.isString(iteratee) then
-        if _.isAA(item) then returnArray.push(item[iteratee])
-      else if _.isFunction(iteratee) then
+      if rodash.isString(iteratee) then
+        if rodash.isAA(item) then returnArray.push(item[iteratee])
+      else if rodash.isFunction(iteratee) then
         returnArray.push(iteratee(item))
       end if
     end for

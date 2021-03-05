@@ -1,6 +1,6 @@
 import "intersectionBy.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name intersection
   ' * @description Creates an array of unique values that are included in all given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
@@ -9,6 +9,6 @@ namespace _
   ' * @return {Array} Returns the new array of intersecting values
   ' */
   function intersection(mainArray = [] as object, inspectArray = [] as object) as object
-    return _.intersectionBy(mainArray, inspectArray)
+    return rodash.intersectionBy(mainArray, inspectArray)
   end function
 end namespace

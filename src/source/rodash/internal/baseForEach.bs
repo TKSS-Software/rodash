@@ -4,7 +4,7 @@ import "../isEqual.bs"
 import "../isFunction.bs"
 import "../isInvalid.bs"
 
-namespace _.internal
+namespace rodash.internal
   ' /**
   ' * @name baseForEach
   ' * @description The base implementation of `forEach`.
@@ -15,21 +15,21 @@ namespace _.internal
   ' * @return {Array|Object} Returns `collection`
   ' */
   function baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
-    if _.isInvalid(collection) OR _.isEmpty(collection) then return invalid
+    if rodash.isInvalid(collection) OR rodash.isEmpty(collection) then return invalid
 
     isRight = direction = "right"
-    if _.isAA(collection) then
+    if rodash.isAA(collection) then
       keys = collection.keys()
       if isRight then keys.reverse()
       for each key in keys
         item = collection[key]
-        if _.isFunction(iteratee) then
-          valueIsFunction = _.isFunction(item)
+        if rodash.isFunction(iteratee) then
+          valueIsFunction = rodash.isFunction(item)
           allowValue = false
 
-          if valueIsFunction AND NOT _.isEqual(funcValueRule, "omit")
+          if valueIsFunction AND NOT rodash.isEqual(funcValueRule, "omit")
             allowValue = true
-          else if NOT valueIsFunction AND NOT _.isEqual(funcValueRule, "only")
+          else if NOT valueIsFunction AND NOT rodash.isEqual(funcValueRule, "only")
             allowValue = true
           end if
 
@@ -39,7 +39,7 @@ namespace _.internal
     else
       if isRight then collection.reverse()
       for each item in collection
-        if _.isFunction(iteratee) then iteratee(item)
+        if rodash.isFunction(iteratee) then iteratee(item)
       end for
       if isRight then collection.reverse()
     end if

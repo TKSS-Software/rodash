@@ -1,11 +1,11 @@
 ' TODO
-namespace _
+namespace rodash
   function ary(func = invalid as dynamic, n = 0 as integer)
-    if _.isNotInvalid(func) then
+    if rodash.isNotInvalid(func) then
       for i = 1 to n
         return func
       end for
-      ' if _.isInvalid(_[func]) then
+      ' if rodash.isInvalid(_[func]) then
     end if
   end function
 end namespace

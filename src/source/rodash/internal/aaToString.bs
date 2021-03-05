@@ -1,6 +1,6 @@
 import "../toString.bs"
 
-namespace _.interal
+namespace rodash.interal
   ' /**
   ' * @name aaToString
   ' * @description Attempts to convert the supplied value to a string.
@@ -10,7 +10,7 @@ namespace _.interal
   function aaToString(aa as Object) as String
     description = "{"
     for each key in aa
-      description += key + ": " + _.toString(aa[key]) + ", "
+      description += key + ": " + rodash.toString(aa[key]) + ", "
     end for
     description = description.left(description.len() - 2) + "}"
     return description

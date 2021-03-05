@@ -7,7 +7,7 @@ import "isNode.bs"
 import "isNumber.bs"
 import "isString.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name clone
   ' * @description Clones objects that can be cloned.
@@ -15,22 +15,22 @@ namespace _
   ' * @return {Dynamic} The cloned value
   ' */
   function clone(value = invalid as dynamic) as dynamic
-    if _.isInvalid(value) return invalid
+    if rodash.isInvalid(value) return invalid
 
     clonedValue = invalid
-    if _.isString(value) then
+    if rodash.isString(value) then
       clonedValue = "" + value
-    else if _.isAA(value) then
+    else if rodash.isAA(value) then
       clonedValue = CreateObject("roAssociativeArray")
       clonedValue.append(value)
-    else if _.isArray(value) then
+    else if rodash.isArray(value) then
       clonedValue = CreateObject("roArray", value.count(), true)
       clonedValue.append(value)
-    else if _.isNumber(value) then
+    else if rodash.isNumber(value) then
       clonedValue = 0 + value
-    else if _.isBoolean(value) then
+    else if rodash.isBoolean(value) then
       clonedValue = false OR value
-    else if _.isNode(value) then
+    else if rodash.isNode(value) then
       clonedValue = value.clone(true)
     end if
 

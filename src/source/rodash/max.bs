@@ -1,6 +1,6 @@
 import "maxBy.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name max
   ' * @description Computes the maximum value of array. If array is empty or falsey, invalid is returned.
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Dynamic} Returns the maximum value
   ' */
   function max(array = [] as object) as dynamic
-    return _.maxBy(array)
+    return rodash.maxBy(array)
   end function
 end namespace

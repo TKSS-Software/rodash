@@ -1,4 +1,4 @@
-namespace _.internal
+namespace rodash.internal
   ' /**
   ' * @name booleanToString
   ' * @description Attempts to convert the supplied value to a string.

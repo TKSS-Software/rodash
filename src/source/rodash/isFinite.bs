@@ -4,12 +4,12 @@ import "isAA.bs"
 import "isNumber.bs"
 import "lt.bs"
 
-namespace _
+namespace rodash
   function isFinite(value as dynamic) as boolean
-    if NOT _.isNumber(value) then return false
-    constants = _.internal.getConstants()
+    if NOT rodash.isNumber(value) then return false
+    constants = rodash.internal.getConstants()
 
-    if _.gt(value, constants.max_int) OR _.lt(value, constants().min_int) then return false
+    if rodash.gt(value, constants.max_int) OR rodash.lt(value, constants().min_int) then return false
 
     return true
   end function

@@ -1,6 +1,6 @@
 import "toString.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name paddString
   ' * @description Add padding to the supplied value after converting to a string. For example "1" to "01".
@@ -10,7 +10,7 @@ namespace _
   ' * @return {String} Resulting padded string.
   ' */
   function paddString(value as Dynamic, padLength = 2 as Integer, paddingCharacter = "0" as Dynamic) as String
-    value = _.toString(value)
+    value = rodash.toString(value)
     while value.len() < padLength
       value = paddingCharacter + value
     end while

@@ -1,6 +1,6 @@
 import "isNumber.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isNaN
   ' * @description Method determines whether the passed value is NaN and its type is a valid number
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isNaN(value as dynamic) as boolean
-    return NOT _.isNumber(value)
+    return NOT rodash.isNumber(value)
   end function
 end namespace

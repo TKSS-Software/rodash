@@ -1,6 +1,6 @@
 import "isInteger.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name add
   ' * @description Adds two numbers
@@ -10,8 +10,8 @@ namespace _
   ' */
   function add(augend, addend)
     value = 0
-    if _.isNumber(augend) then value += augend
-    if _.isNumber(addend) then value += addend
+    if rodash.isNumber(augend) then value += augend
+    if rodash.isNumber(addend) then value += addend
 
     return value
   end function

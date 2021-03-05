@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name dropRight
   ' * @description Creates a slice of array with n elements dropped from the end.
@@ -7,9 +7,9 @@ namespace _
   ' * @return {Array} Returns the slice of array
   ' */
   function dropRight(array = {} as object, n = 1 as integer)
-    array = _.clone(array)
+    array = rodash.clone(array)
     array.reverse()
-    array = _.drop(array, n)
+    array = rodash.drop(array, n)
     array.reverse()
     return array
   end function

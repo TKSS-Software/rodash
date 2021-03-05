@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   '/**
   ' * @name flatten
   ' * @description Flattens array a single level deep.

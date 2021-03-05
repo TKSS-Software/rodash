@@ -1,6 +1,6 @@
 import "isDateTime.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isDate
   ' * @description Alias to isDate function
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isDate(value as Dynamic) as Boolean
-    return _.isDateTime(value)
+    return rodash.isDateTime(value)
   end function
 end namespace

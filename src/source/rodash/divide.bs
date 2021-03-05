@@ -2,7 +2,7 @@
 import "lte.bs"
 import "isNaN.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name divide
   ' * @description Divides two numbers
@@ -11,8 +11,8 @@ namespace _
   ' * @return {Integer} Returns the quotient
   ' */
   function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
-    if _.isNaN(dividend) OR _.isNaN(divisor) return 0
-    if _.lte(divisor, 0) then return dividend
+    if rodash.isNaN(dividend) OR rodash.isNaN(divisor) return 0
+    if rodash.lte(divisor, 0) then return dividend
 
     return dividend / divisor
   end function

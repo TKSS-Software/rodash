@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name drop
   ' * @description Creates a slice of array with n elements dropped from the beginning.
@@ -7,7 +7,7 @@ namespace _
   ' * @return {Array} Returns the slice of array
   ' */
   function drop(array = {} as object, n = 1 as integer)
-    array = _.clone(array)
+    array = rodash.clone(array)
     for i = 0 to n -1
       array.shift()
       if array.count() = 0 then exit for

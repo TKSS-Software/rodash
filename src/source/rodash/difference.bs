@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name difference
   ' * @description Creates an array of array values not included in the other given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
@@ -7,6 +7,6 @@ namespace _
   ' * @return {Array} Returns the new array of filtered values
   ' */
   function difference(array = [] as object, values = [] as object) as object
-    return _.differenceBy(array, values)
+    return rodash.differenceBy(array, values)
   end function
 end namespace

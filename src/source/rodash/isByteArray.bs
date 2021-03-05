@@ -1,4 +1,4 @@
-namespace _
+namespace rodash
   ' /**
   ' * @name isByteArray
   ' * @description Checks if the supplied value is a valid ByteArray type

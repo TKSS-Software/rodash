@@ -1,7 +1,7 @@
 import "clone.bs"
 import "dropWhile.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name dropRightWhile
   ' * @description Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
@@ -10,9 +10,9 @@ namespace _
   ' * @return {Array} Returns the slice of array
   ' */
   function dropRightWhile(array = {} as object, predicate = invalid)
-    array = _.clone(array)
+    array = rodash.clone(array)
     array.reverse()
-    array = _.dropWhile(array, predicate)
+    array = rodash.dropWhile(array, predicate)
     array.reverse()
     return array
   end function

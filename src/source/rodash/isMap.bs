@@ -1,7 +1,7 @@
 
 import "isArray.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isMap
   ' * @description Alias to isArray function
@@ -9,6 +9,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isMap(value as dynamic) as boolean
-    return _.isArray(value)
+    return rodash.isArray(value)
   end function
 end namespace

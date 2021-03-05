@@ -6,7 +6,7 @@ import "isInvalid.bs"
 import "isFunction.bs"
 import "isString.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name maxBy
   ' * @description Computes the maximum value of array. If array is empty or falsey, invalid is returned.
@@ -14,23 +14,23 @@ namespace _
   ' * @return {Dynamic} Returns the maximum value
   ' */
   function maxBy(array = [] as object, iteratee = invalid) as dynamic
-    if _.isEmpty(array) then return invalid
+    if rodash.isEmpty(array) then return invalid
 
     maxValue = invalid
-    if _.isInvalid(iteratee) then
-      maxValue = _.internal.getConstants().min_int
+    if rodash.isInvalid(iteratee) then
+      maxValue = rodash.internal.getConstants().min_int
       for each value in array
-        if _.gt(value, maxValue) then maxValue = value
+        if rodash.gt(value, maxValue) then maxValue = value
       end for
-    else if _.isFunction(iteratee) AND _.isAA(array[0]) then
+    else if rodash.isFunction(iteratee) AND rodash.isAA(array[0]) then
       maxValue = array[0]
       for each value in array
-        if _.gt(iteratee(value), iteratee(maxValue)) then maxValue = value
+        if rodash.gt(iteratee(value), iteratee(maxValue)) then maxValue = value
       end for
-    else if _.isString(iteratee) AND _.isAA(array[0]) then
+    else if rodash.isString(iteratee) AND rodash.isAA(array[0]) then
       maxValue = array[0]
       for each value in array
-        if _.gt(value[iteratee], maxValue[iteratee]) then maxValue = value
+        if rodash.gt(value[iteratee], maxValue[iteratee]) then maxValue = value
       end for
     end if
 

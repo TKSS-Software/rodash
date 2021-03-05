@@ -3,7 +3,7 @@ import "isArray.bs"
 import "isFunction.bs"
 import "isInvalid.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name reduce
   ' * @description Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
@@ -15,14 +15,14 @@ namespace _
   function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, accumulator = invalid as dynamic)
     result = accumulator
 
-    if _.isInvalid(iteratee) then
+    if rodash.isInvalid(iteratee) then
       return collection
-    else if _.isFunction(iteratee) then
-      if _.isArray(collection) then
+    else if rodash.isFunction(iteratee) then
+      if rodash.isArray(collection) then
         for each item in collection
           result = iteratee(result, item)
         end for
-      else if _.isAA(collection) then
+      else if rodash.isAA(collection) then
         for each key in collection.keys()
           item = collection[key]
           result = iteratee(result, item, key)

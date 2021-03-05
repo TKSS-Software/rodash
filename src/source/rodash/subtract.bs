@@ -1,8 +1,8 @@
 import "isNaN.bs"
 
-namespace _
+namespace rodash
   function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
-    if _.isNaN(minuend) OR _.isNaN(subtrahend) return 0
+    if rodash.isNaN(minuend) OR rodash.isNaN(subtrahend) return 0
 
     return minuend - subtrahend
   end function

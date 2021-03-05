@@ -1,6 +1,6 @@
 import "clone.bs"
 
-namespace _
+namespace rodash
   '/**
   ' * @name join
   ' * @description Converts all elements in array into a string separated by separator.
@@ -9,6 +9,6 @@ namespace _
   ' * @return {Array} Returns the joined string
   ' */
   function join(array = [] as object, separator = "" as string)
-    return _.clone(array).join(separator)
+    return rodash.clone(array).join(separator)
   end function
 end namespace

@@ -2,7 +2,7 @@ import "isNonEmptyAA.bs"
 import "isNonEmptyArray.bs"
 import "isNonEmptyString.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isArrayLike
   ' * @description Checks if the supplied value is a valid unempty Array like type
@@ -10,6 +10,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isArrayLike(value as dynamic)
-    return _.isNonEmptyArray(value) OR _.isNonEmptyAA(value) OR _.isNonEmptyString(value)
+    return rodash.isNonEmptyArray(value) OR rodash.isNonEmptyAA(value) OR rodash.isNonEmptyString(value)
   end function
 end namespace

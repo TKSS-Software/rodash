@@ -3,14 +3,14 @@ import "gte.bs"
 import "isInvalid.bs"
 import "lt.bs"
 
-namespace _
+namespace rodash
   function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
-    if (_.isInvalid(endPos)) then
+    if (rodash.isInvalid(endPos)) then
       endPos = startPos
       startPos = 0
     end if
 
-    if _.gt(startPos, endPos) then
+    if rodash.gt(startPos, endPos) then
       startPosTemp = startPos
       endPosTemp = endPos
 
@@ -18,6 +18,6 @@ namespace _
       endPos = startPosTemp
     end if
 
-    return _.gte(number, startPos) AND _.lt(number, endPos)
+    return rodash.gte(number, startPos) AND rodash.lt(number, endPos)
   end function
 end namespace

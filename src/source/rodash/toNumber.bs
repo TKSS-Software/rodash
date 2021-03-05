@@ -3,7 +3,7 @@ import "isString.bs"
 import "isNumber.bs"
 import "stringIncludes.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name toNumber
   ' * @description Attempts to convert the supplied value into a valid number
@@ -11,16 +11,16 @@ namespace _
   ' * @return {Dynamic} Results of the conversion
   ' */
   function toNumber(value as Dynamic) as Dynamic
-    if _.isNumber(value) then
+    if rodash.isNumber(value) then
       return value
-    else if _.isBoolean(value) then
+    else if rodash.isBoolean(value) then
       if value then return 1
       return 0
     end if
 
-    if _.isString(value) then
+    if rodash.isString(value) then
       ' TODO: Temporary fix until we figure a better way to avoid val converting 8037667 to 8.03767e+06
-      if _.stringIncludes(value, ".") then
+      if rodash.stringIncludes(value, ".") then
         return val(value)
       else
         return val(value, 10)

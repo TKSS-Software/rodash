@@ -1,6 +1,6 @@
 import "isString.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name isEmptyString
   ' * @description Checks if the supplied value is a valid String type and is not empty
@@ -8,6 +8,6 @@ namespace _
   ' * @return {Boolean} Results of the check
   ' */
   function isNonEmptyString(value as Dynamic) as Boolean
-    return _.isString(value) AND value <> ""
+    return rodash.isString(value) AND value <> ""
   end function
 end namespace

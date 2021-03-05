@@ -1,7 +1,7 @@
 import "./internal/isKeyedValueType.bs"
 import "isArray.bs"
 
-namespace _
+namespace rodash
   ' /**
   ' * @name hasKeys
   ' * @description Checks if first level of the supplied AssociativeArray contains the Array of key strings.
@@ -9,7 +9,7 @@ namespace _
   ' * @return {Dynamic} keys - Array of key strings
   ' */
   function hasKeys(aaValue as dynamic, keys as dynamic) as boolean
-    if NOT _.isKeyedValueType(aaValue) OR aaValue.isEmpty() OR NOT _.isArray(keys) OR keys.isEmpty() then return false
+    if NOT rodash.isKeyedValueType(aaValue) OR aaValue.isEmpty() OR NOT rodash.isArray(keys) OR keys.isEmpty() then return false
 
     hasKeys = true
     for each key in keys
