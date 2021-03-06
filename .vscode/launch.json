@@ -6,41 +6,78 @@
 	"configurations": [{
 		"type": "brightscript",
 		"request": "launch",
-		"name": "Side Load",
+		"name": "Tests",
 		"presentation": {
-			"group": "compSideLoad"
+			"group": "options"
 		},
-    "preLaunchTask": "compile-project",
 		"stopOnEntry": false,
+		"preLaunchTask": "build-tests",
+		"envFile": "${workspaceFolder}/.env",
 		"host": "${env:LAUNCH_HOST_OVERRIDE}",
 		"password": "${env:ROKU_PASSWORD}",
-		"deepLinkUrl": "${env:DEEP_LINK_URL}",
-		"enableDebuggerAutoRecovery": true,
-		"envFile": "${workspaceFolder}/.env",
+		"rootDir": "${workspaceFolder}/out/stage",
 		"injectRaleTrackerTask": true,
+		"enableDebuggerAutoRecovery": true,
 		"sourceDirs": [
-			"${workspaceFolder}/src/"
+			"${workspaceFolder}/src"
 		],
-		"rootDir": "${workspaceFolder}/out/stage"
+		"files": [
+			"manifest",
+			"source/**/*.*",
+			"components/**/*.*",
+			"images/**/*.*",
+			"font/**/*.*",
+			"!*.zip",
+			"!**/*.zip"
+		]
+	},
+	{
+		"type": "brightscript",
+		"request": "launch",
+		"presentation": {
+			"group": "options"
+		},
+		"name": "Sideload",
+		"stopOnEntry": false,
+		"preLaunchTask": "build", 
+		"envFile": "${workspaceFolder}/.env",
+		"host": "${env:LAUNCH_HOST_OVERRIDE}",
+		"password": "${env:ROKU_PASSWORD}",
+		"rootDir": "${workspaceFolder}/out/stage",
+		"injectRaleTrackerTask": true,
+		"enableDebuggerAutoRecovery": true,
+		"sourceDirs": [
+			"${workspaceFolder}/src"
+		],
+		"files": [
+			"manifest",
+			"source/**/*.*",
+			"components/**/*.*",
+			"images/**/*.*",
+			"font/**/*.*",
+			"!*.zip",
+			"!**/*.zip",
+			"!**/*.spec.bs"
+		]
 	},
 	{
 		"type": "brightscript",
 		"request": "launch",
 		"name": "DIST",
 		"presentation": {
-			"group": "compSideLoad"
+			"group": "options"
 		},
     "preLaunchTask": "dist-project",
 		"stopOnEntry": false,
 		"host": "${env:LAUNCH_HOST_OVERRIDE}",
-		"password": "${env:ROKU_PASSWORD}",
+		"password": "${env:ROKU_PASSWORD}",,
+		"rootDir": "${workspaceFolder}/out/stage",
 		"deepLinkUrl": "${env:DEEP_LINK_URL}",
 		"enableDebuggerAutoRecovery": true,
 		"envFile": "${workspaceFolder}/.env",
 		"injectRaleTrackerTask": true,
 		"sourceDirs": [
 			"${workspaceFolder}/src/"
-		],
-		"rootDir": "${workspaceFolder}/out/stage"
+		]
 	}]
 }

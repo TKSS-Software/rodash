@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx bsc --create-package false --staging-folder-path ./out/stage",
+    "build": "npx bsc --create-package false --staging-folder-path ./out/stage --project ./bsconfig.json",
+    "test": "npx bsc --create-package false --staging-folder-path ./out/stage --project ./bsconfig.coverage.json",
     "dist": "node ./scripts/createDist.js"
   },
   "author": "",
@@ -15,6 +16,8 @@
   "devDependencies": {
     "concat": "^1.0.3",
     "glob": "^7.1.6",
-    "merge-files": "^0.1.2"
+    "merge-files": "^0.1.2",
+    "rooibos-cli": "^1.4.0",
+    "rooibos-roku": "^4.1.2"
   }
 }

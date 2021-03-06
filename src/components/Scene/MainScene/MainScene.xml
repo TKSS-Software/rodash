@@ -2,7 +2,6 @@
 <component name="MainScene" extends="Scene">
 	<script type="text/brightscript" uri="pkg:/source/rodash/dist/rodash.brs" />
 	<interface>
-		<field id="mainScene" type="node" />
 		<field id="closeApp" type="boolean" alwaysNotify="true" />
 	</interface>
 

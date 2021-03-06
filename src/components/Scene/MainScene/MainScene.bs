@@ -377,7 +377,6 @@ sub init()
 	' rodash.forOwnRight(new Foo(), function(value, key)
 	' 	console.log(key)
 	' end function)
-
 	' console.log((rodash.functions(new Foo())))
 end sub
 

@@ -2,9 +2,10 @@
 	"rootDir": "./src",
 	"autoImportComponentScript": true,
 	"files": [
-		"**/*.+(xml|brs|bs)",
+		"**/*.+(xml|brs|bs|d.bs)",
 		"assets/**/*",
-		"manifest"
+		"manifest",
+		"!**/*.spec.bs"
 	],
 	"emitDefinitions": true
 }
