@@ -22,5 +22,25 @@
 			"${workspaceFolder}/src/"
 		],
 		"rootDir": "${workspaceFolder}/out/stage"
+	},
+	{
+		"type": "brightscript",
+		"request": "launch",
+		"name": "DIST",
+		"presentation": {
+			"group": "compSideLoad"
+		},
+    "preLaunchTask": "dist-project",
+		"stopOnEntry": false,
+		"host": "${env:LAUNCH_HOST_OVERRIDE}",
+		"password": "${env:ROKU_PASSWORD}",
+		"deepLinkUrl": "${env:DEEP_LINK_URL}",
+		"enableDebuggerAutoRecovery": true,
+		"envFile": "${workspaceFolder}/.env",
+		"injectRaleTrackerTask": true,
+		"sourceDirs": [
+			"${workspaceFolder}/src/"
+		],
+		"rootDir": "${workspaceFolder}/out/stage"
 	}]
 }

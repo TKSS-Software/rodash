@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx bsc --create-package false --staging-folder-path ./out/stage",
+    "dist": "node ./scripts/createDist.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "brighterscript": "^0.30.8"
+  },
+  "devDependencies": {
+    "concat": "^1.0.3",
+    "glob": "^7.1.6",
+    "merge-files": "^0.1.2"
   }
 }
