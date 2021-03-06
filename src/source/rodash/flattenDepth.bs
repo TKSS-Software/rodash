@@ -1,0 +1,36 @@
+import "isArray.bs"
+
+namespace rodash
+  '/**
+  ' * @name flattenDepth
+  ' * @description Recursively flatten array up to depth times.
+  ' * @param {Array} array - The array to flatten
+  ' * @param {Integer} depth - The maximum recursion depth
+  ' * @return {Dynamic} Returns the new flattened array
+  ' */
+  function flattenDepth(array = invalid, depth = 1 as integer)
+    returnArray = []
+
+    if NOT rodash.isArray(array) then return array
+
+    for i = 0 to array.count() -1
+      item = array[i]
+      if (depth > 1) then
+        item = rodash.flattenDepth(item, depth - 1)
+        if rodash.isArray(item) then
+          returnArray.append(item)
+        else
+          returnArray.push(item)
+        end if
+      else
+        if rodash.isArray(item) then
+          returnArray.append(item)
+        else
+          returnArray.push(item)
+        end if
+      end if
+    end for
+
+    return returnArray
+  end function
+end namespace

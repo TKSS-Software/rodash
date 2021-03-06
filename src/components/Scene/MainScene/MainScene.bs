@@ -10,7 +10,8 @@ sub init()
 	' console.assert(false, `HELLO ${m.username}`)
 	util.getNodeById("username").text = `${m.username}`
 
-	' console.log(rodash.chunk(["a", "b", "c", "d", "e"], 1))
+	' console.log(rodash.toString(rodash.chunk(["a", "b", "c", "d"], 2)))
+	' console.log(rodash.toString(rodash.chunk(["a", "b", "c", "d"], 3)))
 	' console.log(rodash.compact([0, 1, false, 2, "", 3]))
 	' console.log(rodash.concat([0], [1,2,[3, 4]]))
 	' console.log(rodash.difference([2, 1], [2, 3]))
@@ -50,14 +51,14 @@ sub init()
 	' console.log(rodash.fill([4, 6, 8, 10], "*", 1, 3))
 	' console.log(rodash.fill([4, 6, 8, 10, 12, 16, 20], "*", 2, 4))
 
-	' users = [
-	' 	{ "user": "barney",  "active": false },
-	' 	{ "user": "fred",    "active": false },
-	' 	{ "user": "pebbles", "active": true }
-	' ]
-	' console.log(rodash.findIndex(users, function(o)
-	' 	return o.user = "barney"
-	' end function))
+	users = [
+		{ "user": "barney",  "active": false },
+		{ "user": "fred",    "active": false },
+		{ "user": "pebbles", "active": true }
+	]
+	console.log(rodash.findIndex(users, function(o)
+		return o.user = "barney"
+	end function))
 	' console.log(rodash.findIndex(users, { "user": "fred", "active": false }))
 	' console.log(rodash.findIndex(users, ["active", false ]))
 	' console.log(rodash.findIndex(users, "active"))
@@ -254,6 +255,7 @@ sub init()
 
 	' console.log(rodash.zipObject(["a", "b", "c"], [1, 2]))
 	' console.log(rodash.internal.aaToString(rodash.zipObjectDeep(["a.b[0].c", "a.b[1].d"], [1, 2])))
+	' console.log(rodash.internal.aaToString({"a":{"b":[{"c":1},{"d":2}]}}))
 
 	' console.log(rodash.internal.arrayToString(rodash.zip([["a", "b"], [1, 2], [true, false]])))
 
@@ -300,6 +302,8 @@ sub init()
 	' 	{ "user": "barney", "age": 34 },
 	' 	{ "user": "al", "age": 99 }
 	' ]
+
+	' console.log(rodash.internal.arrayToString(users))
 
 	' console.log(rodash.internal.arrayToString(rodash.sortBy(users, ["user", "age"])))
 

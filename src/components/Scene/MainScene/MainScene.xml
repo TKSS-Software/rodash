@@ -6,6 +6,6 @@
 	</interface>
 
 	<children>
-		<Label id="Username" />
+		<Label id="Username" text="HELLO" />
 	</children>
 </component>

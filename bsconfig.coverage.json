@@ -1,0 +1,17 @@
+{
+	"rootDir": "./src",
+	"autoImportComponentScript": true,
+	"files": [
+		"**/*.+(xml|brs|bs)",
+		"assets/**/*",
+		"manifest"
+	],
+	"plugins": [
+    "rooibos-roku"
+  ],
+	"rooibos": {
+    "showOnlyFailures": true,
+    "lineWidth": 70
+  },
+	"emitDefinitions": true
+}

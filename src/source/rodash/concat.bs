@@ -1,3 +1,5 @@
+import "isArray.bs"
+
 namespace rodash
   ' /**
   ' * @name concat
@@ -9,7 +11,15 @@ namespace rodash
   function concat(array = [] as object, values = [] as object) as object
     returnArray = []
     returnArray.append(array)
-    returnArray.append(values)
+    
+    for each value in values
+      if rodash.isArray(value) then
+        returnArray.append(value)
+      else
+        returnArray.push(value)
+      end if
+    end for
+
     return returnArray
   end function
 end namespace

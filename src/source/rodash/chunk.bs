@@ -3,18 +3,19 @@ namespace rodash
   ' * @name chunk
   ' * @description Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
   ' * @param {Array} array - The array to process
-  ' * @param {Integer} size - The length of each chunk
+  ' * @param {Integer} chunkSize - The length of each chunk
   ' * @return {Array} Returns the new array of chunks
   ' */
-  function chunk(array = [] as object, size = 1 as integer) as object
-    numberOfChunks = array.count() / size
+  function chunk(array = [] as object, chunkSize = 1 as integer) as object
+    array = rodash.clone(array)
+    numberOfChunks = rodash.floor(array.count() / chunkSize)
     returnArray = CreateObject("roArray", numberOfChunks, true)
 
     arrayIndex = 0
     for index = 0 to numberOfChunks
       chunkArray = []
 
-      for chunkSize = 0 to size - 1
+      for i = 0 to chunkSize - 1
         chunkArray.push(array[arrayIndex])
         arrayIndex ++
         if arrayIndex = array.count() then exit for
