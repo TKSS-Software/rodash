@@ -1,5 +1,4 @@
-import "isInteger.bs"
-
+import "isNumber.bs"
 namespace rodash
   ' /**
   ' * @name add

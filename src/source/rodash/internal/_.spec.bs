@@ -1,0 +1,39 @@
+namespace Tests
+  @suite("RodashInternalTests")
+  class InternalTests extends Rooibos.BaseTestSuite
+
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @describe("Tests the rodash internal methods")
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    @it("Test rodash aaToString")
+    @params({"a":{"b":[{"c":1},{"d":2}]}})
+    function testAAToString(aa as Object)
+      resultToMatch = "{a: {b: [{c: 1}, {d: 2}]}}"
+      m.assertEqual(rodash.internal.aaToString(aa), resultToMatch)
+    end function
+
+
+    @it("Test rodash arrayToString")
+    @params([
+      { "user": "fred",   "age": 48 },
+      { "user": "barney", "age": 36 },
+      { "user": "fred",   "age": 40 },
+      { "user": "barney", "age": 34 },
+      { "user": "al", "age": 99 }
+    ])
+    function testAAToString(array as Object)
+      resultToMatch = "[{user: fred, age: 48}, {user: barney, age: 36}, {user: fred, age: 40}, {user: barney, age: 34}, {user: al, age: 99}]"
+      m.assertEqual(rodash.internal.arrayToString(array), resultToMatch)
+    end function
+
+
+    @it("Test rodash booleanToString")
+    @params(false, "false")
+    @params(true, "true")
+    function testBooleanToString(bool as dynamic, resultToMatch = "" as string)
+      m.assertEqual(rodash.internal.booleanToString(bool), resultToMatch)
+    end function
+
+  end class
+end namespace

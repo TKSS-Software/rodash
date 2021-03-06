@@ -1,6 +1,6 @@
 import "../toString.bs"
 
-namespace rodash.interal
+namespace rodash.internal
   ' /**
   ' * @name aaToString
   ' * @description Attempts to convert the supplied value to a string.

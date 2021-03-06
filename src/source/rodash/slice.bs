@@ -16,16 +16,16 @@ namespace rodash
     if rodash.isNotInvalid(endPos) then endPos = endPos - 1
 
     array = rodash.clone(array)
-    size = array.count()
-    lastIndex = size - 1
+    arraySize = array.count()
+    lastIndex = arraySize - 1
     slicedArray = []
 
-    if startPos < 0 then startPos = size + startPos
+    if startPos < 0 then startPos = arraySize + startPos
     if endPos = invalid then endPos = lastIndex
-    if endPos < 0 then endPos = size + endPos
-    if endPos >= size then endPos = lastIndex
+    if endPos < 0 then endPos = arraySize + endPos
+    if endPos >= arraySize then endPos = lastIndex
 
-    if startPos >= size OR startPos > endPos then return slicedArray
+    if startPos >= arraySize OR startPos > endPos then return slicedArray
 
     for i = startPos to endPos
         slicedArray.push(array[i])

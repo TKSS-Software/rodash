@@ -1,4 +1,6 @@
+import "add.bs"
 import "divide.bs"
+import "floor.bs"
 import "max.bs"
 import "maxBy.bs"
 import "mean.bs"

@@ -3,6 +3,7 @@
 ' * @since 4.0
 ' */
 sub main(inputEvent as Object)
+	? "inputEvent", inputEvent
 	screen = createObject("roSGScreen")
 	m.port = createObject("roMessagePort")
 	screen.setMessagePort(m.port)
