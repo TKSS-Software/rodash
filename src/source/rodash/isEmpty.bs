@@ -6,13 +6,16 @@ import "isNumber.bs"
 
 namespace rodash
   function isEmpty(value as dynamic)
-    if rodash.isInvalid(value) then return true
-    if rodash.isNonEmptyArray(value) then return false
-    if rodash.isEmptyString(value) then return true
-    if rodash.isNumber(value) then return true
-    if rodash.isNonEmptyAA(value) then return false
-    if rodash.isBoolean(value) then return true
+    if rodash.isInvalid(value) OR rodash.isNumber(value) OR rodash.isBoolean(value) then
+      return true
+    else if rodash.isAA(value) then
+      return NOT rodash.isNonEmptyAA(value)
+    else if rodash.isArray(value) then
+      return NOT rodash.isNonEmptyArray(value)
+    else if rodash.isString(value) then
+      return rodash.isEmptyString(value)
+    end if
 
-    return false
+    return true
   end function
 end namespace
