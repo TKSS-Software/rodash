@@ -152,6 +152,42 @@ namespace Tests
       m.assertEqual(result, matchResult)
     end function
 
+    @it("indexOf")
+    @params([1, 2, 1, 2], 2, invalid, 1)
+    @params([1, 2, 1, 2], 2, 2, 3)
+    function _indexOfTest(array = [] as object, value = invalid as dynamic, fromIndex = invalid as dynamic, matchResult = invalid as dynamic)
+      result = rodash.indexOf(array, value, fromIndex)
+      m.assertEqual(result, matchResult)
+    end function
+
+    @it("initial")
+    @params([1, 2, 3], [1, 2])
+    function _initialTest(array = [] as object, matchResult = invalid as dynamic)
+      result = rodash.initial(array)
+      m.assertEqual(result, matchResult)
+    end function
+
+    @it("intersection")
+    @params([2, 1], [2, 3], [2])
+    function _intersectionTest(arrayOne = [] as object, arrayTwo = [] as object, matchResult = invalid as dynamic)
+      result = rodash.intersection(arrayOne, arrayTwo)
+      m.assertEqual(result, matchResult)
+    end function
+
+    @it("join")
+    @params(["a", "b", "c"], "~", "a~b~c")
+    function _joinTest(array = [] as object, separator = "" as string, matchResult = invalid as dynamic)
+      result = rodash.join(array, separator)
+      m.assertEqual(result, matchResult)
+    end function
+
+    @it("last")
+    @params([1, 2, 3], 3)
+    function _lastTest(array = [] as object, matchResult = invalid as dynamic)
+      result = rodash.last(array)
+      m.assertEqual(result, matchResult)
+    end function
+
 
   end class
 

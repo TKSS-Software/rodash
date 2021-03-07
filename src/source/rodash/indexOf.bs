@@ -1,5 +1,6 @@
 import "isArray.bs"
 import "isEqual.bs"
+import "isInvalid.bs"
 
 namespace rodash
   '/**
@@ -10,8 +11,9 @@ namespace rodash
   ' * @param {Integer} fromIndex - The index to search from
   ' * @return {Integer} Returns the index of the matched value, else -1
   ' */
-  function indexOf(array = [] as object, value = invalid, fromIndex = 0)
+  function indexOf(array = [] as object, value = invalid, fromIndex = invalid)
     if NOT rodash.isArray(array) then return -1
+    if rodash.isInvalid(fromIndex) then fromIndex = 0
 
     for index = fromIndex to array.count() -1
       item = array[index]

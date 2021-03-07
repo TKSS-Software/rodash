@@ -1,0 +1,52 @@
+namespace Tests
+  @suite("RodashLangTests")
+  class LangTests extends Rooibos.BaseTestSuite
+
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @describe("Tests the rodash lang methods")
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    @it("clone")
+    @params(["a", "b", "c", "d"])
+    @params([1, 2, 3])
+    @params([{ "a": 1 }, { "b": 2 }])
+    function _(cloneItem as dynamic)
+      result = rodash.clone(cloneItem)
+      m.assertEqual(cloneItem, result)
+    end function
+
+    @it("eq")
+    @params({ "a": 1 }, { "a": 1 }, true)
+    @params("a", "a", true)
+    @params(1, 2, false)
+    @params(invalid, invalid, true)
+    function _(itemOne as dynamic, itemTwo as dynamic, matchResult = false as boolean)
+      m.assertEqual(rodash.eq(itemOne, itemTwo), matchResult)
+    end function
+
+    @it("isAA")
+    @params([1, 2, 3], false)
+    @params("a", false)
+    @params({"a": 1 }, true)
+    function _(item as dynamic, matchResult = false as boolean)
+      m.assertEqual(rodash.isAA(item), matchResult)
+    end function
+
+    @it("isArray")
+    @params([1, 2, 3], true)
+    @params("a", false)
+    @params({"a": 1 }, false)
+    function _(item as dynamic, matchResult = false as boolean)
+      m.assertEqual(rodash.isArray(item), matchResult)
+    end function
+
+    @it("isArrayLike")
+    @params([1, 2, 3], true)
+    @params("abc", true)
+    @params({"a": 1 }, false)
+    function _(item as dynamic, matchResult = false as boolean)
+      m.assertEqual(rodash.isArrayLike(item), matchResult)
+    end function
+  end class
+
+end namespace
