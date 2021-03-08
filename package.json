@@ -18,6 +18,9 @@
   "author": "TKSS Software",
   "license": "ISC",
   "dependencies": {},
+  "files": [
+    "dist/**/*"
+  ],
   "ropm": {
     "packageRootDir": "dist"
   },
