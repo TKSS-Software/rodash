@@ -10,11 +10,7 @@ sub init()
 	' console.assert(false, `HELLO ${m.username}`)
 	util.getNodeById("username").text = `${m.username}`
 
-	' console.log(rodash.toString(rodash.chunk(["a", "b", "c", "d"], 2)))
-	' console.log(rodash.toString(rodash.chunk(["a", "b", "c", "d"], 3)))
-	' console.log(rodash.compact([0, 1, false, 2, "", 3]))
-	' console.log(rodash.concat([0], [1,2,[3, 4]]))
-	' console.log(rodash.difference([2, 1], [2, 3]))
+	
 	' console.log(rodash.differenceBy([2.1, 1.2], [2.3, 3.4], rodash.cint))
 	' console.log(rodash.differenceBy([{ "x": 2 }, { "x": 1 }], [{ "x": 1 }], "x")[0])
 	' console.log(rodash.differenceBy([2.1, 1.2], [2.3, 3.4], rodash.cint))
@@ -23,8 +19,7 @@ sub init()
 	' ? rodash.isEqual("a", "a")
 	' objects = [{ "x": 1, "y": 2 }, { "x": 2, "y": 1 }]
 	' console.log(rodash.internal.arrayToString(rodash.differenceWith(objects, [{ "x": 1, "y": 2 }], rodash.isEqual)))
-	' console.log(rodash.drop([1, 2, 3, 4], 2))
-	' console.log(rodash.dropRight([1, 2, 3, 4], 2))
+
 
 	' users = [
 	' 	{ "user": "barney",  "active": true },
@@ -47,45 +42,9 @@ sub init()
 	' console.log(rodash.internal.arrayToString(rodash.dropWhile(users, ["active", false])))
 	' console.log(rodash.internal.arrayToString(rodash.dropWhile(users, "active")))
 
-	' console.log(rodash.fill([1, 2, 3], "a"))
-	' console.log(rodash.fill([4, 6, 8, 10], "*", 1, 3))
-	' console.log(rodash.fill([4, 6, 8, 10, 12, 16, 20], "*", 2, 4))
-
-	' users = [
-	' 	{ "user": "barney",  "active": false },
-	' 	{ "user": "fred",    "active": false },
-	' 	{ "user": "pebbles", "active": true }
-	' ]
-	' console.log(rodash.findIndex(users, function(o)
-	' 	return o.user = "barney"
-	' end function))
-	' console.log(rodash.findIndex(users, { "user": "fred", "active": false }))
-	' console.log(rodash.findIndex(users, ["active", false ]))
-	' console.log(rodash.findIndex(users, "active"))
-
-	' users = [
-	' 	{ "user": "barney",  "active": true },
-	' 	{ "user": "fred",    "active": false },
-	' 	{ "user": "pebbles", "active": false }
-	' ]
-	' console.log(rodash.findLastIndex(users, function(o)
-	' 	return o.user = "pebbles"
-	' end function))
-	' console.log(rodash.findLastIndex(users, { "user": "barney", "active": true }))
 
 
-	' console.log(rodash.first([1, 2, 3]))
-	' console.log(rodash.head([1, 2, 3]))
-	' console.log(rodash.head([]))
 
-	' console.log(rodash.flatten([1, [2, [3, [4]], 5]]))
-	' console.log(rodash.flattenDeep([1, [2, [3, [4]], 5]]))
-
-	' console.log(rodash.indexOf([1, 2, 1, 2], 2))
-	' console.log(rodash.indexOf([1, 2, 1, 2], 2, 2))
-	' console.log(rodash.initial([1, 2, 3]))
-	' console.log(rodash.internal.arrayToString(rodash.intersection([2, 1], [2, 3])))
-	' console.log(rodash.intersection([2, 1, 0, 3], [2, 3, 5, 6]))
 	' console.log(rodash.internal.arrayToString(rodash.intersectionBy([2.1, 1.2], [2.3, 3.4], rodash.floor)))
 	' arrayOne = [{"x": 1 }]
 	' arrayTwo = [{ "x": 2 }, { "x": 1 }]
@@ -99,16 +58,7 @@ sub init()
 	' console.log(rodash.gte(3, 3))
 	' console.log(rodash.gte(1, 3))
 
-	' console.log(rodash.isDateTime(CreateObject("roDateTime")))
-	' console.log(rodash.isDateTime("Mon April 23 2012"))
 
-	' console.log(rodash.isEmpty(invalid))
-	' console.log(rodash.isEmpty(true))
-	' console.log(rodash.isEmpty(1))
-	' console.log(rodash.isEmpty([1,2,3]))
-	' console.log(rodash.isEmpty({"a": 1}))
-	' console.log(rodash.isEmpty(""))
-	' console.log(rodash.isEmpty("a"))
 
 	' objectA = [
 	' 	{ "user": "barney",  "active": true },

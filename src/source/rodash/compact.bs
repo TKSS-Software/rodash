@@ -1,3 +1,7 @@
+import "isBoolean.bs"
+import "isInvalid.bs"
+import "isNumber.bs"
+import "isString.bs"
 namespace rodash
   ' /**
   ' * @name compact
@@ -12,13 +16,13 @@ namespace rodash
       shallPass = true
       typeName = type(item)
 
-      if item = invalid then
+      if rodash.isInvalid(item) then
         shallPass = false
-      else if typeName = "roString" then
-        if item = "" then shallPass = false
-      else if typeName = "roInteger" then
+      else if rodash.isEmptyString(item) then
+        shallPass = false
+      else if rodash.isNumber(item) then
         if item = 0 then shallPass = false
-      else if typeName = "roBoolean" then
+      else if rodash.isBoolean(item) then
         shallPass = item
       end if
 

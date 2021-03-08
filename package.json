@@ -18,6 +18,6 @@
     "glob": "^7.1.6",
     "merge-files": "^0.1.2",
     "rooibos-cli": "^1.4.0",
-    "rooibos-roku": "^4.1.2"
+    "rooibos-roku": "^4.1.3"
   }
 }

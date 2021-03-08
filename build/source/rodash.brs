@@ -1,5 +1,6 @@
 ' /**
-' * @name add
+' * @member add
+' * @memberof module:rodash
 ' * @description Adds two numbers
 ' * @param {Dymanic} augend - The first number in an addition
 ' * @param {Dymanic} addend - The second number in an addition
@@ -214,17 +215,15 @@ function compact(array = [] as object) as object
     for each item in array
         shallPass = true
         typeName = type(item)
-        if item = invalid then
+        if isInvalid(item) then
             shallPass = false
-        else if typeName = "roString" then
-            if item = "" then
-                shallPass = false
-            end if
-        else if typeName = "roInteger" then
+        else if isEmptyString(item) then
+            shallPass = false
+        else if isNumber(item) then
             if item = 0 then
                 shallPass = false
             end if
-        else if typeName = "roBoolean" then
+        else if isBoolean(item) then
             shallPass = item
         end if
         if shallPass then
@@ -723,6 +722,15 @@ function getDayOfWeek() as object
         "local": dateObj.local.getDayOfWeek()
     }
 end function
+' namespace rodash
+'   function getHours() as object
+'     dateObj = rodash.internal.getDateObject()
+'     return {
+'       "utc": dateObj.utc.getHours(),
+'       "local": dateObj.local.getHours()
+'     }
+'   end function
+' end namespace
 function getHours() as object
     dateObj = internal_getDateObject()
     return {
@@ -1334,25 +1342,16 @@ function isElement(value as dynamic, subType = "" as string) as boolean
     return isNode(value, subtype)
 end function
 function isEmpty(value as dynamic)
-    if isInvalid(value) then
+    if isInvalid(value) OR isNumber(value) OR isBoolean(value) then
         return true
+    else if isAA(value) then
+        return NOT isNonEmptyAA(value)
+    else if isArray(value) then
+        return NOT isNonEmptyArray(value)
+    else if isString(value) then
+        return isEmptyString(value)
     end if
-    if isNonEmptyArray(value) then
-        return false
-    end if
-    if isEmptyString(value) then
-        return true
-    end if
-    if isNumber(value) then
-        return true
-    end if
-    if isNonEmptyAA(value) then
-        return false
-    end if
-    if isBoolean(value) then
-        return true
-    end if
-    return false
+    return true
 end function
 ' /**
 ' * @name isEmptyString
@@ -1467,7 +1466,7 @@ function isFinite(value as dynamic) as boolean
         return false
     end if
     constants = internal_getConstants()
-    if gt(value, constants.max_int) OR lt(value, constants().min_int) then
+    if gt(value, constants.max_int) OR lt(value, constants.min_int) then
         return false
     end if
     return true
