@@ -7,12 +7,12 @@
 		"manifest"
 	],
 	"plugins": [
-    "rooibos-roku"
-  ],
+		"rooibos-roku"
+	],
 	"rooibos": {
-    "showOnlyFailures": true,
-    "lineWidth": 70,
+		"showOnlyFailures": true,
+		"lineWidth": 70,
 		"logLevel": 0
-  },
+	},
 	"emitDefinitions": true
 }

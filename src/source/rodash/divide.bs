@@ -1,6 +1,4 @@
 
-import "lte.bs"
-import "isNaN.bs"
 
 namespace rodash
   ' /**

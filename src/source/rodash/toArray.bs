@@ -1,5 +1,3 @@
-import "get.bs"
-import "isNumber.bs"
 
 namespace rodash
   ' /**

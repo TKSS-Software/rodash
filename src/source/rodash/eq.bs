@@ -1,4 +1,3 @@
-import "isEqual.bs"
 
 namespace rodash
   function eq(value as dynamic, other as dynamic)

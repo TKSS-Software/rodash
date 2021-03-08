@@ -1,5 +1,3 @@
-import "clone.bs"
-import "findIndex.bs"
 
 namespace rodash
   '/**

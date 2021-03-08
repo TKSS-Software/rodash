@@ -1,4 +1,3 @@
-import "assign.bs"
 
 namespace rodash
   function assignInWith(baseAA as Dynamic, sources = [] as Object) as Dynamic

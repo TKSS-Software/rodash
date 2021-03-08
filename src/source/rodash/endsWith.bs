@@ -1,4 +1,3 @@
-import "isInvalid.bs"
 
 namespace rodash
   function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)

@@ -1,7 +1,4 @@
 
-import "isInteger.bs"
-import "isFloat.bs"
-import "isDouble.bs"
 
 namespace rodash
   ' /**

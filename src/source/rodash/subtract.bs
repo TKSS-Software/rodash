@@ -1,4 +1,3 @@
-import "isNaN.bs"
 
 namespace rodash
   function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic

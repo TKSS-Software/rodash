@@ -1,5 +1,3 @@
-import "ceil.bs"
-import "isNotInvalid.bs"
 
 namespace rodash
   function round(number = 0, precision = 0 as integer)

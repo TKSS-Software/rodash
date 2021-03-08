@@ -1,4 +1,3 @@
-import "isNotInvalid.bs"
 
 namespace rodash
   ' /**

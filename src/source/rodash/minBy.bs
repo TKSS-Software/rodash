@@ -1,10 +1,3 @@
-import "internal/getConstants.bs"
-import "lt.bs"
-import "isAA.bs"
-import "isEmpty.bs"
-import "isInvalid.bs"
-import "isFunction.bs"
-import "isString.bs"
 
 namespace rodash
   ' /**

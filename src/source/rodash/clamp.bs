@@ -1,5 +1,3 @@
-import "max.bs"
-import "min.bs"
 
 namespace rodash
   function clamp(number, lower, upper) as dynamic

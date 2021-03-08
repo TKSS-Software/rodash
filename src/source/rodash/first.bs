@@ -1,4 +1,3 @@
-import "head.bs"
 
 namespace rodash
   '/**

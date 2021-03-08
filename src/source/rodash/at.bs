@@ -1,5 +1,4 @@
 
-import "get.bs"
 
 namespace rodash
   function at(obj = {} as object, paths = [] as object)

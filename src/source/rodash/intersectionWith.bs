@@ -1,4 +1,3 @@
-import "intersectionBy.bs"
 
 namespace rodash
   '/**

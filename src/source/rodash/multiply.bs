@@ -1,4 +1,3 @@
-import "isNaN.bs"
 
 namespace rodash
   function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic

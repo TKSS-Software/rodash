@@ -4,8 +4,8 @@ const glob = require('glob');
 const concat = require("concat")
 
 
-glob(__dirname + '/../out/stage/source/rodash/**/*.brs', {}, (err, files)=>{
-  const outputDirectory = __dirname + '/../build/source/';
+glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
+  const outputDirectory = __dirname + '/../dist/source/';
   const outputPath = outputDirectory + 'rodash.brs';
   const inputPathList = files;
 

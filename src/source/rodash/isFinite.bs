@@ -1,8 +1,3 @@
-import "internal/getConstants.bs"
-import "gt.bs"
-import "isAA.bs"
-import "isNumber.bs"
-import "lt.bs"
 
 namespace rodash
   function isFinite(value as dynamic) as boolean

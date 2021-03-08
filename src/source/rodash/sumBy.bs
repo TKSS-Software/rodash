@@ -1,7 +1,3 @@
-import "isAA.bs"
-import "isEmpty.bs"
-import "isFunction.bs"
-import "isString.bs"
 
 namespace rodash
   function sumBy(array = [] as object, iteratee = invalid) as dynamic

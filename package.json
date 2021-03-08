@@ -1,23 +1,30 @@
 {
-  "name": "rodash-example",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@tkss/rodash",
+  "version": "0.0.2",
+  "description": "A lodash inspired utility for Roku development",
   "main": "index.js",
-  "scripts": {
-    "build": "npx bsc --create-package false --staging-folder-path ./out/stage --project ./bsconfig.json",
-    "test": "npx bsc --create-package false --staging-folder-path ./out/stage --project ./bsconfig.coverage.json",
-    "dist": "node ./scripts/createDist.js"
+  "keywords": [
+    "ropm",
+    "roku"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TKSS-Software/rodash.git"
   },
-  "author": "",
+  "scripts": {
+    "build": "npm run compile && node ./scripts/createDist.js",
+    "compile": "npx bsc --create-package false --staging-folder-path .tmp --project ./bsconfig.json"
+  },
+  "author": "TKSS Software",
   "license": "ISC",
-  "dependencies": {
-    "brighterscript": "^0.30.8"
+  "dependencies": {},
+  "ropm": {
+    "packageRootDir": "dist"
   },
   "devDependencies": {
+    "brighterscript": "^0.30.8",
     "concat": "^1.0.3",
     "glob": "^7.1.6",
-    "merge-files": "^0.1.2",
-    "rooibos-cli": "^1.4.0",
-    "rooibos-roku": "^4.1.3"
+    "merge-files": "^0.1.2"
   }
 }

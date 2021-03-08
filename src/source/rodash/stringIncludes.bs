@@ -1,4 +1,3 @@
-import "stringIndexOf.bs"
 
 namespace rodash
   ' /**

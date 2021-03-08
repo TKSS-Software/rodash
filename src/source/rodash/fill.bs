@@ -1,10 +1,9 @@
-import "isInvalid.bs"
 
 namespace rodash
   '/**
   ' * @name fill
   ' * @description Fills elements of array with value from start up to, but not including, end.
-  ' * This method mutates array. 
+  ' * This method mutates array.
   ' * @param {Array} array - The array to fill
   ' * @param {Dynamic} value - The value to fill array with
   ' * @param {Integer} startPos - The start position

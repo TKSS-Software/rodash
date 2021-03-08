@@ -7,8 +7,9 @@
 .env
 
 # Node artifact files
-node_modules/
+node_modules
 dist/
+.tmp
 
 # Compiled Java class files
 *.class
@@ -54,3 +55,4 @@ Thumbs.db
 # Staging
 out/
 
+roku_modules

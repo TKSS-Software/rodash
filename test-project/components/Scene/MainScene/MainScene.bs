@@ -1,4 +1,3 @@
-import "pkg:/source/common.bs"
 
 sub init()
 	m.username = "tyler"
@@ -10,7 +9,7 @@ sub init()
 	' console.assert(false, `HELLO ${m.username}`)
 	util.getNodeById("username").text = `${m.username}`
 
-	
+
 	' console.log(rodash.differenceBy([2.1, 1.2], [2.3, 3.4], rodash.cint))
 	' console.log(rodash.differenceBy([{ "x": 2 }, { "x": 1 }], [{ "x": 1 }], "x")[0])
 	' console.log(rodash.differenceBy([2.1, 1.2], [2.3, 3.4], rodash.cint))
@@ -280,7 +279,7 @@ sub init()
 	' m.done()
 	' m.done()
 	' m.done()
-	
+
 	' rodash.forEach(saves, function(value)
 	' 	console.log(value + " hey")
 	' 	m.done()
@@ -332,7 +331,7 @@ sub init()
 	' 	console.log(key)
 	' end function)
 	' console.log((rodash.functions(new Foo())))
-	
+
 end sub
 
 

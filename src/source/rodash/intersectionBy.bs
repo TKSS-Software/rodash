@@ -1,12 +1,3 @@
-import "clone.bs"
-import "findIndex.bs"
-import "indexOf.bs"
-import "isEqual.bs"
-import "isFunction.bs"
-import "isInvalid.bs"
-import "isNonEmptyArray.bs"
-import "isNotInvalid.bs"
-import "isString.bs"
 
 namespace rodash
   '/**

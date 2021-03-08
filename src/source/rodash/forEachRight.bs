@@ -1,4 +1,3 @@
-import "internal/baseForEach.bs"
 
 namespace rodash
   ' /**
