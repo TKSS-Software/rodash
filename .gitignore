@@ -6,6 +6,9 @@
 # Environment
 .env
 
+# NPM
+package-lock.json
+
 # Node artifact files
 node_modules
 dist/
