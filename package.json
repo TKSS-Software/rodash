@@ -17,7 +17,6 @@
   },
   "author": "TKSS Software",
   "license": "ISC",
-  "dependencies": {},
   "files": [
     "dist/**/*"
   ],
@@ -27,7 +26,9 @@
   "devDependencies": {
     "brighterscript": "^0.30.8",
     "concat": "^1.0.3",
+    "copyfiles": "^2.4.1",
     "glob": "^7.1.6",
-    "merge-files": "^0.1.2"
+    "merge-files": "^0.1.2",
+    "replace-in-files": "^3.0.0"
   }
 }

@@ -7,48 +7,20 @@
 		{
 			"type": "brightscript",
 			"request": "launch",
-			"name": "Tests",
-			"presentation": {
-				"group": "options"
-			},
-			"stopOnEntry": false,
-			"preLaunchTask": "build-tests",
-			"envFile": "${workspaceFolder}/.env",
-			"host": "${env:LAUNCH_HOST_OVERRIDE}",
-			"password": "${env:ROKU_PASSWORD}",
-			"rootDir": "${workspaceFolder}/out/stage",
-			"injectRaleTrackerTask": true,
-			"enableDebuggerAutoRecovery": true,
-			"sourceDirs": [
-				"${workspaceFolder}/src"
-			],
-			"files": [
-				"manifest",
-				"source/**/*.*",
-				"components/**/*.*",
-				"images/**/*.*",
-				"font/**/*.*",
-				"!*.zip",
-				"!**/*.zip"
-			]
-		},
-		{
-			"type": "brightscript",
-			"request": "launch",
 			"presentation": {
 				"group": "options"
 			},
 			"name": "Sideload",
 			"stopOnEntry": false,
 			"preLaunchTask": "build",
-			"envFile": "${workspaceFolder}/.env",
+			"envFile": "${workspaceFolder}/../.env",
 			"host": "${env:LAUNCH_HOST_OVERRIDE}",
 			"password": "${env:ROKU_PASSWORD}",
 			"rootDir": "${workspaceFolder}/out/stage",
 			"injectRaleTrackerTask": true,
 			"enableDebuggerAutoRecovery": true,
 			"sourceDirs": [
-				"${workspaceFolder}/src"
+				"${workspaceFolder}"
 			],
 			"files": [
 				"manifest",
@@ -58,27 +30,8 @@
 				"font/**/*.*",
 				"!*.zip",
 				"!**/*.zip",
-				"!**/*.spec.bs"
-			]
-		},
-		{
-			"type": "brightscript",
-			"request": "launch",
-			"name": "DIST",
-			"presentation": {
-				"group": "options"
-			},
-			"preLaunchTask": "dist-project",
-			"stopOnEntry": false,
-			"host": "${env:LAUNCH_HOST_OVERRIDE}",
-			"password": "${env:ROKU_PASSWORD}",
-			"rootDir": "${workspaceFolder}/out/stage",
-			"deepLinkUrl": "${env:DEEP_LINK_URL}",
-			"enableDebuggerAutoRecovery": true,
-			"envFile": "${workspaceFolder}/.env",
-			"injectRaleTrackerTask": true,
-			"sourceDirs": [
-				"${workspaceFolder}/src/"
+				"!**/*.spec.bs",
+				"!node_modules"
 			]
 		}
 	]

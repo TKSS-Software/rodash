@@ -6,6 +6,14 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/node_modules": true,
-        "**/test-project": true
-    }
+        // "build": true,
+        ".history": true,
+        // "node_modules": true,
+        // "out": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "/tmp/**": true,
+      },
 }

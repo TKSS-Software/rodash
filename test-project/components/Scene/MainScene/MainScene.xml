@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component name="MainScene" extends="Scene">
-	<script type="text/brightscript" uri="pkg:/source/rodash/dist/rodash.brs" />
+	<script type="text/brightscript" uri="pkg:/source/roku_modules/rodash.brs" />
 	<interface>
 		<field id="closeApp" type="boolean" alwaysNotify="true" />
 	</interface>
 
 	<children>
-		<Label id="Username" text="HELLO" />
 	</children>
 </component>
