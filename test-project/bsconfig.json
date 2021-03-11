@@ -2,8 +2,8 @@
 	"rootDir": "./",
 	"autoImportComponentScript": true,
 	"files": [
-		"components/*.+(xml|brs|bs)",
-		"source/*.+(xml|brs|bs)",
+		"components/**/*",
+		"source/**/*",
 		"assets/**/*",
 		"manifest"
 	],
