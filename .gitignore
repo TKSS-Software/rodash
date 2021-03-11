@@ -11,7 +11,6 @@ package-lock.json
 
 # Node artifact files
 node_modules
-dist/
 .tmp
 
 # Compiled Java class files
