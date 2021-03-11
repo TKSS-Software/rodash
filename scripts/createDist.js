@@ -43,11 +43,11 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
                   }
 
                   result = result.replace(/^.*namespace.*$/gm, '');
-                  outputs[namespace] += result + "\n"
+                  outputs[namespace] += result + "\n\n"
 
                 } else {
                   result = result.replace(/^.*namespace.*$/gm, '');
-                  outputs["rodash"] += result + "\n"
+                  outputs["rodash"] += result + "\n\n"
                 }
 
               });
@@ -56,14 +56,14 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
 
           setTimeout(function() {
 
-            for (const [key, value] of Object.entries(outputs)) {
-              console.log(`${key}`);
+            for (let [key, value] of Object.entries(outputs)) {
+              value = value.replace(/^\s+/mg,'');
               if (key == "rodash") {
-                output += value
+                output += value + "\n"
               } else {
-                output += "namespace " + key;
-                output += value;
-                output += "end namespace";
+                output += "namespace " + key + "\n";
+                output += value + "\n";
+                output += "end namespace" + "\n";
               }
             }
 
