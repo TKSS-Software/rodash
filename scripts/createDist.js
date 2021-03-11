@@ -21,6 +21,11 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
         if (err) return console.log(err);
 
         glob(__dirname + '/../.tmp/source/rodash/**/*.d.bs', {}, (err, files) => {
+          var output = ""
+          var outputs = {
+            "rodash": ""
+          }
+
           files.forEach((path) => {
             var fileName = path.split("/").pop();
             if (!fileName.includes("_")) {
@@ -29,21 +34,44 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
                   return console.log(err);
                 }
                 var result = data
-                var hasInternal = result.includes("namespace rodash.internal")
-                console.log("hasInternal", hasInternal)
-                
-                if (hasInternal) {
-                  result = result.replace("namespace rodash.", 'namespace ');
+                var hasNamespace = result.includes("namespace rodash.")
+
+                if (hasNamespace) {
+                  namespace = result.match(/.*namespace.*\n /g)[0].trim().replace("namespace rodash.", '');
+                  if (outputs[namespace] === undefined) {
+                    outputs[namespace] = "";
+                  }
+
+                  result = result.replace(/^.*namespace.*$/gm, '');
+                  outputs[namespace] += result + "\n"
+
                 } else {
                   result = result.replace(/^.*namespace.*$/gm, '');
+                  outputs["rodash"] += result + "\n"
                 }
-                fs.writeFile(outputDirectory + fileName, result, 'utf8', function (err) {
-                  if (err) return console.log(err);
-                  console.log(fileName + ' was copied to ' + fileName);
-                });
+
               });
             }
           });
+
+          setTimeout(function() {
+
+            for (const [key, value] of Object.entries(outputs)) {
+              console.log(`${key}`);
+              if (key == "rodash") {
+                output += value
+              } else {
+                output += "namespace " + key;
+                output += value;
+                output += "end namespace";
+              }
+            }
+
+            fs.writeFile(outputDirectory + 'rodash.d.bs', output, 'utf8', function (err) {
+              if (err) return console.log(err);
+                console.log("rodash.d.bs created")
+            });
+          }, 250);
         })
       });
     })
