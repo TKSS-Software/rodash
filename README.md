@@ -8,6 +8,19 @@
 ropm install rodash@npm:@tkss/rodash
 ```
 
+## Usage Examples
+### Chunk
+```
+rodash.chunk(["a", "b", "c", "d"], 2)
+```
+Returns: ["a", "b"], ["c", "d"]]
+
+### Compact
+```
+rodash.compact([0, 1, false, 2, "", 3])
+```
+Returns: [1, 2, 3]
+
 ## Development
 
 Currently in development
