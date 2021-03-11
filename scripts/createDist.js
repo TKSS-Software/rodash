@@ -55,7 +55,6 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
           });
 
           setTimeout(function() {
-
             for (let [key, value] of Object.entries(outputs)) {
               value = value.replace(/^\s+/mg,'');
               if (key == "rodash") {
