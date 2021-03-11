@@ -21,6 +21,12 @@ rodash.compact([0, 1, false, 2, "", 3])
 ```
 Returns: [1, 2, 3]
 
+### Shuffle & Slice
+```
+rodash.slice(rodash.shuffle([1,2,3,4,5,6,7,8,9,10]), 4)
+```
+Returns: [8, 3, 7, 5, 1]
+
 ## Development
 
 Currently in development
