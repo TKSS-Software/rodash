@@ -169,31 +169,38 @@ namespace Tests
 
     @it("intersection")
     @params([2, 1], [2, 3], [2])
-    function _intersectionTest(arrayOne = [] as object, arrayTwo = [] as object, matchResult = invalid as dynamic)
+    function _(arrayOne = [] as object, arrayTwo = [] as object, matchResult = invalid as dynamic)
       result = rodash.intersection(arrayOne, arrayTwo)
       m.assertEqual(result, matchResult)
     end function
 
     @it("join")
     @params(["a", "b", "c"], "~", "a~b~c")
-    function _joinTest(array = [] as object, separator = "" as string, matchResult = invalid as dynamic)
+    function _(array = [] as object, separator = "" as string, matchResult = invalid as dynamic)
       result = rodash.join(array, separator)
       m.assertEqual(result, matchResult)
     end function
 
     @it("last")
     @params([1, 2, 3], 3)
-    function _lastTest(array = [] as object, matchResult = invalid as dynamic)
+    function _(array = [] as object, matchResult = invalid as dynamic)
       result = rodash.last(array)
       m.assertEqual(result, matchResult)
     end function
 
     @it("slice")
     @params([1,2,3,4,5,6,7,8,9,10], 4, [1,2,3,4])
-    function _lastTest(array = [] as object, n = 0 as integer, matchResult = invalid as dynamic)
+    function _(array = [] as object, n = 0 as integer, matchResult = invalid as dynamic)
       result = rodash.slice(array, 0, n)
       m.assertEqual(result, matchResult)
     end function
+
+    ' @it("reverse")
+    ' @params([1, 2, 3], [3, 2, 1])
+    ' function _(array = [] as object, matchResult = invalid as dynamic)
+    '   result = rodash.r
+    '   m.assertEqual(result, matchResult)
+    ' end function
     
 
 
