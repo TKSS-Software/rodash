@@ -16,7 +16,7 @@ ropm install rodash@npm:@tkss/rodash
 ```
 rodash.chunk(["a", "b", "c", "d"], 2)
 ```
-Returns: ["a", "b"], ["c", "d"]]
+Returns: [["a", "b"], ["c", "d"]]
 
 ### Compact
 ```
