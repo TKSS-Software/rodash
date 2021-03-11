@@ -1,7 +1,8 @@
 # rodash (BETA)
 [Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) ulitity for Roku apps
 
-Currently supporting 150 ulitity functions! API Documentation coming soon.
+Currently supporting 150 utility functions!
+API Documentation coming soon.
 
 
 ## Installation
