@@ -1,7 +1,3 @@
-import "internal/canBeCompared.bs"
-import "isAA.bs"
-import "isArray.bs"
-import "isNode.bs"
 
 namespace rodash
   ' /**

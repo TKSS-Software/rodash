@@ -1,4 +1,3 @@
-import "isDateTime.bs"
 
 namespace rodash
   ' /**

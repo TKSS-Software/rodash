@@ -1,4 +1,3 @@
-import "internal/getDateObject.bs"
 
 namespace rodash
   function asSeconds() as object

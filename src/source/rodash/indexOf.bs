@@ -1,6 +1,3 @@
-import "isArray.bs"
-import "isEqual.bs"
-import "isInvalid.bs"
 
 namespace rodash
   '/**

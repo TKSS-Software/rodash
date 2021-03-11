@@ -1,4 +1,3 @@
-import "join.bs"
 
 namespace rodash
   function lowerFirst(value = "" as string)

@@ -1,6 +1,3 @@
-import "gte.bs"
-import "isFinite.bs"
-import "isInteger.bs"
 
 namespace rodash
   ' /**

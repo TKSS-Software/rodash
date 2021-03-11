@@ -1,9 +1,3 @@
-import "add.bs"
-import "isBoolean.bs"
-import "isFloat.bs"
-import "isInvalid.bs"
-import "gt.bs"
-import "lt.bs"
 
 namespace rodash
   function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic

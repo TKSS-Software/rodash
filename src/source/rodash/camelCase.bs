@@ -1,4 +1,3 @@
-import "capitalize.bs"
 
 namespace rodash
   function camelCase(value = "" as string)

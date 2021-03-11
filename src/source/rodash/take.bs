@@ -1,6 +1,3 @@
-import "slice.bs"
-import "isInvalid.bs"
-import "isNonEmptyArray.bs"
 
 namespace rodash
   '/**

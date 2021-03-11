@@ -1,9 +1,3 @@
-import "./internal/isKeyedValueType.bs"
-import "./internal/sanitizeKeyPath.bs"
-import "join.bs"
-import "isNotInvalid.bs"
-import "isNonEmptyArray.bs"
-import "toNumber.bs"
 
 namespace rodash
   ' /**

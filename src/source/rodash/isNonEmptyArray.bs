@@ -1,4 +1,3 @@
-import "isArray.bs"
 
 namespace rodash
   ' /**

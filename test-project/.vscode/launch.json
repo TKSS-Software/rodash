@@ -1,0 +1,38 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "brightscript",
+			"request": "launch",
+			"presentation": {
+				"group": "options"
+			},
+			"name": "Sideload",
+			"stopOnEntry": false,
+			"preLaunchTask": "build",
+			"envFile": "${workspaceFolder}/../.env",
+			"host": "${env:LAUNCH_HOST_OVERRIDE}",
+			"password": "${env:ROKU_PASSWORD}",
+			"rootDir": "${workspaceFolder}/out/stage",
+			"injectRaleTrackerTask": true,
+			"enableDebuggerAutoRecovery": true,
+			"sourceDirs": [
+				"${workspaceFolder}"
+			],
+			"files": [
+				"manifest",
+				"source/**/*.*",
+				"components/**/*.*",
+				"images/**/*.*",
+				"font/**/*.*",
+				"!*.zip",
+				"!**/*.zip",
+				"!**/*.spec.bs",
+				"!node_modules"
+			]
+		}
+	]
+}

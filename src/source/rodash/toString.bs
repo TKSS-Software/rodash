@@ -1,15 +1,4 @@
-import "internal/numberToString.bs"
-import "internal/nodeToString.bs"
-import "internal/booleanToString.bs"
-import "internal/aaToString.bs"
-import "internal/arrayToString.bs"
 
-import "isAA.bs"
-import "isArray.bs"
-import "isBoolean.bs"
-import "isNode.bs"
-import "isNumber.bs"
-import "isString.bs"
 
 namespace rodash
   ' /**

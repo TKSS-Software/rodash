@@ -1,4 +1,3 @@
-import "isNode.bs"
 
 namespace rodash
   ' /**

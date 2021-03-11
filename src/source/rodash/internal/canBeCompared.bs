@@ -1,7 +1,3 @@
-import "../isBoolean.bs"
-import "../isInvalid.bs"
-import "../isNumber.bs"
-import "../isString.bs"
 
 namespace rodash.internal
   ' /**

@@ -1,6 +1,3 @@
-import "../isAA.bs"
-import "../isNode.bs"
-import "../isNonEmptyArray.bs"
 
 namespace rodash.internal
   ' /**

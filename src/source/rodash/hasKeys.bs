@@ -1,5 +1,3 @@
-import "./internal/isKeyedValueType.bs"
-import "isArray.bs"
 
 namespace rodash
   ' /**

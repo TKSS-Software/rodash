@@ -1,4 +1,3 @@
-import "isString.bs"
 
 namespace rodash
   ' /**

@@ -1,5 +1,3 @@
-import "isString.bs"
-import "isFunction.bs"
 
 namespace rodash
   ' /**

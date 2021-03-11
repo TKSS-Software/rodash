@@ -1,4 +1,3 @@
-import "../toString.bs"
 
 namespace rodash.internal
   function getDateObject() as object
