@@ -28,7 +28,7 @@ Returns: [1, 2, 3]
 ```
 rodash.slice(rodash.shuffle([1,2,3,4,5,6,7,8,9,10]), 0, 4)
 ```
-Returns: [8, 3, 7, 5, 1]
+Returns: [8, 3, 7, 5]
 
 ## Brighterscript Support
 If imported into a project that leverages the Brighterscript compiler, you can use rodash. lookups with auto-complete.
