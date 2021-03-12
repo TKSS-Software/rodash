@@ -1,6 +1,8 @@
 
+
 ' /**
 ' * Adds two numbers.
+' * @category Math
 ' * @param {Dymanic} augend - The first number in an addition
 ' * @param {Dymanic} addend - The second number in an addition
 ' * @returns {Dynamic} value - Returns the total
@@ -14,21 +16,24 @@ function add(augend, addend)
         value += addend
     end if
     return value
-end function
+end function 
+
 function asDateString(format = "long-date" as string) as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.asDateString(format),
         "local": dateObj.local.asDateString(format)
     }
-end function
+end function 
+
 function asSeconds() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.asSeconds(),
         "local": dateObj.local.asSeconds()
     }
-end function
+end function 
+
 ' /**
 ' * Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
 ' * This method mutates object and is loosely based on Object.assign.
@@ -46,7 +51,8 @@ function assign(baseAA as dynamic, sources = [] as object) as dynamic
         end if
     end for
     return baseAA
-end function
+end function 
+
 function at(obj = {} as object, paths = [] as object)
     returnArray = []
     for each path in paths
@@ -54,7 +60,8 @@ function at(obj = {} as object, paths = [] as object)
         returnArray.push(result)
     end for
     return returnArray
-end function
+end function 
+
 function camelCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()
@@ -69,7 +76,8 @@ function camelCase(value = "" as string)
         end if
     end for
     return responseValue
-end function
+end function 
+
 function capitalize(value = "" as string)
     value = value.trim()
     valueArray = value.split("")
@@ -83,7 +91,8 @@ function capitalize(value = "" as string)
         end if
     end for
     return responseValue
-end function
+end function 
+
 ' /**
 ' * Computes number rounded up to precision.
 ' * @param {Integer} number - The number to round up
@@ -92,7 +101,8 @@ end function
 ' */
 function ceil(number = 0, precision = 0 as integer)
     return - int(- number * 10 ^ precision) / 10 ^ precision
-end function
+end function 
+
 ' /**
 ' * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
 ' * @param {Array} array - The array to process
@@ -119,7 +129,8 @@ function chunk(array = [] as object, chunkSize = 1 as integer) as object
         end if
     end for
     return returnArray
-end function
+end function 
+
 function clamp(number, lower, upper) as dynamic
     return max([
         lower,
@@ -128,7 +139,8 @@ function clamp(number, lower, upper) as dynamic
             number
         ])
     ])
-end function
+end function 
+
 ' /**
 ' * Clones objects that can be cloned.
 ' * @param {Dynamic} value - The value to be cloned
@@ -155,7 +167,8 @@ function clone(value = invalid as dynamic) as dynamic
         clonedValue = value.clone(true)
     end if
     return clonedValue
-end function
+end function 
+
 ' /**
 ' * Creates an array with all falsey values removed. The values false, 0, "", and invalid are falsey.
 ' * @param {Array} array - The array to compact
@@ -182,7 +195,8 @@ function compact(array = [] as object) as object
         end if
     end for
     return returnArray
-end function
+end function 
+
 ' /**
 ' * Creates a new array concatenating array with any additional arrays and/or values.
 ' * @param {Array} array - The array to concatenate
@@ -200,7 +214,8 @@ function concat(array = [] as object, values = [] as object) as object
         end if
     end for
     return returnArray
-end function
+end function 
+
 ' /**
 ' * Creates an array of array values not included in the other given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
 ' * @param {Array} array - The array to inspect
@@ -209,7 +224,8 @@ end function
 ' */
 function difference(array = [] as object, values = [] as object) as object
     return differenceBy(array, values)
-end function
+end function 
+
 ' /**
 ' * This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
 ' * @param {Array} array - The array to inspect
@@ -245,7 +261,8 @@ function differenceBy(array = [] as object, values = [] as object, iteratee = in
         end if
     end for
     return returnArray
-end function
+end function 
+
 ' /**
 ' * This method is like rodash.difference except that it accepts comparator which is invoked to compare elements of array to values. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
 ' * @param {Array} array - The array to inspect
@@ -265,7 +282,8 @@ function differenceWith(array = [] as object, values = [] as object, comparator 
         end for
     end if
     return returnArray
-end function
+end function 
+
 ' /**
 ' * Divides two numbers
 ' * @param {Dymanic} dividend - The first number in a division
@@ -280,7 +298,8 @@ function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
         return dividend
     end if
     return dividend / divisor
-end function
+end function 
+
 ' /**
 ' * Creates a slice of array with n elements dropped from the beginning.
 ' * @param {Array} array - The array to query
@@ -296,7 +315,8 @@ function drop(array = {} as object, n = 1 as integer)
         end if
     end for
     return array
-end function
+end function 
+
 ' /**
 ' * Creates a slice of array with n elements dropped from the end.
 ' * @param {Array} array - The array to query
@@ -309,7 +329,8 @@ function dropRight(array = {} as object, n = 1 as integer)
     array = drop(array, n)
     array.reverse()
     return array
-end function
+end function 
+
 ' /**
 ' * Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
 ' * @param {Array} array - The array to query
@@ -322,7 +343,8 @@ function dropRightWhile(array = {} as object, predicate = invalid)
     array = dropWhile(array, predicate)
     array.reverse()
     return array
-end function
+end function 
+
 '/**
 ' * Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
 ' * @param {Array} array - The array to query
@@ -352,19 +374,23 @@ function dropWhile(array = [] as object, predicate = invalid)
         end if
     end for
     return array
-end function
+end function 
+
 function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
     if isInvalid(position) then
         position = source.len()
     end if
     return source.endsWith(target, position)
-end function
+end function 
+
 function eq(value as dynamic, other as dynamic)
     return isEqual(value, other)
-end function
+end function 
+
 function escape(source = "" as string)
     return source.escape()
-end function
+end function 
+
 function escapeRegExp(source = "" as string)
     replaceArray = [
         "^",
@@ -386,7 +412,8 @@ function escapeRegExp(source = "" as string)
         source = source.replace(char, "\" + char)
     end for
     return source.replace("\/\/", "//")
-end function
+end function 
+
 '/**
 ' * Fills elements of array with value from start up to, but not including, end.
 ' * This method mutates array.
@@ -408,7 +435,8 @@ function fill(array = [] as object, value = "" as dynamic, startPos = invalid, e
         array[i] = value
     end for
     return array
-end function
+end function 
+
 '/**
 ' * This method is like rodash.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
 ' * @param {Array} array - The array to inspect
@@ -438,7 +466,8 @@ function findIndex(array, predicate = invalid as dynamic, fromIndex = 0 as integ
         end if
     end for
     return - 1
-end function
+end function 
+
 '/**
 ' * This method is like rodash.findIndex except that it iterates over elements of collection from right to left.
 ' * @param {Array} array - The array to inspect
@@ -454,7 +483,8 @@ function findLastIndex(array, predicate = invalid, fromIndex = 0 as integer)
         return - 1
     end if
     return array.count() - 1 - foundIndex
-end function
+end function 
+
 '/**
 ' * An alias to the head function.
 ' * @param {Array} array - The array to query
@@ -462,7 +492,8 @@ end function
 ' */
 function first(array = [])
     return head(array)
-end function
+end function 
+
 '/**
 ' * Flattens array a single level deep.
 ' * @param {Array} array - The array to flatten
@@ -478,7 +509,8 @@ function flatten(array = [])
         end if
     end for
     return returnArray
-end function
+end function 
+
 '/**
 ' * Recursively flattens array.
 ' * @param {Array} array - The array to flatten
@@ -494,7 +526,8 @@ function flattenDeep(array = [])
         end if
     end for
     return returnArray
-end function
+end function 
+
 '/**
 ' * Recursively flatten array up to depth times.
 ' * @param {Array} array - The array to flatten
@@ -524,7 +557,8 @@ function flattenDepth(array = invalid, depth = 1 as integer)
         end if
     end for
     return returnArray
-end function
+end function 
+
 ' /**
 
 ' * Computes number rounded down to precision
@@ -534,7 +568,8 @@ end function
 ' */
 function floor(number = 0, precision = 0 as integer)
     return int(number * 10 ^ precision) / 10 ^ precision
-end function
+end function 
+
 ' /**
 
 ' * Iterates over elements of collection and invokes iteratee for each element. The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
@@ -545,7 +580,8 @@ end function
 ' */
 function forEach(collection = invalid as dynamic, iteratee = invalid as dynamic)
     return internal_baseForEach(collection, iteratee)
-end function
+end function 
+
 ' /**
 
 ' * This method is like rodash.forEach except that it iterates over elements of collection from right to left.
@@ -555,7 +591,8 @@ end function
 ' */
 function forEachRight(collection = invalid as dynamic, iteratee = invalid as dynamic)
     return internal_baseForEach(collection, iteratee, "right")
-end function
+end function 
+
 ' /**
 
 ' * Iterates over own and inherited enumerable string keyed properties of an object and invokes iteratee for each property. The iteratee is invoked with three arguments: (value, key, object). Iteratee functions may exit iteration early by explicitly returning false.
@@ -565,7 +602,8 @@ end function
 ' */
 function forIn(obj = {} as object, iteratee = invalid as dynamic)
     return internal_baseForEach(obj, iteratee, "left", "omit")
-end function
+end function 
+
 ' /**
 
 ' * This method is like rodash.forIn except that it iterates over properties of object in the opposite order.
@@ -575,7 +613,8 @@ end function
 ' */
 function forInRight(obj = {} as object, iteratee = invalid as dynamic)
     return internal_baseForEach(obj, iteratee, "right", "omit")
-end function
+end function 
+
 ' /**
 
 ' * Iterates over own enumerable string keyed properties of an object and invokes iteratee for each property. The iteratee is invoked with three arguments: (value, key, object). Iteratee functions may exit iteration early by explicitly returning false.
@@ -585,7 +624,8 @@ end function
 ' */
 function forOwn(obj = {} as object, iteratee = invalid as dynamic)
     return internal_baseForEach(obj, iteratee, "left", "omit")
-end function
+end function 
+
 ' /**
 
 ' * This method is like rodash.forOwn except that it iterates over properties of object in the opposite order.
@@ -595,21 +635,24 @@ end function
 ' */
 function forOwnRight(obj = {} as object, iteratee = invalid as dynamic)
     return internal_baseForEach(obj, iteratee, "right", "omit")
-end function
+end function 
+
 function fromISO8601String(dateString = "" as string) as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.fromISO8601String(dateString),
         "local": dateObj.local.fromISO8601String(dateString)
     }
-end function
+end function 
+
 function fromSeconds(numSeconds = 0 as integer) as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.fromSeconds(numSeconds),
         "local": dateObj.local.fromSeconds(numSeconds)
     }
-end function
+end function 
+
 ' TODO: Rewrite this due to scoping issue
 ' /**
 
@@ -620,7 +663,8 @@ end function
 function functions(obj = {} as object)
     ' return rodash.base.forEach.baseForEach(obj, invalid, "left", "only")
     return []
-end function
+end function 
+
 ' TODO: Rewrite this due to scoping issue
 ' /**
 
@@ -631,7 +675,8 @@ end function
 function functionsIn(obj = {} as object)
     ' return rodash.base.forEach.baseForEach(obj, invalid, "left", "only")
     return []
-end function
+end function 
+
 ' /**
 
 ' * Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
@@ -662,76 +707,88 @@ function get(aa as object, keyPath as string, fallback = Invalid as dynamic, val
         return fallback
     end if
     return nextValue
-end function
+end function 
+
 function getDayOfMonth() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getDayOfMonth(),
         "local": dateObj.local.getDayOfMonth()
     }
-end function
+end function 
+
 function getDayOfWeek() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getDayOfWeek(),
         "local": dateObj.local.getDayOfWeek()
     }
-end function
+end function 
+
 function getHours() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getHours(),
         "local": dateObj.local.getHours()
     }
-end function
+end function 
+
 function getLastDayOfMonth() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getLastDayOfMonth(),
         "local": dateObj.local.getLastDayOfMonth()
     }
-end function
+end function 
+
 function getMilliseconds() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getMilliseconds(),
         "local": dateObj.local.getMilliseconds()
     }
-end function
+end function 
+
 function getMinutes() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getMinutes(),
         "local": dateObj.local.getMinutes()
     }
-end function
+end function 
+
 function getMonth() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getMonth(),
         "local": dateObj.local.getMonth()
     }
-end function
+end function 
+
 function getSeconds() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getSeconds(),
         "local": dateObj.local.getSeconds()
     }
-end function
+end function 
+
 function getYear() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.getYear(),
         "local": dateObj.local.getYear()
     }
-end function
+end function 
+
 function gt(value as dynamic, other as dynamic)
     return value > other
-end function
+end function 
+
 function gte(value as dynamic, other as dynamic)
     return value >= other
-end function
+end function 
+
 ' /**
 
 ' * Checks if first level of the supplied AssociativeArray contains the Array of key strings.
@@ -750,7 +807,8 @@ function hasKeys(aaValue as dynamic, keys as dynamic) as boolean
         end if
     end for
     return hasKeys
-end function
+end function 
+
 '/**
 
 ' * Gets the first element of array.
@@ -759,7 +817,8 @@ end function
 ' */
 function head(array = [] as object) as dynamic
     return array[0]
-end function
+end function 
+
 '/**
 
 ' * Gets the index at which the first occurrence of value is found in array using SameValueZero for equality comparisons. If fromIndex is negative, it's used as the offset from the end of array.
@@ -782,7 +841,8 @@ function indexOf(array = [] as object, value = invalid, fromIndex = invalid)
         end if
     end for
     return - 1
-end function
+end function 
+
 '/**
 
 ' * Gets all but the last element of array.
@@ -794,7 +854,8 @@ function initial(array = [] as object)
         return []
     end if
     return slice(array, 0, array.count() - 1)
-end function
+end function 
+
 function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
     if (isInvalid(endPos)) then
         endPos = startPos
@@ -807,7 +868,8 @@ function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as
         endPos = startPosTemp
     end if
     return gte(number, startPos) AND lt(number, endPos)
-end function
+end function 
+
 ' /**
 
 ' * @ignore
@@ -822,7 +884,8 @@ function internal_aaToString(aa as object) as string
     end for
     description = description.left(description.len() - 2) + "}"
     return description
-end function
+end function 
+
 ' /**
 
 ' * @ignore
@@ -837,7 +900,8 @@ function internal_arrayToString(array as object) as string
     end for
     description = description.left(description.len() - 2) + "]"
     return description
-end function
+end function 
+
 ' /**
 
 ' * @ignore
@@ -887,7 +951,8 @@ function internal_baseForEach(collection = invalid as dynamic, iteratee = invali
         end if
     end if
     return collection
-end function
+end function 
+
 ' /**
 
 ' * @ignore
@@ -900,7 +965,8 @@ function internal_booleanToString(bool as boolean) as string
         return "true"
     end if
     return "false"
-end function
+end function 
+
 ' /**
 
 ' * @ignore
@@ -929,7 +995,8 @@ function internal_canBeCompared(valueOne as dynamic, valueTwo as dynamic) as boo
         end if
     end if
     return false
-end function
+end function 
+
 ' * @ignore
 function internal_getConstants()
     return {
@@ -1030,7 +1097,8 @@ function internal_getConstants()
         MAX_INT: 2147483647,
         MIN_INT: - 2147483648
     }
-end function
+end function 
+
 ' * @ignore
 function internal_getDateObject() as object
     dateObj = CreateObject("roDateTime")
@@ -1041,7 +1109,8 @@ function internal_getDateObject() as object
         "utc": utc,
         "local": local
     }
-end function
+end function 
+
 ' /**
 
 ' * @ignore
@@ -1051,7 +1120,8 @@ end function
 ' */
 function internal_isKeyedValueType(value as dynamic) as boolean
     return getInterface(value, "ifAssociativeArray") <> Invalid
-end function
+end function 
+
 ' /**
 
 ' * Attempts to converts a nodes top level fields to an AssociativeArray.
@@ -1081,7 +1151,8 @@ function internal_nodeToAA(value as object, removeId = false as boolean, removeF
         return value
     end if
     return {}
-end function
+end function 
+
 ' /**
 
 ' * Attempts to convert the supplied value to a string.
@@ -1101,7 +1172,8 @@ function nodeToString(node as object) as string
         end if
     end if
     return description
-end function
+end function 
+
 ' /**
 
 ' * Attempts to convert the supplied value to a string.
@@ -1110,7 +1182,8 @@ end function
 ' */
 function internal_numberToString(value as dynamic) as string
     return value.toStr()
-end function
+end function 
+
 ' * @ignore
 function internal_sanitizeKeyPathArray(value = "" as string)
     regex = createObject("roRegex", "\[(.*?)\]", "i")
@@ -1123,7 +1196,8 @@ function internal_sanitizeKeyPathArray(value = "" as string)
         end for
     end if
     return value
-end function
+end function 
+
 '/**
 
 ' * Creates an array of unique values that are included in all given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
@@ -1133,7 +1207,8 @@ end function
 ' */
 function intersection(mainArray = [] as object, inspectArray = [] as object) as object
     return intersectionBy(mainArray, inspectArray)
-end function
+end function 
+
 '/**
 
 ' * This method is like rodash.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
@@ -1176,7 +1251,8 @@ function intersectionBy(mainArray = [] as object, inspectArray = [] as object, i
         end for
     end if
     return intersectArray
-end function
+end function 
+
 '/**
 
 ' * This method is like rodash.intersection except that it accepts comparator which is invoked to compare elements of arrays. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
@@ -1190,7 +1266,8 @@ function intersectionWith(mainArray = [] as object, inspectArray = [] as object,
         return []
     end if
     return intersectionBy(mainArray, inspectArray, comparator)
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid AssociativeArray type
@@ -1199,7 +1276,8 @@ end function
 ' */
 function isAA(value as dynamic)
     return type(value) = "roAssociativeArray"
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Array type
@@ -1208,7 +1286,8 @@ end function
 ' */
 function isArray(value as dynamic)
     return type(value) = "roArray"
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid unempty Array like type
@@ -1217,7 +1296,8 @@ end function
 ' */
 function isArrayLike(value as dynamic)
     return isNonEmptyArray(value) OR isNonEmptyString(value)
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Boolean type
@@ -1227,7 +1307,8 @@ end function
 function isBoolean(value as dynamic) as boolean
     valueType = type(value)
     return (valueType = "Boolean") OR (valueType = "roBoolean")
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid ByteArray type
@@ -1236,7 +1317,8 @@ end function
 ' */
 function isByteArray(value as dynamic)
     return type(value) = "roByteArray"
-end function
+end function 
+
 ' /**
 
 ' * Alias to isDate function
@@ -1245,7 +1327,8 @@ end function
 ' */
 function isDate(value as dynamic) as boolean
     return isDateTime(value)
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid date time type
@@ -1254,7 +1337,8 @@ end function
 ' */
 function isDateTime(value as dynamic) as boolean
     return ("roDateTime" = type(value))
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Double type
@@ -1264,7 +1348,8 @@ end function
 function isDouble(value as dynamic) as boolean
     valueType = type(value)
     return (valueType = "Double") OR (valueType = "roDouble") OR (valueType = "roIntrinsicDouble")
-end function
+end function 
+
 ' /**
 
 ' * Alias to isNode function
@@ -1274,7 +1359,8 @@ end function
 ' */
 function isElement(value as dynamic, subType = "" as string) as boolean
     return isNode(value, subtype)
-end function
+end function 
+
 function isEmpty(value as dynamic)
     if isInvalid(value) OR isNumber(value) OR isBoolean(value) then
         return true
@@ -1286,7 +1372,8 @@ function isEmpty(value as dynamic)
         return isEmptyString(value)
     end if
     return true
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid String type and is not empty
@@ -1295,7 +1382,8 @@ end function
 ' */
 function isEmptyString(value as dynamic) as boolean
     return isString(value) AND value = ""
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied values are the same.
@@ -1321,7 +1409,8 @@ function isEqual(valueOne as dynamic, valueTwo as dynamic) as boolean
         end if
     end if
     return false
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied values are the same.
@@ -1367,7 +1456,8 @@ function isEqualWith(valueOne as dynamic, valueTwo as dynamic, customizer = inva
         end if
     end if
     return false
-end function
+end function 
+
 ' /**
 
 ' * Assesses the passed object to determine if it is an Error Object.
@@ -1394,7 +1484,8 @@ function isError(value as dynamic) as boolean
         end if
     end if
     return false
-end function
+end function 
+
 function isFinite(value as dynamic) as boolean
     if NOT isNumber(value) then
         return false
@@ -1404,7 +1495,8 @@ function isFinite(value as dynamic) as boolean
         return false
     end if
     return true
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Float type
@@ -1414,7 +1506,8 @@ end function
 function isFloat(value as dynamic) as boolean
     valueType = type(value)
     return (valueType = "Float") OR (valueType = "roFloat")
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Function type
@@ -1424,7 +1517,8 @@ end function
 function isFunction(value as dynamic) as boolean
     valueType = type(value)
     return (valueType = "roFunction") OR (valueType = "Function")
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Integer type
@@ -1434,7 +1528,8 @@ end function
 function isInteger(value as dynamic) as boolean
     valueType = type(value)
     return (valueType = "Integer") OR (valueType = "roInt") OR (valueType = "roInteger") OR (valueType = "LongInteger")
-end function
+end function 
+
 ' /**
 ' * Checks if the supplied value is Invalid
 ' * @param {Dynamic} value The variable to be checked
@@ -1442,7 +1537,8 @@ end function
 ' */
 function isInvalid(value as dynamic) as boolean
     return NOT isNotInvalid(value)
-end function
+end function 
+
 ' /**
 
 ' * Checks if value is a valid array-like length
@@ -1454,7 +1550,8 @@ function isLength(value as dynamic) as boolean
         return true
     end if
     return false
-end function
+end function 
+
 ' /**
 
 ' * Alias to isArray function
@@ -1463,7 +1560,8 @@ end function
 ' */
 function isMap(value as dynamic) as boolean
     return isArray(value)
-end function
+end function 
+
 ' /**
 
 ' * Method determines whether the passed value is NaN and its type is a valid number
@@ -1472,7 +1570,8 @@ end function
 ' */
 function isNaN(value as dynamic) as boolean
     return NOT isNumber(value)
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Node type
@@ -1488,7 +1587,8 @@ function isNode(value as dynamic, subType = "" as string) as boolean
         return value.isSubtype(subType)
     end if
     return true
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid and populated AssociativeArray type
@@ -1497,7 +1597,8 @@ end function
 ' */
 function isNonEmptyAA(value as dynamic)
     return isAA(value) AND value.keys().count() > 0
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid Array type and not empty
@@ -1506,7 +1607,8 @@ end function
 ' */
 function isNonEmptyArray(value as dynamic) as boolean
     return (isArray(value) AND NOT value.isEmpty())
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid String type and is not empty
@@ -1515,7 +1617,8 @@ end function
 ' */
 function isNonEmptyString(value as dynamic) as boolean
     return isString(value) AND value <> ""
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is not Invalid or uninitialized
@@ -1524,7 +1627,8 @@ end function
 ' */
 function isNotInvalid(value as dynamic) as boolean
     return (type(value) <> "<uninitialized>" AND value <> Invalid)
-end function
+end function 
+
 ' /**
 ' * Alias to isInvalid function
 ' * @param {Dynamic} value The variable to be checked
@@ -1532,7 +1636,8 @@ end function
 ' */
 function isNull(value as dynamic) as boolean
     return NOT isNotInvalid(value)
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid number type
@@ -1550,7 +1655,8 @@ function isNumber(obj as dynamic) as boolean
         return true
     end if
     return false
-end function
+end function 
+
 ' /**
 
 ' * Checks if the supplied value is a valid String type
@@ -1560,7 +1666,8 @@ end function
 function isString(value as dynamic)
     valueType = type(value)
     return (valueType = "String") OR (valueType = "roString")
-end function
+end function 
+
 '/**
 
 ' * Converts all elements in array into a string separated by separator.
@@ -1570,13 +1677,15 @@ end function
 ' */
 function join(array = [] as object, separator = "" as string)
     return clone(array).join(separator)
-end function
+end function 
+
 function kebabCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()
     valueArray = value.split(" ")
     return lcase(join(valueArray, "-"))
-end function
+end function 
+
 '/**
 
 ' * Gets the last element of array.
@@ -1585,25 +1694,30 @@ end function
 ' */
 function last(array = []) as dynamic
     return array[array.count() - 1]
-end function
+end function 
+
 function lowerCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()
     valueArray = value.split(" ")
     return lcase(join(valueArray, " "))
-end function
+end function 
+
 function lowerFirst(value = "" as string)
     value = value.trim()
     valueArray = value.split("")
     valueArray[0] = lcase(valueArray[0])
     return join(valueArray)
-end function
+end function 
+
 function lt(value as dynamic, other as dynamic)
     return value < other
-end function
+end function 
+
 function lte(value as dynamic, other as dynamic)
     return value <= other
-end function
+end function 
+
 ' /**
 
 ' * Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
@@ -1626,7 +1740,8 @@ function map(collection = {} as dynamic, iteratee = invalid as dynamic)
         end if
     end for
     return returnArray
-end function
+end function 
+
 ' /**
 
 ' * Computes the maximum value of array. If array is empty or falsey, invalid is returned.
@@ -1635,7 +1750,8 @@ end function
 ' */
 function max(array = [] as object) as dynamic
     return maxBy(array)
-end function
+end function 
+
 ' /**
 
 ' * Computes the maximum value of array. If array is empty or falsey, invalid is returned.
@@ -1670,16 +1786,19 @@ function maxBy(array = [] as object, iteratee = invalid) as dynamic
         end for
     end if
     return maxValue
-end function
+end function 
+
 function mean(array)
     return meanBy(array)
-end function
+end function 
+
 function meanBy(array, iteratee = invalid)
     if isEmpty(array) then
         return invalid
     end if
     return divide(sumBy(array, iteratee), array.count())
-end function
+end function 
+
 ' /**
 
 ' * Computes the minimum value of array. If array is empty or falsey, invalid is returned.
@@ -1688,7 +1807,8 @@ end function
 ' */
 function min(array = [] as object) as dynamic
     return minBy(array)
-end function
+end function 
+
 ' /**
 
 ' * Computes the minimum value of array. If array is empty or falsey, invalid is returned.
@@ -1723,20 +1843,23 @@ function minBy(array = [] as object, iteratee = invalid) as dynamic
         end for
     end if
     return minValue
-end function
+end function 
+
 function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic
     if isNaN(multiplier) OR isNaN(multiplicand) then
         return 0
     end if
     return multiplier * multiplicand
-end function
+end function 
+
 function now() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds(),
         "local": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds()
     }
-end function
+end function 
+
 ' /**
 
 ' * Add padding to the supplied value after converting to a string. For example "1" to "01".
@@ -1751,7 +1874,8 @@ function paddString(value as dynamic, padLength = 2 as integer, paddingCharacter
         value = paddingCharacter + value
     end while
     return value
-end function
+end function 
+
 function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
     offset = rnd(0)
     if (isBoolean(upper)) then
@@ -1778,7 +1902,8 @@ function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) 
         roundValue = ((roundValue - offset).toStr() + "." + offset.toStr()).toFloat()
     end if
     return roundValue
-end function
+end function 
+
 ' /**
 
 ' * Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
@@ -1804,12 +1929,14 @@ function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, 
         end if
     end if
     return result
-end function
+end function 
+
 function round(number = 0, precision = 0 as integer)
     minor = number.toStr().split(".")[1]
     ? isNotInvalid(minor) ; minor
     return ceil(number, precision)
-end function
+end function 
+
 ' /**
 
 ' * Used to set a nested String value in the supplied object
@@ -1834,7 +1961,8 @@ function set(aa as object, keyPath as string, value as dynamic) as boolean
     finalKey = keys.shift()
     level[finalKey] = value
     return true
-end function
+end function 
+
 ' /**
 
 ' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
@@ -1863,7 +1991,8 @@ function shuffle(collection = [] as dynamic)
         result[index] = value
     end while
     return result
-end function
+end function 
+
 ' /**
 
 ' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
@@ -1880,7 +2009,8 @@ function size(collection = invalid as dynamic)
         return collection.len()
     end if
     return collection.count()
-end function
+end function 
+
 '/**
 
 ' * Creates a slice of array from start up to, but not including, end.
@@ -1919,7 +2049,8 @@ function slice(array = [] as object, startPos = 0, endPos = invalid)
         slicedArray.push(array[i])
     end for
     return slicedArray
-end function
+end function 
+
 ' /**
 
 ' * Creates an array of elements, sorted in ascending order by the results of running each element in a collection thru each iteratee. This method performs a stable sort, that is, it preserves the original sort order of equal elements. The iteratees are invoked with one argument: (value).
@@ -1955,7 +2086,8 @@ function sortBy(collection = invalid as dynamic, iteratee = invalid as dynamic)
         end if
     end if
     return returnCollection
-end function
+end function 
+
 '/**
 
 ' * Gets all but the first element of array
@@ -1973,7 +2105,8 @@ function sortedIndex(array = [] as object, value = 0 as integer)
         end if
     end for
     return i
-end function
+end function 
+
 ' /**
 
 ' * Check for the existence of a given sub string
@@ -1983,7 +2116,8 @@ end function
 ' */
 function stringIncludes(value as string, subString as string) as boolean
     return stringIndexOf(value, subString) > - 1
-end function
+end function 
+
 ' /**
 
 ' * Finds the sub string index position
@@ -1993,20 +2127,23 @@ end function
 ' */
 function stringIndexOf(value as string, subString as string) as integer
     return value.Instr(subString)
-end function
+end function 
+
 function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
     if isNaN(minuend) OR isNaN(subtrahend) then
         return 0
     end if
     return minuend - subtrahend
-end function
+end function 
+
 function sum(array as object)
     sumValue = 0
     for each item in array
         sumValue += item
     end for
     return sumValue
-end function
+end function 
+
 function sumBy(array = [] as object, iteratee = invalid) as dynamic
     if isEmpty(array) then
         return invalid
@@ -2029,7 +2166,8 @@ function sumBy(array = [] as object, iteratee = invalid) as dynamic
         end for
     end if
     return sumValue
-end function
+end function 
+
 '/**
 
 ' * Creates a slice of array with n elements taken from the beginning
@@ -2045,7 +2183,8 @@ function take(array = [] as object, n = invalid as dynamic) as object
         return []
     end if
     return slice(array, 0, n)
-end function
+end function 
+
 '/**
 
 ' * Creates a slice of array with n elements taken from the end
@@ -2066,7 +2205,8 @@ function takeRight(array = [] as object, n = invalid as dynamic) as object
         startPos = 0
     end if
     return slice(array, startPos, length)
-end function
+end function 
+
 ' /**
 'TODO: ADD MORE SUPPORT
 
@@ -2086,14 +2226,16 @@ function toArray(aa as object) as object
         end if
     end for
     return array
-end function
+end function 
+
 function toISOString() as object
     dateObj = internal_getDateObject()
     return {
         "utc": dateObj.utc.toISOString(),
         "local": dateObj.local.toISOString()
     }
-end function
+end function 
+
 ' /**
 
 ' * Attempts to convert the supplied value into a valid number
@@ -2118,7 +2260,8 @@ function toNumber(value as dynamic) as dynamic
         end if
     end if
     return 0
-end function
+end function 
+
 ' /**
 
 ' * Attempts to convert the supplied value to a string.
@@ -2145,7 +2288,8 @@ function toString(value as dynamic) as string
         return internal_arrayToString(value)
     end if
     return ""
-end function
+end function 
+
 '/**
 
 ' * Creates a slice of array with n elements taken from the end
@@ -2154,7 +2298,8 @@ end function
 ' */
 function union(arrays = [] as object) as object
     return uniq(flattenDeep(arrays))
-end function
+end function 
+
 '/**
 
 ' * Creates a duplicate-free version of an array, using SameValueZero for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
@@ -2172,7 +2317,8 @@ function uniq(array = [] as object) as object
         end if
     end for
     return returnArray
-end function
+end function 
+
 '/**
 
 ' * Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
@@ -2191,7 +2337,8 @@ function zip(arrays = [] as object) as object
         end for
     end for
     return returnArray
-end function
+end function 
+
 '/**
 
 ' * This method is like rodash.fromPairs except that it accepts two arrays, one of property identifiers and one of corresponding values.
@@ -2205,7 +2352,8 @@ function zipObject(props = [] as object, values = [] as object) as object
         returnObject[props[i]] = values[i]
     end for
     return returnObject
-end function
+end function 
+
 '/**
 
 ' * This method is like rodash.zipObject except that it supports property paths.
@@ -2215,4 +2363,4 @@ end function
 ' */
 function zipObjectDeep(props = [] as object, values = [] as object) as object
     ' COME BACK
-end function
+end function 

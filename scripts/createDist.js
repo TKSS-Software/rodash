@@ -16,6 +16,8 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
     concat(inputPathList).then((result) => {
       result = result.replace(/rodash_/g, '');
       result = result.replace(/^'import.*\n?/mg, '');
+      result = result.replace("' /**", "\n' /**");
+      result = result.replace(/^.*end function.*$/gm, "end function \n");
 
       fs.writeFile(outputPath, result, 'utf8', function (err) {
         if (err) return console.log(err);

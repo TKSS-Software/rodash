@@ -1,6 +1,7 @@
 namespace rodash
   ' /**
   ' * Adds two numbers.
+  ' * @category Math
   ' * @param {Dymanic} augend - The first number in an addition
   ' * @param {Dymanic} addend - The second number in an addition
   ' * @returns {Dynamic} value - Returns the total

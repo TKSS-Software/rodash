@@ -9,6 +9,11 @@
     ],
     "includePattern": ".+\\.brs"
   },
+  "templates": {
+    "referenceTitle": "TKSS rodash API Docs",
+    "disableSort": false,
+    "collapse": true
+},
   "opts": {
     "recurse": true
   }
