@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build": "npx bsc --create-package false --staging-folder-path ./out/stage --project ./bsconfig.json"
   },

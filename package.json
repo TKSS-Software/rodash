@@ -1,6 +1,6 @@
 {
   "name": "@tkss/rodash",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A lodash inspired utility for Roku development",
   "main": "index.js",
   "keywords": [
@@ -16,7 +16,7 @@
     "compile": "npx bsc --create-package false --staging-folder-path .tmp --project ./bsconfig.json"
   },
   "author": "TKSS Software",
-  "license": "ISC",
+  "license": "MIT",
   "files": [
     "dist/**/*"
   ],
