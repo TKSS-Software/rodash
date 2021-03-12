@@ -33,8 +33,5 @@
     "glob": "^7.1.6",
     "merge-files": "^0.1.2",
     "replace-in-files": "^3.0.0"
-  },
-  "directories": {
-    "doc": "docs"
-  },
+  }
 }
