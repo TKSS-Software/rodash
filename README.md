@@ -39,7 +39,7 @@ Returns: [1, 2, 3]
 ### Shuffle & Slice
 #### Brightscript
 ```
-rodash_slice(rodash.shuffle([1,2,3,4,5,6,7,8,9,10]), 0, 4)
+rodash_slice(rodash_shuffle([1,2,3,4,5,6,7,8,9,10]), 0, 4)
 ```
 
 #### Brighterscript
