@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name floor
-  ' * @description Computes number rounded down to precision
+
+  ' * Computes number rounded down to precision
   ' * @param {Integer} number - The number to round down
   ' * @param {Integer} precision - The precision to round down to
   ' * @return {Integer} Returns the rounded down number

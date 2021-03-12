@@ -1,7 +1,7 @@
 
 namespace rodash
   ' /**
-  ' * @description Checks if the supplied value is Invalid
+  ' * Checks if the supplied value is Invalid
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

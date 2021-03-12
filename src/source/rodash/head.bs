@@ -1,7 +1,7 @@
 namespace rodash
   '/**
-  ' * @name head
-  ' * @description Gets the first element of array.
+
+  ' * Gets the first element of array.
   ' * @param {Array} array - The array to query
   ' * @return {Dynamic} Returns the first element of array
   ' */

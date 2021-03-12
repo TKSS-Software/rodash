@@ -1,9 +1,8 @@
 namespace rodash
   '/**
-  ' * @name flatten
-  ' * @description Flattens array a single level deep.
+  ' * Flattens array a single level deep.
   ' * @param {Array} array - The array to flatten
-  ' * @return {Dynamic} Returns the new flattened array
+  ' * @returns {Dynamic} Returns the new flattened array
   ' */
   function flatten(array = [])
     returnArray = []

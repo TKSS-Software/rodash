@@ -1,5 +1,5 @@
 ' /**
-' * @description entry point for the application. Runs a loop to keep the app alive while majority of app runs on SceneGraph side
+' * entry point for the application. Runs a loop to keep the app alive while majority of app runs on SceneGraph side
 ' * @since 4.0
 ' */
 sub main(inputEvent as Object)

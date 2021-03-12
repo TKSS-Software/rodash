@@ -1,8 +1,8 @@
 
 namespace rodash
   '/**
-  ' * @name takeRight
-  ' * @description Creates a slice of array with n elements taken from the end
+
+  ' * Creates a slice of array with n elements taken from the end
   ' * @param {Array} array - The sorted array to query
   ' * @param {Integer} n - The number of elements to take
   ' * @return {Object} Returns the slice of array

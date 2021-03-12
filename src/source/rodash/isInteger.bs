@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isInteger
-  ' * @description Checks if the supplied value is a valid Integer type
+
+  ' * Checks if the supplied value is a valid Integer type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

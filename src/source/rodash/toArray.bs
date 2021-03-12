@@ -2,8 +2,8 @@
 namespace rodash
   ' /**
   'TODO: ADD MORE SUPPORT
-  ' * @name toArray
-  ' * @description Attempts to convert the supplied value to a array.
+
+  ' * Attempts to convert the supplied value to a array.
   ' * @param {Dynamic} value The value to convert.
   ' * @return {Object} Results of the conversion.
   ' */

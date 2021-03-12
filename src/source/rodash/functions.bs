@@ -1,8 +1,8 @@
 ' TODO: Rewrite this due to scoping issue
 namespace rodash
   ' /**
-  ' * @name functions
-  ' * @description Creates an array of function property names from own enumerable properties of object.
+
+  ' * Creates an array of function property names from own enumerable properties of object.
   ' * @param {Dynamic} obj - The object to iterate over
   ' * @return {Object} Returns object
   ' */

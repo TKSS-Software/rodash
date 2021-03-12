@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name forInRight
-  ' * @description This method is like rodash.forIn except that it iterates over properties of object in the opposite order.
+
+  ' * This method is like rodash.forIn except that it iterates over properties of object in the opposite order.
   ' * @param {Dynamic} obj - The object to iterate over
   ' * @param {Dynamic} iteratee - The function invoked per iteration
   ' * @return {Object} Returns object

@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name stringIncludes
-  ' * @description Check for the existence of a given sub string
+
+  ' * Check for the existence of a given sub string
   ' * @param {String} value The string to search
   ' * @param {String} subString The sub string to search for
   ' * @return {Boolean} Results of the search

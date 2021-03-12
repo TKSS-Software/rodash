@@ -1,7 +1,7 @@
 
 namespace rodash
   ' /**
-  ' * @description Creates a new array concatenating array with any additional arrays and/or values.
+  ' * Creates a new array concatenating array with any additional arrays and/or values.
   ' * @param {Array} array - The array to concatenate
   ' * @param {Array} values - The values to concatenate
   ' * @returns {Array} returnArray - Returns the new concatenated array

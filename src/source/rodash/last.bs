@@ -1,7 +1,7 @@
 namespace rodash
   '/**
-  ' * @name last
-  ' * @description Gets the last element of array.
+
+  ' * Gets the last element of array.
   ' * @param {Array} array - The array to query
   ' * @return {Dynamic} Returns the last element of array
   ' */

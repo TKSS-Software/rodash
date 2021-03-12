@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name stringIndexOf
-  ' * @description Finds the sub string index position
+
+  ' * Finds the sub string index position
   ' * @param {String} value The string to search
   ' * @param {String} subString The sub string to search for
   ' * @return {Integer} Results of the search

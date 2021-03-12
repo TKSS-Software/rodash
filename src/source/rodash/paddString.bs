@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name paddString
-  ' * @description Add padding to the supplied value after converting to a string. For example "1" to "01".
+
+  ' * Add padding to the supplied value after converting to a string. For example "1" to "01".
   ' * @param {String} value The value to add padding to.
   ' * @param {Integer} padLength The minimum output string length.
   ' * @param {String} paddingCharacter The string to use as padding.

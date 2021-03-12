@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isEqual
-  ' * @description Checks if the supplied values are the same.
+
+  ' * Checks if the supplied values are the same.
   ' * @param {Dynamic} valueOne - First value.
   ' * @param {Dynamic} valueTwo - Second value.
   ' * @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.

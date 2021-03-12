@@ -2,8 +2,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isNumber
-  ' * @description Checks if the supplied value is a valid number type
+
+  ' * Checks if the supplied value is a valid number type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

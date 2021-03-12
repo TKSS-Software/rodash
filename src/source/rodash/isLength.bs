@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isLength
-  ' * @description Checks if value is a valid array-like length
+
+  ' * Checks if value is a valid array-like length
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

@@ -2,8 +2,8 @@
 
 namespace rodash
   ' /**
-  ' * @name shuffle
-  ' * @description Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
+
+  ' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
   ' * @param {Dynamic} collection - The collection to shuffle
   ' * @return {Array} Returns the new shuffled array
   ' */

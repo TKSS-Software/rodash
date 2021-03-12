@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name max
-  ' * @description Computes the maximum value of array. If array is empty or falsey, invalid is returned.
+
+  ' * Computes the maximum value of array. If array is empty or falsey, invalid is returned.
   ' * @param {Array} array - The array to iterate over
   ' * @return {Dynamic} Returns the maximum value
   ' */

@@ -2,8 +2,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isString
-  ' * @description Checks if the supplied value is a valid String type
+
+  ' * Checks if the supplied value is a valid String type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

@@ -1,8 +1,8 @@
 
 namespace rodash.internal
   ' /**
-  ' * @name nodeToAA
-  ' * @description Attempts to converts a nodes top level fields to an AssociativeArray.
+
+  ' * Attempts to converts a nodes top level fields to an AssociativeArray.
   ' * @param {Dynamic} value - The variable to be converted.
   ' * @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
   ' * @param {Object} removeFields - List of keys that need to be removed from the node.

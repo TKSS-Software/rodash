@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isArrayLike
-  ' * @description Checks if the supplied value is a valid unempty Array like type
+
+  ' * Checks if the supplied value is a valid unempty Array like type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

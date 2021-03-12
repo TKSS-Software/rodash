@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isNode
-  ' * @description Checks if the supplied value is a valid Node type
+
+  ' * Checks if the supplied value is a valid Node type
   ' * @param {Dynamic} value The variable to be checked
   ' * @param {String} subType An optional subType parameter to further refine the check
   ' * @return {Boolean} Results of the check

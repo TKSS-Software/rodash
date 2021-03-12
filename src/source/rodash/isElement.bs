@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isElement
-  ' * @description Alias to isNode function
+
+  ' * Alias to isNode function
   ' * @param {Dynamic} value The variable to be checked
   ' * @param {String} subType An optional subType parameter to further refine the check
   ' * @return {Boolean} Results of the check

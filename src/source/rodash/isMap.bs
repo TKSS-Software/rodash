@@ -2,8 +2,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isMap
-  ' * @description Alias to isArray function
+
+  ' * Alias to isArray function
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

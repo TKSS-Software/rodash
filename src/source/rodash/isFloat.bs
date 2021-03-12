@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isFloat
-  ' * @description Checks if the supplied value is a valid Float type
+
+  ' * Checks if the supplied value is a valid Float type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

@@ -1,8 +1,8 @@
 
 namespace rodash
   '/**
-  ' * @name zip
-  ' * @description Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+
+  ' * Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
   ' * @param {Array} arrays - The property identifiers
   ' * @return {Object} Returns the new array of grouped elements
   ' */

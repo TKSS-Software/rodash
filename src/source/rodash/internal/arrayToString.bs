@@ -1,9 +1,9 @@
 
 namespace rodash.internal
   ' /**
-  ' * @name arrayToString
+
   ' * @ignore
-  ' * @description Attempts to convert the supplied value to a string.
+  ' * Attempts to convert the supplied value to a string.
   ' * @param {Dynamic} value The value to convert.
   ' * @return {String} Results of the conversion.
   ' */

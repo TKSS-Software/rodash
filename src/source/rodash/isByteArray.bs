@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isByteArray
-  ' * @description Checks if the supplied value is a valid ByteArray type
+
+  ' * Checks if the supplied value is a valid ByteArray type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

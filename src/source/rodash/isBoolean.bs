@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isBoolean
-  ' * @description Checks if the supplied value is a valid Boolean type
+
+  ' * Checks if the supplied value is a valid Boolean type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

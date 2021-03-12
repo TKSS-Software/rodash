@@ -1,7 +1,7 @@
 namespace rodash
   '/**
-  ' * @name zipObjectDeep
-  ' * @description This method is like rodash.zipObject except that it supports property paths.
+
+  ' * This method is like rodash.zipObject except that it supports property paths.
   ' * @param {Array} array - The property identifiers
   ' * @param {Array} values - The property identifiers
   ' * @return {Object} Returns the new object

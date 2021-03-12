@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name set
-  ' * @description Used to set a nested String value in the supplied object
+
+  ' * Used to set a nested String value in the supplied object
   ' * @param {Object} aa - Object to drill down into.
   ' * @param {String} keyPath - A dot notation based string to the expected value.
   ' * @param {Dynamic} value - The value to be set.

@@ -1,8 +1,8 @@
 
 namespace rodash
   '/**
-  ' * @name join
-  ' * @description Converts all elements in array into a string separated by separator.
+
+  ' * Converts all elements in array into a string separated by separator.
   ' * @param {Array} array - The array to convert
   ' * @param {String} separator - The element separator
   ' * @return {Array} Returns the joined string

@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isAA
-  ' * @description Checks if the supplied value is a valid AssociativeArray type
+
+  ' * Checks if the supplied value is a valid AssociativeArray type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

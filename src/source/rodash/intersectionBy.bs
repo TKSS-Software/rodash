@@ -1,8 +1,8 @@
 
 namespace rodash
   '/**
-  ' * @name intersectionBy
-  ' * @description This method is like rodash.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+
+  ' * This method is like rodash.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
   ' * @param {Array} mainArray - The main array to inspect
   ' * @param {Array} inspect - The array to find matches
   ' * @param {Dynamic} iteratee - The iteratee invoked per element

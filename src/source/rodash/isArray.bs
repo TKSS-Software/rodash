@@ -1,7 +1,7 @@
 namespace rodash
   ' /**
-  ' * @name isArray
-  ' * @description Checks if the supplied value is a valid Array type
+
+  ' * Checks if the supplied value is a valid Array type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

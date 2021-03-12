@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name isNonEmptyAA
-  ' * @description Checks if the supplied value is a valid and populated AssociativeArray type
+
+  ' * Checks if the supplied value is a valid and populated AssociativeArray type
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
   ' */

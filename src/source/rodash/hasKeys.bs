@@ -1,8 +1,8 @@
 
 namespace rodash
   ' /**
-  ' * @name hasKeys
-  ' * @description Checks if first level of the supplied AssociativeArray contains the Array of key strings.
+
+  ' * Checks if first level of the supplied AssociativeArray contains the Array of key strings.
   ' * @param {Dynamic} aaValue - AssociativeArray to be checked
   ' * @return {Dynamic} keys - Array of key strings
   ' */
