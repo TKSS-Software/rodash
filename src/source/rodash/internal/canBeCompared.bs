@@ -2,6 +2,7 @@
 namespace rodash.internal
   ' /**
   ' * @name canBeCompared
+  ' * @ignore
   ' * @description Checks if the supplied values can be compared in a if statement.
   ' * @param {Dynamic} valueOne - First value
   ' * @param {Dynamic} valueTwo - Second value

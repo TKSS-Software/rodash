@@ -1,4 +1,5 @@
 namespace rodash.internal
+  ' * @ignore
   function getConstants()
     return {
       BrightScriptErrorCodes: {

@@ -1,10 +1,9 @@
 namespace rodash
   ' /**
-  ' * @name chunk
-  ' * @description Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
+  ' * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
   ' * @param {Array} array - The array to process
   ' * @param {Integer} chunkSize - The length of each chunk
-  ' * @return {Array} Returns the new array of chunks
+  ' * @returns {Array} returnArray - Returns the new array of chunks
   ' */
   function chunk(array = [] as object, chunkSize = 1 as integer) as object
     array = rodash.clone(array)

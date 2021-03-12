@@ -1,11 +1,9 @@
 namespace rodash
   ' /**
-  ' * @member add
-  ' * @memberof module:rodash
-  ' * @description Adds two numbers
+  ' * Adds two numbers.
   ' * @param {Dymanic} augend - The first number in an addition
   ' * @param {Dymanic} addend - The second number in an addition
-  ' * @return {Integer} Returns the total
+  ' * @returns {Dynamic} value - Returns the total
   ' */
   function add(augend, addend)
     value = 0

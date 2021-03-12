@@ -1,11 +1,10 @@
 
 namespace rodash
   ' /**
-  ' * @name dropRightWhile
-  ' * @description Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+  ' * Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
   ' * @param {Array} array - The array to query
   ' * @param {Dynamic} predicate - The function invoked per iteration
-  ' * @return {Array} Returns the slice of array
+  ' * @returns {Array} array - Returns the slice of array
   ' */
   function dropRightWhile(array = {} as object, predicate = invalid)
     array = rodash.clone(array)

@@ -1,11 +1,9 @@
 
 ' /**
-' * @member add
-' * @memberof module:rodash
-' * @description Adds two numbers
+' * Adds two numbers.
 ' * @param {Dymanic} augend - The first number in an addition
 ' * @param {Dymanic} addend - The second number in an addition
-' * @return {Integer} Returns the total
+' * @returns {Dynamic} value - Returns the total
 ' */
 function add(augend, addend)
     value = 0
@@ -32,11 +30,11 @@ function asSeconds() as object
     }
 end function
 ' /**
-' * @name assign
-' * @description Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
+' * Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
 ' * This method mutates object and is loosely based on Object.assign.
 ' * @param {Dynamic} baseAA - The destination object
-' * @return {Object} sources - The source objects
+' * @params {Object} sources - The source objects
+' * @params {Dynamic} Mutaded baseAA
 ' */
 function assign(baseAA as dynamic, sources = [] as object) as dynamic
     if NOT isAA(baseAA) then
@@ -48,23 +46,6 @@ function assign(baseAA as dynamic, sources = [] as object) as dynamic
         end if
     end for
     return baseAA
-end function
-' TODO: Figure out what to do here
-' /**
-' * @name assignIn
-' * @description This method is like rodash.assign except that it iterates over own and inherited source properties.
-' * This method mutates object.
-' * @param {Dynamic} baseAA - The destination object
-' * @return {Object} sources - The source objects
-' */
-function assignIn(baseAA as dynamic, sources = [] as object) as dynamic
-    return assign(baseAA, sources)
-end function
-function assignInWith(baseAA as dynamic, sources = [] as object) as dynamic
-    return assign(baseAA, sources)
-end function
-function assignWith(baseAA as dynamic, sources = [] as object) as dynamic
-    return assign(baseAA, sources)
 end function
 function at(obj = {} as object, paths = [] as object)
     returnArray = []
@@ -104,21 +85,19 @@ function capitalize(value = "" as string)
     return responseValue
 end function
 ' /**
-' * @name ceil
-' * @description Computes number rounded up to precision.
+' * Computes number rounded up to precision.
 ' * @param {Integer} number - The number to round up
 ' * @param {Integer} precision - The precision to round up to
-' * @return {Integer} Returns the rounded up number
+' * @returns {Integer} Returns the rounded up number
 ' */
 function ceil(number = 0, precision = 0 as integer)
     return - int(- number * 10 ^ precision) / 10 ^ precision
 end function
 ' /**
-' * @name chunk
-' * @description Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
+' * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
 ' * @param {Array} array - The array to process
 ' * @param {Integer} chunkSize - The length of each chunk
-' * @return {Array} Returns the new array of chunks
+' * @returns {Array} returnArray - Returns the new array of chunks
 ' */
 function chunk(array = [] as object, chunkSize = 1 as integer) as object
     array = clone(array)
@@ -151,10 +130,9 @@ function clamp(number, lower, upper) as dynamic
     ])
 end function
 ' /**
-' * @name clone
-' * @description Clones objects that can be cloned.
+' * Clones objects that can be cloned.
 ' * @param {Dynamic} value - The value to be cloned
-' * @return {Dynamic} The cloned value
+' * @returns {Dynamic} clonedValue - The cloned value
 ' */
 function clone(value = invalid as dynamic) as dynamic
     if isInvalid(value) then
@@ -179,10 +157,9 @@ function clone(value = invalid as dynamic) as dynamic
     return clonedValue
 end function
 ' /**
-' * @name compact
-' * @description Creates an array with all falsey values removed. The values false, 0, "", and invalid are falsey.
+' * Creates an array with all falsey values removed. The values false, 0, "", and invalid are falsey.
 ' * @param {Array} array - The array to compact
-' * @return {Array} Returns the new array of filtered values
+' * @returns {Array} returnArray - Returns the new array of filtered values
 ' */
 function compact(array = [] as object) as object
     returnArray = []
@@ -207,11 +184,10 @@ function compact(array = [] as object) as object
     return returnArray
 end function
 ' /**
-' * @name concat
 ' * @description Creates a new array concatenating array with any additional arrays and/or values.
 ' * @param {Array} array - The array to concatenate
 ' * @param {Array} values - The values to concatenate
-' * @return {Array} Returns the new concatenated array
+' * @returns {Array} returnArray - Returns the new concatenated array
 ' */
 function concat(array = [] as object, values = [] as object) as object
     returnArray = []
@@ -226,22 +202,20 @@ function concat(array = [] as object, values = [] as object) as object
     return returnArray
 end function
 ' /**
-' * @name difference
-' * @description Creates an array of array values not included in the other given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
+' * Creates an array of array values not included in the other given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
 ' * @param {Array} array - The array to inspect
 ' * @param {Array} values - The values to exclude
-' * @return {Array} Returns the new array of filtered values
+' * @returns {Array} difference - Returns the new array of filtered values
 ' */
 function difference(array = [] as object, values = [] as object) as object
     return differenceBy(array, values)
 end function
 ' /**
-' * @name differenceBy
-' * @description This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+' * This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
 ' * @param {Array} array - The array to inspect
 ' * @param {Array} values - The values to exclude
 ' * @param {Dynamic} iteratee - The iteratee invoked per element
-' * @return {Array} Returns the new array of filtered values
+' * @returns {Array} returnArray - Returns the new array of filtered values
 ' */
 function differenceBy(array = [] as object, values = [] as object, iteratee = invalid) as object
     iterateeIsFunction = isFunction(iteratee)
@@ -273,11 +247,10 @@ function differenceBy(array = [] as object, values = [] as object, iteratee = in
     return returnArray
 end function
 ' /**
-' * @name divide
-' * @description Divides two numbers
+' * Divides two numbers
 ' * @param {Dymanic} dividend - The first number in a division
 ' * @param {Dymanic} divisor - The second number in a division
-' * @return {Integer} Returns the quotient
+' * @returns {Integer} value - Returns the quotient
 ' */
 function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
     if isNaN(dividend) OR isNaN(divisor) then
@@ -289,11 +262,10 @@ function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
     return dividend / divisor
 end function
 ' /**
-' * @name drop
-' * @description Creates a slice of array with n elements dropped from the beginning.
+' * Creates a slice of array with n elements dropped from the beginning.
 ' * @param {Array} array - The array to query
 ' * @param {Integer} n - The number of elements to drop
-' * @return {Array} Returns the slice of array
+' * @returns {Array} array - Returns the slice of array
 ' */
 function drop(array = {} as object, n = 1 as integer)
     array = clone(array)
@@ -306,11 +278,10 @@ function drop(array = {} as object, n = 1 as integer)
     return array
 end function
 ' /**
-' * @name dropRight
-' * @description Creates a slice of array with n elements dropped from the end.
+' * Creates a slice of array with n elements dropped from the end.
 ' * @param {Array} array - The array to query
 ' * @param {Integer} n - The number of elements to drop
-' * @return {Array} Returns the slice of array
+' * @returns {Array} array - Returns the slice of array
 ' */
 function dropRight(array = {} as object, n = 1 as integer)
     array = clone(array)
@@ -320,11 +291,10 @@ function dropRight(array = {} as object, n = 1 as integer)
     return array
 end function
 ' /**
-' * @name dropRightWhile
-' * @description Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+' * Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
 ' * @param {Array} array - The array to query
 ' * @param {Dynamic} predicate - The function invoked per iteration
-' * @return {Array} Returns the slice of array
+' * @returns {Array} array - Returns the slice of array
 ' */
 function dropRightWhile(array = {} as object, predicate = invalid)
     array = clone(array)
@@ -334,11 +304,10 @@ function dropRightWhile(array = {} as object, predicate = invalid)
     return array
 end function
 '/**
-' * @name dropWhile
-' * @description Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+' * Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
 ' * @param {Array} array - The array to query
 ' * @param {Dynamic} predicate - The function invoked per iteration
-' * @return {Array} Returns the slice of array
+' * @return {Array} array - Returns the slice of array
 ' */
 function dropWhile(array = [] as object, predicate = invalid)
     array = clone(array)
@@ -399,14 +368,13 @@ function escapeRegExp(source = "" as string)
     return source.replace("\/\/", "//")
 end function
 '/**
-' * @name fill
-' * @description Fills elements of array with value from start up to, but not including, end.
+' * Fills elements of array with value from start up to, but not including, end.
 ' * This method mutates array.
 ' * @param {Array} array - The array to fill
 ' * @param {Dynamic} value - The value to fill array with
 ' * @param {Integer} startPos - The start position
 ' * @param {Integer} endPos - The end position
-' * @return {Array} Returns the mutated array
+' * @returns {Array} array - Returns the mutated array
 ' */
 function fill(array = [] as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
     if isInvalid(startPos) then
@@ -828,9 +796,10 @@ function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as
 end function
 ' /**
 ' * @name aaToString
+' * @ignore
 ' * @description Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
+' * @param {Dynamic} value - The value to convert.
+' * @return {String} - Results of the conversion.
 ' */
 function internal_aaToString(aa as object) as string
     description = "{"
@@ -842,6 +811,7 @@ function internal_aaToString(aa as object) as string
 end function
 ' /**
 ' * @name arrayToString
+' * @ignore
 ' * @description Attempts to convert the supplied value to a string.
 ' * @param {Dynamic} value The value to convert.
 ' * @return {String} Results of the conversion.
@@ -856,6 +826,7 @@ function internal_arrayToString(array as object) as string
 end function
 ' /**
 ' * @name baseForEach
+' * @ignore
 ' * @description The base implementation of `forEach`.
 ' * @param {Array|Object} - collection The collection to iterate over
 ' * @param {Function} iteratee The function invoked per iteration
@@ -905,6 +876,7 @@ function internal_baseForEach(collection = invalid as dynamic, iteratee = invali
 end function
 ' /**
 ' * @name booleanToString
+' * @ignore
 ' * @description Attempts to convert the supplied value to a string.
 ' * @param {Dynamic} value The value to convert.
 ' * @return {String} Results of the conversion.
@@ -917,6 +889,7 @@ function internal_booleanToString(bool as boolean) as string
 end function
 ' /**
 ' * @name canBeCompared
+' * @ignore
 ' * @description Checks if the supplied values can be compared in a if statement.
 ' * @param {Dynamic} valueOne - First value
 ' * @param {Dynamic} valueTwo - Second value
@@ -943,6 +916,7 @@ function internal_canBeCompared(valueOne as dynamic, valueTwo as dynamic) as boo
     end if
     return false
 end function
+' * @ignore
 function internal_getConstants()
     return {
         BrightScriptErrorCodes: {
@@ -1043,6 +1017,7 @@ function internal_getConstants()
         MIN_INT: - 2147483648
     }
 end function
+' * @ignore
 function internal_getDateObject() as object
     dateObj = CreateObject("roDateTime")
     utc = dateObj
@@ -1055,6 +1030,7 @@ function internal_getDateObject() as object
 end function
 ' /**
 ' * @name isKeyedValueType
+' * @ignore
 ' * @description Checks if the supplied value allows for key field access
 ' * @param {Dynamic} value The variable to be checked
 ' * @return {Boolean} Results of the check
@@ -1121,6 +1097,7 @@ end function
 function internal_numberToString(value as dynamic) as string
     return value.toStr()
 end function
+' * @ignore
 function internal_sanitizeKeyPathArray(value = "" as string)
     regex = createObject("roRegex", "\[(.*?)\]", "i")
     matches = regex.matchAll(value)

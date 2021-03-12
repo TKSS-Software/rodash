@@ -1,12 +1,11 @@
 
 namespace rodash
   ' /**
-  ' * @name differenceBy
-  ' * @description This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+  ' * This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
   ' * @param {Array} array - The array to inspect
   ' * @param {Array} values - The values to exclude
   ' * @param {Dynamic} iteratee - The iteratee invoked per element
-  ' * @return {Array} Returns the new array of filtered values
+  ' * @returns {Array} returnArray - Returns the new array of filtered values
   ' */
   function differenceBy(array = [] as object, values = [] as object, iteratee = invalid) as object
     iterateeIsFunction = rodash.isFunction(iteratee)

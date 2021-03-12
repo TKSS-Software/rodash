@@ -1,6 +1,7 @@
 namespace rodash.internal
   ' /**
   ' * @name isKeyedValueType
+  ' * @ignore
   ' * @description Checks if the supplied value allows for key field access
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check

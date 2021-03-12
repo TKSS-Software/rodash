@@ -2,6 +2,7 @@
 namespace rodash.internal
   ' /**
   ' * @name baseForEach
+  ' * @ignore
   ' * @description The base implementation of `forEach`.
   ' * @param {Array|Object} - collection The collection to iterate over
   ' * @param {Function} iteratee The function invoked per iteration

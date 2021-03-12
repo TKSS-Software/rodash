@@ -1,10 +1,9 @@
 
 namespace rodash
   ' /**
-  ' * @name clone
-  ' * @description Clones objects that can be cloned.
+  ' * Clones objects that can be cloned.
   ' * @param {Dynamic} value - The value to be cloned
-  ' * @return {Dynamic} The cloned value
+  ' * @returns {Dynamic} clonedValue - The cloned value
   ' */
   function clone(value = invalid as dynamic) as dynamic
     if rodash.isInvalid(value) return invalid

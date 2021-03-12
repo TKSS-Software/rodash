@@ -1,10 +1,9 @@
 namespace rodash
   ' /**
-  ' * @name drop
-  ' * @description Creates a slice of array with n elements dropped from the beginning.
+  ' * Creates a slice of array with n elements dropped from the beginning.
   ' * @param {Array} array - The array to query
   ' * @param {Integer} n - The number of elements to drop
-  ' * @return {Array} Returns the slice of array
+  ' * @returns {Array} array - Returns the slice of array
   ' */
   function drop(array = {} as object, n = 1 as integer)
     array = rodash.clone(array)
