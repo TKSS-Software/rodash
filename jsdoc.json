@@ -5,7 +5,8 @@
   ],
   "source": {
     "include": [
-      "dist/source"
+      "dist/source",
+      "README.md"
     ],
     "includePattern": ".+\\.brs"
   },
@@ -13,7 +14,7 @@
     "referenceTitle": "TKSS rodash API Docs",
     "disableSort": false,
     "collapse": true
-},
+  },
   "opts": {
     "recurse": true
   }
