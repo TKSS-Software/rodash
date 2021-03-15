@@ -18,6 +18,12 @@ function add(augend, addend)
     return value
 end function 
 
+' /**
+' * Returns a formatted version of the current time/date.
+' * @category Date
+' * @param {String} format - The date format
+' * @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
+' */
 function asDateString(format = "long-date" as string) as object
     dateObj = internal_getDateObject()
     return {
@@ -26,6 +32,11 @@ function asDateString(format = "long-date" as string) as object
     }
 end function 
 
+' /**
+' * Returns the current time in seconds.
+' * @category Date
+' * @returns {Object} value - Returns a object containing the date/time in seconds for both UTC and Local time
+' */
 function asSeconds() as object
     dateObj = internal_getDateObject()
     return {
@@ -53,6 +64,13 @@ function assign(baseAA as dynamic, sources = [] as object) as dynamic
     return baseAA
 end function 
 
+' /**
+' * Creates an array of values corresponding to paths of object.
+' * @category Object
+' * @param {AssocArray} obj - The object to iterate over.
+' * @param {Array} paths - The property paths to pick.
+' * @returns {Array} value - Returns the picked values.
+' */
 function at(obj = {} as object, paths = [] as object)
     returnArray = []
     for each path in paths

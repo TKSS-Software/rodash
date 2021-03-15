@@ -1,6 +1,13 @@
 
 
 namespace rodash
+  ' /**
+  ' * Creates an array of values corresponding to paths of object.
+  ' * @category Object
+  ' * @param {AssocArray} obj - The object to iterate over.
+  ' * @param {Array} paths - The property paths to pick.
+  ' * @returns {Array} value - Returns the picked values.
+  ' */
   function at(obj = {} as object, paths = [] as object)
     returnArray = []
 
