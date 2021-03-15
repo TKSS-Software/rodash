@@ -3,8 +3,8 @@
 namespace rodash
   ' /**
   ' * Divides two numbers
-  ' * @param {Dymanic} dividend - The first number in a division
-  ' * @param {Dymanic} divisor - The second number in a division
+  ' * @param {Dynamic} dividend - The first number in a division
+  ' * @param {Dynamic} divisor - The second number in a division
   ' * @returns {Integer} value - Returns the quotient
   ' */
   function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
