@@ -4,6 +4,8 @@
 Currently supporting 150 utility functions!
 API Documentation coming soon.
 
+## Important
+This project is not affiliated with the Tubitv/rodash project.
 
 ## Installation
 ### Using [ropm](https://www.npmjs.com/package/ropm)
