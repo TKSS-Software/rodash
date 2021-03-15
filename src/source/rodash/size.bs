@@ -1,10 +1,9 @@
 
 namespace rodash
   ' /**
-
-  ' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
-  ' * @param {Dynamic} collection - The collection to shuffle
-  ' * @return {Array} Returns the new shuffled array
+  ' * Gets the size of collection by returning its length for array-like values or the number of own enumerable string keyed properties for objects.
+  ' * @param {Dynamic} collection - The collection to inspect
+  ' * @return {Integer} Returns the collection size.
   ' */
   function size(collection = invalid as dynamic)
     if rodash.isInvalid(collection) OR (NOT rodash.isArray(collection) AND NOT rodash.isAA(collection) AND NOT rodash.isString(collection)) then return []

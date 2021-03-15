@@ -1994,10 +1994,9 @@ function shuffle(collection = [] as dynamic)
 end function 
 
 ' /**
-
-' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
-' * @param {Dynamic} collection - The collection to shuffle
-' * @return {Array} Returns the new shuffled array
+' * Gets the size of collection by returning its length for array-like values or the number of own enumerable string keyed properties for objects.
+' * @param {Dynamic} collection - The collection to inspect
+' * @return {Integer} Returns the collection size.
 ' */
 function size(collection = invalid as dynamic)
     if isInvalid(collection) OR (NOT isArray(collection) AND NOT isAA(collection) AND NOT isString(collection)) then
@@ -2089,8 +2088,7 @@ function sortBy(collection = invalid as dynamic, iteratee = invalid as dynamic)
 end function 
 
 '/**
-
-' * Gets all but the first element of array
+' * Uses a binary search to determine the lowest index at which value should be inserted into array in order to maintain its sort order.
 ' * @param {Array} array - The sorted array to inspect
 ' * @return {Object} Returns the index at which value should be inserted into array
 ' */
@@ -2129,6 +2127,12 @@ function stringIndexOf(value as string, subString as string) as integer
     return value.Instr(subString)
 end function 
 
+'/**
+' * Subtract two numbers.
+' * @param {Integer} minuend - The first number in a subtraction
+' * @param {Integer} subtrahend - The second number in a subtraction
+' * @return {Integer} Returns the difference.
+' */
 function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
     if isNaN(minuend) OR isNaN(subtrahend) then
         return 0
@@ -2291,8 +2295,7 @@ function toString(value as dynamic) as string
 end function 
 
 '/**
-
-' * Creates a slice of array with n elements taken from the end
+' * Creates an array of unique values, in order, from all given arrays using SameValueZero for equality comparisons.
 ' * @param {Array} arrays - The arrays to inspect
 ' * @return {Object} Returns the new array of combined values
 ' */
