@@ -5,7 +5,7 @@ const concat = require("concat")
 const copyfiles = require('copyfiles');
 
 
-glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
+glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {'nosort': true}, (err, files)=>{
   const outputDirectory = __dirname + '/../dist/source/';
   const outputPath = outputDirectory + 'rodash.brs';
   const inputPathList = files;
@@ -22,7 +22,7 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {}, (err, files)=>{
       fs.writeFile(outputPath, result, 'utf8', function (err) {
         if (err) return console.log(err);
 
-        glob(__dirname + '/../.tmp/source/rodash/**/*.d.bs', {}, (err, files) => {
+        glob(__dirname + '/../.tmp/source/rodash/**/*.d.bs', {'nosort': true}, (err, files) => {
           var output = ""
           var outputs = {
             "rodash": ""
