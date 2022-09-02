@@ -1297,7 +1297,7 @@ function internal_numberToString(value as dynamic) as string
 end function 
 
 ' * @ignore
-function internal_sanitizeKeyPathArray(value = "" as string)
+function internal_sanitizeKeyPath(value = "" as string)
     regex = createObject("roRegex", "\[(.*?)\]", "i")
     matches = regex.matchAll(value)
     if isNotInvalid(matches) then

@@ -837,6 +837,20 @@ function head(array = [] as object) as dynamic
     return array[0]
 end function 
 
+function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
+    if (isInvalid(endPos)) then
+        endPos = startPos
+        startPos = 0
+    end if
+    if gt(startPos, endPos) then
+        startPosTemp = startPos
+        endPosTemp = endPos
+        startPos = endPosTemp
+        endPos = startPosTemp
+    end if
+    return gte(number, startPos) AND lt(number, endPos)
+end function 
+
 '/**
 
 ' * Gets the index at which the first occurrence of value is found in array using SameValueZero for equality comparisons. If fromIndex is negative, it's used as the offset from the end of array.
@@ -872,348 +886,6 @@ function initial(array = [] as object)
         return []
     end if
     return slice(array, 0, array.count() - 1)
-end function 
-
-function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
-    if (isInvalid(endPos)) then
-        endPos = startPos
-        startPos = 0
-    end if
-    if gt(startPos, endPos) then
-        startPosTemp = startPos
-        endPosTemp = endPos
-        startPos = endPosTemp
-        endPos = startPosTemp
-    end if
-    return gte(number, startPos) AND lt(number, endPos)
-end function 
-
-' /**
-
-' * @ignore
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value - The value to convert.
-' * @return {String} - Results of the conversion.
-' */
-function internal_aaToString(aa as object) as string
-    description = "{"
-    for each key in aa
-        description += key + ": " + toString(aa[key]) + ", "
-    end for
-    description = description.left(description.len() - 2) + "}"
-    return description
-end function 
-
-' /**
-
-' * @ignore
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
-' */
-function internal_arrayToString(array as object) as string
-    description = "["
-    for each item in array
-        description += toString(item) + ", "
-    end for
-    description = description.left(description.len() - 2) + "]"
-    return description
-end function 
-
-' /**
-
-' * @ignore
-' * The base implementation of `forEach`.
-' * @param {Array|Object} - collection The collection to iterate over
-' * @param {Function} iteratee The function invoked per iteration
-' * @param {String} direction - the direction to traverse the collection
-' * @param {String} funcValueRule - Filters functions from collection. `allow`, `omit`, `only`.
-' * @return {Array|Object} Returns `collection`
-' */
-function internal_baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
-    if isInvalid(collection) OR isEmpty(collection) then
-        return invalid
-    end if
-    isRight = direction = "right"
-    if isAA(collection) then
-        keys = collection.keys()
-        if isRight then
-            keys.reverse()
-        end if
-        for each key in keys
-            item = collection[key]
-            if isFunction(iteratee) then
-                valueIsFunction = isFunction(item)
-                allowValue = false
-                if valueIsFunction AND NOT isEqual(funcValueRule, "omit") then
-                    allowValue = true
-                else if NOT valueIsFunction AND NOT isEqual(funcValueRule, "only") then
-                    allowValue = true
-                end if
-                if allowValue then
-                    iteratee(item, key)
-                end if
-            end if
-        end for
-    else
-        if isRight then
-            collection.reverse()
-        end if
-        for each item in collection
-            if isFunction(iteratee) then
-                iteratee(item)
-            end if
-        end for
-        if isRight then
-            collection.reverse()
-        end if
-    end if
-    return collection
-end function 
-
-' /**
-
-' * @ignore
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
-' */
-function internal_booleanToString(bool as boolean) as string
-    if bool then
-        return "true"
-    end if
-    return "false"
-end function 
-
-' /**
-
-' * @ignore
-' * Checks if the supplied values can be compared in a if statement.
-' * @param {Dynamic} valueOne - First value
-' * @param {Dynamic} valueTwo - Second value
-' * @return {Boolean} True if the values can be compared in a if statement
-' */
-function internal_canBeCompared(valueOne as dynamic, valueTwo as dynamic) as boolean
-    ' If the first argument is true we don't need to check the following conditionals
-    if isString(valueOne) then
-        if isString(valueTwo) then
-            return true
-        end if
-    else if isNumber(valueOne) then
-        if isNumber(valueTwo) then
-            return true
-        end if
-    else if isBoolean(valueOne) then
-        if isBoolean(valueTwo) then
-            return true
-        end if
-    else if isInvalid(valueOne) then
-        if isInvalid(valueTwo) then
-            return true
-        end if
-    end if
-    return false
-end function 
-
-' * @ignore
-function internal_getConstants()
-    return {
-        BrightScriptErrorCodes: {
-            ' runtime errors
-            ERR_OKAY: &hFF,
-            ERR_NORMAL_END: &hFC, ' normal, but terminate execution.  END, shell "exit", window closed, etc.
-            ERR_VALUE_RETURN: &hE2, ' return executed, and a value returned on the stack
-            ERR_INTERNAL: &hFE, ' A condition that shouldn't occur did
-            ERR_UNDEFINED_OPCD: &hFD, ' A opcode that we don't handle
-            ERR_UNDEFINED_OP: &hFB, ' An expression operator that we don't handle
-            ERR_MISSING_PARN: &hFA,
-            ERR_STACK_UNDER: &hF9, ' nothing on stack to pop
-            ERR_BREAK: &hF8, ' scriptBreak() called
-            ERR_STOP: &hF7, ' stop statement executed
-            ERR_RO0: &hF6, ' bscNewComponent failed because object class not found
-            ERR_RO1: &hF5, ' ro function call does not have the right number of parameters
-            ERR_RO2: &hF4, ' member function not found in object or interface
-            ERR_RO3: &hF3, ' Interface not a member of object
-            ERR_TOO_MANY_PARAM: &hF2, ' Too many function parameters to handle
-            ERR_WRONG_NUM_PARAM: &hF1, ' Incorect number of function parameters
-            ERR_RVIG: &hF0, ' Function returns a value, but is ignored
-            ERR_NOTPRINTABLE: &hEF, ' Non Printable value
-            ERR_NOTWAITABLE: &hEE, ' Tried to Wait on a function that does not have MessagePort interface
-            ERR_MUST_BE_STATIC: &hED, ' interface calls from type rotINTERFACE must by static
-            ERR_RO4: &hEC, ' . operator used on a variable that does not contain a legal object or interface reference
-            ERR_NOTYPEOP: &hEB, ' operation on two typless operands attempted
-            ERR_USE_OF_UNINIT_VAR: &hE9, ' illegal use of uninited var
-            ERR_TM2: &hE8, ' non-numeric index to array
-            ERR_ARRAYNOTDIMMED: &hE7,
-            ERR_USE_OF_UNINIT_BRSUBREF: &hE6, ' used a reference to SUB that is not initilized
-            ERR_MUST_HAVE_RETURN: &hE5,
-            ERR_INVALID_LVALUE: &hE4, ' invalid left side of expression
-            ERR_INVALID_NUM_ARRAY_IDX: &hE3, ' invalid number of array indexes
-            ERR_UNICODE_NOT_SUPPORTED: &hE1,
-            ERR_NOTFUNOPABLE: &hE0,
-            ERR_STACK_OVERFLOW: &hDF,
-            ERR_THROWN_EXCEPTION_ON_STACK: &hDE, '(Internal use only)
-            ERR_SYNTAX: &h02,
-            ERR_DIV_ZERO: &h14,
-            ERR_MISSING_LN: &h0E,
-            ERR_OUTOFMEM: &h0C,
-            ERR_STRINGTOLONG: &h1C,
-            ERR_TM: &h18, ' Type Mismatch (string / numeric operation mismatch)
-            ERR_OS: &h1A, ' out of string space
-            ERR_RG: &h04, ' Return without Gosub
-            ERR_NF: &h00, ' Next without For
-            ERR_FC: &h08, ' Invalid parameter passed to function/array (e.g neg matrix dim or squr root)
-            ERR_DD: &h12, ' Attempted to redimension an array
-            ERR_BS: &h10, ' Array subscript out of bounds
-            ERR_OD: &h06, ' Out of Data (READ)
-            ERR_CN: &h20, ' Continue Not Allowed
-            ERR_BITSHIFT_BAD: &h1E, ' Invalid Bitwise Shift
-            ERR_EXECUTION_TIMEOUT: &h23, ' Timeout on critical thread
-            ERR_CONSTANT_OVERFLOW: &h22, ' Constant Out Of Range
-            ERR_FORMAT_SPECIFIER: &h24, ' Invalid Format Specifier
-            ERR_BAD_THROW: &h26, ' Invalid argument to Throw
-            ERR_USER: &h28, ' User-specified exception
-            ' compiler errors
-            ERR_NW: &hBF, ' EndWhile with no While
-            ERR_MISSING_ENDWHILE: &hBE, ' While Statement is missing a matching EndWhile
-            ERR_MISSING_ENDIF: &hBC, ' end of code reached without finding ENDIF
-            ERR_NOLN: &hBB, ' no line number found
-            ERR_LNSEQ: &hBA, ' Line number sequence error
-            ERR_LOADFILE: &hB9, ' Error loading a file
-            ERR_NOMATCH: &hB8, ' "Match" statement did not match
-            ERR_UNEXPECTED_EOF: &hB7, ' End of string being compiled encountered when not expected (missing end of block usually)
-            ERR_FOR_NEXT_MISMATCH: &hB6, ' Variable on a NEXT does not match that for the FOR
-            ERR_NO_BLOCK_END: &hB5,
-            ERR_LABELTWICE: &hB4, ' Label defined more than once
-            ERR_UNTERMED_STRING: &hB3, ' litteral string does not have ending quote
-            ERR_FUN_NOT_EXPECTED: &hB2,
-            ERR_TOO_MANY_CONST: &hB1,
-            ERR_TOO_MANY_VAR: &hB0,
-            ERR_EXIT_WHILE_NOT_IN_WHILE: &hAF,
-            ERR_INTERNAL_LIMIT_EXCEDED: &hAE,
-            ERR_SUB_DEFINED_TWICE: &hAD,
-            ERR_NOMAIN: &hAC,
-            ERR_FOREACH_INDEX_TM: &hAB,
-            ERR_RET_CANNOT_HAVE_VALUE: &hAA,
-            ERR_RET_MUST_HAVE_VALUE: &hA9,
-            ERR_FUN_MUST_HAVE_RET_TYPE: &hA8,
-            ERR_INVALID_TYPE: &hA7,
-            ERR_NOLONGER: &hA6, ' no longer supported
-            ERR_EXIT_FOR_NOT_IN_FOR: &hA5,
-            ERR_MISSING_INITILIZER: &hA4,
-            ERR_IF_TOO_LARGE: &hA3,
-            ERR_RO_NOT_FOUND: &hA2,
-            ERR_TOO_MANY_LABELS: &hA1,
-            ERR_VAR_CANNOT_BE_SUBNAME: &hA0,
-            ERR_INVALID_CONST_NAME: &h9F,
-            ERR_CONST_FOLDING: &h9E,
-            ERR_BUILTIN_FUNCTION: &h9D,
-            ERR_FUNCTION_NOT_IN_NAMESPACE: &h91,
-            ERR_EVAL_UNSUPPORTED: &h90,
-            ERR_LABEL_INSIDE_TRY: &h8F
-        },
-        MAX_INT: 2147483647,
-        MIN_INT: - 2147483648
-    }
-end function 
-
-' * @ignore
-function internal_getDateObject() as object
-    dateObj = CreateObject("roDateTime")
-    utc = dateObj
-    dateObj.toLocalTime()
-    local = dateObj
-    return {
-        "utc": utc,
-        "local": local
-    }
-end function 
-
-' /**
-
-' * @ignore
-' * Checks if the supplied value allows for key field access
-' * @param {Dynamic} value The variable to be checked
-' * @return {Boolean} Results of the check
-' */
-function internal_isKeyedValueType(value as dynamic) as boolean
-    return getInterface(value, "ifAssociativeArray") <> Invalid
-end function 
-
-' /**
-
-' * Attempts to converts a nodes top level fields to an AssociativeArray.
-' * @param {Dynamic} value - The variable to be converted.
-' * @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
-' * @param {Object} removeFields - List of keys that need to be removed from the node.
-' * @return {Dynamic} Results of the conversion.
-' */
-function internal_nodeToAA(value as object, removeId = false as boolean, removeFields = [] as object) as object
-    if isNode(value) then
-        fields = value.getFields()
-        fields.delete("change")
-        fields.delete("focusable")
-        fields.delete("focusedChild")
-        fields.delete("ready")
-        if removeId then
-            fields.delete("id")
-        end if
-        'Looping through any additional fields if passed.
-        if isNonEmptyArray(removeFields) then
-            for each field in removeFields
-                fields.delete(field)
-            end for
-        end if
-        return fields
-    else if isAA(value) then
-        return value
-    end if
-    return {}
-end function 
-
-' /**
-
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
-' */
-function nodeToString(node as object) as string
-    if NOT isNode(node) then
-        return ""
-    end if
-    description = node.subtype()
-    if node.isSubtype("Group") then
-        ' accessing properties from anywhere but the render thread is too expensive to include here
-        id = node.id
-        if id <> "" then
-            description += " (" + id + ")" + internal_aaToString(internal_nodeToAA(node))
-        end if
-    end if
-    return description
-end function 
-
-' /**
-
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
-' */
-function internal_numberToString(value as dynamic) as string
-    return value.toStr()
-end function 
-
-' * @ignore
-function internal_sanitizeKeyPathArray(value = "" as string)
-    regex = createObject("roRegex", "\[(.*?)\]", "i")
-    matches = regex.matchAll(value)
-    if isNotInvalid(matches) then
-        for each match in matches
-            if isNotInvalid(match) then
-                value = value.replace(match[0], "." + match[1])
-            end if
-        end for
-    end if
-    return value
 end function 
 
 '/**
@@ -2384,4 +2056,332 @@ end function
 ' */
 function zipObjectDeep(props = [] as object, values = [] as object) as object
     ' COME BACK
+end function 
+
+' /**
+
+' * @ignore
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value - The value to convert.
+' * @return {String} - Results of the conversion.
+' */
+function internal_aaToString(aa as object) as string
+    description = "{"
+    for each key in aa
+        description += key + ": " + toString(aa[key]) + ", "
+    end for
+    description = description.left(description.len() - 2) + "}"
+    return description
+end function 
+
+' /**
+
+' * @ignore
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value The value to convert.
+' * @return {String} Results of the conversion.
+' */
+function internal_arrayToString(array as object) as string
+    description = "["
+    for each item in array
+        description += toString(item) + ", "
+    end for
+    description = description.left(description.len() - 2) + "]"
+    return description
+end function 
+
+' /**
+
+' * @ignore
+' * The base implementation of `forEach`.
+' * @param {Array|Object} - collection The collection to iterate over
+' * @param {Function} iteratee The function invoked per iteration
+' * @param {String} direction - the direction to traverse the collection
+' * @param {String} funcValueRule - Filters functions from collection. `allow`, `omit`, `only`.
+' * @return {Array|Object} Returns `collection`
+' */
+function internal_baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
+    if isInvalid(collection) OR isEmpty(collection) then
+        return invalid
+    end if
+    isRight = direction = "right"
+    if isAA(collection) then
+        keys = collection.keys()
+        if isRight then
+            keys.reverse()
+        end if
+        for each key in keys
+            item = collection[key]
+            if isFunction(iteratee) then
+                valueIsFunction = isFunction(item)
+                allowValue = false
+                if valueIsFunction AND NOT isEqual(funcValueRule, "omit") then
+                    allowValue = true
+                else if NOT valueIsFunction AND NOT isEqual(funcValueRule, "only") then
+                    allowValue = true
+                end if
+                if allowValue then
+                    iteratee(item, key)
+                end if
+            end if
+        end for
+    else
+        if isRight then
+            collection.reverse()
+        end if
+        for each item in collection
+            if isFunction(iteratee) then
+                iteratee(item)
+            end if
+        end for
+        if isRight then
+            collection.reverse()
+        end if
+    end if
+    return collection
+end function 
+
+' /**
+
+' * @ignore
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value The value to convert.
+' * @return {String} Results of the conversion.
+' */
+function internal_booleanToString(bool as boolean) as string
+    if bool then
+        return "true"
+    end if
+    return "false"
+end function 
+
+' /**
+
+' * @ignore
+' * Checks if the supplied values can be compared in a if statement.
+' * @param {Dynamic} valueOne - First value
+' * @param {Dynamic} valueTwo - Second value
+' * @return {Boolean} True if the values can be compared in a if statement
+' */
+function internal_canBeCompared(valueOne as dynamic, valueTwo as dynamic) as boolean
+    ' If the first argument is true we don't need to check the following conditionals
+    if isString(valueOne) then
+        if isString(valueTwo) then
+            return true
+        end if
+    else if isNumber(valueOne) then
+        if isNumber(valueTwo) then
+            return true
+        end if
+    else if isBoolean(valueOne) then
+        if isBoolean(valueTwo) then
+            return true
+        end if
+    else if isInvalid(valueOne) then
+        if isInvalid(valueTwo) then
+            return true
+        end if
+    end if
+    return false
+end function 
+
+' * @ignore
+function internal_getConstants()
+    return {
+        BrightScriptErrorCodes: {
+            ' runtime errors
+            ERR_OKAY: &hFF,
+            ERR_NORMAL_END: &hFC, ' normal, but terminate execution.  END, shell "exit", window closed, etc.
+            ERR_VALUE_RETURN: &hE2, ' return executed, and a value returned on the stack
+            ERR_INTERNAL: &hFE, ' A condition that shouldn't occur did
+            ERR_UNDEFINED_OPCD: &hFD, ' A opcode that we don't handle
+            ERR_UNDEFINED_OP: &hFB, ' An expression operator that we don't handle
+            ERR_MISSING_PARN: &hFA,
+            ERR_STACK_UNDER: &hF9, ' nothing on stack to pop
+            ERR_BREAK: &hF8, ' scriptBreak() called
+            ERR_STOP: &hF7, ' stop statement executed
+            ERR_RO0: &hF6, ' bscNewComponent failed because object class not found
+            ERR_RO1: &hF5, ' ro function call does not have the right number of parameters
+            ERR_RO2: &hF4, ' member function not found in object or interface
+            ERR_RO3: &hF3, ' Interface not a member of object
+            ERR_TOO_MANY_PARAM: &hF2, ' Too many function parameters to handle
+            ERR_WRONG_NUM_PARAM: &hF1, ' Incorect number of function parameters
+            ERR_RVIG: &hF0, ' Function returns a value, but is ignored
+            ERR_NOTPRINTABLE: &hEF, ' Non Printable value
+            ERR_NOTWAITABLE: &hEE, ' Tried to Wait on a function that does not have MessagePort interface
+            ERR_MUST_BE_STATIC: &hED, ' interface calls from type rotINTERFACE must by static
+            ERR_RO4: &hEC, ' . operator used on a variable that does not contain a legal object or interface reference
+            ERR_NOTYPEOP: &hEB, ' operation on two typless operands attempted
+            ERR_USE_OF_UNINIT_VAR: &hE9, ' illegal use of uninited var
+            ERR_TM2: &hE8, ' non-numeric index to array
+            ERR_ARRAYNOTDIMMED: &hE7,
+            ERR_USE_OF_UNINIT_BRSUBREF: &hE6, ' used a reference to SUB that is not initilized
+            ERR_MUST_HAVE_RETURN: &hE5,
+            ERR_INVALID_LVALUE: &hE4, ' invalid left side of expression
+            ERR_INVALID_NUM_ARRAY_IDX: &hE3, ' invalid number of array indexes
+            ERR_UNICODE_NOT_SUPPORTED: &hE1,
+            ERR_NOTFUNOPABLE: &hE0,
+            ERR_STACK_OVERFLOW: &hDF,
+            ERR_THROWN_EXCEPTION_ON_STACK: &hDE, '(Internal use only)
+            ERR_SYNTAX: &h02,
+            ERR_DIV_ZERO: &h14,
+            ERR_MISSING_LN: &h0E,
+            ERR_OUTOFMEM: &h0C,
+            ERR_STRINGTOLONG: &h1C,
+            ERR_TM: &h18, ' Type Mismatch (string / numeric operation mismatch)
+            ERR_OS: &h1A, ' out of string space
+            ERR_RG: &h04, ' Return without Gosub
+            ERR_NF: &h00, ' Next without For
+            ERR_FC: &h08, ' Invalid parameter passed to function/array (e.g neg matrix dim or squr root)
+            ERR_DD: &h12, ' Attempted to redimension an array
+            ERR_BS: &h10, ' Array subscript out of bounds
+            ERR_OD: &h06, ' Out of Data (READ)
+            ERR_CN: &h20, ' Continue Not Allowed
+            ERR_BITSHIFT_BAD: &h1E, ' Invalid Bitwise Shift
+            ERR_EXECUTION_TIMEOUT: &h23, ' Timeout on critical thread
+            ERR_CONSTANT_OVERFLOW: &h22, ' Constant Out Of Range
+            ERR_FORMAT_SPECIFIER: &h24, ' Invalid Format Specifier
+            ERR_BAD_THROW: &h26, ' Invalid argument to Throw
+            ERR_USER: &h28, ' User-specified exception
+            ' compiler errors
+            ERR_NW: &hBF, ' EndWhile with no While
+            ERR_MISSING_ENDWHILE: &hBE, ' While Statement is missing a matching EndWhile
+            ERR_MISSING_ENDIF: &hBC, ' end of code reached without finding ENDIF
+            ERR_NOLN: &hBB, ' no line number found
+            ERR_LNSEQ: &hBA, ' Line number sequence error
+            ERR_LOADFILE: &hB9, ' Error loading a file
+            ERR_NOMATCH: &hB8, ' "Match" statement did not match
+            ERR_UNEXPECTED_EOF: &hB7, ' End of string being compiled encountered when not expected (missing end of block usually)
+            ERR_FOR_NEXT_MISMATCH: &hB6, ' Variable on a NEXT does not match that for the FOR
+            ERR_NO_BLOCK_END: &hB5,
+            ERR_LABELTWICE: &hB4, ' Label defined more than once
+            ERR_UNTERMED_STRING: &hB3, ' litteral string does not have ending quote
+            ERR_FUN_NOT_EXPECTED: &hB2,
+            ERR_TOO_MANY_CONST: &hB1,
+            ERR_TOO_MANY_VAR: &hB0,
+            ERR_EXIT_WHILE_NOT_IN_WHILE: &hAF,
+            ERR_INTERNAL_LIMIT_EXCEDED: &hAE,
+            ERR_SUB_DEFINED_TWICE: &hAD,
+            ERR_NOMAIN: &hAC,
+            ERR_FOREACH_INDEX_TM: &hAB,
+            ERR_RET_CANNOT_HAVE_VALUE: &hAA,
+            ERR_RET_MUST_HAVE_VALUE: &hA9,
+            ERR_FUN_MUST_HAVE_RET_TYPE: &hA8,
+            ERR_INVALID_TYPE: &hA7,
+            ERR_NOLONGER: &hA6, ' no longer supported
+            ERR_EXIT_FOR_NOT_IN_FOR: &hA5,
+            ERR_MISSING_INITILIZER: &hA4,
+            ERR_IF_TOO_LARGE: &hA3,
+            ERR_RO_NOT_FOUND: &hA2,
+            ERR_TOO_MANY_LABELS: &hA1,
+            ERR_VAR_CANNOT_BE_SUBNAME: &hA0,
+            ERR_INVALID_CONST_NAME: &h9F,
+            ERR_CONST_FOLDING: &h9E,
+            ERR_BUILTIN_FUNCTION: &h9D,
+            ERR_FUNCTION_NOT_IN_NAMESPACE: &h91,
+            ERR_EVAL_UNSUPPORTED: &h90,
+            ERR_LABEL_INSIDE_TRY: &h8F
+        },
+        MAX_INT: 2147483647,
+        MIN_INT: - 2147483648
+    }
+end function 
+
+' * @ignore
+function internal_getDateObject() as object
+    dateObj = CreateObject("roDateTime")
+    utc = dateObj
+    dateObj.toLocalTime()
+    local = dateObj
+    return {
+        "utc": utc,
+        "local": local
+    }
+end function 
+
+' /**
+
+' * @ignore
+' * Checks if the supplied value allows for key field access
+' * @param {Dynamic} value The variable to be checked
+' * @return {Boolean} Results of the check
+' */
+function internal_isKeyedValueType(value as dynamic) as boolean
+    return getInterface(value, "ifAssociativeArray") <> Invalid
+end function 
+
+' /**
+
+' * Attempts to converts a nodes top level fields to an AssociativeArray.
+' * @param {Dynamic} value - The variable to be converted.
+' * @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
+' * @param {Object} removeFields - List of keys that need to be removed from the node.
+' * @return {Dynamic} Results of the conversion.
+' */
+function internal_nodeToAA(value as object, removeId = false as boolean, removeFields = [] as object) as object
+    if isNode(value) then
+        fields = value.getFields()
+        fields.delete("change")
+        fields.delete("focusable")
+        fields.delete("focusedChild")
+        fields.delete("ready")
+        if removeId then
+            fields.delete("id")
+        end if
+        'Looping through any additional fields if passed.
+        if isNonEmptyArray(removeFields) then
+            for each field in removeFields
+                fields.delete(field)
+            end for
+        end if
+        return fields
+    else if isAA(value) then
+        return value
+    end if
+    return {}
+end function 
+
+' /**
+
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value The value to convert.
+' * @return {String} Results of the conversion.
+' */
+function nodeToString(node as object) as string
+    if NOT isNode(node) then
+        return ""
+    end if
+    description = node.subtype()
+    if node.isSubtype("Group") then
+        ' accessing properties from anywhere but the render thread is too expensive to include here
+        id = node.id
+        if id <> "" then
+            description += " (" + id + ")" + internal_aaToString(internal_nodeToAA(node))
+        end if
+    end if
+    return description
+end function 
+
+' /**
+
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value The value to convert.
+' * @return {String} Results of the conversion.
+' */
+function internal_numberToString(value as dynamic) as string
+    return value.toStr()
+end function 
+
+' * @ignore
+function internal_sanitizeKeyPath(value = "" as string)
+    regex = createObject("roRegex", "\[(.*?)\]", "i")
+    matches = regex.matchAll(value)
+    if isNotInvalid(matches) then
+        for each match in matches
+            if isNotInvalid(match) then
+                value = value.replace(match[0], "." + match[1])
+            end if
+        end for
+    end if
+    return value
 end function 
