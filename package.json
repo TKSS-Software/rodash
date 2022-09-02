@@ -14,7 +14,8 @@
   "scripts": {
     "build": "npm run compile && node ./scripts/createDist.js",
     "compile": "npx bsc --create-package false --staging-folder-path .tmp --project ./bsconfig.json",
-    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json -d docs -t ./node_modules/braintree-jsdoc-template"
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json -d docs -t ./node_modules/braintree-jsdoc-template",
+    "preversion": "npm run build"
   },
   "author": "TKSS Software",
   "license": "MIT",
