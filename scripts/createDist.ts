@@ -39,7 +39,7 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {'nosort': true}, (err, file
                 var hasNamespace = result.includes("namespace rodash.")
 
                 if (hasNamespace) {
-                  namespace = result.match(/.*namespace.*\n /g)[0].trim().replace("namespace rodash.", '');
+                  const namespace = result.match(/.*namespace.*\n /g)[0].trim().replace("namespace rodash.", '');
                   if (outputs[namespace] === undefined) {
                     outputs[namespace] = "";
                   }
