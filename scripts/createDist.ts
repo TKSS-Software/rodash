@@ -8,7 +8,7 @@ const copyfiles = require('copyfiles');
 glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {'nosort': true}, (err, files)=>{
   const outputDirectory = __dirname + '/../dist/source/';
   const outputPath = outputDirectory + 'rodash.brs';
-  const inputPathList = files;
+  const inputPathList = files.sort();
 
   fs.mkdir(outputDirectory, { recursive: true }, (err) => {
     if (err) throw err;
@@ -27,6 +27,7 @@ glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {'nosort': true}, (err, file
           var outputs = {
             "rodash": ""
           }
+          files = files.sort();
 
           files.forEach((path) => {
             var fileName = path.split("/").pop();

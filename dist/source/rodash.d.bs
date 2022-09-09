@@ -1,12 +1,4 @@
 ' /**
-' * Returns a formatted version of the current time/date.
-' * @category Date
-' * @param {String} format - The date format
-' * @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
-' */
-function asDateString(format = "long-date" as string) as object
-end function
-' /**
 ' * Adds two numbers.
 ' * @category Math
 ' * @param {Dynamic} augend - The first number in an addition
@@ -14,6 +6,14 @@ end function
 ' * @returns {Dynamic} value - Returns the total
 ' */
 function add(augend, addend)
+end function
+' /**
+' * Returns a formatted version of the current time/date.
+' * @category Date
+' * @param {String} format - The date format
+' * @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
+' */
+function asDateString(format = "long-date" as string) as object
 end function
 ' /**
 ' * Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
@@ -40,9 +40,9 @@ end function
 ' */
 function at(obj = {} as object, paths = [] as object)
 end function
-function camelCase(value = "" as string)
-end function
 function capitalize(value = "" as string)
+end function
+function camelCase(value = "" as string)
 end function
 ' /**
 ' * Creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
@@ -51,6 +51,14 @@ end function
 ' * @returns {Array} returnArray - Returns the new array of chunks
 ' */
 function chunk(array = [] as object, chunkSize = 1 as integer) as object
+end function
+' /**
+' * Computes number rounded up to precision.
+' * @param {Integer} number - The number to round up
+' * @param {Integer} precision - The precision to round up to
+' * @returns {Integer} Returns the rounded up number
+' */
+function ceil(number = 0, precision = 0 as integer)
 end function
 function clamp(number, lower, upper) as dynamic
 end function
@@ -77,6 +85,15 @@ end function
 function concat(array = [] as object, values = [] as object) as object
 end function
 ' /**
+' * This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+' * @param {Array} array - The array to inspect
+' * @param {Array} values - The values to exclude
+' * @param {Dynamic} iteratee - The iteratee invoked per element
+' * @returns {Array} returnArray - Returns the new array of filtered values
+' */
+function differenceBy(array = [] as object, values = [] as object, iteratee = invalid) as object
+end function
+' /**
 ' * Creates an array of array values not included in the other given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
 ' * @param {Array} array - The array to inspect
 ' * @param {Array} values - The values to exclude
@@ -94,37 +111,12 @@ end function
 function differenceWith(array = [] as object, values = [] as object, comparator = invalid) as object
 end function
 ' /**
-' * Computes number rounded up to precision.
-' * @param {Integer} number - The number to round up
-' * @param {Integer} precision - The precision to round up to
-' * @returns {Integer} Returns the rounded up number
+' * Divides two numbers
+' * @param {Dynamic} dividend - The first number in a division
+' * @param {Dynamic} divisor - The second number in a division
+' * @returns {Integer} value - Returns the quotient
 ' */
-function ceil(number = 0, precision = 0 as integer)
-end function
-' /**
-' * Creates a slice of array with n elements dropped from the beginning.
-' * @param {Array} array - The array to query
-' * @param {Integer} n - The number of elements to drop
-' * @returns {Array} array - Returns the slice of array
-' */
-function drop(array = {} as object, n = 1 as integer)
-end function
-' /**
-' * This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
-' * @param {Array} array - The array to inspect
-' * @param {Array} values - The values to exclude
-' * @param {Dynamic} iteratee - The iteratee invoked per element
-' * @returns {Array} returnArray - Returns the new array of filtered values
-' */
-function differenceBy(array = [] as object, values = [] as object, iteratee = invalid) as object
-end function
-' /**
-' * Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
-' * @param {Array} array - The array to query
-' * @param {Dynamic} predicate - The function invoked per iteration
-' * @returns {Array} array - Returns the slice of array
-' */
-function dropRightWhile(array = {} as object, predicate = invalid)
+function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
 end function
 ' /**
 ' * Creates a slice of array with n elements dropped from the end.
@@ -134,9 +126,13 @@ end function
 ' */
 function dropRight(array = {} as object, n = 1 as integer)
 end function
-function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
-end function
-function eq(value as dynamic, other as dynamic)
+' /**
+' * Creates a slice of array with n elements dropped from the beginning.
+' * @param {Array} array - The array to query
+' * @param {Integer} n - The number of elements to drop
+' * @returns {Array} array - Returns the slice of array
+' */
+function drop(array = {} as object, n = 1 as integer)
 end function
 '/**
 ' * Creates a slice of array excluding elements dropped from the beginning. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
@@ -146,17 +142,32 @@ end function
 ' */
 function dropWhile(array = [] as object, predicate = invalid)
 end function
-function escape(source = "" as string)
-end function
 ' /**
-' * Divides two numbers
-' * @param {Dynamic} dividend - The first number in a division
-' * @param {Dynamic} divisor - The second number in a division
-' * @returns {Integer} value - Returns the quotient
+' * Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+' * @param {Array} array - The array to query
+' * @param {Dynamic} predicate - The function invoked per iteration
+' * @returns {Array} array - Returns the slice of array
 ' */
-function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
+function dropRightWhile(array = {} as object, predicate = invalid)
+end function
+function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
+end function
+function eq(value as dynamic, other as dynamic)
 end function
 function escapeRegExp(source = "" as string)
+end function
+function escape(source = "" as string)
+end function
+'/**
+' * Fills elements of array with value from start up to, but not including, end.
+' * This method mutates array.
+' * @param {Array} array - The array to fill
+' * @param {Dynamic} value - The value to fill array with
+' * @param {Integer} startPos - The start position
+' * @param {Integer} endPos - The end position
+' * @returns {Array} array - Returns the mutated array
+' */
+function fill(array = [] as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
 end function
 '/**
 ' * This method is like rodash.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
@@ -177,29 +188,11 @@ end function
 function findLastIndex(array, predicate = invalid, fromIndex = 0 as integer)
 end function
 '/**
-' * Fills elements of array with value from start up to, but not including, end.
-' * This method mutates array.
-' * @param {Array} array - The array to fill
-' * @param {Dynamic} value - The value to fill array with
-' * @param {Integer} startPos - The start position
-' * @param {Integer} endPos - The end position
-' * @returns {Array} array - Returns the mutated array
+' * An alias to the head function.
+' * @param {Array} array - The array to query
+' * @return {Dynamic} Returns the first element of array
 ' */
-function fill(array = [] as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
-end function
-'/**
-' * Flattens array a single level deep.
-' * @param {Array} array - The array to flatten
-' * @returns {Dynamic} Returns the new flattened array
-' */
-function flatten(array = [])
-end function
-'/**
-' * Recursively flattens array.
-' * @param {Array} array - The array to flatten
-' * @returns {Dynamic} Returns the new flattened array
-' */
-function flattenDeep(array = [])
+function first(array = [])
 end function
 '/**
 ' * Recursively flatten array up to depth times.
@@ -210,11 +203,34 @@ end function
 function flattenDepth(array = invalid, depth = 1 as integer)
 end function
 '/**
-' * An alias to the head function.
-' * @param {Array} array - The array to query
-' * @return {Dynamic} Returns the first element of array
+' * Recursively flattens array.
+' * @param {Array} array - The array to flatten
+' * @returns {Dynamic} Returns the new flattened array
 ' */
-function first(array = [])
+function flattenDeep(array = [])
+end function
+' /**
+' * Computes number rounded down to precision
+' * @param {Integer} number - The number to round down
+' * @param {Integer} precision - The precision to round down to
+' * @return {Integer} Returns the rounded down number
+' */
+function floor(number = 0, precision = 0 as integer)
+end function
+'/**
+' * Flattens array a single level deep.
+' * @param {Array} array - The array to flatten
+' * @returns {Dynamic} Returns the new flattened array
+' */
+function flatten(array = [])
+end function
+' /**
+' * This method is like rodash.forEach except that it iterates over elements of collection from right to left.
+' * @param {Dynamic} collection - The collection to iterate over
+' * @param {Dynamic} iteratee - The function invoked per iteration
+' * @return {Dynamic} Returns collection
+' */
+function forEachRight(collection = invalid as dynamic, iteratee = invalid as dynamic)
 end function
 ' /**
 ' * Iterates over elements of collection and invokes iteratee for each element. The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
@@ -234,28 +250,12 @@ end function
 function forIn(obj = {} as object, iteratee = invalid as dynamic)
 end function
 ' /**
-' * This method is like rodash.forEach except that it iterates over elements of collection from right to left.
-' * @param {Dynamic} collection - The collection to iterate over
-' * @param {Dynamic} iteratee - The function invoked per iteration
-' * @return {Dynamic} Returns collection
-' */
-function forEachRight(collection = invalid as dynamic, iteratee = invalid as dynamic)
-end function
-' /**
 ' * This method is like rodash.forIn except that it iterates over properties of object in the opposite order.
 ' * @param {Dynamic} obj - The object to iterate over
 ' * @param {Dynamic} iteratee - The function invoked per iteration
 ' * @return {Object} Returns object
 ' */
 function forInRight(obj = {} as object, iteratee = invalid as dynamic)
-end function
-' /**
-' * Computes number rounded down to precision
-' * @param {Integer} number - The number to round down
-' * @param {Integer} precision - The precision to round down to
-' * @return {Integer} Returns the rounded down number
-' */
-function floor(number = 0, precision = 0 as integer)
 end function
 ' /**
 ' * Iterates over own enumerable string keyed properties of an object and invokes iteratee for each property. The iteratee is invoked with three arguments: (value, key, object). Iteratee functions may exit iteration early by explicitly returning false.
@@ -265,7 +265,7 @@ end function
 ' */
 function forOwn(obj = {} as object, iteratee = invalid as dynamic)
 end function
-function fromSeconds(numSeconds = 0 as integer) as object
+function fromISO8601String(dateString = "" as string) as object
 end function
 ' /**
 ' * This method is like rodash.forOwn except that it iterates over properties of object in the opposite order.
@@ -275,8 +275,6 @@ end function
 ' */
 function forOwnRight(obj = {} as object, iteratee = invalid as dynamic)
 end function
-function fromISO8601String(dateString = "" as string) as object
-end function
 ' TODO: Rewrite this due to scoping issue
 ' /**
 ' * Creates an array of function property names from own enumerable properties of object.
@@ -285,6 +283,8 @@ end function
 ' */
 function functions(obj = {} as object)
 end function
+function fromSeconds(numSeconds = 0 as integer) as object
+end function
 ' TODO: Rewrite this due to scoping issue
 ' /**
 ' * Creates an array of function property names from own and inherited enumerable properties of object.
@@ -292,12 +292,6 @@ end function
 ' * @return {Object} Returns object
 ' */
 function functionsIn(obj = {} as object)
-end function
-function getDayOfWeek() as object
-end function
-function getDayOfMonth() as object
-end function
-function getHours() as object
 end function
 ' /**
 ' * Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
@@ -309,19 +303,25 @@ end function
 ' */
 function get(aa as object, keyPath as string, fallback = Invalid as dynamic, validator = rodash_isNotInvalid as Function) as dynamic
 end function
-function getLastDayOfMonth() as object
+function getDayOfWeek() as object
 end function
-function getMilliseconds() as object
+function getDayOfMonth() as object
+end function
+function getHours() as object
 end function
 function getMinutes() as object
 end function
-function getMonth() as object
+function getMilliseconds() as object
+end function
+function getLastDayOfMonth() as object
 end function
 function getYear() as object
 end function
-function gt(value as dynamic, other as dynamic)
+function getMonth() as object
 end function
 function getSeconds() as object
+end function
+function gt(value as dynamic, other as dynamic)
 end function
 ' /**
 ' * Checks if first level of the supplied AssociativeArray contains the Array of key strings.
@@ -329,6 +329,8 @@ end function
 ' * @return {Dynamic} keys - Array of key strings
 ' */
 function hasKeys(aaValue as dynamic, keys as dynamic) as boolean
+end function
+function gte(value as dynamic, other as dynamic)
 end function
 '/**
 ' * Gets the first element of array.
@@ -346,8 +348,6 @@ end function
 ' */
 function indexOf(array = [] as object, value = invalid, fromIndex = invalid)
 end function
-function gte(value as dynamic, other as dynamic)
-end function
 '/**
 ' * Gets all but the last element of array.
 ' * @param {Array} array - The array to query
@@ -356,6 +356,13 @@ end function
 function initial(array = [] as object)
 end function
 function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
+end function
+' /**
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value The value to convert.
+' * @return {String} Results of the conversion.
+' */
+function nodeToString(node as object) as string
 end function
 '/**
 ' * This method is like rodash.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
@@ -384,18 +391,11 @@ end function
 function intersectionWith(mainArray = [] as object, inspectArray = [] as object, comparator = invalid) as object
 end function
 ' /**
-' * Checks if the supplied value is a valid AssociativeArray type
+' * Checks if the supplied value is a valid Array type
 ' * @param {Dynamic} value The variable to be checked
 ' * @return {Boolean} Results of the check
 ' */
-function isAA(value as dynamic)
-end function
-' /**
-' * Checks if the supplied value is a valid unempty Array like type
-' * @param {Dynamic} value The variable to be checked
-' * @return {Boolean} Results of the check
-' */
-function isArrayLike(value as dynamic)
+function isArray(value as dynamic)
 end function
 ' /**
 ' * Checks if the supplied value is a valid Boolean type
@@ -405,11 +405,11 @@ end function
 function isBoolean(value as dynamic) as boolean
 end function
 ' /**
-' * Checks if the supplied value is a valid Array type
+' * Checks if the supplied value is a valid AssociativeArray type
 ' * @param {Dynamic} value The variable to be checked
 ' * @return {Boolean} Results of the check
 ' */
-function isArray(value as dynamic)
+function isAA(value as dynamic)
 end function
 ' /**
 ' * Alias to isDate function
@@ -426,19 +426,11 @@ end function
 function isByteArray(value as dynamic)
 end function
 ' /**
-' * Alias to isNode function
-' * @param {Dynamic} value The variable to be checked
-' * @param {String} subType An optional subType parameter to further refine the check
-' * @return {Boolean} Results of the check
-' */
-function isElement(value as dynamic, subType = "" as string) as boolean
-end function
-' /**
-' * Checks if the supplied value is a valid date time type
+' * Checks if the supplied value is a valid unempty Array like type
 ' * @param {Dynamic} value The variable to be checked
 ' * @return {Boolean} Results of the check
 ' */
-function isDateTime(value as dynamic) as boolean
+function isArrayLike(value as dynamic)
 end function
 ' /**
 ' * Checks if the supplied value is a valid Double type
@@ -448,14 +440,19 @@ end function
 function isDouble(value as dynamic) as boolean
 end function
 ' /**
-' * Checks if the supplied values are the same.
-' * @param {Dynamic} valueOne - First value.
-' * @param {Dynamic} valueTwo - Second value.
-' * @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
+' * Checks if the supplied value is a valid date time type
+' * @param {Dynamic} value The variable to be checked
+' * @return {Boolean} Results of the check
 ' */
-function isEqual(valueOne as dynamic, valueTwo as dynamic) as boolean
+function isDateTime(value as dynamic) as boolean
 end function
-function isEmpty(value as dynamic)
+' /**
+' * Alias to isNode function
+' * @param {Dynamic} value The variable to be checked
+' * @param {String} subType An optional subType parameter to further refine the check
+' * @return {Boolean} Results of the check
+' */
+function isElement(value as dynamic, subType = "" as string) as boolean
 end function
 ' /**
 ' * Checks if the supplied value is a valid String type and is not empty
@@ -464,7 +461,7 @@ end function
 ' */
 function isEmptyString(value as dynamic) as boolean
 end function
-function isFinite(value as dynamic) as boolean
+function isEmpty(value as dynamic)
 end function
 ' /**
 ' * Assesses the passed object to determine if it is an Error Object.
@@ -475,11 +472,22 @@ end function
 function isError(value as dynamic) as boolean
 end function
 ' /**
-' * Checks if the supplied value is a valid Float type
-' * @param {Dynamic} value The variable to be checked
-' * @return {Boolean} Results of the check
+' * Checks if the supplied values are the same.
+' * @param {Dynamic} valueOne - First value.
+' * @param {Dynamic} valueTwo - Second value.
+' * @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
 ' */
-function isFloat(value as dynamic) as boolean
+function isEqualWith(valueOne as dynamic, valueTwo as dynamic, customizer = invalid) as boolean
+end function
+function isFinite(value as dynamic) as boolean
+end function
+' /**
+' * Checks if the supplied values are the same.
+' * @param {Dynamic} valueOne - First value.
+' * @param {Dynamic} valueTwo - Second value.
+' * @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
+' */
+function isEqual(valueOne as dynamic, valueTwo as dynamic) as boolean
 end function
 ' /**
 ' * Checks if the supplied value is a valid Function type
@@ -489,19 +497,18 @@ end function
 function isFunction(value as dynamic) as boolean
 end function
 ' /**
-' * Checks if the supplied values are the same.
-' * @param {Dynamic} valueOne - First value.
-' * @param {Dynamic} valueTwo - Second value.
-' * @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
-' */
-function isEqualWith(valueOne as dynamic, valueTwo as dynamic, customizer = invalid) as boolean
-end function
-' /**
 ' * Checks if the supplied value is Invalid
 ' * @param {Dynamic} value The variable to be checked
 ' * @return {Boolean} Results of the check
 ' */
 function isInvalid(value as dynamic) as boolean
+end function
+' /**
+' * Checks if the supplied value is a valid Float type
+' * @param {Dynamic} value The variable to be checked
+' * @return {Boolean} Results of the check
+' */
+function isFloat(value as dynamic) as boolean
 end function
 ' /**
 ' * Checks if the supplied value is a valid Integer type
@@ -516,13 +523,6 @@ end function
 ' * @return {Boolean} Results of the check
 ' */
 function isLength(value as dynamic) as boolean
-end function
-' /**
-' * Method determines whether the passed value is NaN and its type is a valid number
-' * @param {Dynamic} value - The variable to be checked
-' * @return {Boolean} Results of the check
-' */
-function isNaN(value as dynamic) as boolean
 end function
 ' /**
 ' * Alias to isArray function
@@ -540,11 +540,11 @@ end function
 function isNode(value as dynamic, subType = "" as string) as boolean
 end function
 ' /**
-' * Checks if the supplied value is a valid and populated AssociativeArray type
-' * @param {Dynamic} value The variable to be checked
+' * Method determines whether the passed value is NaN and its type is a valid number
+' * @param {Dynamic} value - The variable to be checked
 ' * @return {Boolean} Results of the check
 ' */
-function isNonEmptyAA(value as dynamic)
+function isNaN(value as dynamic) as boolean
 end function
 ' /**
 ' * Checks if the supplied value is a valid Array type and not empty
@@ -552,6 +552,20 @@ end function
 ' * @return {Boolean} Results of the check
 ' */
 function isNonEmptyArray(value as dynamic) as boolean
+end function
+' /**
+' * Checks if the supplied value is a valid and populated AssociativeArray type
+' * @param {Dynamic} value The variable to be checked
+' * @return {Boolean} Results of the check
+' */
+function isNonEmptyAA(value as dynamic)
+end function
+' /**
+' * Checks if the supplied value is a valid number type
+' * @param {Dynamic} value The variable to be checked
+' * @return {Boolean} Results of the check
+' */
+function isNumber(obj as dynamic) as boolean
 end function
 ' /**
 ' * Checks if the supplied value is a valid String type and is not empty
@@ -568,25 +582,18 @@ end function
 function isNotInvalid(value as dynamic) as boolean
 end function
 ' /**
-' * Alias to isInvalid function
-' * @param {Dynamic} value The variable to be checked
-' * @return {Boolean} Results of the check
-' */
-function isNull(value as dynamic) as boolean
-end function
-' /**
-' * Checks if the supplied value is a valid number type
-' * @param {Dynamic} value The variable to be checked
-' * @return {Boolean} Results of the check
-' */
-function isNumber(obj as dynamic) as boolean
-end function
-' /**
 ' * Checks if the supplied value is a valid String type
 ' * @param {Dynamic} value The variable to be checked
 ' * @return {Boolean} Results of the check
 ' */
 function isString(value as dynamic)
+end function
+' /**
+' * Alias to isInvalid function
+' * @param {Dynamic} value The variable to be checked
+' * @return {Boolean} Results of the check
+' */
+function isNull(value as dynamic) as boolean
 end function
 '/**
 ' * Converts all elements in array into a string separated by separator.
@@ -596,10 +603,6 @@ end function
 ' */
 function join(array = [] as object, separator = "" as string)
 end function
-function kebabCase(value = "" as string)
-end function
-function lowerCase(value = "" as string)
-end function
 '/**
 ' * Gets the last element of array.
 ' * @param {Array} array - The array to query
@@ -607,7 +610,23 @@ end function
 ' */
 function last(array = []) as dynamic
 end function
+function kebabCase(value = "" as string)
+end function
+function lowerFirst(value = "" as string)
+end function
+function lowerCase(value = "" as string)
+end function
+function lt(value as dynamic, other as dynamic)
+end function
 function lte(value as dynamic, other as dynamic)
+end function
+' /**
+' * Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
+' * @param {Dynamic} collection - The collection to iterate over
+' * @param {Dynamic} iteratee - The function invoked per iteration
+' * @return {Array} Returns the new mapped array
+' */
+function map(collection = {} as dynamic, iteratee = invalid as dynamic)
 end function
 ' /**
 ' * Computes the maximum value of array. If array is empty or falsey, invalid is returned.
@@ -615,8 +634,6 @@ end function
 ' * @return {Dynamic} Returns the maximum value
 ' */
 function max(array = [] as object) as dynamic
-end function
-function lowerFirst(value = "" as string)
 end function
 ' /**
 ' * Computes the maximum value of array. If array is empty or falsey, invalid is returned.
@@ -626,6 +643,15 @@ end function
 function maxBy(array = [] as object, iteratee = invalid) as dynamic
 end function
 function mean(array)
+end function
+function meanBy(array, iteratee = invalid)
+end function
+' /**
+' * Computes the minimum value of array. If array is empty or falsey, invalid is returned.
+' * @param {Array} array - The array to iterate over
+' * @return {Dynamic} Returns the maximum value
+' */
+function minBy(array = [] as object, iteratee = invalid) as dynamic
 end function
 ' /**
 ' * Computes the minimum value of array. If array is empty or falsey, invalid is returned.
@@ -638,20 +664,6 @@ function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic
 end function
 function now() as object
 end function
-function lt(value as dynamic, other as dynamic)
-end function
-function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
-end function
-' /**
-' * Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
-' * @param {Dynamic} collection - The collection to iterate over
-' * @param {Dynamic} iteratee - The function invoked per iteration
-' * @return {Array} Returns the new mapped array
-' */
-function map(collection = {} as dynamic, iteratee = invalid as dynamic)
-end function
-function meanBy(array, iteratee = invalid)
-end function
 ' /**
 ' * Add padding to the supplied value after converting to a string. For example "1" to "01".
 ' * @param {String} value The value to add padding to.
@@ -661,15 +673,6 @@ end function
 ' */
 function paddString(value as dynamic, padLength = 2 as integer, paddingCharacter = "0" as dynamic) as string
 end function
-function round(number = 0, precision = 0 as integer)
-end function
-' /**
-' * Computes the minimum value of array. If array is empty or falsey, invalid is returned.
-' * @param {Array} array - The array to iterate over
-' * @return {Dynamic} Returns the maximum value
-' */
-function minBy(array = [] as object, iteratee = invalid) as dynamic
-end function
 ' /**
 ' * Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
 ' * @param {Dynamic} collection - The collection to iterate over
@@ -678,6 +681,8 @@ end function
 ' * @return {Array} Returns the accumulated value
 ' */
 function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, accumulator = invalid as dynamic)
+end function
+function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
 end function
 ' /**
 ' * Used to set a nested String value in the supplied object
@@ -689,27 +694,20 @@ end function
 function set(aa as object, keyPath as string, value as dynamic) as boolean
 end function
 ' /**
-' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
-' * @param {Dynamic} collection - The collection to shuffle
-' * @return {Array} Returns the new shuffled array
-' */
-function shuffle(collection = [] as dynamic)
-end function
-' /**
 ' * Gets the size of collection by returning its length for array-like values or the number of own enumerable string keyed properties for objects.
 ' * @param {Dynamic} collection - The collection to inspect
 ' * @return {Integer} Returns the collection size.
 ' */
 function size(collection = invalid as dynamic)
 end function
-'/**
-' * Creates a slice of array from start up to, but not including, end.
-' * @param {Array} array - The array to slice
-' * @param {Integer} startPos - The start position
-' * @param {Integer} endPos - The end position
-' * @return {Dynamic} Returns the slice of array
+' /**
+' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
+' * @param {Dynamic} collection - The collection to shuffle
+' * @return {Array} Returns the new shuffled array
 ' */
-function slice(array = [] as object, startPos = 0, endPos = invalid)
+function shuffle(collection = [] as dynamic)
+end function
+function round(number = 0, precision = 0 as integer)
 end function
 ' /**
 ' * Creates an array of elements, sorted in ascending order by the results of running each element in a collection thru each iteratee. This method performs a stable sort, that is, it preserves the original sort order of equal elements. The iteratees are invoked with one argument: (value).
@@ -734,16 +732,6 @@ end function
 ' */
 function stringIncludes(value as string, subString as string) as boolean
 end function
-'/**
-' * Subtract two numbers.
-' * @param {Integer} minuend - The first number in a subtraction
-' * @param {Integer} subtrahend - The second number in a subtraction
-' * @return {Integer} Returns the difference.
-' */
-function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
-end function
-function sum(array as object)
-end function
 ' /**
 ' * Finds the sub string index position
 ' * @param {String} value The string to search
@@ -751,6 +739,25 @@ end function
 ' * @return {Integer} Results of the search
 ' */
 function stringIndexOf(value as string, subString as string) as integer
+end function
+'/**
+' * Creates a slice of array from start up to, but not including, end.
+' * @param {Array} array - The array to slice
+' * @param {Integer} startPos - The start position
+' * @param {Integer} endPos - The end position
+' * @return {Dynamic} Returns the slice of array
+' */
+function slice(array = [] as object, startPos = 0, endPos = invalid)
+end function
+function sum(array as object)
+end function
+'/**
+' * Subtract two numbers.
+' * @param {Integer} minuend - The first number in a subtraction
+' * @param {Integer} subtrahend - The second number in a subtraction
+' * @return {Integer} Returns the difference.
+' */
+function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
 end function
 '/**
 ' * Creates a slice of array with n elements taken from the beginning
@@ -768,14 +775,16 @@ end function
 ' */
 function takeRight(array = [] as object, n = invalid as dynamic) as object
 end function
-function sumBy(array = [] as object, iteratee = invalid) as dynamic
-end function
 ' /**
 ' * Attempts to convert the supplied value into a valid number
 ' * @param {Dynamic} value The variable to be converted
 ' * @return {Dynamic} Results of the conversion
 ' */
 function toNumber(value as dynamic) as dynamic
+end function
+function sumBy(array = [] as object, iteratee = invalid) as dynamic
+end function
+function toISOString() as object
 end function
 ' /**
 'TODO: ADD MORE SUPPORT
@@ -785,7 +794,12 @@ end function
 ' */
 function toArray(aa as object) as object
 end function
-function toISOString() as object
+'/**
+' * Creates a duplicate-free version of an array, using SameValueZero for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
+' * @param {Array} array - The array to inspect
+' * @return {Object} Returns the new duplicate free array
+' */
+function uniq(array = [] as object) as object
 end function
 ' /**
 ' * Attempts to convert the supplied value to a string.
@@ -810,11 +824,12 @@ end function
 function zipObject(props = [] as object, values = [] as object) as object
 end function
 '/**
-' * Creates a duplicate-free version of an array, using SameValueZero for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
-' * @param {Array} array - The array to inspect
-' * @return {Object} Returns the new duplicate free array
+' * This method is like rodash.zipObject except that it supports property paths.
+' * @param {Array} array - The property identifiers
+' * @param {Array} values - The property identifiers
+' * @return {Object} Returns the new object
 ' */
-function uniq(array = [] as object) as object
+function zipObjectDeep(props = [] as object, values = [] as object) as object
 end function
 '/**
 ' * Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
@@ -823,31 +838,8 @@ end function
 ' */
 function zip(arrays = [] as object) as object
 end function
-'/**
-' * This method is like rodash.zipObject except that it supports property paths.
-' * @param {Array} array - The property identifiers
-' * @param {Array} values - The property identifiers
-' * @return {Object} Returns the new object
-' */
-function zipObjectDeep(props = [] as object, values = [] as object) as object
-end function
-' /**
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
-' */
-function nodeToString(node as object) as string
-end function
 
 namespace internal
-' /**
-' * @ignore
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value - The value to convert.
-' * @return {String} - Results of the conversion.
-' */
-function aaToString(aa as object) as string
-end function
 ' /**
 ' * @ignore
 ' * Attempts to convert the supplied value to a string.
@@ -858,12 +850,11 @@ function arrayToString(array as object) as string
 end function
 ' /**
 ' * @ignore
-' * Checks if the supplied values can be compared in a if statement.
-' * @param {Dynamic} valueOne - First value
-' * @param {Dynamic} valueTwo - Second value
-' * @return {Boolean} True if the values can be compared in a if statement
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value - The value to convert.
+' * @return {String} - Results of the conversion.
 ' */
-function canBeCompared(valueOne as dynamic, valueTwo as dynamic) as boolean
+function aaToString(aa as object) as string
 end function
 ' /**
 ' * @ignore
@@ -885,10 +876,10 @@ end function
 function booleanToString(bool as boolean) as string
 end function
 ' * @ignore
-function getConstants()
+function getDateObject() as object
 end function
 ' * @ignore
-function getDateObject() as object
+function getConstants()
 end function
 ' /**
 ' * @ignore
@@ -899,14 +890,13 @@ end function
 function isKeyedValueType(value as dynamic) as boolean
 end function
 ' /**
-' * Attempts to convert the supplied value to a string.
-' * @param {Dynamic} value The value to convert.
-' * @return {String} Results of the conversion.
-' */
-function numberToString(value as dynamic) as string
-end function
 ' * @ignore
-function sanitizeKeyPath(value = "" as string)
+' * Checks if the supplied values can be compared in a if statement.
+' * @param {Dynamic} valueOne - First value
+' * @param {Dynamic} valueTwo - Second value
+' * @return {Boolean} True if the values can be compared in a if statement
+' */
+function canBeCompared(valueOne as dynamic, valueTwo as dynamic) as boolean
 end function
 ' /**
 ' * Attempts to converts a nodes top level fields to an AssociativeArray.
@@ -916,6 +906,16 @@ end function
 ' * @return {Dynamic} Results of the conversion.
 ' */
 function nodeToAA(value as object, removeId = false as boolean, removeFields = [] as object) as object
+end function
+' * @ignore
+function sanitizeKeyPath(value = "" as string)
+end function
+' /**
+' * Attempts to convert the supplied value to a string.
+' * @param {Dynamic} value The value to convert.
+' * @return {String} Results of the conversion.
+' */
+function numberToString(value as dynamic) as string
 end function
 
 end namespace
