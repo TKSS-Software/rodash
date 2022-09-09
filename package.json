@@ -26,6 +26,7 @@
     "packageRootDir": "dist"
   },
   "devDependencies": {
+    "@types/node": "^18.7.16",
     "braintree-jsdoc-template": "^3.3.0",
     "brighterscript": "^0.35.0",
     "brighterscript-jsdocs-plugin": "^0.3.0",
