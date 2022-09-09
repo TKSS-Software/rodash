@@ -1,81 +1,88 @@
-const fs = require('fs')
-const mergeFiles = require('merge-files');
-const glob = require('glob');
-const concat = require("concat")
-const copyfiles = require('copyfiles');
+import * as fsExtra from 'fs-extra';
+import fastGlob from 'fast-glob';
+import concat from 'concat';
+import * as path from 'path';
 
+/**
+ * The final output directory after this script has finished
+ */
+const outDir = `${__dirname}/../dist/source/`;
+/**
+ * where the bsc-transpiled files reside
+ */
+const transpileDir = `${__dirname}/../.tmp/`;
 
-glob(__dirname + '/../.tmp/source/rodash/**/*.brs', {'nosort': true}, (err, files)=>{
-  const outputDirectory = __dirname + '/../dist/source/';
-  const outputPath = outputDirectory + 'rodash.brs';
-  const inputPathList = files.sort();
+async function run() {
+    //clear the output directory and make sure it exists
+    await fsExtra.emptyDirSync(outDir);
+    await processLib();
+    await processTypedefs();
+}
 
-  fs.mkdir(outputDirectory, { recursive: true }, (err) => {
-    if (err) throw err;
+/**
+ * Merge and santitize all of the .brs files into a single rodash.brs file
+ */
+async function processLib() {
+    //find all .brs files
+    const libPaths = (await fastGlob(['source/rodash/**/*.brs'], {
+        cwd: transpileDir,
+        absolute: true
+        //sort the files for a consistent output format
+    })).sort();
 
-    concat(inputPathList).then((result) => {
-      result = result.replace(/rodash_/g, '');
-      result = result.replace(/^'import.*\n?/mg, '');
-      result = result.replace("' /**", "\n' /**");
-      result = result.replace(/^.*end function.*$/gm, "end function \n");
+    //merge the .brs files together
+    let result = (await concat(libPaths) as string);
+    //sanize the code (remove namespace prefixes, de-indent some lines, etc)
+    result = sanitizeCode(result);
 
-      fs.writeFile(outputPath, result, 'utf8', function (err) {
-        if (err) return console.log(err);
+    //write the final merged output file
+    await fsExtra.outputFileSync(`${outDir}/rodash.brs`, result, 'utf8');
+}
 
-        glob(__dirname + '/../.tmp/source/rodash/**/*.d.bs', {'nosort': true}, (err, files) => {
-          var output = ""
-          var outputs = {
-            "rodash": ""
-          }
-          files = files.sort();
+/**
+ * Merge and santitize all typedef files into a single `rodash.d.bs` file
+ */
+async function processTypedefs() {
+    //find all typedef files
+    const typedefPaths = (await fastGlob(['source/rodash/**/*.d.bs'], {
+        cwd: transpileDir,
+        absolute: true
+    }))
+        // sort the files for output consistency
+        .sort()
+        //exclude internal typedefs
+        .filter(x => !path.basename(x).startsWith('_'));
 
-          files.forEach((path) => {
-            var fileName = path.split("/").pop();
-            if (!fileName.includes("_")) {
-              fs.readFile(path, 'utf8', function (err,data) {
-                if (err) {
-                  return console.log(err);
-                }
-                var result = data
-                var hasNamespace = result.includes("namespace rodash.")
+    //merge all the typedefs together
+    let result = await concat(typedefPaths) as string;
+    //sanize the code (remove namespace prefixes, de-indent some lines, etc)
+    result = result
+        //remove wrapping namespaces
+        .replace(/^\s*(end\s*)?namespace.*\r?\n?/gm, '')
+        //remove all leading whitespace
+        .replace(/^[ \t]*/gm, '');
+    result = sanitizeCode(result);
 
-                if (hasNamespace) {
-                  const namespace = result.match(/.*namespace.*\n /g)[0].trim().replace("namespace rodash.", '');
-                  if (outputs[namespace] === undefined) {
-                    outputs[namespace] = "";
-                  }
+    await fsExtra.outputFile(`${outDir}/rodash.d.bs`, result, 'utf8');
+}
 
-                  result = result.replace(/^.*namespace.*$/gm, '');
-                  outputs[namespace] += result + "\n\n"
+/**
+ * Sanize the code (remove namespace prefixes, de-indent some lines, etc)
+ */
+function sanitizeCode(code: string) {
+    return code
+        //remove commented-out import statements
+        .replace(/^'import.*\n?/mg, '')
+        //remove de-indent lines
+        .replace("' /**", "\n' /**")
+        .replace(/^\s*end function.*$/gm, "end function \n")
+        //remove prefixed namespace calls or function names
+        .replace(/rodash_/g, '')
+        //remove all trailing whitespace on each line
+        .replace(/[ \t]*$/gm, '')
+        //remove newlines or blank lines from start of file
+        .replace(/^[\r\n\s]*/, '')
+        .trim()
+}
 
-                } else {
-                  result = result.replace(/^.*namespace.*$/gm, '');
-                  outputs["rodash"] += result + "\n\n"
-                }
-
-              });
-            }
-          });
-
-          setTimeout(function() {
-            for (let [key, value] of Object.entries(outputs)) {
-              value = value.replace(/^\s+/mg,'');
-              if (key == "rodash") {
-                output += value + "\n"
-              } else {
-                output += "namespace " + key + "\n";
-                output += value + "\n";
-                output += "end namespace" + "\n";
-              }
-            }
-
-            fs.writeFile(outputDirectory + 'rodash.d.bs', output, 'utf8', function (err) {
-              if (err) return console.log(err);
-                console.log("rodash.d.bs created")
-            });
-          }, 250);
-        })
-      });
-    })
-  });
-})
+run();

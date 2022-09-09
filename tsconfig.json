@@ -1,4 +1,7 @@
 {
+    "compilerOptions": {
+        "esModuleInterop": true
+    },
     "include": [
         "scripts/**/*.ts"
     ]
