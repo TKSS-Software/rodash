@@ -26,13 +26,15 @@
     "packageRootDir": "dist"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.7.16",
     "braintree-jsdoc-template": "^3.3.0",
     "brighterscript": "^0.35.0",
     "brighterscript-jsdocs-plugin": "^0.3.0",
     "concat": "^1.0.3",
     "copyfiles": "^2.4.1",
-    "glob": "^7.1.6",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^10.1.0",
     "merge-files": "^0.1.2",
     "replace-in-files": "^3.0.0",
     "ts-node": "^10.9.1",
