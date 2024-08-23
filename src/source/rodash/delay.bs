@@ -15,18 +15,19 @@ namespace rodash
       context: context
     }
 
-    timer.observeFieldScoped("fire", sub (event as object)
+    timer.observeFieldScoped("fire", (sub(event as object)
       delayId = event.getNode()
       options = m[delayId]
       callback = options.callback
       try
         callback(options.context)
       catch e
-        print "Crash during utils.delay:", e
+        print "Crash during utils.delay:"
+        print e
       end try
       m[delayId].timer.unobserveFieldScoped("fire")
       m.delete(delayId)
-    end sub)
+    end sub).toStr().mid(10))
 
     timer.control = "start"
   end sub

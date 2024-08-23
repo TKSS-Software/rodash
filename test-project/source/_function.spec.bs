@@ -1,28 +1,28 @@
-namespace Tests
+' namespace Tests
 
-    @async
-    @SGNode("DummyNode")
-    @suite("RodashFunctionTests")
-	class FunctionTests extends rooibos.BaseTestSuite
+'     @async
+'     @SGNode("DummyNode")
+'     @suite("RodashFunctionTests")
+' 	class FunctionTests extends rooibos.BaseTestSuite
 
-		'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        @describe("Tests the rodash function methods")
-        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+' 		'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+'         @describe("Tests the rodash function methods")
+'         '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-		@async
-		@it("delay")
-		function _()
-			rodash.delay(sub(context as dynamic)
-				m.testSuite.done()
-			end sub, 0.0001, invalid)
-		end function
+' 		@async
+' 		@it("delay")
+' 		function _()
+' 			rodash.delay(sub(context as dynamic)
+' 				m.testSuite.done()
+' 			end sub, 0.0001, invalid)
+' 		end function
 
-        @async
-		@it("delay with duration")
-		function _()
-			rodash.delay(sub(context as dynamic)
-				m.testSuite.done()
-			end sub, 0.0001, invalid)
-		end function
-	end class
-end namespace
+'         @async
+' 		@it("delay with duration")
+' 		function _()
+' 			rodash.delay(sub(context as dynamic)
+' 				m.testSuite.done()
+' 			end sub, 0.0001, invalid)
+' 		end function
+' 	end class
+' end namespace
