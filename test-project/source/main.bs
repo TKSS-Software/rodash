@@ -1,14 +1,10 @@
-' /**
-' * entry point for the application. Runs a loop to keep the app alive while majority of app runs on SceneGraph side
-' * @since 4.0
-' */
 sub main(inputEvent as Object)
 	? "inputEvent", inputEvent
 	screen = createObject("roSGScreen")
 	m.port = createObject("roMessagePort")
 	screen.setMessagePort(m.port)
 	scene = screen.CreateScene("MainScene")
-	screen.show()' vscode_rale_tracker_entry
+	screen.show()' vscode_rdb_on_device_component_entry
 	scene.observeField("closeApp", m.port)
 
 	while true

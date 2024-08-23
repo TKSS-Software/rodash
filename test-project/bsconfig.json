@@ -1,11 +1,23 @@
 {
 	"rootDir": "./",
+	"stagingDir": "dist",
 	"autoImportComponentScript": true,
+	"sourceMap": true,
+	"createPackage": false,
+	"emitDefinitions": true,
 	"files": [
 		"components/**/*",
 		"source/**/*",
 		"assets/**/*",
-		"manifest"
+		"manifest",
+		{
+			"src": "../src/source/rodash/**/*",
+			"dest": "source/roku_modules/rodash"
+		},
+		{
+			"src": "../src/source/rodash/_all.bs",
+			"dest": "source/roku_modules/rodash/rodash.bs"
+		}
 	],
 	"plugins": [
 		"rooibos-roku"
@@ -14,6 +26,5 @@
 		"showOnlyFailures": true,
 		"lineWidth": 70,
 		"logLevel": 0
-	},
-	"emitDefinitions": true
+	}
 }

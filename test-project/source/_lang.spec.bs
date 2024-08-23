@@ -66,7 +66,7 @@ namespace Tests
       if objectType = "RO_DOUBLE"
         value = createObject("roDouble")
       else if objectType = "RO_INTRINSIC_DOUBLE"
-        value = createObject("roIntrinsicDouble")
+        value = createObject("roIntrinsicDouble") 'bs:disable-line 1129
       else if objectType = "RO_FLOAT"
         value = createObject("roFloat")
       else
@@ -121,7 +121,7 @@ namespace Tests
     @params(invalid, true)
     @params({a: 2}, false)
     @params(1, false)
-    @params(something, true)
+    @params(uninitializedVar, true) 'bs:disable-line 1001
     function _(value = invalid as dynamic, matchResult = invalid as dynamic)
       m.assertEqual(rodash.isInvalid(value), matchResult)
     end function
@@ -176,8 +176,8 @@ namespace Tests
     @params(invalid, false)
     @params({a: 2}, true)
     @params(1, true)
-    @params(something, false)
-    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+    @params(uninitializedVar, false) 'bs:disable-line 1001
+    function isNotInvalid(value = invalid as dynamic, matchResult = invalid as dynamic)
       m.assertEqual(rodash.isNotInvalid(value), matchResult)
     end function
 

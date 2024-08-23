@@ -1,5 +1,5 @@
 
-namespace rodash
+namespace rodash.internal
   ' /**
 
   ' * Attempts to convert the supplied value to a string.
