@@ -7,7 +7,7 @@ namespace rodash
   ' * @return {Dynamic} keys - Array of key strings
   ' */
   function hasKeys(aaValue as dynamic, keys as dynamic) as boolean
-    if NOT rodash.isKeyedValueType(aaValue) OR aaValue.isEmpty() OR NOT rodash.isArray(keys) OR keys.isEmpty() then return false
+    if NOT rodash.internal.isKeyedValueType(aaValue) OR aaValue.isEmpty() OR NOT rodash.isArray(keys) OR keys.isEmpty() then return false
 
     hasKeys = true
     for each key in keys

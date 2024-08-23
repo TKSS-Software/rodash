@@ -54,3 +54,6 @@ Thumbs.db
 out/
 
 roku_modules
+
+dist
+docs

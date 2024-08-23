@@ -1,0 +1,29 @@
+
+namespace rodash
+  ' /**
+  ' * Add padding to the supplied value after converting to a string. For example "1" to "01".
+  ' * @param {String} value The value to add padding to.
+  ' * @param {Integer} padLength The minimum output string length.
+  ' * @param {String} paddingCharacter The string to use as padding.
+  ' * @return {String} Resulting padded string.
+  ' */
+  function padString(value as Dynamic, padLength = 2 as Integer, paddingCharacter = "0" as Dynamic) as String
+    value = rodash.toString(value)
+    while value.len() < padLength
+      value = paddingCharacter + value
+    end while
+    return value
+  end function
+
+  ' /**
+  ' * Add padding to the supplied value after converting to a string. For example "1" to "01".
+  ' * @param {String} value The value to add padding to.
+  ' * @param {Integer} padLength The minimum output string length.
+  ' * @param {String} paddingCharacter The string to use as padding.
+  ' * @deprecated use `padString` instead
+  ' * @return {String} Resulting padded string.
+  ' */
+  function paddString(value as Dynamic, padLength = 2 as Integer, paddingCharacter = "0" as Dynamic) as String
+    return padString(value, padLength, paddingCharacter)
+  end function
+end namespace
