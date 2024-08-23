@@ -1,8 +1,0 @@
-
-namespace rodash
-  function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic
-    if rodash.isNaN(multiplier) OR rodash.isNaN(multiplicand) return 0
-
-    return multiplier * multiplicand
-  end function
-end namespace

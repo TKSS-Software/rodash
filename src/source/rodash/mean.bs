@@ -1,6 +1,0 @@
-
-namespace rodash
-  function mean(array)
-    return rodash.meanBy(array)
-  end function
-end namespace

@@ -1,9 +1,0 @@
-
-namespace rodash
-  function lowerFirst(value = "" as string)
-    value = value.trim()
-    valueArray = value.split("")
-    valueArray[0] = lcase(valueArray[0])
-    return rodash.join(valueArray)
-  end function
-end namespace

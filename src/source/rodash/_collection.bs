@@ -1,5 +1,0 @@
-import "forEach.bs"
-import "forEachRight.bs"
-import "reduce.bs"
-import "sortBy.bs"
-import "size.bs"

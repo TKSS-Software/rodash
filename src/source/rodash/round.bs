@@ -1,9 +1,0 @@
-
-namespace rodash
-  function round(number = 0, precision = 0 as integer)
-    minor = number.toStr().split(".")[1]
-    ?rodash.isNotInvalid(minor), minor
-
-    return rodash.ceil(number, precision)
-  end function
-end namespace

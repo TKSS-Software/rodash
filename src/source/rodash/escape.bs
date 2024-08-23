@@ -1,5 +1,0 @@
-namespace rodash
-  function escape(source = "" as string)
-    return source.escape()
-  end function
-end namespace

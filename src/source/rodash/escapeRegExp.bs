@@ -1,9 +1,0 @@
-namespace rodash
-  function escapeRegExp(source = "" as string)
-    replaceArray = ["^", "$", "", ".", "*", "+", "?", "(", ")", "[", "]", "{", "}", "|"]
-    for each char in replaceArray
-      source = source.replace(char, "\"+char)
-    end for
-    return source.replace("\/\/", "//")
-  end function
-end namespace

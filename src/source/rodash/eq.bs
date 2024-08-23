@@ -1,6 +1,0 @@
-
-namespace rodash
-  function eq(value as dynamic, other as dynamic)
-    return rodash.isEqual(value, other)
-  end function
-end namespace

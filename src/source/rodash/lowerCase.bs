@@ -1,8 +1,0 @@
-namespace rodash
-  function lowerCase(value = "" as string)
-    value = value.replace("-", " ").replace("_", " ")
-    value = value.trim()
-    valueArray = value.split(" ")
-    return lcase(rodash.join(valueArray, " "))
-  end function
-end namespace

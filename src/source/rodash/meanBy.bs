@@ -1,8 +1,0 @@
-
-namespace rodash
-  function meanBy(array, iteratee = invalid)
-    if rodash.isEmpty(array) then return invalid
-
-    return rodash.divide(rodash.sumBy(array, iteratee), array.count())
-  end function
-end namespace

@@ -1,6 +1,0 @@
-
-namespace rodash
-  function clamp(number, lower, upper) as dynamic
-    return rodash.max([lower, rodash.min([upper, number])])
-  end function
-end namespace
