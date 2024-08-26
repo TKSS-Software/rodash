@@ -6,6 +6,7 @@ namespace rodash
   ' * @param {Dynamic} addend - The second number in an addition
   ' * @returns {Dynamic} value - Returns the total
   ' */
+  function add(augend, addend)
     value = 0
     if rodash.isNumber(augend) then value += augend
     if rodash.isNumber(addend) then value += addend
