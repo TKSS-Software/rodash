@@ -1,11 +1,12 @@
 namespace rodash
   ' /**
-  ' * Invokes func after wait milliseconds. Any additional arguments are provided to func when it's invoked.
-  ' @param {Function} callback - The function to be called after a set delay
-  ' @param {Float} [duration] - the amount of delay before invoking the callback
+  ' * Invokes sub after wait milliseconds. Any additional arguments are provided to subwhen it's invoked.
+  ' @param {Sub} callback - The sub to be called after a set delay
+  ' @param {Float} [wait] - The number of milliseconds to delay invocation
   ' @param {Dynamic} context - a single item of data to be passed into the callback when invoked
   ' */
-  sub delay(callback as function, duration = 0.0001 as float, context = invalid as dynamic)
+  sub delay(callback as function, wait = 0 as float, context = invalid as dynamic)
+    duration = wait = 0 ? 0.0001 : wait / 1000
     timer = createObject("RoSGNode", "Timer")
     timer.update({duration: duration, repeat: false, id: "__delay_" + createObject("roDeviceInfo").getRandomUUID() })
 
