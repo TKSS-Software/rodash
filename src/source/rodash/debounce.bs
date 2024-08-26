@@ -38,7 +38,7 @@ namespace rodash
             m[id].context = rodash.get(options, "context", {})
 
             maxWait = rodash.get(options, "maxWait", -1)
-            if maxWait > 0 and m[id].TotalMilliseconds() >= maxWait then
+            if maxWait > 0 and m[id].timespan.TotalMilliseconds() >= maxWait then
                 container = m[id]
                 callback = container.callback
                 callback(container.context)
