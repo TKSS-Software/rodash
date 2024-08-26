@@ -1,6 +1,3 @@
 
 sub init()
-    rodash.delay(sub()
-        print "Hello, World!"
-    end sub)
 end sub
