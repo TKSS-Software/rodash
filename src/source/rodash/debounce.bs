@@ -20,6 +20,7 @@ namespace rodash
                 callback: callback
                 timer: timer
                 timespan: CreateObject("roTimeSpan")
+                context: rodash.get(options, "context", {})
             }
 
             m[id].timespan.mark()
@@ -35,10 +36,9 @@ namespace rodash
         end if
 
         if m[id] <> invalid then
-            m[id].context = rodash.get(options, "context", {})
-
             maxWait = rodash.get(options, "maxWait", -1)
             if maxWait > 0 and m[id].timespan.TotalMilliseconds() >= maxWait then
+                m[id].timespan.mark()
                 container = m[id]
                 callback = container.callback
                 callback(container.context)
