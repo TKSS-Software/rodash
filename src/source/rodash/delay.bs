@@ -1,0 +1,35 @@
+namespace rodash
+  ' /**
+  ' * Invokes sub after wait milliseconds. Any additional arguments are provided to subwhen it's invoked.
+  ' @param {Sub} callback - The sub to be called after a set delay
+  ' @param {Float} [wait] - The number of milliseconds to delay invocation
+  ' @param {Dynamic} context - a single item of data to be passed into the callback when invoked
+  ' */
+  sub delay(callback as function, wait = 0 as float, context = invalid as dynamic)
+    duration = wait = 0 ? 0.0001 : wait / 1000
+    timer = createObject("RoSGNode", "Timer")
+    timer.update({duration: duration, repeat: false, id: "__delay_" + createObject("roDeviceInfo").getRandomUUID() })
+
+    m[timer.id] = {
+      timer: timer
+      callback: callback
+      context: context
+    }
+
+    timer.observeFieldScoped("fire", (sub(event as object)
+      delayId = event.getNode()
+      options = m[delayId]
+      callback = options.callback
+      try
+        callback(options.context)
+      catch e
+        print "Crash during utils.delay:"
+        print e
+      end try
+      m[delayId].timer.unobserveFieldScoped("fire")
+      m.delete(delayId)
+    end sub).toStr().mid(10))
+
+    timer.control = "start"
+  end sub
+end namespace
