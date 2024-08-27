@@ -1,0 +1,19 @@
+namespace Tests
+  @suite("RodashObjectTests")
+  class ObjectTests extends Rooibos.BaseTestSuite
+
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @describe("Tests the rodash object methods")
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    @it("invert")
+    @params({ "a": 1, "b": 2, "c": 1 }, { "1": "c", "2": "b" })
+    @params({ "c": 1, "a": 2, "b": 1 }, { "1": "c", "2": "a" })
+    @params([], invalid)
+    function _(itemOne as dynamic, matchResult as dynamic)
+      m.assertEqual(rodash.invert(itemOne), matchResult)
+    end function
+
+  end class
+
+end namespace

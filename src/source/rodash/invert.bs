@@ -1,0 +1,34 @@
+namespace rodash
+  ' /**
+  ' * Creates an object composed of the inverted keys and values of `object`.
+  ' * If `object` contains duplicate values, subsequent values overwrite property assignments of previous values.
+  ' * As AssocArrays are sorted, the order of the aa keys is not preserved.
+  '
+  ' * @category Object
+  ' * @param {Object} object The object to invert.
+  ' * @returns {Object} Returns the new inverted object.
+  ' * @example
+  ' *
+  ' * const object = { 'a': 1, 'b': 2, 'c': 1 }
+  ' *
+  ' * rodash.invert(object)
+  ' * // => { '1': 'c', '2': 'b' }
+  ' */
+  ' */
+  function invert(originalAA as Object) as Dynamic
+    if not rodash.isAA(originalAA) then return invalid
+
+    ' Initialize an empty associative array to hold the inverted key-value pairs
+    invertedAA = {}
+
+    ' Iterate over each key-value pair in the original associative array
+    for each key in originalAA.keys()
+        print key, rodash.toString(originalAA[rodash.toString(key)])
+        ' Assign the value as the new key and the key as the new value in the inverted array
+        invertedAA[rodash.toString(originalAA[rodash.toString(key)])] = key
+    end for
+
+    ' Return the newly created inverted associative array
+    return invertedAA
+  end function
+end namespace
