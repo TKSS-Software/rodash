@@ -1,5 +1,6 @@
 import "forEach.bs"
 import "forEachRight.bs"
+import "orderBy.bs"
 import "reduce.bs"
 import "sortBy.bs"
 import "size.bs"

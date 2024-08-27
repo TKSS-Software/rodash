@@ -1,0 +1,25 @@
+namespace rodash.internal
+    function orderByCompare(item1 as Object, item2 as Object, keys as Object, orders as Object) as Boolean
+        ' Iterate through the keys and corresponding orders
+        for i = 0 to keys.Count() - 1
+            key = keys[i]
+            order = orders[i]
+            if order = invalid then order = "asc"
+
+            value1 = item1[key]
+            value2 = item2[key]
+
+            ' Compare the values based on the current key
+            if value1 <> value2
+                if order = "asc"
+                    return value1 > value2
+                else if order = "desc"
+                    return value1 < value2
+                end if
+            end if
+        end for
+
+        ' If all values are equal, maintain original order
+        return false
+    end function
+end namespace
