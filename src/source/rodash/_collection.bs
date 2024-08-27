@@ -1,3 +1,4 @@
+import "find.bs"
 import "forEach.bs"
 import "forEachRight.bs"
 import "reduce.bs"

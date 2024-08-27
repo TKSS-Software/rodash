@@ -17,7 +17,7 @@ namespace rodash
         if rodash.isEqual(item, predicate) then return index
       else if rodash.isArray(predicate) then
         if rodash.isEqual(item[predicate[0]], predicate[1]) then return index
-      else if rodash.isString(predicate) then
+      else if rodash.isString(predicate) and item.doesExist(predicate) then
         if item[predicate] then return index
       end if
     end for

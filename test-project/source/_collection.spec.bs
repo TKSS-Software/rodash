@@ -1,0 +1,30 @@
+namespace Tests
+  @suite("RodashCollectionTests")
+  class CollectionTests extends Rooibos.BaseTestSuite
+
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @describe("Tests the rodash collection methods")
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    @it("find")
+    @params(invalid, { "user": "barney",  "active": false })
+    @params({ "user": "fred", "active": false }, { "user": "fred", "active": false })
+    @params(["active", false], { "user": "barney", "active": false })
+    @params("active", { "user": "pebbles", "active": true })
+    @params("somethingtogetinvalid", invalid)
+    function _findTest(predicate = invalid as dynamic, matchResult = invalid as dynamic)
+      if rodash.isInvalid(predicate) then predicate = function(o)
+        return o.user = "barney"
+      end function
+
+      users = [
+        { "user": "barney", "active": false },
+        { "user": "fred", "active": false },
+        { "user": "pebbles", "active": true }
+      ]
+      result = rodash.find(users, predicate)
+      m.assertEqual(result, matchResult)
+    end function
+  end class
+
+end namespace
