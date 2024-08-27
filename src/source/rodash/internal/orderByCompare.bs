@@ -1,4 +1,5 @@
 namespace rodash.internal
+    ' * @ignore
     function orderByCompare(item1 as Object, item2 as Object, keys as Object, orders as Object) as Boolean
         ' Iterate through the keys and corresponding orders
         for i = 0 to keys.Count() - 1

@@ -2,6 +2,7 @@
 namespace rodash.internal
   ' /**
 
+  ' * @ignore
   ' * Attempts to converts a nodes top level fields to an AssociativeArray.
   ' * @param {Dynamic} value - The variable to be converted.
   ' * @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
