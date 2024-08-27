@@ -1,0 +1,54 @@
+namespace rodash
+    ' /**
+    ' * Invokes func after wait milliseconds. Any additional arguments are provided to func when it's invoked.
+    ' @param {Sub} callback - The function sub to be called after a set delay
+    ' @param {Float} [wait] - The number of milliseconds to delay
+    ' @param {Object} options - The options object
+    ' @param {Dynamic} options[context] - The context to be used when calling the callback
+    ' @param {Float} options[maxWait] - The maximum time the sub is allowed to be delayed before it's invoked.
+    ' */
+    sub debounce(callback as function, wait = 0 as dynamic, options = {maxWait: -1} as object)
+        id = "__debounce_" + callback.toStr()
+
+        duration = wait = 0 ? 0.001 : wait / 1000
+
+        if m[id] = invalid then
+            timer = createObject("RoSGNode", "Timer")
+            timer.update({duration: duration, id: id}, true)
+
+            m[id] = {
+                callback: callback
+                timer: timer
+                timespan: CreateObject("roTimeSpan")
+                context: rodash.get(options, "context", {})
+            }
+
+            m[id].timespan.mark()
+
+            timer.observeFieldScoped("fire", (sub(event as object)
+                id = event.getRoSgNode().id
+                container = m[id]
+                callback = container.callback
+                callback(container.context)
+                container.timer.unobserveFieldScoped("fire")
+                m.delete(id)
+            end sub).toStr().mid(10))
+        end if
+
+        if m[id] <> invalid then
+            maxWait = rodash.get(options, "maxWait", -1)
+            if maxWait > 0 and m[id].timespan.TotalMilliseconds() >= maxWait then
+                m[id].timespan.mark()
+                container = m[id]
+                callback = container.callback
+                callback(container.context)
+                container.timer.unobserveFieldScoped("fire")
+                m.delete(id)
+            else
+                timer = m[id].timer
+                timer.duration = duration
+                timer.control = "start"
+            end if
+        end if
+    end sub
+end namespace
