@@ -1,5 +1,8 @@
-
 namespace rodash
+  ' * Gets the seconds.
+  ' * @since 0.0.21
+  ' * @category Date
+  ' * @returns {Object} - The seconds.
   function getSeconds() as object
     dateObj = rodash.internal.getDateObject()
 

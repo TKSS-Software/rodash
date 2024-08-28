@@ -1,10 +1,9 @@
 namespace rodash
-  ' /**
-
   ' * Checks if the supplied value is a valid Boolean type
+  ' * @since 0.0.21
+  ' * @category Lang
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
-  ' */
   function isBoolean(value as Dynamic) as Boolean
     valueType = type(value)
     return (valueType = "Boolean") OR (valueType = "roBoolean")

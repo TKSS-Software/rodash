@@ -1,12 +1,12 @@
 namespace rodash
-    ' /**
     ' * Invokes func after wait milliseconds. Any additional arguments are provided to func when it's invoked.
-    ' @param {Sub} callback - The function sub to be called after a set delay
-    ' @param {Float} [wait] - The number of milliseconds to delay
-    ' @param {Object} options - The options object
-    ' @param {Dynamic} options[context] - The context to be used when calling the callback
-    ' @param {Float} options[maxWait] - The maximum time the sub is allowed to be delayed before it's invoked.
-    ' */
+    ' * @since 0.0.22
+    ' * @category Function
+    ' * @param {Sub} callback - The function sub to be called after a set delay
+    ' * @param {Float} [wait] - The number of milliseconds to delay
+    ' * @param {Object} options - The options object
+    ' * @param {Dynamic} options[context] - The context to be used when calling the callback
+    ' * @param {Float} options[maxWait] - The maximum time the sub is allowed to be delayed before it's invoked.
     sub debounce(callback as function, wait = 0 as dynamic, options = {maxWait: -1} as object)
         id = "__debounce_" + callback.toStr()
 

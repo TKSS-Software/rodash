@@ -15,7 +15,7 @@
     "preversion": "npm run build",
     "build": "npm run compile && ts-node ./scripts/createDist.ts",
     "compile": "npx bsc",
-    "docs": "npm run build && jsdoc -c jsdoc.json -d docs -t ./node_modules/braintree-jsdoc-template",
+    "docs": "npm run build && jsdoc -c jsdoc.json -d docs -t ./node_modules/better-docs",
     "build-test-project": "cd test-project && npx bsc"
   },
   "author": "TKSS Software",
@@ -27,8 +27,10 @@
     "packageRootDir": "dist"
   },
   "devDependencies": {
+    "@jsdoc/salty": "^0.2.8",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.7.16",
+    "better-docs": "^2.7.3",
     "braintree-jsdoc-template": "^3.3.0",
     "brighterscript": "^0.67.5",
     "brighterscript-jsdocs-plugin": "^0.6.0",

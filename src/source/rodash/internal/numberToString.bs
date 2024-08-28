@@ -1,11 +1,8 @@
 namespace rodash.internal
-  ' /**
-
   ' * @ignore
   ' * Attempts to convert the supplied value to a string.
   ' * @param {Dynamic} value The value to convert.
   ' * @return {String} Results of the conversion.
-  ' */
   function numberToString(value as Dynamic) as String
     return value.toStr()
   end function

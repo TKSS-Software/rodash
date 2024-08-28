@@ -1,5 +1,9 @@
-
 namespace rodash
+  ' * @since 0.0.21
+  ' * @category String
+  ' * Converts a string to camel case.
+  ' * @param {String} value - The string to convert.
+  ' * @returns {String} - The camel case string.
   function camelCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()

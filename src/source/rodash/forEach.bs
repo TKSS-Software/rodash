@@ -1,13 +1,11 @@
-
 namespace rodash
-  ' /**
-
   ' * Iterates over elements of collection and invokes iteratee for each element. The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
+  ' * @since 0.0.21
+  ' * @category Collection
   ' * Note: As with other "Collections" methods, objects with a "length" property are iterated like arrays. To avoid this behavior use rodash.forIn or rodash.forOwn for object iteration.
   ' * @param {Dynamic} collection - The collection to iterate over
   ' * @param {Dynamic} iteratee - The function invoked per iteration
   ' * @return {Dynamic} Returns collection
-  ' */
   function forEach(collection = invalid as dynamic, iteratee = invalid as dynamic)
     return rodash.internal.baseForEach(collection, iteratee)
   end function

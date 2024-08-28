@@ -1,12 +1,11 @@
-
 namespace rodash
-  ' /**
   ' * Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
   ' * This method mutates object and is loosely based on Object.assign.
+  ' * @since 0.0.21
+  ' * @category Object
   ' * @param {Dynamic} baseAA - The destination object
   ' * @params {Object} sources - The source objects
   ' * @params {Dynamic} Mutaded baseAA
-  ' */
   function assign(baseAA as Dynamic, sources = [] as Object) as Dynamic
     if NOT rodash.isAA(baseAA) then return Invalid
 

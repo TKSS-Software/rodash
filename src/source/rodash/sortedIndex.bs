@@ -1,10 +1,9 @@
-
 namespace rodash
-  '/**
   ' * Uses a binary search to determine the lowest index at which value should be inserted into array in order to maintain its sort order.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Array} array - The sorted array to inspect
   ' * @return {Object} Returns the index at which value should be inserted into array
-  ' */
   function sortedIndex(array = [] as object, value = 0 as integer)
     for i = 0 to array.count() - 1
       item = array[i]

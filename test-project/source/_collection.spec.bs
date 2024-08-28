@@ -25,6 +25,21 @@ namespace Tests
       result = rodash.find(users, predicate)
       m.assertEqual(result, matchResult)
     end function
+
+    @it("orderBy")
+    @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }])
+    @params(["user", "age"], ["desc", "desc"], [{ "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])
+    @params(["user", "age"], ["desc"], [{ "user": "fred",   "age": 40 }, { "user": "fred",   "age": 48 }, { "user": "barney", "age": 34 }, { "user": "barney", "age": 36 }])
+    function _findTest(iterees = invalid as dynamic, orders = invalid as dynamic, matchResult = invalid as dynamic)
+      users = [
+        { "user": "fred",   "age": 48 },
+        { "user": "barney", "age": 34 },
+        { "user": "fred",   "age": 40 },
+        { "user": "barney", "age": 36 }
+      ]
+      result = rodash.orderBy(users, iterees, orders)
+      m.assertEqual(result, matchResult)
+    end function
   end class
 
 end namespace

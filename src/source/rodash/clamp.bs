@@ -1,5 +1,11 @@
-
 namespace rodash
+  ' * Clamps number within the inclusive lower and upper bounds.
+  ' * @since 0.0.21
+  ' * @category Number
+  ' * @param {Integer} number - The number to clamp
+  ' * @param {Integer} lower - The lower bound
+  ' * @param {Integer} upper - The upper bound
+  ' * @return {Integer} Returns the clamped number
   function clamp(number, lower, upper) as dynamic
     return rodash.max([lower, rodash.min([upper, number])])
   end function

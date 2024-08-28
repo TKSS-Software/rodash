@@ -1,11 +1,10 @@
 namespace rodash
-  ' /**
-
   ' * Checks if the supplied value is a valid AssociativeArray type
+  ' * @since 0.0.21
+  ' * @category Lang
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
-  ' */
-  function isAA(value as dynamic)
+  function isAA(value as dynamic) as boolean
     return type(value) = "roAssociativeArray"
   end function
 end namespace

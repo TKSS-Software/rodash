@@ -1,10 +1,9 @@
 namespace rodash
-  '/**
-
   ' * Gets the first element of array.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Array} array - The array to query
   ' * @return {Dynamic} Returns the first element of array
-  ' */
   function head(array = [] as object) as dynamic
     return array[0]
   end function

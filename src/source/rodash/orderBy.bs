@@ -1,18 +1,15 @@
-
 namespace rodash
-    ' /**
-
-  '  * This method is like `sortBy` except that it allows specifying the sort
-  '  * orders of the iteratees to sort by. If `orders` is unspecified, all values
-  '  * are sorted in ascending order. Otherwise, specify an order of "desc" for
-  '  * descending or "asc" for ascending sort order of corresponding values.
-  '  * You may also specify a compare function for an order.
-  '  *
+  ' * This method is like `sortBy` except that it allows specifying the sort
+  ' * orders of the iteratees to sort by. If `orders` is unspecified, all values
+  ' * are sorted in ascending order. Otherwise, specify an order of "desc" for
+  ' * descending or "asc" for ascending sort order of corresponding values.
+  ' * You may also specify a compare function for an order.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Dynamic} collection - The collection to shuffle
   ' * @param {Dynamic} [iteratee] - The iteratees to sort by
   ' * @param {Dynamic} [orders] - The sort orders of `iteratees`.
   ' * @return {Array} Returns the new ordered array
-  ' */
   function orderBy(collection, iteratees, orders) as Object
     if rodash.isInvalid(collection) OR NOT rodash.isArray(collection) then return []
 

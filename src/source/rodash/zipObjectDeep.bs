@@ -1,11 +1,10 @@
 namespace rodash
-  '/**
-
   ' * This method is like rodash.zipObject except that it supports property paths.
+  ' * @ignore
+  ' * @category Array
   ' * @param {Array} array - The property identifiers
   ' * @param {Array} values - The property identifiers
   ' * @return {Object} Returns the new object
-  ' */
   function zipObjectDeep(props = [] as object, values = [] as object) as object
     ' COME BACK
    end function
