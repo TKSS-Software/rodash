@@ -1,7 +1,7 @@
 namespace rodash
+  ' * Gets the day of the month.
   ' * @since 0.0.21
   ' * @category Date
-  ' * Gets the day of the month.
   ' * @returns {Object} - The day of the month.
   function getDayOfMonth() as object
     dateObj = rodash.internal.getDateObject()

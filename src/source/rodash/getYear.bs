@@ -1,7 +1,7 @@
 namespace rodash
+  ' * Gets the year.
   ' * @since 0.0.21
   ' * @category Date
-  ' * Gets the year.
   ' * @returns {Object} - The year.
   function getYear() as object
     dateObj = rodash.internal.getDateObject()
