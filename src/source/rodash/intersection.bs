@@ -1,12 +1,10 @@
-
 namespace rodash
-  '/**
-
   ' * Creates an array of unique values that are included in all given arrays using SameValueZero for equality comparisons. The order and references of result values are determined by the first array.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Array} mainArray - The main array to inspect
   ' * @param {Array} inspect - The array to find matches
   ' * @return {Array} Returns the new array of intersecting values
-  ' */
   function intersection(mainArray = [] as object, inspectArray = [] as object) as object
     return rodash.intersectionBy(mainArray, inspectArray)
   end function

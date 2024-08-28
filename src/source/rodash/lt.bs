@@ -1,4 +1,10 @@
 namespace rodash
+  ' * Checks if value is less than other.
+  ' * @since 0.0.21
+  ' * @category Lang
+  ' * @param {Dynamic} value - The value to compare.
+  ' * @param {Dynamic} other - The other value to compare.
+  ' * @returns {Boolean} - Returns `true` if the value is less than other, else `false`.
   function lt(value as dynamic, other as dynamic)
     return value < other
   end function

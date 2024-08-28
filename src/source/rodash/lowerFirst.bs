@@ -1,5 +1,7 @@
-
 namespace rodash
+  ' * Converts the first character of string to lower case.
+  ' * @since 0.0.21
+  ' * @category String
   function lowerFirst(value = "" as string)
     value = value.trim()
     valueArray = value.split("")
@@ -7,3 +9,4 @@ namespace rodash
     return rodash.join(valueArray)
   end function
 end namespace
+

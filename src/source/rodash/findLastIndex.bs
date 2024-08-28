@@ -1,12 +1,11 @@
-
 namespace rodash
-  '/**
   ' * This method is like rodash.findIndex except that it iterates over elements of collection from right to left.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Array} array - The array to inspect
   ' * @param {Dynamic} predicate - The function invoked per iteration
   ' * @param {Integer} fromIndex - The index to search from
   ' * @returns {Integer} index - Returns the index of the found element, else -1
-  ' */
   function findLastIndex(array, predicate = invalid, fromIndex = 0 as integer)
     array = rodash.clone(array)
     array.reverse()

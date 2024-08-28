@@ -1,5 +1,10 @@
-
 namespace rodash
+  ' * This method is like `rodash.mean` except that it accepts `iteratee` which is invoked for each element in array to generate the value to be averaged. The iteratee is invoked with one argument: (value).
+  ' * @since 0.0.21
+  ' * @category Math
+  ' * @param {Array} array - The array to iterate over
+  ' * @param {Function} iteratee - The iteratee invoked per element
+  ' * @return {Dynamic} Returns the mean value
   function meanBy(array, iteratee = invalid)
     if rodash.isEmpty(array) then return invalid
 

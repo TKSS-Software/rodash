@@ -1,11 +1,9 @@
-
 namespace rodash
-  ' /**
-
   ' * Checks if the supplied value is a valid String type and is not empty
+  ' * @since 0.0.21
+  ' * @category Lang
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
-  ' */
   function isNonEmptyString(value as Dynamic) as Boolean
     return rodash.isString(value) AND value <> ""
   end function

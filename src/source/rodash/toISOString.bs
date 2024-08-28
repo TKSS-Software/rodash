@@ -1,11 +1,10 @@
-
 namespace rodash
-  function toISOString() as object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.toISOString(),
-      "local": dateObj.local.toISOString()
-    }
+  ' * Converts a date object to an ISO string
+  ' * @since 0.0.21
+  ' * @category Date
+  ' * @return {String} Returns the date object as an ISO string
+  function toISOString(dateObj = invalid as dynamic) as string
+    if rodash.isDate(dateObj) then return ""
+    return dateObj.toISOString()
   end function
 end namespace

@@ -1,10 +1,9 @@
 namespace rodash
-  '/**
-
   ' * Creates a duplicate-free version of an array, using SameValueZero for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Array} array - The array to inspect
   ' * @return {Object} Returns the new duplicate free array
-  ' */
   function uniq(array = [] as object) as object
     returnArray = []
     table = {}

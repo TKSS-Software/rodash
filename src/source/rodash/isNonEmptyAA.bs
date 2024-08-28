@@ -1,11 +1,9 @@
-
 namespace rodash
-  ' /**
-
   ' * Checks if the supplied value is a valid and populated AssociativeArray type
+  ' * @since 0.0.21
+  ' * @category Lang
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
-  ' */
   function isNonEmptyAA(value as dynamic)
     return rodash.isAA(value) AND value.keys().count() > 0
   end function

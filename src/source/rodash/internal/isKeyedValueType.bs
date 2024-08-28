@@ -1,11 +1,10 @@
 namespace rodash.internal
-  ' /**
-
   ' * @ignore
   ' * Checks if the supplied value allows for key field access
+  ' * @since 0.0.21
+  ' * @category Internal
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
-  ' */
   function isKeyedValueType(value as Dynamic) as Boolean
     return getInterface(value, "ifAssociativeArray") <> Invalid
   end function

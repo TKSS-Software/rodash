@@ -1,11 +1,10 @@
-
 namespace rodash
-  '/**
   ' * Recursively flatten array up to depth times.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * @param {Array} array - The array to flatten
   ' * @param {Integer} depth - The maximum recursion depth
   ' * @return {Dynamic} Returns the new flattened array
-  ' */
   function flattenDepth(array = invalid, depth = 1 as integer)
     returnArray = []
 
