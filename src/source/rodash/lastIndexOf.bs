@@ -16,7 +16,7 @@ namespace rodash
       end if
 
       ' Ensure fromIndex is within valid bounds
-      fromIndex = rodash.clamp(0, fromIndex, array.count() - 1)
+      fromIndex = rodash.clamp(fromIndex, 0, array.count() - 1)
 
       for i = fromIndex to 0 step -1
           if rodash.isEqual(array[i], value) then return i
