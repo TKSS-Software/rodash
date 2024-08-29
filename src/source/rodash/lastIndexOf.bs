@@ -1,6 +1,6 @@
 namespace rodash
   ' * This method is like _.indexOf except that it iterates over elements of array from right to left.
-  ' * @since 0.0.21
+  ' * @since 0.0.23
   ' * @category Array
   ' * @param {Array} array - The array to query
   ' * @param {Dynamic} value - The value to search for
