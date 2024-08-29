@@ -1,5 +1,5 @@
 namespace rodash
-  ' * Gets the last element of array.
+  ' * This method is like _.indexOf except that it iterates over elements of array from right to left.
   ' * @since 0.0.21
   ' * @category Array
   ' * @param {Array} array - The array to query
