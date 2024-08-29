@@ -1,0 +1,11 @@
+namespace rodash
+  ' * Gets a random element from collection.
+  ' * @since 0.0.23
+  ' * @category Collection
+  ' * @param {Dynamic} collection - The collection to sample
+  ' * @returns {Dynamic} - Returns the random element
+  function sample(collection = invalid as dynamic)
+    if not rodash.isArray(collection) then return invalid
+    return collection[rodash.random(0, collection.count() - 1)]
+  end function
+end namespace
