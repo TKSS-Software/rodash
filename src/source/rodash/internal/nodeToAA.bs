@@ -1,14 +1,13 @@
 
 namespace rodash.internal
-  ' /**
-
   ' * @ignore
   ' * Attempts to converts a nodes top level fields to an AssociativeArray.
+  ' * @since 0.0.21
+  ' * @category Internal
   ' * @param {Dynamic} value - The variable to be converted.
   ' * @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
   ' * @param {Object} removeFields - List of keys that need to be removed from the node.
   ' * @return {Dynamic} Results of the conversion.
-  ' */
   function nodeToAA(value as Object, removeId = false as Boolean, removeFields = [] as Object) as Object
     if rodash.isNode(value) then
       fields = value.getFields()

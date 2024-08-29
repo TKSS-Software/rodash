@@ -1,0 +1,21 @@
+namespace Tests
+    @suite("RodashMathTests")
+    class MathTests extends Rooibos.BaseTestSuite
+
+        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        @describe("Tests the rodash math methods")
+        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        @it("round")
+        @params(4.006, invalid, 4)
+        ' @params(4.006, 2, 4.01)
+        @params(4060, -2, 4100)
+        function _(number as dynamic, precision = invalid as dynamic, result = invalid as float)
+            if precision = invalid
+                m.assertEqual(rodash.round(number), result)
+            else
+                m.assertEqual(rodash.round(number, precision), result)
+            end if
+        end function
+    end class
+  end namespace

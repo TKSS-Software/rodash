@@ -1,5 +1,10 @@
-
 namespace rodash
+  ' * Multiplies two numbers.
+  ' * @since 0.0.21
+  ' * @category Math
+  ' * @param {Dynamic} multiplier - The first number in a multiplication.
+  ' * @param {Dynamic} multiplicand - The second number in a multiplication.
+  ' * @returns {Dynamic} - Returns the product of the two numbers.
   function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic
     if rodash.isNaN(multiplier) OR rodash.isNaN(multiplicand) return 0
 

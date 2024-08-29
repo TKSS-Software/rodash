@@ -1,5 +1,9 @@
-
 namespace rodash
+  ' * @since 0.0.21
+  ' * @category Date
+  ' * Converts an ISO 8601 string to a date object.
+  ' * @param {String} dateString - The date string to convert.
+  ' * @returns {Object} - The date objects.
   function fromISO8601String(dateString = "" as string) as object
     dateObj = rodash.internal.getDateObject()
 

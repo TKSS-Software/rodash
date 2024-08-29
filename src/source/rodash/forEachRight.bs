@@ -1,13 +1,12 @@
-
 namespace rodash
-  ' /**
-
   ' * This method is like rodash.forEach except that it iterates over elements of collection from right to left.
+  ' * @since 0.0.21
+  ' * @category Collection
   ' * @param {Dynamic} collection - The collection to iterate over
   ' * @param {Dynamic} iteratee - The function invoked per iteration
   ' * @return {Dynamic} Returns collection
-  ' */
   function forEachRight(collection = invalid as dynamic, iteratee = invalid as dynamic)
     return rodash.internal.baseForEach(collection, iteratee, "right")
   end function
 end namespace
+

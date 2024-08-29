@@ -1,12 +1,9 @@
-
-
 namespace rodash
-  ' /**
-
   ' * Checks if the supplied value is a valid number type
+  ' * @since 0.0.21
+  ' * @category Lang
   ' * @param {Dynamic} value The variable to be checked
   ' * @return {Boolean} Results of the check
-  ' */
   function isNumber(obj as Dynamic) as Boolean
     if (rodash.isInteger(obj)) then return true
     if (rodash.isFloat(obj)) then return true
@@ -14,3 +11,4 @@ namespace rodash
     return false
   end function
 end namespace
+

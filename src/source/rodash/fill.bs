@@ -1,14 +1,13 @@
-
 namespace rodash
-  '/**
   ' * Fills elements of array with value from start up to, but not including, end.
+  ' * @since 0.0.21
+  ' * @category Array
   ' * This method mutates array.
   ' * @param {Array} array - The array to fill
   ' * @param {Dynamic} value - The value to fill array with
   ' * @param {Integer} startPos - The start position
   ' * @param {Integer} endPos - The end position
   ' * @returns {Array} array - Returns the mutated array
-  ' */
   function fill(array = [] as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
     if rodash.isInvalid(startPos) then startPos = 0
     if rodash.isInvalid(endPos) then endPos = array.count()

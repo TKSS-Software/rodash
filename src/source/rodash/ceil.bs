@@ -1,11 +1,11 @@
 namespace rodash
-  ' /**
   ' * Computes number rounded up to precision.
+  ' * @since 0.0.21
+  ' * @category Math
   ' * @param {Integer} number - The number to round up
   ' * @param {Integer} precision - The precision to round up to
   ' * @returns {Integer} Returns the rounded up number
-  ' */
-  function ceil(number = 0, precision = 0 as integer)
-    return -int(-number * 10^precision) / 10^precision
+  function ceil(number = 0, precision = 0 as dynamic) as dynamic
+    return abs(int(-number * 10^precision) ) / 10^precision
   end function
 end namespace

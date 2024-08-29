@@ -1,5 +1,7 @@
-
 namespace rodash
+  ' * Checks if a value is empty.
+  ' * @since 0.0.21
+  ' * @category Lang
   function isEmpty(value as dynamic)
     if rodash.isInvalid(value) OR rodash.isNumber(value) OR rodash.isBoolean(value) then
       return true

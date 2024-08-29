@@ -1,12 +1,7 @@
-
-
 namespace rodash
-  ' /**
-
   ' * Creates an array of shuffled values, using a version of the Fisher-Yates shuffle.
   ' * @param {Dynamic} collection - The collection to shuffle
   ' * @return {Array} Returns the new shuffled array
-  ' */
   function shuffle(collection = [] as dynamic)
     if rodash.isInvalid(collection) OR (NOT rodash.isArray(collection) AND NOT rodash.isAA(collection)) then return []
     if rodash.isAA(collection) then collection = rodash.toArray(collection)

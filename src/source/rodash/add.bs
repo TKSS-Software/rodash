@@ -1,11 +1,10 @@
 namespace rodash
-  ' /**
   ' * Adds two numbers.
+  ' * @since 0.0.21
   ' * @category Math
   ' * @param {Dynamic} augend - The first number in an addition
   ' * @param {Dynamic} addend - The second number in an addition
   ' * @returns {Dynamic} value - Returns the total
-  ' */
   function add(augend, addend)
     value = 0
     if rodash.isNumber(augend) then value += augend

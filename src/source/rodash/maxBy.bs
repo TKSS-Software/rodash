@@ -1,11 +1,9 @@
-
 namespace rodash
-  ' /**
-
   ' * Computes the maximum value of array. If array is empty or falsey, invalid is returned.
+  ' * @since 0.0.21
+  ' * @category Math
   ' * @param {Array} array - The array to iterate over
   ' * @return {Dynamic} Returns the maximum value
-  ' */
   function maxBy(array = [] as object, iteratee = invalid) as dynamic
     if rodash.isEmpty(array) then return invalid
 

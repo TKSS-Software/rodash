@@ -1,5 +1,7 @@
-
 namespace rodash
+  ' * Generates a random number between the lower and upper bounds.
+  ' * @since 0.0.21
+  ' * @category Number
   function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
     offset = rnd(0)
 
