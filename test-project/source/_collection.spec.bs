@@ -26,6 +26,12 @@ namespace Tests
       m.assertEqual(result, matchResult)
     end function
 
+    @it("groupBy")
+    function _()
+      m.assertEqual(rodash.groupBy([6.1, 4.2, 6.3], rodash.floor), { "4": [4.2], "6": [6.1, 6.3] })
+      m.assertEqual(rodash.groupBy([{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}, {"species": "dog", "name": "Darwin"}], "species"), { "cat": [{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}], "dog": [{"species": "dog", "name": "Darwin"}] })
+    end function
+
     @it("orderBy")
     @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }])
     @params(["user", "age"], ["desc", "desc"], [{ "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])
