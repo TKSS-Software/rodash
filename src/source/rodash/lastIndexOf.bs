@@ -1,5 +1,5 @@
 namespace rodash
-  ' * This method is like _.indexOf except that it iterates over elements of array from right to left.
+  ' * This method is like rodash.indexOf except that it iterates over elements of array from right to left.
   ' * @since 0.0.23
   ' * @category Array
   ' * @param {Array} array - The array to query
