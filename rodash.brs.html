@@ -1058,6 +1058,46 @@ function getYear() as object
     }
 end function
 
+' * Creates an object composed of keys generated from the results of running each element of collection thru iteratee. The order of grouped values is determined by the order they occur in collection. The corresponding value of each key is an array of elements responsible for generating the key. The iteratee is invoked with one argument: (value).
+' * @since 0.0.23
+' * @category Collection
+' * @param {Object} collection - The collection to iterate over.
+' * @param {Function|String} iteratee - The iteratee to transform keys.
+' * @returns {Object} - Returns the composed aggregate object.
+function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
+    if not isArray(collection) then
+        return {}
+    end if
+    collection = clone(collection)
+    acc = {}
+    if isFunction(iteratee) then
+        for each value in collection
+            key = toString(iteratee(value))
+            if acc.doesExist(key)
+                acc[key].push(value)
+            else
+                acc[key] = [
+                    value
+                ]
+            end if
+        end for
+    else if isString(iteratee) then
+        for each value in collection
+            if isAA(value) and value.doesExist(iteratee) then
+                key = toString(value[iteratee])
+                if acc.doesExist(key)
+                    acc[key].push(value)
+                else
+                    acc[key] = [
+                        value
+                    ]
+                end if
+            end if
+        end for
+    end if
+    return acc
+end function
+
 ' * Checks if value is greater than other.
 ' * @since 0.0.21
 ' * @category Lang
@@ -1593,7 +1633,6 @@ function invert(originalAA as Object) as Dynamic
     invertedAA = {}
     ' Iterate over each key-value pair in the original associative array
     for each key in originalAA.keys()
-        print key, toString(originalAA[toString(key)])
         ' Assign the value as the new key and the key as the new value in the inverted array
         invertedAA[toString(originalAA[toString(key)])] = key
     end for
@@ -2010,6 +2049,32 @@ function last(array = []) as dynamic
     return array[array.count() - 1]
 end function
 
+' * This method is like rodash.indexOf except that it iterates over elements of array from right to left.
+' * @since 0.0.23
+' * @category Array
+' * @param {Array} array - The array to query
+' * @param {Dynamic} value - The value to search for
+' * @param {Integer} fromIndex - The index to search from
+' * @return {Dynamic} Returns the index of the matched value, else -1
+function lastIndexOf(array = [] as object, value = invalid as dynamic, fromIndex = invalid as dynamic) as dynamic
+    if NOT isArray(array) then
+        return -1
+    end if
+    if isInvalid(fromIndex) then
+        fromIndex = array.count() - 1
+    else if fromIndex &lt; 0 then
+        fromIndex = array.count() + fromIndex
+    end if
+    ' Ensure fromIndex is within valid bounds
+    fromIndex = clamp(fromIndex, 0, array.count() - 1)
+    for i = fromIndex to 0 step -1
+        if isEqual(array[i], value) then
+            return i
+        end if
+    end for
+    return -1
+end function
+
 ' * Converts a string to lower case.
 ' * @since 0.0.21
 ' * @category String
@@ -2208,6 +2273,22 @@ function now() as object
     }
 end function
 
+' * The opposite of rodash.pick; this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
+' * @since 0.0.23
+' * @category Object
+' * @param {Object} object - The source object.
+' * @param {Array} paths - The property paths to omit.
+' * @returns {Dynamic} - Returns the new object.
+function omit(object as Object, paths = [] as Object) as Dynamic
+    result = {}
+    for each key in object.keys()
+        if indexOf(paths, key) = -1 then
+            result[key] = object[key]
+        end if
+    end for
+    return result
+end function
+
 ' * This method is like `sortBy` except that it allows specifying the sort
 ' * orders of the iteratees to sort by. If `orders` is unspecified, all values
 ' * are sorted in ascending order. Otherwise, specify an order of "desc" for
@@ -2271,6 +2352,23 @@ function paddString(value as Dynamic, padLength = 2 as Integer, paddingCharacter
     return padString(value, padLength, paddingCharacter)
 end function
 
+' * Creates an object composed of the picked object properties.
+' * @since 0.0.23
+' * @category Object
+' * @param {Object} object - The object to pick from.
+' * @param {Array} paths - The property paths to pick.
+' * @returns {Dynamic} - Returns the picked value.
+function pick(object as Object, paths = [] as Object) as Dynamic
+    picked = {}
+    object = clone(object)
+    for each key in paths
+        if object.doesExist(key) then
+            picked[key] = object[key]
+        end if
+    end for
+    return picked
+end function
+
 ' * Generates a random number between the lower and upper bounds.
 ' * @since 0.0.21
 ' * @category Number
@@ -2331,18 +2429,51 @@ end function
 ' * Computes number rounded up to precision.
 ' * @since 0.0.21
 ' * @category Math
-' * @param {Dynamic} number - The number to round.
+' * @param {Float} num - The number to round.
 ' * @param {Dynamic} precision - The precision to round to.
 ' * @returns {Dynamic} - Returns the rounded number.
-function round(number = 0, precision = 0 as integer)
-    minor = number.toStr().split(".")[1]
-    if isString(minor) then
-        decimalValue = toNumber("0." + minor)
-        if decimalValue &lt; 0.5 then
-            return floor(number, precision)
-        end if
+function round(num as Float, precision = 0 as Integer) as Float
+    if num >= 0 then
+        return floor(num + 0.5 * 10 ^ (-precision), precision)
+    else
+        return ceil(num - 0.5 * 10 ^ (-precision), precision)
     end if
-    return ceil(number, precision)
+end function
+
+' * Gets a random element from collection.
+' * @since 0.0.23
+' * @category Collection
+' * @param {Dynamic} collection - The collection to sample
+' * @returns {Dynamic} - Returns the random element
+function sample(collection = invalid as dynamic)
+    if not isArray(collection) then
+        return invalid
+    end if
+    return collection[random(0, collection.count() - 1)]
+end function
+
+' * Gets n random elements at unique keys from collection up to the size of collection.
+' * @since 0.0.23
+' * @category Collection
+' * @param {Dynamic} collection - The collection to sample
+' * @param {Integer} n - The number of elements to sample
+' * @returns {Dynamic} - Returns the random elements.
+function sampleSize(collection as Object, n as Integer) as Object
+    ' Create a copy of the original array to avoid modifying it
+    copyCollection = clone(collection)
+    ' Create an array to store the sampled elements
+    result = []
+    ' Determine the smaller value between n and the length of the array
+    count = copyCollection.count()
+    if n &lt; count
+        count = n
+    end if
+    while result.count() &lt; count
+        index = random(0, copyCollection.count() - 1)
+        result.push(copyCollection[index])
+        copyCollection.delete(index)
+    end while
+    return result
 end function
 
 ' * Used to set a nested String value in the supplied object
