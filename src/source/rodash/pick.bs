@@ -1,0 +1,17 @@
+namespace rodash
+  ' * Creates an object composed of the picked object properties.
+  ' * @since 0.0.23
+  ' * @category Object
+  ' * @param {Object} object - The object to pick from.
+  ' * @param {Array} paths - The property paths to pick.
+  ' * @returns {Dynamic} - Returns the picked value.
+  function pick(object as Object, paths = [] as Object) as Dynamic
+      picked = {}
+
+      for each key in paths
+          if object.doesExist(key) then picked[key] = object[key]
+      end for
+
+      return picked
+  end function
+end namespace
