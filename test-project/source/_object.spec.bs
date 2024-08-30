@@ -14,6 +14,12 @@ namespace Tests
       m.assertEqual(rodash.invert(itemOne), matchResult)
     end function
 
+    @it("pick")
+    @params({ "a": 1, "b": "2", "c": 3 }, ["a", "c"], { "a": 1, "c": 3 })
+    function _(object as dynamic, paths as dynamic, matchResult as dynamic)
+      m.assertEqual(rodash.pick(object, paths), matchResult)
+    end function
+
   end class
 
 end namespace
