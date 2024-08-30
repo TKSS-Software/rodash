@@ -8,8 +8,13 @@ namespace Tests
 
         @it("round")
         @params(4.006, invalid, 4)
-        ' @params(4.006, 2, 4.01)
+        @params(4.006, 0, 4)
+        @params(4.006, 2, 4.01)
         @params(4060, -2, 4100)
+        @params(100.00002, 4, 100)
+        @params(100.00002, -5, 0)
+        @params(100.00002, -2, 100)
+        @params(0.056789, 4, 0.0568)
         function _(number as dynamic, precision = invalid as dynamic, result = invalid as float)
             if precision = invalid
                 m.assertEqual(rodash.round(number), result)

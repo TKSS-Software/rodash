@@ -19,7 +19,6 @@ namespace rodash
 
     ' Iterate over each key-value pair in the original associative array
     for each key in originalAA.keys()
-        print key, rodash.toString(originalAA[rodash.toString(key)])
         ' Assign the value as the new key and the key as the new value in the inverted array
         invertedAA[rodash.toString(originalAA[rodash.toString(key)])] = key
     end for

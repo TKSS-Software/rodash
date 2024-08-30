@@ -1,0 +1,38 @@
+namespace rodash
+  ' * Creates an object composed of keys generated from the results of running each element of collection thru iteratee. The order of grouped values is determined by the order they occur in collection. The corresponding value of each key is an array of elements responsible for generating the key. The iteratee is invoked with one argument: (value).
+  ' * @since 0.0.23
+  ' * @category Collection
+  ' * @param {Object} collection - The collection to iterate over.
+  ' * @param {Function|String} iteratee - The iteratee to transform keys.
+  ' * @returns {Object} - Returns the composed aggregate object.
+  function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
+    if not rodash.isArray(collection) then return {}
+    collection = rodash.clone(collection)
+
+    acc = {}
+    if rodash.isFunction(iteratee) then
+      for each value in collection
+        key = rodash.toString(iteratee(value))
+        if acc.doesExist(key)
+            acc[key].push(value)
+        else
+            acc[key] = [value]
+        end if
+      end for
+    else if rodash.isString(iteratee) then
+      for each value in collection
+        if rodash.isAA(value) and value.doesExist(iteratee) then
+          key = rodash.toString(value[iteratee])
+          if acc.doesExist(key)
+              acc[key].push(value)
+          else
+              acc[key] = [value]
+          end if
+        end if
+      end for
+    end if
+
+    return acc
+  end function
+end namespace
+

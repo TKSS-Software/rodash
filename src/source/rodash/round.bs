@@ -2,19 +2,14 @@ namespace rodash
   ' * Computes number rounded up to precision.
   ' * @since 0.0.21
   ' * @category Math
-  ' * @param {Dynamic} number - The number to round.
+  ' * @param {Float} num - The number to round.
   ' * @param {Dynamic} precision - The precision to round to.
   ' * @returns {Dynamic} - Returns the rounded number.
-  function round(number = 0, precision = 0 as integer)
-    minor = number.toStr().split(".")[1]
-
-    if rodash.isString(minor) then
-      decimalValue = rodash.toNumber("0." + minor)
-      if decimalValue < 0.5 then
-        return rodash.floor(number, precision)
-      end if
+  function round(num as Float, precision = 0 as Integer) as Float
+    if num >= 0 then
+        return rodash.floor(num + 0.5 * 10 ^ (-precision), precision)
+    else
+        return rodash.ceil(num - 0.5 * 10 ^ (-precision), precision)
     end if
-
-    return rodash.ceil(number, precision)
   end function
 end namespace

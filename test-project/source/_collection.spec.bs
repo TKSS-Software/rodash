@@ -26,11 +26,17 @@ namespace Tests
       m.assertEqual(result, matchResult)
     end function
 
+    @it("groupBy")
+    function _()
+      m.assertEqual(rodash.groupBy([6.1, 4.2, 6.3], rodash.floor), { "4": [4.2], "6": [6.1, 6.3] })
+      m.assertEqual(rodash.groupBy([{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}, {"species": "dog", "name": "Darwin"}], "species"), { "cat": [{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}], "dog": [{"species": "dog", "name": "Darwin"}] })
+    end function
+
     @it("orderBy")
     @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }])
     @params(["user", "age"], ["desc", "desc"], [{ "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])
     @params(["user", "age"], ["desc"], [{ "user": "fred",   "age": 40 }, { "user": "fred",   "age": 48 }, { "user": "barney", "age": 34 }, { "user": "barney", "age": 36 }])
-    function _findTest(iterees = invalid as dynamic, orders = invalid as dynamic, matchResult = invalid as dynamic)
+    function _orderTest(iterees = invalid as dynamic, orders = invalid as dynamic, matchResult = invalid as dynamic)
       users = [
         { "user": "fred",   "age": 48 },
         { "user": "barney", "age": 34 },
@@ -39,6 +45,17 @@ namespace Tests
       ]
       result = rodash.orderBy(users, iterees, orders)
       m.assertEqual(result, matchResult)
+    end function
+
+    @it("sampleSize")
+    @params([1, 2], 2, 2)
+    @params([1, 2, 3], 4, 3)
+    @params([1, 2, 3, 4, 5 , 6 , 7], 5, 5)
+    @params([1, 2, 3, 4, 5 , 6 , 7], 5, 5)
+    @params([1, 2, 3, 4, 5 , 6 , 7, 8, 9, 10], 10, 10)
+    function _(array as Object, n as Integer, matchResult as Object)
+      result = rodash.sampleSize(array, n)
+      m.assertEqual(result.count(), matchResult)
     end function
   end class
 
