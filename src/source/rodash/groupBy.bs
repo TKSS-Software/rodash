@@ -7,6 +7,7 @@ namespace rodash
   ' * @returns {Object} - Returns the composed aggregate object.
   function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
     if not rodash.isArray(collection) then return {}
+    collection = rodash.clone(collection)
 
     acc = {}
     if rodash.isFunction(iteratee) then
