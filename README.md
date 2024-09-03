@@ -20,7 +20,7 @@ ropm install rodash@npm:@tkss/rodash
 ```
 
 ## API Documentation (In Progress)
-[https://tkss-software.github.io/rodash/module-rodash.html](https://tkss-software.github.io/rodash/module-rodash.html)
+[https://tkss-software.github.io/rodash/module-rodash.html](https://tkss-software.github.io/rodash/index.html)
 
 ## Usage Examples
 ### Chunk
