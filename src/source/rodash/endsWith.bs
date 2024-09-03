@@ -1,8 +1,8 @@
 
 namespace rodash
+  ' * Checks if `string` ends with the given target string.
   ' * @since 0.0.21
   ' * @category String
-  ' * Checks if `string` ends with the given target string.
   ' * @param {String} source - The string to search.
   ' * @param {String} target - The string to search for.
   ' * @param {Number} position - The position to search up to.

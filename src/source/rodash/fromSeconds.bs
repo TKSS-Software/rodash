@@ -1,7 +1,7 @@
 namespace rodash
+  ' * Converts a number of seconds to a date object.
   ' * @since 0.0.21
   ' * @category Date
-  ' * Converts a number of seconds to a date object.
   ' * @param {Number} numSeconds - The number of seconds to convert.
   ' * @returns {Object} - The date objects.
   function fromSeconds(numSeconds = 0 as integer) as object
