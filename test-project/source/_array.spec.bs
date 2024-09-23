@@ -217,6 +217,13 @@ namespace Tests
       m.assertEqual(result, matchResult)
     end function
 
+    @it("toPairs")
+    @params({"a": 1, "b": 2}, [["a", 1], ["b", 2]])
+    function _(obj = {} as object, matchResult = invalid as dynamic)
+      result = rodash.toPairs(obj)
+      m.assertEqual(result, matchResult)
+    end function
+
     ' @it("reverse")
     ' @params([1, 2, 3], [3, 2, 1])
     ' function _(array = [] as object, matchResult = invalid as dynamic)
