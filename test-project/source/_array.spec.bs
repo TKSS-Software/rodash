@@ -152,6 +152,13 @@ namespace Tests
       m.assertEqual(result, matchResult)
     end function
 
+    @it("fromPairs")
+    @params([["a", 1], ["b", 2]], {"a": 1, "b": 2})
+    function _firstTest(array = [] as object, matchResult = invalid as dynamic)
+      result = rodash.fromPairs(array)
+      m.assertEqual(result, matchResult)
+    end function
+
     @it("indexOf")
     @params([1, 2, 1, 2], 2, invalid, 1)
     @params([1, 2, 1, 2], 2, 2, 3)
