@@ -1,0 +1,18 @@
+namespace Tests
+  @suite("RodashUtilsTests")
+  class UtilsTests extends Rooibos.BaseTestSuite
+
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @describe("Tests the rodash utils methods")
+    '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    @it("times")
+    @params(1, [1, 2], [3])
+    @params(2, [1, 2], [3, 3])
+    function _(n as integer, sumValues as dynamic, matchResult as dynamic)
+      m.assertEqual(rodash.times(n, rodash.sum(sumValues)), matchResult)
+    end function
+
+  end class
+
+end namespace
