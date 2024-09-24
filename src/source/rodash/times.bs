@@ -1,0 +1,18 @@
+namespace rodash
+    ' * Invokes the iteratee n times, returning an array of the results of each invocation. The iteratee is invoked with one argument; (index).
+    ' * @since 0.0.24
+    ' * @category Utils
+    ' * @param {Integer} n - The number of times to invoke iteratee.
+    ' * @param {Function} iteratee - The function invoked per iteration.
+    ' * @return {Array} Returns the array of results.
+    function times(n = 0 as Integer, iteratee = invalid as dynamic) as object
+      returnArray = []
+      if not rodash.isInteger(n) then return returnArray
+
+      for i = 1 to n
+        returnArray.push(iteratee)
+      end for
+
+      return returnArray
+    end function
+  end namespace
