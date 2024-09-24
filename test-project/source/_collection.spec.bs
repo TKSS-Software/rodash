@@ -32,6 +32,26 @@ namespace Tests
       m.assertEqual(rodash.groupBy([{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}, {"species": "dog", "name": "Darwin"}], "species"), { "cat": [{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}], "dog": [{"species": "dog", "name": "Darwin"}] })
     end function
 
+    @it("keyBy")
+    function _()
+      posts = [
+        { id: "123", title: "First number based key", content: "..." },
+        { id: 123, title: "First number based key, but override", content: "..." },
+        { id: "1abc", title: "First blog post", content: "..." },
+        { id: "2abc", title: "Second blog post", content: "..." },
+        { id: "34abc", title: "The blog post we want", content: "..." }
+      ]
+
+      expected = {
+        "123": { id: 123, title: "First number based key, but override", content: "..." },
+        "1abc": { id: "1abc", title: "First blog post", content: "..." },
+        "2abc": { id: "2abc", title: "Second blog post", content: "..." },
+        "34abc": { id: "34abc", title: "The blog post we want", content: "..." }
+      }
+
+      m.assertEqual(rodash.keyBy(posts, "id"), expected)
+    end function
+
     @it("orderBy")
     @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }])
     @params(["user", "age"], ["desc", "desc"], [{ "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])

@@ -1,0 +1,17 @@
+namespace rodash
+    ' * Creates an array of own enumerable string keyed-value pairs for object which can be consumed by rodash.fromPairs. If object is a map or set, its entries are returned.
+    ' * @since 0.0.24
+    ' * @category Array
+    ' * @param {Object} obj - The object to query.
+    ' * @return {Array} Returns the key-value pairs.
+    function toPairs(obj = {} as object) as object
+      returnArray = []
+      if not rodash.isAA(obj) then return returnArray
+
+      for each key in obj.keys()
+        returnArray.push([key, obj[key]])
+      end for
+
+      return returnArray
+    end function
+  end namespace
