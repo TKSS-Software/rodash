@@ -6,6 +6,13 @@ namespace Tests
     @describe("Tests the rodash object methods")
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    @it("get")
+    @params({ "a": 1, "b": 2, "c": 1 }, "b", 2)
+    @params({ "a": {"d": 3}, "b": 2, "c": 1 }, "a.d", 3)
+    function _(obj as dynamic, path as dynamic, matchResult as dynamic)
+      m.assertEqual(rodash.get(obj, path), matchResult)
+    end function
+
     @it("invert")
     @params({ "a": 1, "b": 2, "c": 1 }, { "1": "c", "2": "b" })
     @params({ "c": 1, "a": 2, "b": 1 }, { "1": "c", "2": "a" })
