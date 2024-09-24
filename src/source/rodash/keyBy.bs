@@ -1,0 +1,21 @@
+namespace rodash
+  ' * Creates an object composed of keys generated from the results of running each element of collection thru iteratee. The corresponding value of each key is the last element responsible for generating the key. The iteratee is invoked with one argument: (value).
+  ' * @since 0.0.24
+  ' * @category Collection
+  ' * @param {Dynamic} collection - The collection to sample
+  ' * @param {String} key - The iteratee to transform keys.
+  ' * @returns {Dynamic} - Returns the composed aggregate object.
+  function keyBy(collection = invalid as dynamic, key = "" as string) as object
+    returnObject = {}
+    if not rodash.isArray(collection) then return returnObject
+
+    for each item in collection
+      if rodash.isAA(item) and item.doesExist(key) then
+        newKey = rodash.toString(item[key])
+        returnObject[newKey] = item
+      end if
+    end for
+
+    return returnObject
+  end function
+end namespace
