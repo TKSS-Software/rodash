@@ -13,6 +13,52 @@ namespace Tests
       m.assertEqual(rodash.get(obj, path), matchResult)
     end function
 
+    @it("getAA")
+    @params({ "a": {"a": "a"}, "b": {"b": "b"}, "c": {"c": "c"} }, "b", {"b":"b"}, {})
+    @params({ "a": {"a": "a"}, "b": 1, "c": {"c": "c"} }, "b", {}, {})
+    @params({ "a": {"a": "a"}, "c": {"c": "c"} }, "b", {}, {})
+    @params({ "a": {"a": "a"}, "b": 1, "c": {"c": "c"} }, "b", {"3":"3"}, {"3":"3"})
+    function _(obj as dynamic, path as dynamic, matchResult as dynamic, fallback as object)
+      m.assertEqual(rodash.getAA(obj, path, fallback), matchResult)
+    end function
+
+    @it("getArray")
+    @params({ "a": ["a"], "b": ["b"], "c": ["c"] }, "b", ["b"], [])
+    @params({ "a": ["a"], "b": "b", "c":["c"] }, "b", [], [])
+    @params({ "a": ["a"], "c": ["c"] }, "b", [], [])
+    @params({ "a": ["a"], "b": "b", "c": ["c"] }, "b", ["3"], ["3"])
+    function _(obj as dynamic, path as dynamic, matchResult as dynamic, fallback as object)
+      m.assertEqual(rodash.getArray(obj, path, fallback), matchResult)
+    end function
+
+    @it("getBoolean")
+    @params({ "a": true, "b": true, "c": true }, "b", true, false)
+    @params({ "a": true, "b": false, "c": true }, "b", false, false)
+    @params({ "a": true, "c": true }, "b", false, false)
+    @params({ "a": true, "c": true }, "b", true, true)
+    @params({ "a": true, "b": "b", "c": true }, "b", false, false)
+    function _(obj as dynamic, path as dynamic, matchResult as dynamic, fallback as object)
+      m.assertEqual(rodash.getBoolean(obj, path, fallback), matchResult)
+    end function
+
+    @it("getNumber")
+    @params({ "a": 1, "b": 2, "c": 3 }, "b", 2, -1)
+    @params({ "a": 1, "c": 3 }, "b", -1, -1)
+    @params({ "a": 1, "b": "2", "c": 3 }, "b", -1, -1)
+    @params({ "a": 1, "c": 3 }, "b", 6, 6)
+    function _(obj as dynamic, path as dynamic, matchResult as dynamic, fallback as object)
+      m.assertEqual(rodash.getNumber(obj, path, fallback), matchResult)
+    end function
+
+    @it("getString")
+    @params({ "a": 1, "b": "2", "c": 1 }, "b", "2", "")
+    @params({ "a": 1, "b": 2, "c": 1 }, "b", "", "")
+    @params({ "a": 1, "c": 1 }, "b", "", "")
+    @params({ "a": 1, "c": 1 }, "b", "AA", "AA")
+    function _(obj as dynamic, path as dynamic, matchResult as dynamic, fallback as string)
+      m.assertEqual(rodash.getString(obj, path, fallback), matchResult)
+    end function
+
     @it("invert")
     @params({ "a": 1, "b": 2, "c": 1 }, { "1": "c", "2": "b" })
     @params({ "c": 1, "a": 2, "b": 1 }, { "1": "c", "2": "a" })
