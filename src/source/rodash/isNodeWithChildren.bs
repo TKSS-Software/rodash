@@ -1,0 +1,13 @@
+namespace rodash
+  ' Checks if the supplied value is a valid roUrlEvent type
+  ' @since 0.0.26
+  ' @category Lang
+  ' @param {Dynamic} value - The variable to be checked
+  ' @param {String} subType - An optional subType parameter to further refine the check
+  ' @return Results of the check
+  function isNodeWithChildren(value as dynamic, subType = "" as string) as boolean
+    if type(value) <> "roSGNode" then return false
+    if subType <> "" then return value.isSubtype(subType) and value.getChildCount() > 0
+    return value.getChildCount() > 0
+  end function
+end namespace

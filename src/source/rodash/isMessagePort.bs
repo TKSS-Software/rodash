@@ -1,0 +1,10 @@
+namespace rodash
+  ' Checks if the supplied value is a roMessagePort type
+  ' @since 0.0.26
+  ' @category Lang
+  ' @param {Dynamic} value The variable to be checked
+  ' @return {Boolean} Results of the check
+  function isMessagePort(value as Dynamic) as Boolean
+    return type(value) = "roMessagePort"
+  end function
+end namespace
