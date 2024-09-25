@@ -1,0 +1,11 @@
+namespace rodash
+  ' Gets the function name from a function object.
+  ' @since 0.0.26
+  ' @category Lang
+  ' @param {Object} call - function
+  ' @return {String} The function string name
+  function getFunctionName(call as object) as string
+    if rodash.isFunction(call) then return call.toStr().tokenize(" ").peek()
+    return ""
+  end function
+end namespace
