@@ -1,7 +1,7 @@
 namespace rodash
-  ' * Converts a string to lower case.
-  ' * @since 0.0.21
-  ' * @category String
+  ' Converts a string to lower case.
+  ' @since 0.0.21
+  ' @category String
   function lowerCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()

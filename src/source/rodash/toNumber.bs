@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Attempts to convert the supplied value into a valid number
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value The variable to be converted
-  ' * @return {Dynamic} Results of the conversion
+  ' Attempts to convert the supplied value into a valid number
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value The variable to be converted
+  ' @return {Dynamic} Results of the conversion
   function toNumber(value as Dynamic) as Dynamic
     if rodash.isNumber(value) then
       return value

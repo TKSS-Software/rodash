@@ -1,11 +1,11 @@
 namespace rodash
-  ' * This method is like rodash.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The array to inspect
-  ' * @param {Dynamic} predicate - The function invoked per iteration
-  ' * @param {Integer} fromIndex - The index to search from
-  ' * @returns {Integer} index - Returns the index of the found element, else -1
+  ' This method is like rodash.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The array to inspect
+  ' @param {Dynamic} predicate - The function invoked per iteration
+  ' @param {Integer} fromIndex - The index to search from
+  ' @returns {Integer} index - Returns the index of the found element, else -1
   function findIndex(array, predicate = invalid as dynamic, fromIndex = 0 as integer) as integer
     for index = fromIndex to array.count() -1
       item = array[index]

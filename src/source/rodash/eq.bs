@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Checks if two values are equivalent.
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value - The value to compare.
-  ' * @param {Dynamic} other - The other value to compare.
-  ' * @returns {Boolean} - Returns `true` if the values are equivalent, else `false`.
+  ' Checks if two values are equivalent.
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value - The value to compare.
+  ' @param {Dynamic} other - The other value to compare.
+  ' @returns {Boolean} - Returns `true` if the values are equivalent, else `false`.
   function eq(value as dynamic, other as dynamic)
     return rodash.isEqual(value, other)
   end function

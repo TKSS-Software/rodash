@@ -1,11 +1,11 @@
 namespace rodash
-  ' * This method is like `sum` except that it accepts `iteratee` which is invoked for each element in array to generate the value to be summed.
-  ' * The iteratee is invoked with one argument: (value).
-  ' * @since 0.0.21
-  ' * @category Math
-  ' * @param {Array} array - The array to iterate over
-  ' * @param {Function} iteratee - The iteratee invoked per element
-  ' * @return {Integer} Returns the sum
+  ' This method is like `sum` except that it accepts `iteratee` which is invoked for each element in array to generate the value to be summed.
+  ' The iteratee is invoked with one argument: (value).
+  ' @since 0.0.21
+  ' @category Math
+  ' @param {Array} array - The array to iterate over
+  ' @param {Function} iteratee - The iteratee invoked per element
+  ' @return {Integer} Returns the sum
   function sumBy(array = [] as object, iteratee = invalid) as dynamic
     if rodash.isEmpty(array) then return invalid
 

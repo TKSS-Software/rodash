@@ -1,9 +1,9 @@
 namespace rodash
-  ' * An alias to the head function.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The array to query
-  ' * @return {Dynamic} Returns the first element of array
+  ' An alias to the head function.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The array to query
+  ' @return {Dynamic} Returns the first element of array
   function first(array = [])
     return rodash.head(array)
   end function

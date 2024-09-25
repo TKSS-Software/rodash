@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Gets n random elements at unique keys from collection up to the size of collection.
-  ' * @since 0.0.23
-  ' * @category Collection
-  ' * @param {Dynamic} collection - The collection to sample
-  ' * @param {Integer} n - The number of elements to sample
-  ' * @returns {Dynamic} - Returns the random elements.
+  ' Gets n random elements at unique keys from collection up to the size of collection.
+  ' @since 0.0.23
+  ' @category Collection
+  ' @param {Dynamic} collection - The collection to sample
+  ' @param {Integer} n - The number of elements to sample
+  ' @returns {Dynamic} - Returns the random elements.
   function sampleSize(collection as Object, n as Integer) as Object
     ' Create a copy of the original array to avoid modifying it
     copyCollection = rodash.clone(collection)

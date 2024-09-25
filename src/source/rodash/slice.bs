@@ -1,11 +1,11 @@
 namespace rodash
-  ' * Creates a slice of array from start up to, but not including, end.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The array to slice
-  ' * @param {Integer} startPos - The start position
-  ' * @param {Integer} endPos - The end position
-  ' * @return {Dynamic} Returns the slice of array
+  ' Creates a slice of array from start up to, but not including, end.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The array to slice
+  ' @param {Integer} startPos - The start position
+  ' @param {Integer} endPos - The end position
+  ' @return {Dynamic} Returns the slice of array
   function slice(array = [] as object, startPos = 0, endPos = invalid)
     if NOT rodash.isArray(array) then return invalid
     if rodash.isNotInvalid(endPos) then endPos = endPos - 1

@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Creates an array of elements, sorted in ascending order by the results of running each element in a collection thru each iteratee. This method performs a stable sort, that is, it preserves the original sort order of equal elements. The iteratees are invoked with one argument: (value).
-  ' * @since 0.0.21
-  ' * @category Collection
-  ' * @param {Dynamic} collection - The collection to sort
-  ' * @param {Dynamic} iteratee - The iteratees to sort by
-  ' * @return {Array} Returns the new sorted array
+  ' Creates an array of elements, sorted in ascending order by the results of running each element in a collection thru each iteratee. This method performs a stable sort, that is, it preserves the original sort order of equal elements. The iteratees are invoked with one argument: (value).
+  ' @since 0.0.21
+  ' @category Collection
+  ' @param {Dynamic} collection - The collection to sort
+  ' @param {Dynamic} iteratee - The iteratees to sort by
+  ' @return {Array} Returns the new sorted array
   function sortBy(collection = invalid as dynamic, iteratee = invalid as dynamic)
     if rodash.isInvalid(collection) OR NOT rodash.isArray(collection) then return collection
     returnCollection = rodash.clone(collection)

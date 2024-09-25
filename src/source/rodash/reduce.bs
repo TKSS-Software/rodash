@@ -1,11 +1,11 @@
 namespace rodash
-  ' * Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
-  ' * @since 0.0.21
-  ' * @category Collection
-  ' * @param {Dynamic} collection - The collection to iterate over
-  ' * @param {Dynamic} iteratee - The function invoked per iteration
-  ' * @param {Integer} accumulator - The initial value
-  ' * @return {Array} Returns the accumulated value
+  ' Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
+  ' @since 0.0.21
+  ' @category Collection
+  ' @param {Dynamic} collection - The collection to iterate over
+  ' @param {Dynamic} iteratee - The function invoked per iteration
+  ' @param {Integer} accumulator - The initial value
+  ' @return {Array} Returns the accumulated value
   function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, accumulator = invalid as dynamic)
     result = accumulator
 

@@ -1,5 +1,6 @@
 import "clone.bs"
 import "eq.bs"
+import "getFunctionName.bs"
 import "gt.bs"
 import "gte.bs"
 import "isAA.bs"

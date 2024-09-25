@@ -1,7 +1,7 @@
 namespace rodash
-  ' * Checks if `value` is a finite primitive number.
-  ' * @since 0.0.21
-  ' * @category Lang
+  ' Checks if `value` is a finite primitive number.
+  ' @since 0.0.21
+  ' @category Lang
   function isFinite(value as dynamic) as boolean
     if NOT rodash.isNumber(value) then return false
     constants = rodash.internal.getConstants()

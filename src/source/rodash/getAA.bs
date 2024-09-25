@@ -1,11 +1,11 @@
 namespace rodash
-  ' * Gets the AA value at path of object. Calls rodash.get with the isAA validator function.
-  ' * @since 0.0.25
-  ' * @category Object
-  ' * @param {Object} aa - Object to drill down into.
-  ' * @param {String} keyPath - A dot notation based string to the expected value.
-  ' * @param {Assocarray} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
-  ' * @return {Assocarray} The result of the drill down process
+  ' Gets the AA value at path of object. Calls rodash.get with the isAA validator function.
+  ' @since 0.0.25
+  ' @category Object
+  ' @param {Object} aa - Object to drill down into.
+  ' @param {String} keyPath - A dot notation based string to the expected value.
+  ' @param {Assocarray} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
+  ' @return {Assocarray} The result of the drill down process
   function getAA(aa as object, keyPath as string, fallback = {} as object) as object
     return rodash.get(aa, keyPath, fallback, rodash.isAA)
   end function

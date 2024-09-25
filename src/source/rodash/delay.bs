@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Invokes sub after wait milliseconds. Any additional arguments are provided to subwhen it's invoked.
-  ' * @since 0.0.22
-  ' * @category Function
-  ' * @param {Sub} callback - The sub to be called after a set delay
-  ' * @param {Float} [wait] - The number of milliseconds to delay invocation
-  ' * @param {Dynamic} context - a single item of data to be passed into the callback when invoked
+  ' Invokes sub after wait milliseconds. Any additional arguments are provided to subwhen it's invoked.
+  ' @since 0.0.22
+  ' @category Function
+  ' @param {Sub} callback - The sub to be called after a set delay
+  ' @param {Float} [wait] - The number of milliseconds to delay invocation
+  ' @param {Dynamic} context - a single item of data to be passed into the callback when invoked
   sub delay(callback as function, wait = 0 as float, context = invalid as dynamic)
     duration = wait = 0 ? 0.0001 : wait / 1000
     timer = createObject("RoSGNode", "Timer")

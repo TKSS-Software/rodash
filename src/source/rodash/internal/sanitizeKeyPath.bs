@@ -1,6 +1,6 @@
 
 namespace rodash.internal
-  ' * @ignore
+  ' @ignore
   function sanitizeKeyPath(value = "" as String)
     regex = createObject("roRegex", "\[(.*?)\]", "i")
     matches = regex.matchAll(value)

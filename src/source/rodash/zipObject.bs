@@ -1,10 +1,10 @@
 namespace rodash
-  ' * This method is like rodash.fromPairs except that it accepts two arrays, one of property identifiers and one of corresponding values.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The property identifiers
-  ' * @param {Array} values - The property identifiers
-  ' * @return {Object} Returns the new object
+  ' This method is like rodash.fromPairs except that it accepts two arrays, one of property identifiers and one of corresponding values.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The property identifiers
+  ' @param {Array} values - The property identifiers
+  ' @return {Object} Returns the new object
   function zipObject(props = [] as object, values = [] as object) as object
     returnObject = {}
 

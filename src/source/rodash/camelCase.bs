@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Converts a string to camel case.
-  ' * @since 0.0.21
-  ' * @category String
-  ' * @param {String} value - The string to convert.
-  ' * @returns {String} - The camel case string.
+  ' Converts a string to camel case.
+  ' @since 0.0.21
+  ' @category String
+  ' @param {String} value - The string to convert.
+  ' @returns {String} - The camel case string.
   function camelCase(value = "" as string)
     regex = CreateObject("roRegex", "[^a-zA-Z0-9\s]", "")
     value = regex.ReplaceAll(value, "")

@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Alias to isArray function
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value The variable to be checked
-  ' * @return {Boolean} Results of the check
+  ' Alias to isArray function
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value The variable to be checked
+  ' @return {Boolean} Results of the check
   function isMap(value as dynamic) as boolean
     return rodash.isArray(value)
   end function

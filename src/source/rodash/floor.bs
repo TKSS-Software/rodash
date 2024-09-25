@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Computes number rounded down to precision
-  ' * @since 0.0.21
-  ' * @category Math
-  ' * @param {Integer} number - The number to round down
-  ' * @param {Integer} precision - The precision to round down to
-  ' * @return {Integer} Returns the rounded down number
+  ' Computes number rounded down to precision
+  ' @since 0.0.21
+  ' @category Math
+  ' @param {Integer} number - The number to round down
+  ' @param {Integer} precision - The precision to round down to
+  ' @return {Integer} Returns the rounded down number
   function floor(number = 0, precision = 0 as dynamic) as dynamic
     return abs(int(number * 10^precision) ) / 10^precision
   end function

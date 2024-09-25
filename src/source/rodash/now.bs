@@ -1,8 +1,8 @@
 namespace rodash
-  ' * Gets the number of milliseconds that have elapsed since the Unix epoch (1 January 1970 00:00:00 UTC).
-  ' * @since 0.0.21
-  ' * @category Date
-  ' * @returns {Object} - The number of milliseconds that have elapsed since the Unix epoch.
+  ' Gets the number of milliseconds that have elapsed since the Unix epoch (1 January 1970 00:00:00 UTC).
+  ' @since 0.0.21
+  ' @category Date
+  ' @returns {Object} - The number of milliseconds that have elapsed since the Unix epoch.
   function now() as object
     dateObj = rodash.internal.getDateObject()
     return {

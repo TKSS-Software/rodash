@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
-  ' * @since 0.0.21
-  ' * @category Collection
-  ' * @param {Dynamic} collection - The collection to iterate over
-  ' * @param {Dynamic} iteratee - The function invoked per iteration
-  ' * @return {Array} Returns the new mapped array
+  ' Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
+  ' @since 0.0.21
+  ' @category Collection
+  ' @param {Dynamic} collection - The collection to iterate over
+  ' @param {Dynamic} iteratee - The function invoked per iteration
+  ' @return {Array} Returns the new mapped array
   function map(collection = {} as dynamic, iteratee = invalid as dynamic)
     if NOT rodash.isArray(collection) then return []
 

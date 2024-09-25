@@ -1,8 +1,8 @@
 namespace rodash
-  ' * Returns the current time in seconds.
-  ' * @since 0.0.21
-  ' * @category Date
-  ' * @returns {Object} value - Returns a object containing the date/time in seconds for both UTC and Local time
+  ' Returns the current time in seconds.
+  ' @since 0.0.21
+  ' @category Date
+  ' @returns {Object} value - Returns a object containing the date/time in seconds for both UTC and Local time
   function asSeconds() as object
     dateObj = rodash.internal.getDateObject()
 

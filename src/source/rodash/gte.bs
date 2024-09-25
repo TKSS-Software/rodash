@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Checks if value is greater than or equal to other.
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value - The value to compare.
-  ' * @param {Dynamic} other - The other value to compare.
-  ' * @returns {Boolean} - Returns `true` if value is greater than or equal to other, else `false`.
+  ' Checks if value is greater than or equal to other.
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value - The value to compare.
+  ' @param {Dynamic} other - The other value to compare.
+  ' @returns {Boolean} - Returns `true` if value is greater than or equal to other, else `false`.
   function gte(value as dynamic, other as dynamic)
     return value >= other
   end function

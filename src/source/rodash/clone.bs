@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Creates a shallow clone of value.
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value - The value to be cloned
-  ' * @returns {Dynamic} clonedValue - The cloned value
+  ' Creates a shallow clone of value.
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value - The value to be cloned
+  ' @returns {Dynamic} clonedValue - The cloned value
   function clone(value = invalid as dynamic) as dynamic
     if rodash.isInvalid(value) return invalid
 

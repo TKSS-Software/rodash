@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Creates a slice of array with n elements dropped from the end.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The array to query
-  ' * @param {Integer} n - The number of elements to drop
-  ' * @returns {Array} array - Returns the slice of array
+  ' Creates a slice of array with n elements dropped from the end.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The array to query
+  ' @param {Integer} n - The number of elements to drop
+  ' @returns {Array} array - Returns the slice of array
   function dropRight(array = {} as object, n = 1 as integer)
     array = rodash.clone(array)
     array.reverse()
