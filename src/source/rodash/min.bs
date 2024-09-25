@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Computes the minimum value of array. If array is empty or falsey, invalid is returned.
-  ' * @since 0.0.21
-  ' * @category Math
-  ' * @param {Array} array - The array to iterate over
-  ' * @return {Dynamic} Returns the minumum value
+  ' Computes the minimum value of array. If array is empty or falsey, invalid is returned.
+  ' @since 0.0.21
+  ' @category Math
+  ' @param {Array} array - The array to iterate over
+  ' @return {Dynamic} Returns the minumum value
   function min(array = [] as object) as dynamic
     return rodash.minBy(array)
   end function

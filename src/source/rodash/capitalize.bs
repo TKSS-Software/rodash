@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Capitalizes the first letter of a string.
-  ' * @since 0.0.21
-  ' * @category String
-  ' * @param {String} value - The string to capitalize.
-  ' * @returns {String} - The capitalized string.
+  ' Capitalizes the first letter of a string.
+  ' @since 0.0.21
+  ' @category String
+  ' @param {String} value - The string to capitalize.
+  ' @returns {String} - The capitalized string.
   function capitalize(value = "" as string)
     value = value.trim()
     valueArray = value.split("")

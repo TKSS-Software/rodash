@@ -1,6 +1,6 @@
 
 namespace rodash.internal
-  ' * @ignore
+  ' @ignore
   function getDateObject() as object
     dateObj = CreateObject("roDateTime")
 

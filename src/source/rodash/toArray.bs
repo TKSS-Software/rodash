@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Attempts to convert the supplied value to a array.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @todo Add more support for other types.
-  ' * @param {Dynamic} value The value to convert.
-  ' * @return {Object} Results of the conversion.
+  ' Attempts to convert the supplied value to a array.
+  ' @since 0.0.21
+  ' @category Array
+  ' @todo Add more support for other types.
+  ' @param {Dynamic} value The value to convert.
+  ' @return {Object} Results of the conversion.
   function toArray(aa as Object) as Object
     array = []
     for each key in aa

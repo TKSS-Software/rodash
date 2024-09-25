@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Creates a new array concatenating array with any additional arrays and/or values.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The array to concatenate
-  ' * @param {Array} values - The values to concatenate
-  ' * @returns {Array} returnArray - Returns the new concatenated array
+  ' Creates a new array concatenating array with any additional arrays and/or values.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The array to concatenate
+  ' @param {Array} values - The values to concatenate
+  ' @returns {Array} returnArray - Returns the new concatenated array
   function concat(array = [] as object, values = [] as object) as object
     returnArray = []
     returnArray.append(array)

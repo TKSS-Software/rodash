@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Alias to isDate function
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value The variable to be checked
-  ' * @return {Boolean} Results of the check
+  ' Alias to isDate function
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value The variable to be checked
+  ' @return {Boolean} Results of the check
   function isDate(value as Dynamic) as Boolean
     return rodash.isDateTime(value)
   end function

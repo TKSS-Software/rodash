@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Attempts to convert the supplied value to a string.
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value The value to convert.
-  ' * @return {String} Results of the conversion.
+  ' Attempts to convert the supplied value to a string.
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value The value to convert.
+  ' @return {String} Results of the conversion.
   function toString(value as Dynamic) as String
     if rodash.isString(value) then return value
     if rodash.isNumber(value) then return rodash.internal.numberToString(value)

@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Gets all but the last element of array.
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} array - The array to query
-  ' * @return {Array} Returns the slice of array
+  ' Gets all but the last element of array.
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} array - The array to query
+  ' @return {Array} Returns the slice of array
   function initial(array = [] as object)
     if NOT rodash.isArray(array) then return []
     return rodash.slice(array, 0, array.count() - 1)

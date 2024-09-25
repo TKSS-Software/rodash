@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Escapes a string for insertion into a regular expression.
-  ' * @since 0.0.21
-  ' * @category String
-  ' * @param {String} source - The string to escape.
-  ' * @returns {String} - The escaped string.
+  ' Escapes a string for insertion into a regular expression.
+  ' @since 0.0.21
+  ' @category String
+  ' @param {String} source - The string to escape.
+  ' @returns {String} - The escaped string.
   function escapeRegExp(source = "" as string)
     replaceArray = ["^", "$", "", ".", "*", "+", "?", "(", ")", "[", "]", "{", "}", "|"]
     for each char in replaceArray

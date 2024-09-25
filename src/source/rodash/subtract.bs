@@ -1,10 +1,10 @@
 namespace rodash
-  ' * Subtract two numbers.
-  ' * @since 0.0.21
-  ' * @category Math
-  ' * @param {Integer} minuend - The first number in a subtraction
-  ' * @param {Integer} subtrahend - The second number in a subtraction
-  ' * @return {Integer} Returns the difference.
+  ' Subtract two numbers.
+  ' @since 0.0.21
+  ' @category Math
+  ' @param {Integer} minuend - The first number in a subtraction
+  ' @param {Integer} subtrahend - The second number in a subtraction
+  ' @return {Integer} Returns the difference.
   function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
     if rodash.isNaN(minuend) OR rodash.isNaN(subtrahend) return 0
 

@@ -1,12 +1,12 @@
 
 namespace rodash
-  ' * Checks if `string` ends with the given target string.
-  ' * @since 0.0.21
-  ' * @category String
-  ' * @param {String} source - The string to search.
-  ' * @param {String} target - The string to search for.
-  ' * @param {Number} position - The position to search up to.
-  ' * @returns {Boolean} - Returns `true` if `string` ends with `target`, else `false`.
+  ' Checks if `string` ends with the given target string.
+  ' @since 0.0.21
+  ' @category String
+  ' @param {String} source - The string to search.
+  ' @param {String} target - The string to search for.
+  ' @param {Number} position - The position to search up to.
+  ' @returns {Boolean} - Returns `true` if `string` ends with `target`, else `false`.
   function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
     if rodash.isInvalid(position) then position = source.len()
 

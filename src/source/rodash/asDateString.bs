@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Returns a formatted version of the current time/date.
-  ' * @since 0.0.21
-  ' * @category Date
-  ' * @param {String} format - The date format
-  ' * @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
+  ' Returns a formatted version of the current time/date.
+  ' @since 0.0.21
+  ' @category Date
+  ' @param {String} format - The date format
+  ' @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
   function asDateString(format = "long-date" as string) as object
     dateObj = rodash.internal.getDateObject()
 

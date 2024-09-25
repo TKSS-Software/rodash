@@ -1,9 +1,9 @@
 namespace rodash
-  ' * Checks if the supplied value is a valid Integer type
-  ' * @since 0.0.21
-  ' * @category Lang
-  ' * @param {Dynamic} value The variable to be checked
-  ' * @return {Boolean} Results of the check
+  ' Checks if the supplied value is a valid Integer type
+  ' @since 0.0.21
+  ' @category Lang
+  ' @param {Dynamic} value The variable to be checked
+  ' @return {Boolean} Results of the check
   function isInteger(value as Dynamic) as boolean
     valueType = type(value)
     return (valueType = "Integer") OR (valueType = "roInt") OR (valueType = "roInteger") OR (valueType = "LongInteger")

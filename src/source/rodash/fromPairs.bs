@@ -1,9 +1,9 @@
 namespace rodash
-    ' * The inverse of rodash.toPairs; this method returns an object composed from key-value pairs.
-    ' * @since 0.0.24
-    ' * @category Array
-    ' * @param {Array} pairs - And array of arrays to be converted to an object
-    ' * @return {Object} Returns the new object
+    ' The inverse of rodash.toPairs; this method returns an object composed from key-value pairs.
+    ' @since 0.0.24
+    ' @category Array
+    ' @param {Array} pairs - And array of arrays to be converted to an object
+    ' @return {Object} Returns the new object
     function fromPairs(pairs = [] as object) as object
       returnObject = {}
       if not rodash.isArray(pairs) then return returnObject

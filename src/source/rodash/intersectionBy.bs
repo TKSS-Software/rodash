@@ -1,11 +1,11 @@
 namespace rodash
-  ' * This method is like rodash.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
-  ' * @since 0.0.21
-  ' * @category Array
-  ' * @param {Array} mainArray - The main array to inspect
-  ' * @param {Array} inspect - The array to find matches
-  ' * @param {Dynamic} iteratee - The iteratee invoked per element
-  ' * @return {Array} Returns the new array of intersecting values
+  ' This method is like rodash.intersection except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+  ' @since 0.0.21
+  ' @category Array
+  ' @param {Array} mainArray - The main array to inspect
+  ' @param {Array} inspect - The array to find matches
+  ' @param {Dynamic} iteratee - The iteratee invoked per element
+  ' @return {Array} Returns the new array of intersecting values
   function intersectionBy(mainArray = [] as object, inspectArray = [] as object, iteratee = invalid) as object
     intersectArray = []
 

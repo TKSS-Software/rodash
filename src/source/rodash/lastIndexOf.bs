@@ -1,11 +1,11 @@
 namespace rodash
-  ' * This method is like rodash.indexOf except that it iterates over elements of array from right to left.
-  ' * @since 0.0.23
-  ' * @category Array
-  ' * @param {Array} array - The array to query
-  ' * @param {Dynamic} value - The value to search for
-  ' * @param {Integer} fromIndex - The index to search from
-  ' * @return {Dynamic} Returns the index of the matched value, else -1
+  ' This method is like rodash.indexOf except that it iterates over elements of array from right to left.
+  ' @since 0.0.23
+  ' @category Array
+  ' @param {Array} array - The array to query
+  ' @param {Dynamic} value - The value to search for
+  ' @param {Integer} fromIndex - The index to search from
+  ' @return {Dynamic} Returns the index of the matched value, else -1
     function lastIndexOf(array = [] as object, value = invalid as dynamic, fromIndex = invalid as dynamic) as dynamic
       if NOT rodash.isArray(array) then return -1
 
