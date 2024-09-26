@@ -29,7 +29,7 @@ namespace rodash
       for each item in mainArray
         findKey = item[iteratee]
         if rodash.isNotInvalid(findKey) then
-          matchValue = {}
+          matchValue = CreateObject("roAssociativeArray")
           matchValue[iteratee] = findKey
           if NOT rodash.isEqual(rodash.findIndex(inspectArray, matchValue), - 1) then intersectArray.push(item)
         end if

@@ -15,7 +15,7 @@ namespace rodash
     if not rodash.isAA(originalAA) then return invalid
 
     ' Initialize an empty associative array to hold the inverted key-value pairs
-    invertedAA = {}
+    invertedAA = CreateObject("roAssociativeArray")
 
     ' Iterate over each key-value pair in the original associative array
     for each key in originalAA.keys()

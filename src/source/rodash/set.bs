@@ -13,7 +13,7 @@ namespace rodash
     keys = rodash.internal.sanitizeKeyPath(keyPath).tokenize(".")
     while keys.count() > 1
       key = keys.shift()
-      if NOT rodash.isAA(level[key]) then level[key] = {}
+      if NOT rodash.isAA(level[key]) then level[key] = CreateObject("roAssociativeArray")
       level = level[key]
     end while
 

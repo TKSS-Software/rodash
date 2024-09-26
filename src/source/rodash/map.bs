@@ -5,7 +5,7 @@ namespace rodash
   ' @param {Dynamic} collection - The collection to iterate over
   ' @param {Dynamic} iteratee - The function invoked per iteration
   ' @return {Array} Returns the new mapped array
-  function map(collection = {} as dynamic, iteratee = invalid as dynamic)
+  function map(collection = CreateObject("roAssociativeArray") as dynamic, iteratee = invalid as dynamic)
     if NOT rodash.isArray(collection) then return CreateObject("roArray", 0, true)
 
     returnArray = CreateObject("roArray", 0, true)

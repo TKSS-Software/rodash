@@ -6,7 +6,7 @@ namespace rodash
   ' @return {Object} Returns the new duplicate free array
   function uniq(array = CreateObject("roArray", 0, true) as object) as object
     returnArray = CreateObject("roArray", 0, true)
-    table = {}
+    table = CreateObject("roAssociativeArray")
     for each item in array
       key = item.toStr()
       if not table.doesExist(key)

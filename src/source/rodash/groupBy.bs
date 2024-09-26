@@ -6,10 +6,10 @@ namespace rodash
   ' @param {Function|String} iteratee - The iteratee to transform keys.
   ' @returns {Object} - Returns the composed aggregate object.
   function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
-    if not rodash.isArray(collection) then return {}
+    if not rodash.isArray(collection) then return CreateObject("roAssociativeArray")
     collection = rodash.clone(collection)
 
-    acc = {}
+    acc = CreateObject("roAssociativeArray")
     if rodash.isFunction(iteratee) then
       for each value in collection
         key = rodash.toString(iteratee(value))

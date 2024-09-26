@@ -5,7 +5,7 @@ namespace rodash
   ' @param {Array} array - The array to query
   ' @param {Integer} n - The number of elements to drop
   ' @returns {Array} array - Returns the slice of array
-  function dropRight(array = {} as object, n = 1 as integer)
+  function dropRight(array = CreateObject("roAssociativeArray") as object, n = 1 as integer)
     array = rodash.clone(array)
     array.reverse()
     array = rodash.drop(array, n)
