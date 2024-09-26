@@ -1,22 +1,23 @@
 namespace rodash
   ' Attempts to convert the supplied value to a array.
   ' @since 0.0.21
-  ' @category Array
+  ' @category Lang
   ' @todo Add more support for other types.
   ' @param {Dynamic} value The value to convert.
   ' @return {Object} Results of the conversion.
-  function toArray(aa as Object) as Object
-    array = []
-    for each key in aa
-      value = aa[key]
-      index = rodash.get(value, "index")
-      if rodash.isNumber(index) then
-        array.setEntry(index, value)
-      else
-        array.push(value)
-      end if
-    end for
-
-    return array
+  function toArray(input as dynamic) as Object
+    arr = CreateObject("roArray", 0, true)
+    if type(input) = "roAssociativeArray"
+        ' Get values from associative array
+        for each key in input.keys()
+            arr.push(input[key])
+        end for
+    elseif type(input) = "roString"
+        arr = input.split("")
+    else
+        ' For anything else (numbers, invalid), return an empty array
+        arr = CreateObject("roArray", 0, true)
+    end if
+    return arr
   end function
 end namespace

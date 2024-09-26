@@ -5,7 +5,7 @@ namespace rodash
   ' @param {Dynamic} obj - The object to iterate over
   ' @param {Dynamic} iteratee - The function invoked per iteration
   ' @return {Object} Returns object
-  function forIn(obj = {} as object, iteratee = invalid as dynamic)
+  function forIn(obj = CreateObject("roAssociativeArray") as object, iteratee = invalid as dynamic)
     return rodash.internal.baseForEach(obj, iteratee, "left", "omit")
   end function
 end namespace

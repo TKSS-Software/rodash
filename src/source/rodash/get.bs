@@ -8,24 +8,35 @@ namespace rodash
   ' @param {Function} validator - A function used to validate the output value matches what you expected.
   ' @return {Dynamic} The result of the drill down process
   function get(aa as object, keyPath as string, fallback = Invalid as dynamic, validator = rodash.isNotInvalid as function) as dynamic
-    if NOT (rodash.internal.isKeyedValueType(aa) OR rodash.isNonEmptyArray(aa)) OR keyPath = "" then return fallback
-
     nextValue = aa
-    keyPath = rodash.internal.sanitizeKeyPath(keyPath)
-    keys = keyPath.tokenize(".").toArray()
-    startingKeys = rodash.join(keys, " - ")
-    for each key in keys
-      if rodash.internal.isKeyedValueType(nextValue) then
-        nextValue = nextValue[key]
-      else if rodash.isNonEmptyArray(nextValue) then
-        nextValue = nextValue[rodash.toNumber(key)]
-      else
-        return fallback
-      end if
+    lookupSucceeded = true
+    for each key in keyPath.tokenize(".")
+        if rodash.internal.isKeyedValueType(nextValue) then
+            nextValue = nextValue[key]
+        else if type(nextValue) = "roArray" and not nextValue.isEmpty() then
+            index = 0
+            if rodash.isString(key) then
+                if key.instr(".") > -1 then
+                    index = val(key)
+                else
+                    index = val(key, 10)
+                end if
+            else if rodash.isNumber(key) then
+                index = key
+            else if rodash.isBoolean(key) then
+                if key then index = 1
+                index = 0
+            end if
+
+            nextValue = nextValue[index]
+        else
+            lookupSucceeded = false
+            exit for
+        end if
     end for
 
-    if NOT validator(nextValue) then return fallback
+    if lookupSucceeded and validator(nextValue) then return nextValue
 
-    return nextValue
+    return fallback
   end function
 end namespace

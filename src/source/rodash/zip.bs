@@ -4,13 +4,13 @@ namespace rodash
   ' @category Array
   ' @param {Array} arrays - The property identifiers
   ' @return {Object} Returns the new array of grouped elements
-  function zip(arrays = [] as object) as object
-    returnArray = []
+  function zip(arrays = CreateObject("roArray", 0, true) as object) as object
+    returnArray = CreateObject("roArray", 0, true)
 
     for i = 0 to arrays.count() - 1
       array = arrays[i]
       for ii = 0 to array.count() - 1
-        if rodash.isInvalid(returnArray[ii]) then returnArray[ii] = []
+        if rodash.isInvalid(returnArray[ii]) then returnArray[ii] = CreateObject("roArray", 0, true)
         returnArray[ii].push(array[ii])
       end for
     end for

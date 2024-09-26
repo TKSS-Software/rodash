@@ -5,8 +5,8 @@ namespace rodash
   ' @param {Object} object - The object to pick from.
   ' @param {Array} paths - The property paths to pick.
   ' @returns {Dynamic} - Returns the picked value.
-  function pick(object as Object, paths = [] as Object) as Dynamic
-      picked = {}
+  function pick(object as Object, paths = CreateObject("roArray", 0, true) as Object) as Dynamic
+      picked = CreateObject("roAssociativeArray")
       object = rodash.clone(object)
 
       for each key in paths

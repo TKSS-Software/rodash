@@ -7,7 +7,7 @@ namespace rodash
   ' @param {Integer} startPos - The start position
   ' @param {Integer} endPos - The end position
   ' @returns {Array} array - Returns the mutated array
-  function fill(array = [] as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
+  function fill(array = CreateObject("roArray", 0, true) as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
     if rodash.isInvalid(startPos) then startPos = 0
     if rodash.isInvalid(endPos) then endPos = array.count()
     endPos = endPos - 1

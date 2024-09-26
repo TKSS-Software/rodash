@@ -6,7 +6,7 @@ namespace rodash
   ' @param {String} key - The iteratee to transform keys.
   ' @returns {Dynamic} - Returns the composed aggregate object.
   function keyBy(collection = invalid as dynamic, key = "" as string) as object
-    returnObject = {}
+    returnObject = CreateObject("roAssociativeArray")
     if not rodash.isArray(collection) then return returnObject
 
     for each item in collection

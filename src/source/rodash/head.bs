@@ -4,7 +4,7 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to query
   ' @return {Dynamic} Returns the first element of array
-  function head(array = [] as object) as dynamic
+  function head(array = CreateObject("roArray", 0, true) as object) as dynamic
     return array[0]
   end function
 end namespace

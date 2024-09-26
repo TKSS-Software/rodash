@@ -5,7 +5,7 @@ namespace rodash
   ' @category Object
   ' @param {Dynamic} obj - The object to iterate over
   ' @return {Object} Returns object
-  function functions(obj = {} as object)
+  function functions(obj = CreateObject("roAssociativeArray") as object)
     ' return rodash.base.forEach.baseForEach(obj, invalid, "left", "only")
     return []
   end function

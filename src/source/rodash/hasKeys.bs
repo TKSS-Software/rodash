@@ -7,14 +7,12 @@ namespace rodash
   function hasKeys(aaValue as dynamic, keys as dynamic) as boolean
     if NOT rodash.internal.isKeyedValueType(aaValue) OR aaValue.isEmpty() OR NOT rodash.isArray(keys) OR keys.isEmpty() then return false
 
-    hasKeys = true
     for each key in keys
       if NOT aaValue.doesExist(key) then
-        hasKeys = false
-        exit for
+        return false
       end if
     end for
 
-    return hasKeys
+    return true
   end function
 end namespace

@@ -5,8 +5,8 @@ namespace rodash
   ' @param {Array} array - The property identifiers
   ' @param {Array} values - The property identifiers
   ' @return {Object} Returns the new object
-  function zipObject(props = [] as object, values = [] as object) as object
-    returnObject = {}
+  function zipObject(props = CreateObject("roArray", 0, true) as object, values = CreateObject("roArray", 0, true) as object) as object
+    returnObject = CreateObject("roAssociativeArray")
 
     for i = 0 to props.count() - 1
       returnObject[props[i]] = values[i]

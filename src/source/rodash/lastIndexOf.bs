@@ -6,7 +6,7 @@ namespace rodash
   ' @param {Dynamic} value - The value to search for
   ' @param {Integer} fromIndex - The index to search from
   ' @return {Dynamic} Returns the index of the matched value, else -1
-    function lastIndexOf(array = [] as object, value = invalid as dynamic, fromIndex = invalid as dynamic) as dynamic
+    function lastIndexOf(array = CreateObject("roArray", 0, true) as object, value = invalid as dynamic, fromIndex = invalid as dynamic) as dynamic
       if NOT rodash.isArray(array) then return -1
 
       if rodash.isInvalid(fromIndex) then

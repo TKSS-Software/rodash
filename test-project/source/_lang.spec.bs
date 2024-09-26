@@ -10,8 +10,6 @@ namespace Tests
     @describe("Tests the rodash lang methods")
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    
-  
     @it("clone")
     @params(["a", "b", "c", "d"])
     @params([1, 2, 3])
@@ -94,6 +92,7 @@ namespace Tests
     @params({a: 1}, false)
     @params({}, true)
     @params(invalid, true)
+    @params(1, true)
     function _(value = invalid as dynamic, matchResult = false as boolean)
       m.assertEqual(rodash.isEmpty(value), matchResult)
     end function
@@ -190,6 +189,16 @@ namespace Tests
     @params(uninitializedVar, false) 'bs:disable-line 1001
     function isNotInvalid(value = invalid as dynamic, matchResult = invalid as dynamic)
       m.assertEqual(rodash.isNotInvalid(value), matchResult)
+    end function
+
+    @it("toArray")
+    @params({ "a": 1, "b": 2 }, [1, 2])
+    @params("abc", ["a", "b", "c"])
+    @params("hello world", ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
+    @params(1, [])
+    @params(invalid, [])
+    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+      m.assertEqual(rodash.toArray(value), matchResult)
     end function
 
     @it("toString")

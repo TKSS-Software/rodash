@@ -4,7 +4,7 @@ namespace rodash
   ' @category Math
   ' @param {Array} array - The array to iterate over
   ' @return {Dynamic} Returns the maximum value
-  function max(array = [] as object) as dynamic
+  function max(array = CreateObject("roArray", 0, true) as object) as dynamic
     return rodash.maxBy(array)
   end function
 end namespace

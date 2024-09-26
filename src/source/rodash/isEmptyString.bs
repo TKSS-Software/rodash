@@ -5,7 +5,7 @@ namespace rodash
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
   function isEmptyString(value as Dynamic) as Boolean
-    return rodash.isString(value) AND value = ""
+    return rodash.isString(value) AND value.isEmpty()
   end function
 end namespace
 

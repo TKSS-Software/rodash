@@ -5,9 +5,9 @@ namespace rodash
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
   function isNumber(obj as Dynamic) as Boolean
-    if (rodash.isInteger(obj)) then return true
-    if (rodash.isFloat(obj)) then return true
-    if (rodash.isDouble(obj)) then return true
+    if rodash.isInteger(obj) then return true
+    if rodash.isFloat(obj) then return true
+    if rodash.isDouble(obj) then return true
     return false
   end function
 end namespace

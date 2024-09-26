@@ -6,8 +6,8 @@ namespace rodash
   ' @param {Array} inspect - The array to find matches
   ' @param {Dynamic} iteratee - The iteratee invoked per element
   ' @return {Array} Returns the new array of intersecting values
-  function intersectionBy(mainArray = [] as object, inspectArray = [] as object, iteratee = invalid) as object
-    intersectArray = []
+  function intersectionBy(mainArray = CreateObject("roArray", 0, true) as object, inspectArray = CreateObject("roArray", 0, true) as object, iteratee = invalid) as object
+    intersectArray = CreateObject("roArray", 0, true)
 
     mainArray = rodash.clone(mainArray)
     inspectArray = rodash.clone(inspectArray)
@@ -29,7 +29,7 @@ namespace rodash
       for each item in mainArray
         findKey = item[iteratee]
         if rodash.isNotInvalid(findKey) then
-          matchValue = {}
+          matchValue = CreateObject("roAssociativeArray")
           matchValue[iteratee] = findKey
           if NOT rodash.isEqual(rodash.findIndex(inspectArray, matchValue), - 1) then intersectArray.push(item)
         end if
