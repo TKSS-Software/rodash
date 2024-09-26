@@ -6,7 +6,7 @@ namespace rodash
   ' @param {Array} array - The array to iterate over
   ' @param {Function} iteratee - The iteratee invoked per element
   ' @return {Integer} Returns the sum
-  function sumBy(array = [] as object, iteratee = invalid) as dynamic
+  function sumBy(array = CreateObject("roArray", 0, true) as object, iteratee = invalid) as dynamic
     if rodash.isEmpty(array) then return invalid
 
     sumValue = invalid

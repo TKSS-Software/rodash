@@ -5,8 +5,8 @@ namespace rodash
   ' @param {AssocArray} obj - The object to iterate over.
   ' @param {Array} paths - The property paths to pick.
   ' @returns {Array} value - Returns the picked values.
-  function at(obj = {} as object, paths = [] as object)
-    returnArray = []
+  function at(obj = {} as object, paths = CreateObject("roArray", 0, true) as object)
+    returnArray = CreateObject("roArray", 0, true)
 
     for each path in paths
       result = rodash.get(obj, path)

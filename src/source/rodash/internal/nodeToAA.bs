@@ -8,7 +8,7 @@ namespace rodash.internal
   ' @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
   ' @param {Object} removeFields - List of keys that need to be removed from the node.
   ' @return {Dynamic} Results of the conversion.
-  function nodeToAA(value as Object, removeId = false as Boolean, removeFields = [] as Object) as Object
+  function nodeToAA(value as Object, removeId = false as Boolean, removeFields = CreateObject("roArray", 0, true) as Object) as Object
     if rodash.isNode(value) then
       fields = value.getFields()
       fields.delete("change")

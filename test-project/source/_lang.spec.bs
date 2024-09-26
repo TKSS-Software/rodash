@@ -191,6 +191,16 @@ namespace Tests
       m.assertEqual(rodash.isNotInvalid(value), matchResult)
     end function
 
+    @it("toArray")
+    @params({ "a": 1, "b": 2 }, [1, 2])
+    @params("abc", ["a", "b", "c"])
+    @params("hello world", ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
+    @params(1, [])
+    @params(invalid, [])
+    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+      m.assertEqual(rodash.toArray(value), matchResult)
+    end function
+
     @it("toString")
     @params([1], "[1]")
     @params({a: 2}, "{a: 2}")

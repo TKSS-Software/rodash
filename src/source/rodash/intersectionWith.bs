@@ -6,7 +6,7 @@ namespace rodash
   ' @param {Array} inspect - The array to find matches
   ' @param {Dynamic} comparator - The comparator invoked per element
   ' @return {Array} Returns the new array of intersecting values
-  function intersectionWith(mainArray = [] as object, inspectArray = [] as object, comparator = invalid) as object
+  function intersectionWith(mainArray = CreateObject("roArray", 0, true) as object, inspectArray = CreateObject("roArray", 0, true) as object, comparator = invalid) as object
     if NOT rodash.isFunction(comparator) then return []
     return rodash.intersectionBy(mainArray, inspectArray, comparator)
   end function

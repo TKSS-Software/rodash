@@ -4,8 +4,8 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to inspect
   ' @return {Object} Returns the new duplicate free array
-  function uniq(array = [] as object) as object
-    returnArray = []
+  function uniq(array = CreateObject("roArray", 0, true) as object) as object
+    returnArray = CreateObject("roArray", 0, true)
     table = {}
     for each item in array
       key = item.toStr()

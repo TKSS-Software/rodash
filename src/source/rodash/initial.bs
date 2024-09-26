@@ -4,7 +4,7 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to query
   ' @return {Array} Returns the slice of array
-  function initial(array = [] as object)
+  function initial(array = CreateObject("roArray", 0, true) as object)
     if NOT rodash.isArray(array) then return []
     return rodash.slice(array, 0, array.count() - 1)
   end function

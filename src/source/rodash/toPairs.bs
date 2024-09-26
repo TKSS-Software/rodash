@@ -5,7 +5,7 @@ namespace rodash
     ' @param {Object} obj - The object to query.
     ' @return {Array} Returns the key-value pairs.
     function toPairs(obj = {} as object) as object
-      returnArray = []
+      returnArray = CreateObject("roArray", 0, true)
       if not rodash.isAA(obj) then return returnArray
 
       for each key in obj.keys()

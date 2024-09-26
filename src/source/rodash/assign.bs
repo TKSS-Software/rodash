@@ -6,7 +6,7 @@ namespace rodash
   ' @param {Dynamic} baseAA - The destination object
   ' @params {Object} sources - The source objects
   ' @params {Dynamic} Mutaded baseAA
-  function assign(baseAA as Dynamic, sources = [] as Object) as Dynamic
+  function assign(baseAA as Dynamic, sources = CreateObject("roArray", 0, true) as Object) as Dynamic
     if NOT rodash.isAA(baseAA) then return Invalid
 
     for each source in sources

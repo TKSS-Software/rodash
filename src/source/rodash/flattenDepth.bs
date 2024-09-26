@@ -6,7 +6,7 @@ namespace rodash
   ' @param {Integer} depth - The maximum recursion depth
   ' @return {Dynamic} Returns the new flattened array
   function flattenDepth(array = invalid, depth = 1 as integer)
-    returnArray = []
+    returnArray = CreateObject("roArray", 0, true)
 
     if NOT rodash.isArray(array) then return array
 

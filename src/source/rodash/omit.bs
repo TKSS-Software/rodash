@@ -5,7 +5,7 @@ namespace rodash
   ' @param {Object} object - The source object.
   ' @param {Array} paths - The property paths to omit.
   ' @returns {Dynamic} - Returns the new object.
-  function omit(object as Object, paths = [] as Object) as Dynamic
+  function omit(object as Object, paths = CreateObject("roArray", 0, true) as Object) as Dynamic
     result = {}
 
     for each key in object.keys()

@@ -6,8 +6,8 @@ namespace rodash
   ' @param {Array} values - The values to exclude
   ' @param {Dynamic} iteratee - The iteratee invoked per element
   ' @returns {Array} returnArray - Returns the new array of filtered values
-  function differenceWith(array = [] as object, values = [] as object, comparator = invalid) as object
-    returnArray = []
+  function differenceWith(array = CreateObject("roArray", 0, true) as object, values = CreateObject("roArray", 0, true) as object, comparator = invalid) as object
+    returnArray = CreateObject("roArray", 0, true)
 
     if rodash.isFunction(comparator) then
       for i = 0 to array.count() - 1

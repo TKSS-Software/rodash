@@ -6,7 +6,7 @@ namespace rodash
     ' @param {Function} iteratee - The function invoked per iteration.
     ' @return {Array} Returns the array of results.
     function times(n = 0 as Integer, iteratee = invalid as dynamic) as object
-      returnArray = []
+      returnArray = CreateObject("roArray", 0, true)
       if not rodash.isInteger(n) then return returnArray
 
       for i = 1 to n

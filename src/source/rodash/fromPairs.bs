@@ -4,7 +4,7 @@ namespace rodash
     ' @category Array
     ' @param {Array} pairs - And array of arrays to be converted to an object
     ' @return {Object} Returns the new object
-    function fromPairs(pairs = [] as object) as object
+    function fromPairs(pairs = CreateObject("roArray", 0, true) as object) as object
       returnObject = {}
       if not rodash.isArray(pairs) then return returnObject
 

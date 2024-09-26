@@ -10,7 +10,7 @@ namespace rodash
     copyCollection = rodash.clone(collection)
 
     ' Create an array to store the sampled elements
-    result = []
+    result = CreateObject("roArray", 0, true)
 
     ' Determine the smaller value between n and the length of the array
     count = copyCollection.count()

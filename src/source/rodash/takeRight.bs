@@ -5,9 +5,9 @@ namespace rodash
   ' @param {Array} array - The sorted array to query
   ' @param {Integer} n - The number of elements to take
   ' @return {Object} Returns the slice of array
-  function takeRight(array = [] as object, n = invalid as dynamic) as object
+  function takeRight(array = CreateObject("roArray", 0, true) as object, n = invalid as dynamic) as object
     if rodash.isInvalid(n) then n = 1
-    if NOT rodash.isNonEmptyArray(array) OR n = 0 then return []
+    if NOT rodash.isNonEmptyArray(array) OR n = 0 then return CreateObject("roArray", 0, true)
 
     length = array.count()
     startPos = length - n

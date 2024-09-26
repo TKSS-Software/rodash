@@ -4,8 +4,8 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to flatten
   ' @returns {Dynamic} Returns the new flattened array
-  function flatten(array = [])
-    returnArray = []
+  function flatten(array = CreateObject("roArray", 0, true) as object) as object
+    returnArray = CreateObject("roArray", 0, true)
     for each item in array
       if type(item) = "roArray" then
         returnArray.append(item)

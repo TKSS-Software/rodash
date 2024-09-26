@@ -4,7 +4,7 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The sorted array to inspect
   ' @return {Object} Returns the index at which value should be inserted into array
-  function sortedIndex(array = [] as object, value = 0 as integer)
+  function sortedIndex(array = CreateObject("roArray", 0, true) as object, value = 0 as integer)
     for i = 0 to array.count() - 1
       item = array[i]
       nextItem = array[i + 1]
