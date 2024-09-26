@@ -10,8 +10,6 @@ namespace Tests
     @describe("Tests the rodash lang methods")
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    
-  
     @it("clone")
     @params(["a", "b", "c", "d"])
     @params([1, 2, 3])
@@ -94,6 +92,7 @@ namespace Tests
     @params({a: 1}, false)
     @params({}, true)
     @params(invalid, true)
+    @params(1, true)
     function _(value = invalid as dynamic, matchResult = false as boolean)
       m.assertEqual(rodash.isEmpty(value), matchResult)
     end function

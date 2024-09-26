@@ -55,6 +55,7 @@ namespace Tests
     @params({ "a": 1, "b": 2, "c": 1 }, "b", "", "")
     @params({ "a": 1, "c": 1 }, "b", "", "")
     @params({ "a": 1, "c": 1 }, "b", "AA", "AA")
+    @params({ "a": {"b": {"c": "value"}} }, "a.b.c", "value", "")
     function _(obj as dynamic, path as dynamic, matchResult as dynamic, fallback as string)
       m.assertEqual(rodash.getString(obj, path, fallback), matchResult)
     end function

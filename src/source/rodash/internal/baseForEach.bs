@@ -9,7 +9,7 @@ namespace rodash.internal
   ' @param {String} funcValueRule - Filters functions from collection. `allow`, `omit`, `only`.
   ' @return {Array|Object} Returns `collection`
   function baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
-    if rodash.isInvalid(collection) OR rodash.isEmpty(collection) then return invalid
+    if rodash.isInvalid(collection) OR collection.isEmpty() then return invalid
 
     isRight = direction = "right"
     if rodash.isAA(collection) then

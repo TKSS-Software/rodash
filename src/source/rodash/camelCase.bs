@@ -6,8 +6,7 @@ namespace rodash
   ' @returns {String} - The camel case string.
   function camelCase(value = "" as string)
     regex = CreateObject("roRegex", "[^a-zA-Z0-9\s]", "")
-    value = regex.ReplaceAll(value, "")
-    value = value.trim()
+    value = regex.ReplaceAll(value.trim(), "")
     valueArray = value.split(" ")
     responseValue = ""
 
