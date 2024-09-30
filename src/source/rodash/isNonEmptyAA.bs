@@ -4,7 +4,8 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
+  @inline
   function isNonEmptyAA(value as dynamic)
-    return rodash.isAA(value) AND value.keys().count() > 0
+    return (rodash.isAA(value) AND value.keys().count() > 0)
   end function
 end namespace

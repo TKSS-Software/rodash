@@ -5,6 +5,7 @@ namespace rodash
   ' @param {Dynamic} value The variable to be checked
   ' @param {String} subType An optional subType parameter to further refine the check
   ' @return {Boolean} Results of the check
+  @inline
   function isElement(value as Dynamic, subType = "" as String) as Boolean
     return rodash.isNode(value, subtype)
   end function

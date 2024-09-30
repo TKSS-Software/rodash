@@ -6,6 +6,7 @@ namespace rodash
   ' @param {String} keyPath - A dot notation based string to the expected value.
   ' @param {Assocarray} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
   ' @return {Assocarray} The result of the drill down process
+  @inline
   function getAA(aa as object, keyPath as string, fallback = CreateObject("roAssociativeArray") as object) as object
     return rodash.get(aa, keyPath, fallback, rodash.isAA)
   end function

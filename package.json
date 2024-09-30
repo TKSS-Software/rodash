@@ -32,7 +32,7 @@
     "@types/node": "^18.7.16",
     "better-docs": "^2.7.3",
     "braintree-jsdoc-template": "^3.3.0",
-    "brighterscript": "^0.67.5",
+    "brighterscript": "^0.67.7",
     "brighterscript-jsdocs-plugin": "^0.7.3",
     "concat": "^1.0.3",
     "copyfiles": "^2.4.1",

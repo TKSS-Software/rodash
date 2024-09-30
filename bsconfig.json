@@ -4,7 +4,11 @@
 	"files": [
 		"source/**/*"
 	],
+	"plugins": [
+		"./scripts/bsc-plugins/inline"
+	],
 	"emitDefinitions": true,
 	"createPackage": false,
-	"stagingDir": ".tmp"
+	"stagingDir": ".tmp",
+    "require": ["ts-node/register"]
 }

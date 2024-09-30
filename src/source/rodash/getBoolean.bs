@@ -6,6 +6,7 @@ namespace rodash
   ' @param {String} keyPath - A dot notation based string to the expected value.
   ' @param {Boolean} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
   ' @return {Boolean} The result of the drill down process
+  @inline
   function getBoolean(aa as object, keyPath as string, fallback = false as boolean) as boolean
     return rodash.get(aa, keyPath, fallback, rodash.isBoolean)
   end function

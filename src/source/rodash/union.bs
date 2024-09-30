@@ -4,6 +4,7 @@ namespace rodash
   ' @category Array
   ' @param {Array} arrays - The arrays to inspect
   ' @return {Object} Returns the new array of combined values
+  @inline
   function union(arrays = CreateObject("roArray", 0, true) as object) as object
     return rodash.uniq(rodash.flattenDeep(arrays))
   end function
