@@ -2,33 +2,8 @@ namespace rodash
   ' Generates a random number between the lower and upper bounds.
   ' @since 0.0.21
   ' @category Number
-  function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
-    offset = rnd(0)
-
-    if (rodash.isBoolean(upper)) then
-      floating = upper
-      upper = 1
-    end if
-
-    inputValueIsFloat = rodash.isFloat(lower) OR rodash.isFloat(upper)
-    respectFloating = rodash.isBoolean(floating) OR inputValueIsFloat
-    if respectFloating AND rodash.isInvalid(floating) then
-      floating = inputValueIsFloat
-    end if
-
-    roundLower = rnd(lower)
-    roundUpper = rnd(upper)
-
-    roundValue = rodash.add(roundLower, roundUpper)
-    if rodash.gt(roundValue, upper) then roundValue = roundUpper
-    if rodash.lt(roundValue, lower) then roundValue = roundLower
-
-    if rodash.isInvalid(floating) OR (respectFloating AND NOT floating) then
-      roundValue = cint(roundValue)
-    else
-      roundValue = ((roundValue - offset).toStr() + "." + offset.toStr()).toFloat()
-    end if
-
-    return roundValue
+  function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = false as boolean) as dynamic
+    if floating then return lower + rnd(0) * (upper - lower)
+    return lower + int(rnd(0) * (upper - lower + 1))
   end function
 end namespace

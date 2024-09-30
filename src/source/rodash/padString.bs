@@ -17,6 +17,7 @@ namespace rodash
   ' Alias to `rodsah.padString`
   ' @since 0.0.21
   ' @category String
+  @inline
   function paddString(value as Dynamic, padLength = 2 as Integer, paddingCharacter = "0" as Dynamic) as String
     return padString(value, padLength, paddingCharacter)
   end function
