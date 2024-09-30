@@ -6,6 +6,6 @@ namespace rodash
   ' @return {Boolean} Results of the check
   @inline
   function isDateTime(value as Dynamic) as Boolean
-    return (type(value) = "roDateTime")
+    return type(value) = "roDateTime"
   end function
 end namespace

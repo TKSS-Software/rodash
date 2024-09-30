@@ -6,6 +6,6 @@ namespace rodash
   ' @return {Boolean} Results of the check
   @inline
   function isBoolean(value as Dynamic) as Boolean
-    return (type(value) = "Boolean") OR (type(value) = "roBoolean")
+    return type(value) = "Boolean" OR type(value) = "roBoolean"
   end function
 end namespace

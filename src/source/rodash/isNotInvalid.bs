@@ -6,6 +6,6 @@ namespace rodash
   ' @return {Boolean} Results of the check
   @inline
   function isNotInvalid(value as Dynamic) as Boolean
-    return (type(value) <> "<uninitialized>" AND value <> Invalid)
+    return type(value) <> "<uninitialized>" AND value <> Invalid
   end function
 end namespace
