@@ -110,10 +110,10 @@
 ' @returns {Dynamic} value - Returns the total
 function add(augend, addend)
     value = 0
-    if isNumber(augend) then
+    if (isInteger(augend) or isFloat(augend) or isDouble(augend)) then
         value += augend
     end if
-    if isNumber(addend) then
+    if (isInteger(addend) or isFloat(addend) or isDouble(addend)) then
         value += addend
     end if
     return value
@@ -145,21 +145,23 @@ function asSeconds() as object
 end function
 
 ' Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
-' This method mutates object and is loosely based on Object.assign.
+' This method mutates object and is loosely based on lodash Object.assign.
 ' @since 0.0.21
 ' @category Object
 ' @param {Dynamic} baseAA - The destination object
 ' @params {Object} sources - The source objects
 ' @params {Dynamic} Mutaded baseAA
-function assign(baseAA as Dynamic, sources = CreateObject("roArray", 0, true) as Object) as Dynamic
-    if NOT isAA(baseAA) then
+function assign(baseAA as Dynamic, sources = invalid as dynamic) as Dynamic
+    if NOT (type(baseAA) = "roAssociativeArray") then
         return Invalid
     end if
-    for each source in sources
-        if isAA(source) then
-            baseAA.append(source)
-        end if
-    end for
+    if ((isArray(sources) AND NOT sources.isEmpty())) then
+        for each source in sources
+            if ((isAA(source) AND source.keys().count() > 0)) then
+                baseAA.append(source)
+            end if
+        end for
+    end if
     return baseAA
 end function
 
@@ -265,13 +267,13 @@ end function
 ' @param {Integer} upper - The upper bound
 ' @return {Integer} Returns the clamped number
 function clamp(number, lower, upper) as dynamic
-    return max([
+    return (maxBy([
         lower
         min([
             upper
             number
         ])
-    ])
+    ]))
 end function
 
 ' Creates a shallow clone of value.
@@ -280,21 +282,21 @@ end function
 ' @param {Dynamic} value - The value to be cloned
 ' @returns {Dynamic} clonedValue - The cloned value
 function clone(value = invalid as dynamic) as dynamic
-    if isInvalid(value)
+    if (type(value) = "&lt;uninitialized>" OR value = Invalid)
         return invalid
     end if
     clonedValue = invalid
-    if isString(value) then
+    if ((type(value) = "String") OR (type(value) = "roString")) then
         clonedValue = "" + value
-    else if isAA(value) then
+    else if (type(value) = "roAssociativeArray") then
         clonedValue = CreateObject("roAssociativeArray")
         clonedValue.append(value)
-    else if isArray(value) then
+    else if (type(value) = "roArray") then
         clonedValue = CreateObject("roArray", value.count(), true)
         clonedValue.append(value)
-    else if isNumber(value) then
+    else if (isInteger(value) or isFloat(value) or isDouble(value)) then
         clonedValue = 0 + value
-    else if isBoolean(value) then
+    else if (type(value) = "Boolean" OR type(value) = "roBoolean") then
         clonedValue = false OR value
     else if isNode(value) then
         clonedValue = value.clone(true)
@@ -307,26 +309,28 @@ end function
 ' @category Array
 ' @param {Array} array - The array to compact
 ' @returns {Array} returnArray - Returns the new array of filtered values
-function compact(array = CreateObject("roArray", 0, true) as object) as object
+function compact(array as object) as object
     returnArray = CreateObject("roArray", 0, true)
-    for each item in array
-        shallPass = true
-        typeName = type(item)
-        if isInvalid(item) then
-            shallPass = false
-        else if isEmptyString(item) then
-            shallPass = false
-        else if isNumber(item) then
-            if item = 0 then
+    if ((isArray(array) AND NOT array.isEmpty())) then
+        for each item in array
+            shallPass = true
+            typeName = type(item)
+            if (type(item) = "&lt;uninitialized>" OR item = Invalid) then
                 shallPass = false
+            else if (isString(item) AND item.isEmpty()) then
+                shallPass = false
+            else if (isInteger(item) or isFloat(item) or isDouble(item)) then
+                if item = 0 then
+                    shallPass = false
+                end if
+            else if (type(item) = "Boolean" OR type(item) = "roBoolean") then
+                shallPass = item
             end if
-        else if isBoolean(item) then
-            shallPass = item
-        end if
-        if shallPass then
-            returnArray.push(item)
-        end if
-    end for
+            if shallPass then
+                returnArray.push(item)
+            end if
+        end for
+    end if
     return returnArray
 end function
 
@@ -340,7 +344,7 @@ function concat(array = CreateObject("roArray", 0, true) as object, values = Cre
     returnArray = CreateObject("roArray", 0, true)
     returnArray.append(array)
     for each value in values
-        if isArray(value) then
+        if (type(value) = "roArray") then
             returnArray.append(value)
         else
             returnArray.push(value)
@@ -453,7 +457,7 @@ end function
 ' @returns {Array} returnArray - Returns the new array of filtered values
 function differenceBy(array = CreateObject("roArray", 0, true) as object, values = CreateObject("roArray", 0, true) as object, iteratee = invalid) as object
     iterateeIsFunction = isFunction(iteratee)
-    iterateeIsProperty = NOT iterateeIsFunction AND isString(iteratee)
+    iterateeIsProperty = NOT iterateeIsFunction AND ((type(iteratee) = "String") OR (type(iteratee) = "roString"))
     returnArray = CreateObject("roArray", 0, true)
     for each item in array
         convertedItem = item
@@ -494,7 +498,7 @@ function differenceWith(array = CreateObject("roArray", 0, true) as object, valu
         for i = 0 to array.count() - 1
             itemOne = array[0]
             itemTwo = array[1]
-            if isNotInvalid(itemOne) AND isNotInvalid(itemTwo) AND NOT isEqual(itemOne, itemTwo) then
+            if (type(itemOne) &lt;> "&lt;uninitialized>" AND itemOne &lt;> Invalid) AND (type(itemTwo) &lt;> "&lt;uninitialized>" AND itemTwo &lt;> Invalid) AND NOT isEqual(itemOne, itemTwo) then
                 returnArray.push(itemOne)
             end if
         end for
@@ -509,10 +513,10 @@ end function
 ' @param {Dynamic} divisor - The second number in a division
 ' @returns {Integer} value - Returns the quotient
 function divide(dividend = 0 as dynamic, divisor = 0 as dynamic) as dynamic
-    if isNaN(dividend) OR isNaN(divisor)
+    if (NOT isNumber(dividend)) OR (NOT isNumber(divisor))
         return 0
     end if
-    if lte(divisor, 0) then
+    if (divisor &lt;= 0) then
         return dividend
     end if
     return dividend / divisor
@@ -577,15 +581,15 @@ function dropWhile(array = CreateObject("roArray", 0, true) as object, predicate
             if NOT predicate(item) then
                 return slice(array, i)
             end if
-        else if isAA(predicate) then
+        else if (type(predicate) = "roAssociativeArray") then
             if NOT isEqual(item, predicate) then
                 return slice(array, i)
             end if
-        else if isArray(predicate) then
+        else if (type(predicate) = "roArray") then
             if NOT isEqual(item[predicate[0]], predicate[1]) then
                 return slice(array, i)
             end if
-        else if isString(predicate) then
+        else if ((type(predicate) = "String") OR (type(predicate) = "roString")) then
             if NOT item[predicate] then
                 return slice(array, i)
             end if
@@ -602,7 +606,7 @@ end function
 ' @param {Number} position - The position to search up to.
 ' @returns {Boolean} - Returns `true` if `string` ends with `target`, else `false`.
 function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
-    if isInvalid(position) then
+    if (type(position) = "&lt;uninitialized>" OR position = Invalid) then
         position = source.len()
     end if
     return source.endsWith(target, position)
@@ -664,10 +668,10 @@ end function
 ' @param {Integer} endPos - The end position
 ' @returns {Array} array - Returns the mutated array
 function fill(array = CreateObject("roArray", 0, true) as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
-    if isInvalid(startPos) then
+    if (type(startPos) = "&lt;uninitialized>" OR startPos = Invalid) then
         startPos = 0
     end if
-    if isInvalid(endPos) then
+    if (type(endPos) = "&lt;uninitialized>" OR endPos = Invalid) then
         endPos = array.count()
     end if
     endPos = endPos - 1
@@ -685,7 +689,7 @@ end function
 ' @param {Integer} fromIndex - The index to search from
 ' @returns {Dymanic} match - Returns the matched element, else invalid.
 function find(array, predicate = invalid as dynamic, fromIndex = 0 as integer) as dynamic
-    if not isArray(array) then
+    if not (type(array) = "roArray") then
         return invalid
     end if
     foundIndex = findIndex(array, predicate, fromIndex)
@@ -709,15 +713,15 @@ function findIndex(array, predicate = invalid as dynamic, fromIndex = 0 as integ
             if predicate(item) then
                 return index
             end if
-        else if isAA(predicate) then
+        else if (type(predicate) = "roAssociativeArray") then
             if isEqual(item, predicate) then
                 return index
             end if
-        else if isArray(predicate) then
+        else if (type(predicate) = "roArray") then
             if isEqual(item[predicate[0]], predicate[1]) then
                 return index
             end if
-        else if isString(predicate) and item.doesExist(predicate) then
+        else if ((type(predicate) = "String") OR (type(predicate) = "roString")) and item.doesExist(predicate) then
             if item[predicate] then
                 return index
             end if
@@ -794,20 +798,20 @@ end function
 ' @return {Dynamic} Returns the new flattened array
 function flattenDepth(array = invalid, depth = 1 as integer)
     returnArray = CreateObject("roArray", 0, true)
-    if NOT isArray(array) then
+    if NOT (type(array) = "roArray") then
         return array
     end if
     for i = 0 to array.count() - 1
         item = array[i]
         if (depth > 1) then
             item = flattenDepth(item, depth - 1)
-            if isArray(item) then
+            if (type(item) = "roArray") then
                 returnArray.append(item)
             else
                 returnArray.push(item)
             end if
         else
-            if isArray(item) then
+            if (type(item) = "roArray") then
                 returnArray.append(item)
             else
                 returnArray.push(item)
@@ -908,11 +912,11 @@ end function
 ' @return {Object} Returns the new object
 function fromPairs(pairs = CreateObject("roArray", 0, true) as object) as object
     returnObject = CreateObject("roAssociativeArray")
-    if not isArray(pairs) then
+    if not (type(pairs) = "roArray") then
         return returnObject
     end if
     for each pair in pairs
-        if isArray(pair) and pair.count() = 2 then
+        if (type(pair) = "roArray") and pair.count() = 2 then
             returnObject[pair[0]] = pair[1]
         end if
     end for
@@ -965,19 +969,19 @@ function get(aa as object, keyPath as string, fallback = Invalid as dynamic, val
     nextValue = aa
     lookupSucceeded = true
     for each key in keyPath.tokenize(".")
-        if internal_isKeyedValueType(nextValue) then
+        if (getInterface(nextValue, "ifAssociativeArray") &lt;> Invalid) then
             nextValue = nextValue[key]
         else if type(nextValue) = "roArray" and not nextValue.isEmpty() then
             index = 0
-            if isString(key) then
+            if ((type(key) = "String") OR (type(key) = "roString")) then
                 if key.instr(".") > -1 then
                     index = val(key)
                 else
                     index = val(key, 10)
                 end if
-            else if isNumber(key) then
+            else if (isInteger(key) or isFloat(key) or isDouble(key)) then
                 index = key
-            else if isBoolean(key) then
+            else if (type(key) = "Boolean" OR type(key) = "roBoolean") then
                 if key then
                     index = 1
                 end if
@@ -1177,7 +1181,7 @@ end function
 ' @param {Function|String} iteratee - The iteratee to transform keys.
 ' @returns {Object} - Returns the composed aggregate object.
 function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
-    if not isArray(collection) then
+    if not (type(collection) = "roArray") then
         return CreateObject("roAssociativeArray")
     end if
     collection = clone(collection)
@@ -1193,9 +1197,9 @@ function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
                 ]
             end if
         end for
-    else if isString(iteratee) then
+    else if ((type(iteratee) = "String") OR (type(iteratee) = "roString")) then
         for each value in collection
-            if isAA(value) and value.doesExist(iteratee) then
+            if (type(value) = "roAssociativeArray") and value.doesExist(iteratee) then
                 key = toString(value[iteratee])
                 if acc.doesExist(key)
                     acc[key].push(value)
@@ -1236,7 +1240,7 @@ end function
 ' @param {Dynamic} aaValue - AssociativeArray to be checked
 ' @return {Dynamic} keys - Array of key strings
 function hasKeys(aaValue as dynamic, keys as dynamic) as boolean
-    if NOT internal_isKeyedValueType(aaValue) OR aaValue.isEmpty() OR NOT isArray(keys) OR keys.isEmpty() then
+    if NOT (getInterface(aaValue, "ifAssociativeArray") &lt;> Invalid) OR aaValue.isEmpty() OR NOT (type(keys) = "roArray") OR keys.isEmpty() then
         return false
     end if
     for each key in keys
@@ -1264,7 +1268,7 @@ end function
 ' @param {Number} [endPos=startPos] - The end of the range.
 ' @returns {Boolean} - Returns `true` if number is in the range, else `false`.
 function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as dynamic)
-    if (isInvalid(endPos)) then
+    if ((type(endPos) = "&lt;uninitialized>" OR endPos = Invalid)) then
         endPos = startPos
         startPos = 0
     end if
@@ -1274,7 +1278,7 @@ function inRange(number as dynamic, startPos = 0 as dynamic, endPos = invalid as
         startPos = endPosTemp
         endPos = startPosTemp
     end if
-    return gte(number, startPos) AND lt(number, endPos)
+    return gte(number, startPos) AND (number &lt; endPos)
 end function
 
 ' Gets the index at which the first occurrence of value is found in array using SameValueZero for equality comparisons. If fromIndex is negative, it's used as the offset from the end of array.
@@ -1285,10 +1289,10 @@ end function
 ' @param {Integer} fromIndex - The index to search from
 ' @return {Integer} Returns the index of the matched value, else -1
 function indexOf(array = CreateObject("roArray", 0, true) as object, value = invalid, fromIndex = invalid)
-    if NOT isArray(array) then
+    if NOT (type(array) = "roArray") then
         return -1
     end if
-    if isInvalid(fromIndex) then
+    if (type(fromIndex) = "&lt;uninitialized>" OR fromIndex = Invalid) then
         fromIndex = 0
     end if
     for index = fromIndex to array.count() - 1
@@ -1306,7 +1310,7 @@ end function
 ' @param {Array} array - The array to query
 ' @return {Array} Returns the slice of array
 function initial(array = CreateObject("roArray", 0, true) as object)
-    if NOT isArray(array) then
+    if NOT (type(array) = "roArray") then
         return []
     end if
     return slice(array, 0, array.count() - 1)
@@ -1352,11 +1356,11 @@ end function
 ' @param {String} funcValueRule - Filters functions from collection. `allow`, `omit`, `only`.
 ' @return {Array|Object} Returns `collection`
 function internal_baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
-    if isInvalid(collection) OR collection.isEmpty() then
+    if (type(collection) = "&lt;uninitialized>" OR collection = Invalid) OR collection.isEmpty() then
         return invalid
     end if
     isRight = direction = "right"
-    if isAA(collection) then
+    if (type(collection) = "roAssociativeArray") then
         keys = collection.keys()
         if isRight then
             keys.reverse()
@@ -1414,20 +1418,20 @@ end function
 ' @return {Boolean} True if the values can be compared in a if statement
 function internal_canBeCompared(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
     ' If the first argument is true we don't need to check the following conditionals
-    if isString(valueOne) then
-        if isString(valueTwo) then
+    if ((type(valueOne) = "String") OR (type(valueOne) = "roString")) then
+        if ((type(valueTwo) = "String") OR (type(valueTwo) = "roString")) then
             return true
         end if
-    else if isNumber(valueOne) then
-        if isNumber(valueTwo) then
+    else if (isInteger(valueOne) or isFloat(valueOne) or isDouble(valueOne)) then
+        if (isInteger(valueTwo) or isFloat(valueTwo) or isDouble(valueTwo)) then
             return true
         end if
-    else if isBoolean(valueOne) then
-        if isBoolean(valueTwo) then
+    else if (type(valueOne) = "Boolean" OR type(valueOne) = "roBoolean") then
+        if (type(valueTwo) = "Boolean" OR type(valueTwo) = "roBoolean") then
             return true
         end if
-    else if isInvalid(valueOne) then
-        if isInvalid(valueTwo) then
+    else if (type(valueOne) = "&lt;uninitialized>" OR valueOne = Invalid) then
+        if (type(valueTwo) = "&lt;uninitialized>" OR valueTwo = Invalid) then
             return true
         end if
     end if
@@ -1566,7 +1570,7 @@ end function
 ' @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
 ' @param {Object} removeFields - List of keys that need to be removed from the node.
 ' @return {Dynamic} Results of the conversion.
-function internal_nodeToAA(value as Object, removeId = false as Boolean, removeFields = CreateObject("roArray", 0, true) as Object) as Object
+function internal_nodeToAA(value as Object, removeId = false as Boolean, removeFields = invalid as dynamic) as Object
     if isNode(value) then
         fields = value.getFields()
         fields.delete("change")
@@ -1577,13 +1581,13 @@ function internal_nodeToAA(value as Object, removeId = false as Boolean, removeF
             fields.delete("id")
         end if
         'Looping through any additional fields if passed.
-        if isNonEmptyArray(removeFields) then
+        if ((isArray(removeFields) AND NOT removeFields.isEmpty())) then
             for each field in removeFields
                 fields.delete(field)
             end for
         end if
         return fields
-    else if isAA(value) then
+    else if (type(value) = "roAssociativeArray") then
         return value
     end if
     return {}
@@ -1646,9 +1650,9 @@ end function
 function internal_sanitizeKeyPath(value = "" as String)
     regex = createObject("roRegex", "\[(.*?)\]", "i")
     matches = regex.matchAll(value)
-    if isNotInvalid(matches) then
+    if (type(matches) &lt;> "&lt;uninitialized>" AND matches &lt;> Invalid) then
         for each match in matches
-            if isNotInvalid(match) then
+            if (type(match) &lt;> "&lt;uninitialized>" AND match &lt;> Invalid) then
                 value = value.replace(match[0], "." + match[1])
             end if
         end for
@@ -1677,8 +1681,8 @@ function intersectionBy(mainArray = CreateObject("roArray", 0, true) as object, 
     intersectArray = CreateObject("roArray", 0, true)
     mainArray = clone(mainArray)
     inspectArray = clone(inspectArray)
-    if isInvalid(iteratee) then
-        if isNonEmptyArray(mainArray) then
+    if (type(iteratee) = "&lt;uninitialized>" OR iteratee = Invalid) then
+        if ((isArray(mainArray) AND NOT mainArray.isEmpty())) then
             for each item in mainArray
                 if NOT isEqual(indexOf(inspectArray, item), - 1) then
                     intersectArray.push(item)
@@ -1694,10 +1698,10 @@ function intersectionBy(mainArray = CreateObject("roArray", 0, true) as object, 
                 intersectArray.push(item)
             end if
         end for
-    else if isString(iteratee) then
+    else if ((type(iteratee) = "String") OR (type(iteratee) = "roString")) then
         for each item in mainArray
             findKey = item[iteratee]
-            if isNotInvalid(findKey) then
+            if (type(findKey) &lt;> "&lt;uninitialized>" AND findKey &lt;> Invalid) then
                 matchValue = CreateObject("roAssociativeArray")
                 matchValue[iteratee] = findKey
                 if NOT isEqual(findIndex(inspectArray, matchValue), - 1) then
@@ -1736,7 +1740,7 @@ end function
 ' rodash.invert(object)
 ' // => { '1': 'c', '2': 'b' }
 function invert(originalAA as Object) as Dynamic
-    if not isAA(originalAA) then
+    if not (type(originalAA) = "roAssociativeArray") then
         return invalid
     end if
     ' Initialize an empty associative array to hold the inverted key-value pairs
@@ -1783,7 +1787,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isArrayLike(value as dynamic) as boolean
-    return isNonEmptyArray(value) OR isNonEmptyString(value)
+    return ((isArray(value) AND NOT value.isEmpty())) OR ((isString(value) AND value &lt;> ""))
 end function
 
 ' Checks if the supplied value is a valid Boolean type
@@ -1792,8 +1796,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isBoolean(value as Dynamic) as Boolean
-    valueType = type(value)
-    return (valueType = "Boolean") OR (valueType = "roBoolean")
+    return type(value) = "Boolean" OR type(value) = "roBoolean"
 end function
 
 ' Checks if the supplied value is a valid ByteArray type
@@ -1811,7 +1814,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isDate(value as Dynamic) as Boolean
-    return isDateTime(value)
+    return (type(value) = "roDateTime")
 end function
 
 ' Checks if the supplied value is a valid date time type
@@ -1856,7 +1859,7 @@ end function
 ' @since 0.0.21
 ' @category Lang
 function isEmpty(value as dynamic)
-    if isInvalid(value) OR isNumber(value) OR isBoolean(value) then
+    if (type(value) = "&lt;uninitialized>" OR value = Invalid) OR (isInteger(value) or isFloat(value) or isDouble(value)) OR (type(value) = "Boolean" OR type(value) = "roBoolean") then
         return true
     else
         return value.isEmpty()
@@ -1870,7 +1873,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isEmptyString(value as Dynamic) as Boolean
-    return isString(value) AND value.isEmpty()
+    return ((type(value) = "String") OR (type(value) = "roString")) AND value.isEmpty()
 end function
 
 ' Checks if the supplied values are the same.
@@ -1887,12 +1890,12 @@ function isEqual(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
         if isNode(valueTwo) then
             return valueOne.isSameNode(valueTwo)
         end if
-    else if isAA(valueOne) then
-        if isAA(valueTwo) AND (join(valueOne.keys(), ",") = join(valueTwo.keys(), ",")) then
+    else if (type(valueOne) = "roAssociativeArray") then
+        if (type(valueTwo) = "roAssociativeArray") AND ((clone(valueOne.keys()).join(",")) = (clone(valueTwo.keys()).join(","))) then
             return (formatJson(valueOne) = formatJson(valueTwo))
         end if
-    else if isArray(valueOne) then
-        if isArray(valueTwo) AND (valueOne.count() = valueTwo.count()) then
+    else if (type(valueOne) = "roArray") then
+        if (type(valueTwo) = "roArray") AND (valueOne.count() = valueTwo.count()) then
             return (formatJson(valueOne) = formatJson(valueTwo))
         end if
     end if
@@ -1924,8 +1927,8 @@ function isEqualWith(valueOne as Dynamic, valueTwo as Dynamic, customizer = inva
             valueTwo.delete("ready")
             return isEqualWith(valueOne, valueTwo, customizer)
         end if
-    else if isAA(valueOne) then
-        if isAA(valueTwo) AND (valueOne.keys().count() = valueTwo.keys().count()) then
+    else if (type(valueOne) = "roAssociativeArray") then
+        if (type(valueTwo) = "roAssociativeArray") AND (valueOne.keys().count() = valueTwo.keys().count()) then
             keys = valueOne.keys()
             for each key in keys
                 if customizer(valueOne[key], valueTwo[key]) then
@@ -1933,8 +1936,8 @@ function isEqualWith(valueOne as Dynamic, valueTwo as Dynamic, customizer = inva
                 end if
             end for
         end if
-    else if isArray(valueOne) then
-        if isArray(valueTwo) AND (valueOne.count() = valueTwo.count()) then
+    else if (type(valueOne) = "roArray") then
+        if (type(valueTwo) = "roArray") AND (valueOne.count() = valueTwo.count()) then
             for i = 0 to valueOne.count() - 1
                 if customizer(valueOne[i], valueTwo[i]) then
                     return true
@@ -1952,8 +1955,8 @@ end function
 ' @param {Dynamic} value - the object to assess
 ' @return {Boolean} True if the object represents and error.
 function isError(value as dynamic) as boolean
-    if isAA(value) then
-        if isNonEmptyString(value.status) AND stringIncludes(value.status, "error") then
+    if (type(value) = "roAssociativeArray") then
+        if ((isString(value.status) AND value.status &lt;> "")) AND stringIncludes(value.status, "error") then
             return true
         end if
         errorCodes = internal_getConstants().BrightScriptErrorCodes
@@ -1976,11 +1979,11 @@ end function
 ' @since 0.0.21
 ' @category Lang
 function isFinite(value as dynamic) as boolean
-    if NOT isNumber(value) then
+    if NOT (isInteger(value) or isFloat(value) or isDouble(value)) then
         return false
     end if
     constants = internal_getConstants()
-    if gt(value, constants.max_int) OR lt(value, constants.min_int) then
+    if gt(value, constants.max_int) OR (value &lt; constants.min_int) then
         return false
     end if
     return true
@@ -2031,7 +2034,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isInvalid(value as Dynamic) as Boolean
-    return NOT isNotInvalid(value)
+    return type(value) = "&lt;uninitialized>" OR value = Invalid
 end function
 
 ' Checks if value is a valid array-like length
@@ -2052,7 +2055,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isMap(value as dynamic) as boolean
-    return isArray(value)
+    return (type(value) = "roArray")
 end function
 
 ' Checks if the supplied value is a roMessagePort type
@@ -2070,7 +2073,7 @@ end function
 ' @param {Dynamic} value - The variable to be checked
 ' @return {Boolean} Results of the check
 function isNaN(value as dynamic) as boolean
-    return NOT isNumber(value)
+    return NOT (isInteger(value) or isFloat(value) or isDouble(value))
 end function
 
 ' Checks if the supplied value is a valid Node type
@@ -2120,7 +2123,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isNonEmptyAA(value as dynamic)
-    return isAA(value) AND value.keys().count() > 0
+    return ((type(value) = "roAssociativeArray") AND value.keys().count() > 0)
 end function
 
 ' Checks if the supplied value is a valid Array type and not empty
@@ -2129,7 +2132,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isNonEmptyArray(value as Dynamic) as Boolean
-    return (isArray(value) AND NOT value.isEmpty())
+    return ((type(value) = "roArray") AND NOT value.isEmpty())
 end function
 
 ' Checks if the supplied value is a valid String type and is not empty
@@ -2138,7 +2141,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isNonEmptyString(value as Dynamic) as Boolean
-    return isString(value) AND value &lt;> ""
+    return (((type(value) = "String") OR (type(value) = "roString")) AND value &lt;> "")
 end function
 
 ' Checks if the supplied value is not Invalid or uninitialized
@@ -2147,7 +2150,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isNotInvalid(value as Dynamic) as Boolean
-    return (type(value) &lt;> "&lt;uninitialized>" AND value &lt;> Invalid)
+    return type(value) &lt;> "&lt;uninitialized>" AND value &lt;> Invalid
 end function
 
 ' Alias to isInvalid function
@@ -2156,7 +2159,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isNull(value as Dynamic) as Boolean
-    return NOT isNotInvalid(value)
+    return NOT (type(value) &lt;> "&lt;uninitialized>" AND value &lt;> Invalid)
 end function
 
 ' Checks if the supplied value is a valid number type
@@ -2165,16 +2168,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isNumber(obj as Dynamic) as Boolean
-    if isInteger(obj) then
-        return true
-    end if
-    if isFloat(obj) then
-        return true
-    end if
-    if isDouble(obj) then
-        return true
-    end if
-    return false
+    return isInteger(obj) or isFloat(obj) or isDouble(obj)
 end function
 
 ' Checks if the supplied value is a valid String type
@@ -2183,8 +2177,7 @@ end function
 ' @param {Dynamic} value The variable to be checked
 ' @return {Boolean} Results of the check
 function isString(value as dynamic)
-    valueType = type(value)
-    return (valueType = "String") OR (valueType = "roString")
+    return (type(value) = "String") OR (type(value) = "roString")
 end function
 
 ' Checks if the supplied value is a valid roUrlEvent type
@@ -2222,7 +2215,7 @@ function kebabCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()
     valueArray = value.split(" ")
-    return lcase(join(valueArray, "-"))
+    return lcase((clone(valueArray).join("-")))
 end function
 
 ' Creates an object composed of keys generated from the results of running each element of collection thru iteratee. The corresponding value of each key is the last element responsible for generating the key. The iteratee is invoked with one argument: (value).
@@ -2233,11 +2226,11 @@ end function
 ' @returns {Dynamic} - Returns the composed aggregate object.
 function keyBy(collection = invalid as dynamic, key = "" as string) as object
     returnObject = CreateObject("roAssociativeArray")
-    if not isArray(collection) then
+    if not (type(collection) = "roArray") then
         return returnObject
     end if
     for each item in collection
-        if isAA(item) and item.doesExist(key) then
+        if (type(item) = "roAssociativeArray") and item.doesExist(key) then
             newKey = toString(item[key])
             returnObject[newKey] = item
         end if
@@ -2262,10 +2255,10 @@ end function
 ' @param {Integer} fromIndex - The index to search from
 ' @return {Dynamic} Returns the index of the matched value, else -1
 function lastIndexOf(array = CreateObject("roArray", 0, true) as object, value = invalid as dynamic, fromIndex = invalid as dynamic) as dynamic
-    if NOT isArray(array) then
+    if NOT (type(array) = "roArray") then
         return -1
     end if
-    if isInvalid(fromIndex) then
+    if (type(fromIndex) = "&lt;uninitialized>" OR fromIndex = Invalid) then
         fromIndex = array.count() - 1
     else if fromIndex &lt; 0 then
         fromIndex = array.count() + fromIndex
@@ -2287,7 +2280,7 @@ function lowerCase(value = "" as string)
     value = value.replace("-", " ").replace("_", " ")
     value = value.trim()
     valueArray = value.split(" ")
-    return lcase(join(valueArray, " "))
+    return lcase((clone(valueArray).join(" ")))
 end function
 
 ' Converts the first character of string to lower case.
@@ -2297,7 +2290,7 @@ function lowerFirst(value = "" as string)
     value = value.trim()
     valueArray = value.split("")
     valueArray[0] = lcase(valueArray[0])
-    return join(valueArray)
+    return (clone(valueArray).join(""))
 end function
 
 ' Checks if value is less than other.
@@ -2327,13 +2320,13 @@ end function
 ' @param {Dynamic} iteratee - The function invoked per iteration
 ' @return {Array} Returns the new mapped array
 function map(collection = CreateObject("roAssociativeArray") as dynamic, iteratee = invalid as dynamic)
-    if NOT isArray(collection) then
+    if NOT (type(collection) = "roArray") then
         return CreateObject("roArray", 0, true)
     end if
     returnArray = CreateObject("roArray", 0, true)
     for each item in collection
-        if isString(iteratee) then
-            if isAA(item) then
+        if ((type(iteratee) = "String") OR (type(iteratee) = "roString")) then
+            if (type(item) = "roAssociativeArray") then
                 returnArray.push(item[iteratee])
             end if
         else if isFunction(iteratee) then
@@ -2362,21 +2355,21 @@ function maxBy(array = CreateObject("roArray", 0, true) as object, iteratee = in
         return invalid
     end if
     maxValue = invalid
-    if isInvalid(iteratee) then
+    if (type(iteratee) = "&lt;uninitialized>" OR iteratee = Invalid) then
         maxValue = internal_getConstants().min_int
         for each value in array
             if gt(value, maxValue) then
                 maxValue = value
             end if
         end for
-    else if isFunction(iteratee) AND isAA(array[0]) then
+    else if isFunction(iteratee) AND (type(array[0]) = "roAssociativeArray") then
         maxValue = array[0]
         for each value in array
             if gt(iteratee(value), iteratee(maxValue)) then
                 maxValue = value
             end if
         end for
-    else if isString(iteratee) AND isAA(array[0]) then
+    else if ((type(iteratee) = "String") OR (type(iteratee) = "roString")) AND (type(array[0]) = "roAssociativeArray") then
         maxValue = array[0]
         for each value in array
             if gt(value[iteratee], maxValue[iteratee]) then
@@ -2428,24 +2421,24 @@ function minBy(array = CreateObject("roArray", 0, true) as object, iteratee = in
         return invalid
     end if
     minValue = invalid
-    if isInvalid(iteratee) then
+    if (type(iteratee) = "&lt;uninitialized>" OR iteratee = Invalid) then
         minValue = internal_getConstants().max_int
         for each value in array
-            if lt(value, minValue) then
+            if (value &lt; minValue) then
                 minValue = value
             end if
         end for
-    else if isFunction(iteratee) AND isAA(array[0]) then
+    else if isFunction(iteratee) AND (type(array[0]) = "roAssociativeArray") then
         minValue = array[0]
         for each value in array
-            if lt(iteratee(value), iteratee(minValue)) then
+            if (iteratee(value) &lt; iteratee(minValue)) then
                 minValue = value
             end if
         end for
-    else if isString(iteratee) AND isAA(array[0]) then
+    else if ((type(iteratee) = "String") OR (type(iteratee) = "roString")) AND (type(array[0]) = "roAssociativeArray") then
         minValue = array[0]
         for each value in array
-            if lt(value[iteratee], minValue[iteratee]) then
+            if (value[iteratee] &lt; minValue[iteratee]) then
                 minValue = value
             end if
         end for
@@ -2460,7 +2453,7 @@ end function
 ' @param {Dynamic} multiplicand - The second number in a multiplication.
 ' @returns {Dynamic} - Returns the product of the two numbers.
 function multiply(multiplier as dynamic, multiplicand as dynamic) as dynamic
-    if isNaN(multiplier) OR isNaN(multiplicand)
+    if (NOT (isInteger(multiplier) or isFloat(multiplier) or isDouble(multiplier))) OR (NOT (isInteger(multiplicand) or isFloat(multiplicand) or isDouble(multiplicand)))
         return 0
     end if
     return multiplier * multiplicand
@@ -2506,15 +2499,15 @@ end function
 ' @param {Dynamic} [orders] - The sort orders of `iteratees`.
 ' @return {Array} Returns the new ordered array
 function orderBy(collection, iteratees, orders) as Object
-    if isInvalid(collection) OR NOT isArray(collection) then
+    if (type(collection) = "&lt;uninitialized>" OR collection = Invalid) OR NOT (type(collection) = "roArray") then
         return []
     end if
-    if not isArray(iteratees) then
+    if not (type(iteratees) = "roArray") then
         iteratees = bslib_ternary(iteratees = invalid, [], [
             iteratees
         ])
     end if
-    if not isArray(orders) then
+    if not (type(orders) = "roArray") then
         orders = bslib_ternary(orders = invalid, [], [
             orders
         ])
@@ -2579,13 +2572,13 @@ end function
 ' @category Number
 function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) as dynamic
     offset = rnd(0)
-    if (isBoolean(upper)) then
+    if ((type(upper) = "Boolean" OR type(upper) = "roBoolean")) then
         floating = upper
         upper = 1
     end if
     inputValueIsFloat = isFloat(lower) OR isFloat(upper)
-    respectFloating = isBoolean(floating) OR inputValueIsFloat
-    if respectFloating AND isInvalid(floating) then
+    respectFloating = (type(floating) = "Boolean" OR type(floating) = "roBoolean") OR inputValueIsFloat
+    if respectFloating AND (type(floating) = "&lt;uninitialized>" OR floating = Invalid) then
         floating = inputValueIsFloat
     end if
     roundLower = rnd(lower)
@@ -2594,10 +2587,10 @@ function random(lower = 0 as dynamic, upper = 1 as dynamic, floating = invalid) 
     if gt(roundValue, upper) then
         roundValue = roundUpper
     end if
-    if lt(roundValue, lower) then
+    if (roundValue &lt; lower) then
         roundValue = roundLower
     end if
-    if isInvalid(floating) OR (respectFloating AND NOT floating) then
+    if (type(floating) = "&lt;uninitialized>" OR floating = Invalid) OR (respectFloating AND NOT floating) then
         roundValue = cint(roundValue)
     else
         roundValue = ((roundValue - offset).toStr() + "." + offset.toStr()).toFloat()
@@ -2614,14 +2607,14 @@ end function
 ' @return {Array} Returns the accumulated value
 function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, accumulator = invalid as dynamic)
     result = accumulator
-    if isInvalid(iteratee) then
+    if (type(iteratee) = "&lt;uninitialized>" OR iteratee = Invalid) then
         return collection
     else if isFunction(iteratee) then
-        if isArray(collection) then
+        if (type(collection) = "roArray") then
             for each item in collection
                 result = iteratee(result, item)
             end for
-        else if isAA(collection) then
+        else if (type(collection) = "roAssociativeArray") then
             for each key in collection.keys()
                 item = collection[key]
                 result = iteratee(result, item, key)
@@ -2651,7 +2644,7 @@ end function
 ' @param {Dynamic} collection - The collection to sample
 ' @returns {Dynamic} - Returns the random element
 function sample(collection = invalid as dynamic)
-    if not isArray(collection) then
+    if not (type(collection) = "roArray") then
         return invalid
     end if
     return collection[random(0, collection.count() - 1)]
@@ -2689,14 +2682,14 @@ end function
 ' @param {Dynamic} value - The value to be set.
 ' @return {Boolean} True if set successfully.
 function set(aa as Object, keyPath as String, value as Dynamic) as Boolean
-    if NOT isAA(aa) then
+    if NOT (type(aa) = "roAssociativeArray") then
         return false
     end if
     level = aa
     keys = internal_sanitizeKeyPath(keyPath).tokenize(".")
     while keys.count() > 1
         key = keys.shift()
-        if NOT isAA(level[key]) then
+        if NOT (type(level[key]) = "roAssociativeArray") then
             level[key] = CreateObject("roAssociativeArray")
         end if
         level = level[key]
@@ -2712,10 +2705,10 @@ end function
 ' @param {Dynamic} collection - The collection to shuffle
 ' @return {Array} Returns the new shuffled array
 function shuffle(collection = CreateObject("roArray", 0, true) as dynamic)
-    if isInvalid(collection) OR (NOT isArray(collection) AND NOT isAA(collection)) then
+    if (type(collection) = "&lt;uninitialized>" OR collection = Invalid) OR (NOT (type(collection) = "roArray") AND NOT (type(collection) = "roAssociativeArray")) then
         return CreateObject("roArray", 0, true)
     end if
-    if isAA(collection) then
+    if (type(collection) = "roAssociativeArray") then
         collection = toArray(collection)
     end if
     length = collection.count() - 1
@@ -2741,12 +2734,12 @@ end function
 ' @param {Dynamic} collection - The collection to inspect
 ' @return {Integer} Returns the collection size.
 function size(collection = invalid as dynamic)
-    if isInvalid(collection) OR (NOT isArray(collection) AND NOT isAA(collection) AND NOT isString(collection)) then
+    if (type(collection) = "&lt;uninitialized>" OR collection = Invalid) OR (NOT (type(collection) = "roArray") AND NOT (type(collection) = "roAssociativeArray") AND NOT ((type(collection) = "String") OR (type(collection) = "roString"))) then
         return []
     end if
-    if isAA(collection) then
+    if (type(collection) = "roAssociativeArray") then
         collection = toArray(collection)
-    else if isString(collection) then
+    else if ((type(collection) = "String") OR (type(collection) = "roString")) then
         return collection.len()
     end if
     return collection.count()
@@ -2760,10 +2753,10 @@ end function
 ' @param {Integer} endPos - The end position
 ' @return {Dynamic} Returns the slice of array
 function slice(array = CreateObject("roArray", 0, true) as object, startPos = 0, endPos = invalid)
-    if NOT isArray(array) then
+    if NOT (type(array) = "roArray") then
         return invalid
     end if
-    if isNotInvalid(endPos) then
+    if (type(endPos) &lt;> "&lt;uninitialized>" AND endPos &lt;> Invalid) then
         endPos = endPos - 1
     end if
     array = clone(array)
@@ -2798,13 +2791,13 @@ end function
 ' @param {Dynamic} iteratee - The iteratees to sort by
 ' @return {Array} Returns the new sorted array
 function sortBy(collection = invalid as dynamic, iteratee = invalid as dynamic)
-    if isInvalid(collection) OR NOT isArray(collection) then
+    if (type(collection) = "&lt;uninitialized>" OR collection = Invalid) OR NOT (type(collection) = "roArray") then
         return collection
     end if
     returnCollection = clone(collection)
-    if isArray(iteratee) then
+    if (type(iteratee) = "roArray") then
         for each iteration in iteratee
-            if isString(iteration) then
+            if ((type(iteration) = "String") OR (type(iteration) = "roString")) then
                 returnCollection.sortBy(iteration)
             end if
         end for
@@ -2836,7 +2829,7 @@ function sortedIndex(array = CreateObject("roArray", 0, true) as object, value =
     for i = 0 to array.count() - 1
         item = array[i]
         nextItem = array[i + 1]
-        if isNotInvalid(nextItem) then
+        if (type(nextItem) &lt;> "&lt;uninitialized>" AND nextItem &lt;> Invalid) then
             if (item >= value AND value &lt;= nextItem) then
                 return i
             end if
@@ -2872,7 +2865,7 @@ end function
 ' @param {Integer} subtrahend - The second number in a subtraction
 ' @return {Integer} Returns the difference.
 function subtract(minuend as dynamic, subtrahend as dynamic) as dynamic
-    if isNaN(minuend) OR isNaN(subtrahend)
+    if (NOT (isInteger(minuend) or isFloat(minuend) or isDouble(minuend))) OR (NOT (isInteger(subtrahend) or isFloat(subtrahend) or isDouble(subtrahend)))
         return 0
     end if
     return minuend - subtrahend
@@ -2903,17 +2896,17 @@ function sumBy(array = CreateObject("roArray", 0, true) as object, iteratee = in
         return invalid
     end if
     sumValue = invalid
-    if isInvalid(iteratee) then
+    if (type(iteratee) = "&lt;uninitialized>" OR iteratee = Invalid) then
         sumValue = 0
         for each value in array
             sumValue += value
         end for
-    else if isFunction(iteratee) AND isAA(array[0]) then
+    else if isFunction(iteratee) AND (type(array[0]) = "roAssociativeArray") then
         sumValue = 0
         for each value in array
             sumValue += iteratee(value)
         end for
-    else if isString(iteratee) AND isAA(array[0]) then
+    else if ((type(iteratee) = "String") OR (type(iteratee) = "roString")) AND (type(array[0]) = "roAssociativeArray") then
         sumValue = 0
         for each value in array
             sumValue += value[iteratee]
@@ -2929,10 +2922,10 @@ end function
 ' @param {Integer} n - The number of elements to take
 ' @return {Object} Returns the slice of array
 function take(array = CreateObject("roArray", 0, true) as object, n = invalid as dynamic) as object
-    if isInvalid(n) then
+    if (type(n) = "&lt;uninitialized>" OR n = Invalid) then
         n = 1
     end if
-    if NOT isNonEmptyArray(array) OR n = 0 then
+    if NOT (((type(array) = "roArray") AND NOT array.isEmpty())) OR n = 0 then
         return CreateObject("roArray", 0, true)
     end if
     return slice(array, 0, n)
@@ -2945,10 +2938,10 @@ end function
 ' @param {Integer} n - The number of elements to take
 ' @return {Object} Returns the slice of array
 function takeRight(array = CreateObject("roArray", 0, true) as object, n = invalid as dynamic) as object
-    if isInvalid(n) then
+    if (type(n) = "&lt;uninitialized>" OR n = Invalid) then
         n = 1
     end if
-    if NOT isNonEmptyArray(array) OR n = 0 then
+    if NOT (((type(array) = "roArray") AND NOT array.isEmpty())) OR n = 0 then
         return CreateObject("roArray", 0, true)
     end if
     length = array.count()
@@ -3003,7 +2996,7 @@ end function
 ' @category Date
 ' @return {String} Returns the date object as an ISO string
 function toISOString(dateObj = invalid as dynamic) as string
-    if isDate(dateObj) then
+    if ((type(dateObj) = "roDateTime")) then
         return ""
     end if
     return dateObj.toISOString()
@@ -3015,15 +3008,15 @@ end function
 ' @param {Dynamic} value The variable to be converted
 ' @return {Dynamic} Results of the conversion
 function toNumber(value as Dynamic) as Dynamic
-    if isNumber(value) then
+    if (isInteger(value) or isFloat(value) or isDouble(value)) then
         return value
-    else if isBoolean(value) then
+    else if (type(value) = "Boolean" OR type(value) = "roBoolean") then
         if value then
             return 1
         end if
         return 0
     end if
-    if isString(value) then
+    if ((type(value) = "String") OR (type(value) = "roString")) then
         ' TODO: Temporary fix until we figure a better way to avoid val converting 8037667 to 8.03767e+06
         if stringIncludes(value, ".") then
             return val(value)
@@ -3041,7 +3034,7 @@ end function
 ' @return {Array} Returns the key-value pairs.
 function toPairs(obj = CreateObject("roAssociativeArray") as object) as object
     returnArray = CreateObject("roArray", 0, true)
-    if not isAA(obj) then
+    if not (type(obj) = "roAssociativeArray") then
         return returnArray
     end if
     for each key in obj.keys()
@@ -3059,22 +3052,22 @@ end function
 ' @param {Dynamic} value The value to convert.
 ' @return {String} Results of the conversion.
 function toString(value as Dynamic) as String
-    if isString(value) then
+    if ((type(value) = "String") OR (type(value) = "roString")) then
         return value
     end if
-    if isNumber(value) then
-        return internal_numberToString(value)
+    if (isInteger(value) or isFloat(value) or isDouble(value)) then
+        return (value.toStr())
     end if
     if isNode(value) then
         return internal_nodeToString(value)
     end if
-    if isBoolean(value) then
+    if (type(value) = "Boolean" OR type(value) = "roBoolean") then
         return internal_booleanToString(value)
     end if
-    if isAA(value) then
+    if (type(value) = "roAssociativeArray") then
         return internal_aaToString(value)
     end if
-    if isArray(value) then
+    if (type(value) = "roArray") then
         return internal_arrayToString(value)
     end if
     return ""
@@ -3117,7 +3110,7 @@ function zip(arrays = CreateObject("roArray", 0, true) as object) as object
     for i = 0 to arrays.count() - 1
         array = arrays[i]
         for ii = 0 to array.count() - 1
-            if isInvalid(returnArray[ii]) then
+            if (type(returnArray[ii]) = "&lt;uninitialized>" OR returnArray[ii] = Invalid) then
                 returnArray[ii] = CreateObject("roArray", 0, true)
             end if
             returnArray[ii].push(array[ii])

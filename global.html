@@ -714,7 +714,7 @@
     
     <div class="description">
         <p>Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
-This method mutates object and is loosely based on Object.assign.</p>
+This method mutates object and is loosely based on lodash Object.assign.</p>
     </div>
     
 
@@ -799,7 +799,7 @@ This method mutates object and is loosely based on Object.assign.</p>
   <td class="type">
   
       
-<code class="param-type">Object</code>
+<code class="param-type">dynamic</code>
 
 
   
@@ -820,7 +820,7 @@ This method mutates object and is loosely based on Object.assign.</p>
   
       <td class="default">
       
-          CreateObject("roArray", 0, true)
+          invalid
       
       </td>
   
@@ -2465,7 +2465,7 @@ This method mutates object and is loosely based on Object.assign.</p>
         
         <span class="code-name">
             
-                compact<span class="signature">(array<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span>
+                compact<span class="signature">(array)</span><span class="type-signature"> &rarr; {object}</span>
             
         </span>
     </h4>
@@ -2499,11 +2499,7 @@ This method mutates object and is loosely based on Object.assign.</p>
             <th>Type</th>
 
             
-            <th>Attributes</th>
-            
 
-            
-            <th>Default</th>
             
 
             <th class="last">Description</th>
@@ -2529,23 +2525,7 @@ This method mutates object and is loosely based on Object.assign.</p>
   </td>
 
   
-      <td class="attributes">
-      
-          &lt;optional><br>
-      
 
-      
-
-      
-      </td>
-  
-
-  
-      <td class="default">
-      
-          CreateObject("roArray", 0, true)
-      
-      </td>
   
 
   <td class="description last"><p>The array to compact</p></td>
