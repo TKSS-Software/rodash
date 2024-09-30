@@ -4,6 +4,7 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
+  @inline
   function isArray(value as dynamic) as boolean
     return type(value) = "roArray"
   end function

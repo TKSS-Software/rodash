@@ -4,7 +4,8 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
+  @inline
   function isNonEmptyString(value as Dynamic) as Boolean
-    return rodash.isString(value) AND value <> ""
+    return (rodash.isString(value) AND value <> "")
   end function
 end namespace
