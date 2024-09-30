@@ -6,6 +6,12 @@ namespace Tests
     @describe("Tests the rodash object methods")
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    @it("assign")
+    @params({ "a": 1, "b": 2}, [{"b": 3}], { "a": 1, "b": 3})
+    function _(obj as dynamic, sources as dynamic, matchResult as dynamic)
+      m.assertEqual(rodash.assign(obj, sources), matchResult)
+    end function
+
     @it("get")
     @params({ "a": 1, "b": 2, "c": 1 }, "b", 2)
     @params({ "a": {"d": 3}, "b": 2, "c": 1 }, "a.d", 3)
