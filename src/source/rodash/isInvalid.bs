@@ -4,7 +4,8 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
+  @inline
   function isInvalid(value as Dynamic) as Boolean
-    return NOT rodash.isNotInvalid(value)
+    return type(value) = "<uninitialized>" OR value = Invalid
   end function
 end namespace
