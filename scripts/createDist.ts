@@ -67,10 +67,12 @@ async function processTypedefs() {
 }
 
 /**
- * Sanize the code (remove namespace prefixes, de-indent some lines, etc)
+ * Sanitize the code (remove namespace prefixes, de-indent some lines, etc)
  */
 function sanitizeCode(code: string) {
     return code
+        // remove inline statements
+        .replace(/@inline/g, '')
         //remove commented-out import statements
         .replace(/^'import.*\n?/mg, '')
         //remove de-indent lines
