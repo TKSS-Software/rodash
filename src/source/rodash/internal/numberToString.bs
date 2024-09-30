@@ -3,6 +3,7 @@ namespace rodash.internal
   ' Attempts to convert the supplied value to a string.
   ' @param {Dynamic} value The value to convert.
   ' @return {String} Results of the conversion.
+  @inline
   function numberToString(value as Dynamic) as String
     return value.toStr()
   end function
