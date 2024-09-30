@@ -5,7 +5,8 @@ namespace rodash
   ' @param {Dynamic} value - The value to compare.
   ' @param {Dynamic} other - The other value to compare.
   ' @returns {Boolean} - Returns `true` if value is greater than other, else `false`.
-  function gt(value as dynamic, other as dynamic)
+  @inline
+    function gt(value as dynamic, other as dynamic)
     return value > other
   end function
 end namespace

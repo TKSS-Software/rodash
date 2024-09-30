@@ -4,8 +4,8 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
+  @inline
   function isFloat(value as Dynamic) as Boolean
-    valueType = type(value)
-    return (valueType = "Float") OR (valueType = "roFloat")
+    return type(value) = "Float" OR type(value) = "roFloat"
   end function
 end namespace
