@@ -83,6 +83,7 @@ namespace Tests
     @params([1, 2, 3], 3)
     @params([1, 2, 3, 4, 5 , 6 , 7], 7)
     @params([1, 2, 3, 4, 5 , 6 , 7, 8, 9, 10], 10)
+    @params([1, 2, 3, 4, 5 , 6 , 7, 8, 9, 10, 11, 12], 12)
     function _(array as Object, matchResult as Object)
       n = array.count()
       result = rodash.shuffle(array)
