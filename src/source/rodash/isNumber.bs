@@ -5,8 +5,8 @@ namespace rodash
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
   @inline
-  function isNumber(obj as Dynamic) as Boolean
-    return rodash.isInteger(obj) or rodash.isFloat(obj) or rodash.isDouble(obj)
+  function isNumber(value as Dynamic) as Boolean
+    return type(value) = "Integer" OR type(value) = "roInt" OR type(value) = "roInteger" OR type(value) = "LongInteger" OR type(value) = "Float" OR type(value) = "roFloat" OR type(value) = "Double" OR type(value) = "roDouble" OR type(value) = "roIntrinsicDouble"
   end function
 end namespace
 

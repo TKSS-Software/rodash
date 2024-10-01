@@ -5,7 +5,8 @@ namespace rodash
   ' @param {String} value The string to search
   ' @param {String} subString The sub string to search for
   ' @return {Boolean} Results of the search
+  @inline
   function stringIncludes(value as String, subString as String) as Boolean
-    return rodash.stringIndexOf(value, subString) > -1
+    return value.Instr(subString) > -1
   end function
 end namespace

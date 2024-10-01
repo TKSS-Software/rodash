@@ -6,6 +6,6 @@ namespace rodash
   ' @return {Boolean} Results of the check
   @inline
   function isNonEmptyString(value as Dynamic) as Boolean
-    return (rodash.isString(value) AND value <> "")
+    return (type(value) = "String" OR type(value) = "roString") AND not value.isEmpty()
   end function
 end namespace

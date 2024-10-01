@@ -6,6 +6,7 @@ namespace rodash
   ' @param {Integer} lower - The lower bound
   ' @param {Integer} upper - The upper bound
   ' @return {Integer} Returns the clamped number
+  @inline
   function clamp(number, lower, upper) as dynamic
     return rodash.max([lower, rodash.min([upper, number])])
   end function
