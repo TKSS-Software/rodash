@@ -1,5 +1,5 @@
 # rodash
-[Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) utility for Roku apps. Currently supporting 150 utility functions!
+[Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) utility for Roku apps. Currently supporting over 200 utility functions!
 
 
 [![build status](https://img.shields.io/github/workflow/status/TKSS-Software/rodash/build.yml?logo=github&branch=master)](https://github.com/TKSS-Software/rodash/actions?query=branch%3Amaster+workflow%3Abuild)
