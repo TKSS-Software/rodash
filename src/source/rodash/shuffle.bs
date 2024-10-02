@@ -4,25 +4,8 @@ namespace rodash
   ' @category Collection
   ' @param {Dynamic} collection - The collection to shuffle
   ' @return {Array} Returns the new shuffled array
-  function shuffle(collection = CreateObject("roArray", 0, true) as dynamic)
-    if rodash.isInvalid(collection) OR (NOT rodash.isArray(collection) AND NOT rodash.isAA(collection)) then return CreateObject("roArray", 0, true)
-    if rodash.isAA(collection) then collection = rodash.toArray(collection)
-
-    length = collection.count() - 1
-    if rodash.isEqual(length, -1) then return CreateObject("roArray", 0, true)
-
-    index = -1
-    lastIndex = length - 1
-    result = rodash.clone(collection)
-
-    while index < length
-      index ++
-      rand = index + rodash.floor(rodash.random(0, 1, true) * (lastIndex - index + 1))
-      value = result[rand]
-      result[rand] = result[index]
-      result[index] = value
-    end while
-
-    return result
+  @inline
+  function shuffle(collection = CreateObject("roArray", 0, true) as object)
+    return rodash.sampleSize(collection, collection.count())
   end function
 end namespace

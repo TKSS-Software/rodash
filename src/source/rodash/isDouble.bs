@@ -5,7 +5,6 @@ namespace rodash
   ' @param {Dynamic} value The variable to be checked
   ' @return {Boolean} Results of the check
   function isDouble(value as Dynamic) as Boolean
-    valueType = type(value)
-    return (valueType = "Double") OR (valueType = "roDouble") OR (valueType = "roIntrinsicDouble")
+    return type(value) = "Double" OR type(value) = "roDouble" OR type(value) = "roIntrinsicDouble"
   end function
 end namespace

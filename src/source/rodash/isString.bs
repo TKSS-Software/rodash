@@ -6,6 +6,6 @@ namespace rodash
   ' @return {Boolean} Results of the check
   @inline
   function isString(value as dynamic)
-	  return (type(value) = "String") OR (type(value) = "roString")
+	  return type(value) = "String" OR type(value) = "roString"
   end function
 end namespace
