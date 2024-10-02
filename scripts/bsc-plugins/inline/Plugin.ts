@@ -1,4 +1,4 @@
-import type { AstEditor, CompilerPlugin, FileObj, Program, ProgramBuilder, TranspileObj } from 'brighterscript';
+import type { AstEditor, CompilerPlugin, Program, ProgramBuilder, TranspileObj } from 'brighterscript';
 import { FileValidator } from './FileValidator';
 import { FileTranspiler } from './inline';
 
@@ -8,7 +8,6 @@ export class Plugin implements CompilerPlugin {
 	private fileValidator = new FileValidator();
 	private fileTranspiler = new FileTranspiler();
 	beforeProgramTranspile(program: Program, entries: TranspileObj[], editor: AstEditor) {
-		console.log("HEY IM HERE");	
 		for (const entry of entries) {
 			this.fileTranspiler.preprocess(entry.file, editor, this.fileValidator.annotatedFunctions);
 		}
