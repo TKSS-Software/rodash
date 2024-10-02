@@ -1,0 +1,42 @@
+namespace rodash
+  ' Creates a duplicate-free version of an array, using rodash.isEqual for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
+  ' @since 0.0.29
+  ' @category Array
+  ' @param [{Array}] array - The arrays to inspect
+  ' @return [Array] Returns the new array of filtered values.
+  function xor(arrays as object) as object
+    if rodash.isNonEmptyArray(arrays) then
+      ' Use roAssociativeArray for element count tracking
+      elementCounts = {}
+      
+      ' Iterate through each sub-array in the arrays
+      for each subArray in arrays
+          if rodash.isNonEmptyArray(subArray) then
+              ' Iterate through each element in the sub-array
+              for each element in subArray
+                  ' Use a string key representation for comparison purposes
+                  elementKey = rodash.toString(element)
+                  print elementKey
+                  if elementCounts.doesExist(elementKey) then
+                      ' Increment the count if it already exists
+                      elementCounts[elementKey].count += 1
+                  else
+                      ' Add to dictionary with count 1
+                      elementCounts[elementKey] = { count: 1, value: element }
+                  end if
+              end for
+          end if
+      end for
+      
+      ' Create an array to store the result of the XOR operation (elements with count 1)
+      resultArray = []
+      for each key in elementCounts
+          if elementCounts[key].count = 1
+              resultArray.push(elementCounts[key].value)
+          end if
+      end for
+  end if
+
+    return resultArray
+  end function
+end namespace

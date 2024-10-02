@@ -31,6 +31,7 @@ import "takeRight.bs"
 import "toPairs.bs"
 import "union.bs"
 import "uniq.bs"
+import "xor.bs"
 import "zip.bs"
 import "zipObject.bs"
 import "zipObjectDeep.bs" 'TODO
