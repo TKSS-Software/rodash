@@ -231,6 +231,7 @@ namespace Tests
     @params([[{a:1}, {b:2}], [{b:2}, {c:3}]], [{a:1}, {c:3}])
     @params([[2, 1], [2], ["a", "b"]], [1, "a", "b"])
     @params([[2, 1], ["2"], ["a", "b"]], [2, 1, "2", "a", "b"])
+    @params([[2, 1], ["2"], ["a", "b"], [{a:1}]], [2, 1, "2", "a", "b", {a:1}])
     function _(obj = [] as object, matchResult = invalid as dynamic)
       result = rodash.xor(obj)
       m.assertEqual(result, matchResult)
