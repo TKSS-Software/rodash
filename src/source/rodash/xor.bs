@@ -24,7 +24,7 @@ namespace rodash
                   ' Check if the element has been encountered before
                   if elementCounts.doesExist(elementKey) then
                       ' Increment the count if it already exists
-                      elementCounts[elementKey] = elementCounts[elementKey] + 1
+                      elementCounts[elementKey] += 1
                   else
                       ' Add to dictionary with count 1 and preserve the original order
                       elementCounts[elementKey] = 1
