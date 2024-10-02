@@ -5,34 +5,40 @@ namespace rodash
   ' @param [{Array}] array - The arrays to inspect
   ' @return [Array] Returns the new array of filtered values.
   function xor(arrays as object) as object
+    ' Create an array to store the result of the XOR operation (elements with count 1)
+    resultArray = []
+
     if rodash.isNonEmptyArray(arrays) then
       ' Use roAssociativeArray for element count tracking
       elementCounts = {}
-      
+      orderedElements = [] ' To preserve the order
+
       ' Iterate through each sub-array in the arrays
       for each subArray in arrays
           if rodash.isNonEmptyArray(subArray) then
               ' Iterate through each element in the sub-array
               for each element in subArray
-                  ' Use a string key representation for comparison purposes
-                  elementKey = rodash.toString(element)
-                  print elementKey
+                  ' Create a unique key based on the element's type and value
+                  elementKey = type(element) + ":" + rodash.toString(element)
+
+                  ' Check if the element has been encountered before
                   if elementCounts.doesExist(elementKey) then
                       ' Increment the count if it already exists
-                      elementCounts[elementKey].count += 1
+                      elementCounts[elementKey] = elementCounts[elementKey] + 1
                   else
-                      ' Add to dictionary with count 1
-                      elementCounts[elementKey] = { count: 1, value: element }
+                      ' Add to dictionary with count 1 and preserve the original order
+                      elementCounts[elementKey] = 1
+                      orderedElements.push(element)
                   end if
               end for
           end if
       end for
-      
-      ' Create an array to store the result of the XOR operation (elements with count 1)
-      resultArray = []
-      for each key in elementCounts
-          if elementCounts[key].count = 1
-              resultArray.push(elementCounts[key].value)
+
+      for each element in orderedElements
+          elementKey = type(element) + ":" + rodash.toString(element)
+          ' Include elements that appeared exactly once
+          if elementCounts[elementKey] = 1
+              resultArray.push(element)
           end if
       end for
   end if
