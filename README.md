@@ -1,6 +1,8 @@
-# rodash
-[Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) utility for Roku apps. Currently supporting over 200 utility functions!
+![image](https://github.com/user-attachments/assets/adfcc765-c7c7-418c-8b09-aa1daa5a63dd)
 
+---
+
+[Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) utility for Roku apps. Currently supporting over 200 utility functions!
 
 [![build status](https://img.shields.io/github/workflow/status/TKSS-Software/rodash/build.yml?logo=github&branch=master)](https://github.com/TKSS-Software/rodash/actions?query=branch%3Amaster+workflow%3Abuild)
 [![monthly downloads](https://img.shields.io/npm/dm/@tkss/rodash.svg?sanitize=true&logo=npm&logoColor=)](https://npmcharts.com/compare/@tkss/rodash?minimal=true)
@@ -8,10 +10,10 @@
 [![license](https://img.shields.io/github/license/TKSS-Software/rodash.svg)](LICENSE)
 [![Slack](https://img.shields.io/badge/Slack-RokuCommunity-4A154B?logo=slack)](https://join.slack.com/t/rokudevelopers/shared_invite/zt-4vw7rg6v-NH46oY7hTktpRIBM_zGvwA)
 
-
+---
 
 ## Important
-This project is not affiliated with the Tubitv/rodash project.
+This project is not affiliated with Lodash or the Tubitv/rodash project.
 
 ## Installation
 ### Using [ropm](https://www.npmjs.com/package/ropm)
