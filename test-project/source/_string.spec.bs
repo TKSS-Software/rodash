@@ -1,0 +1,27 @@
+namespace Tests
+    @suite("RodashStringTests")
+    class StringTests extends Rooibos.BaseTestSuite
+
+        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        @describe("Tests the rodash math methods")
+        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        @it("deburr")
+        @params("déjà vu", "deja vu")
+        @params("déjà vu!", "deja vu!")
+        @params("ÀÄÅÆÇÈÉ", "AAAAeCEE")
+        @params("ãäåæçè", "aaaaece")
+        @params("ÊËÌÍÎÏ", "EEIIII")
+        @params("êëìíîï", "eeiiii")
+        @params("ĜĚĔĶŜ", "GEEKS")
+        @params("ĝęėķś", "geeks")
+        @params("Crème brûlée", "Creme brulee")
+        @params("Jalapeño", "Jalapeno")
+        @params("Fòôbàř", "Foobar")
+        @params("Pequeño", "Pequeno")
+        @params("José and his fiancée enjoyed crème brûlée at a café in São Paulo, where they discussed déjà vu and their trip to München.", "Jose and his fiancee enjoyed creme brulee at a cafe in Sao Paulo, where they discussed deja vu and their trip to Munchen.")
+        function _(value as String, result as String)
+            m.assertEqual(rodash.deburr(value), result)
+        end function
+    end class
+end namespace
