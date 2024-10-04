@@ -2,8 +2,10 @@ namespace rodash
     ' Deburrs string by converting Latin-1 Supplement and Latin Extended-A letters to basic Latin letters and removing combining diacritical marks.
     ' @since 0.0.30
     ' @category String
-    ' @param {String} input - The string to escape
-    ' @returns {String} Returns the escaped string
+    ' @param {String} input - The string to deburr
+    ' @returns {String} Returns the deburred string
+    ' @example
+    ' deburr("déjà vu") ' => "deja vu"
     function deburr(input = "" as String)
         ' Create an associative array (dictionary) to map accented characters to basic Latin letters
         latinMap = {}
