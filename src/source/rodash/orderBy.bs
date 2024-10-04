@@ -1,40 +1,40 @@
 namespace rodash
-  ' This method is like `sortBy` except that it allows specifying the sort
-  ' orders of the iteratees to sort by. If `orders` is unspecified, all values
-  ' are sorted in ascending order. Otherwise, specify an order of "desc" for
-  ' descending or "asc" for ascending sort order of corresponding values.
-  ' You may also specify a compare function for an order.
-  ' @since 0.0.21
-  ' @category Array
-  ' @param {Dynamic} collection - The collection to shuffle
-  ' @param {Dynamic} [iteratee] - The iteratees to sort by
-  ' @param {Dynamic} [orders] - The sort orders of `iteratees`.
-  ' @return {Array} Returns the new ordered array
-  function orderBy(collection, iteratees, orders) as Object
-    if rodash.isInvalid(collection) OR NOT rodash.isArray(collection) then return []
+    ' This method is like `sortBy` except that it allows specifying the sort
+    ' orders of the iteratees to sort by. If `orders` is unspecified, all values
+    ' are sorted in ascending order. Otherwise, specify an order of "desc" for
+    ' descending or "asc" for ascending sort order of corresponding values.
+    ' You may also specify a compare function for an order.
+    ' @since 0.0.21
+    ' @category Array
+    ' @param {Dynamic} collection - The collection to shuffle
+    ' @param {Dynamic} [iteratee] - The iteratees to sort by
+    ' @param {Dynamic} [orders] - The sort orders of `iteratees`.
+    ' @returns {Array} Returns the new ordered array
+    function orderBy(collection, iteratees, orders) as Object
+        if rodash.isInvalid(collection) OR NOT rodash.isArray(collection) then return []
 
-    if not rodash.isArray(iteratees) then
-        iteratees = iteratees = invalid ? [] : [iteratees]
-    end if
+        if NOT rodash.isArray(iteratees) then
+            iteratees = iteratees = Invalid ? [] : [iteratees]
+        end if
 
-    if not rodash.isArray(orders) then
-        orders = orders = invalid ? [] : [orders]
-    end if
+        if NOT rodash.isArray(orders) then
+            orders = orders = Invalid ? [] : [orders]
+        end if
 
-    returnCollection = rodash.clone(collection)
+        returnCollection = rodash.clone(collection)
 
-    n = returnCollection.Count()
-    for i = 0 to n - 2
-        for j = 0 to n - i - 2
-            if rodash.internal.orderByCompare(returnCollection[j], returnCollection[j + 1], iteratees, orders)
-                ' Swap returnCollection[j] and returnCollection[j + 1]
-                temp = returnCollection[j]
-                returnCollection[j] = returnCollection[j + 1]
-                returnCollection[j + 1] = temp
-            end if
+        n = returnCollection.Count()
+        for i = 0 to n - 2
+            for j = 0 to n - i - 2
+                if rodash.internal.orderByCompare(returnCollection[j], returnCollection[j + 1], iteratees, orders)
+                    ' Swap returnCollection[j] and returnCollection[j + 1]
+                    temp = returnCollection[j]
+                    returnCollection[j] = returnCollection[j + 1]
+                    returnCollection[j + 1] = temp
+                end if
+            end for
         end for
-    end for
 
-    return returnCollection
-  end function
+        return returnCollection
+    end function
 end namespace

@@ -4,8 +4,13 @@ namespace rodash
   ' @category Object
   ' @param {Dynamic} obj - The object to iterate over
   ' @param {Dynamic} iteratee - The function invoked per iteration
-  ' @return {Object} Returns object
-  function forInRight(obj = CreateObject("roAssociativeArray") as object, iteratee = invalid as dynamic)
+  ' @returns {Object} Returns object
+  ' @example
+  ' rodash.forInRight({ 'a': 1, 'b': 2 }, function(value, key)
+  '   print key
+  ' end function)
+  ' // => Logs `b` then `a`
+  function forInRight(obj = CreateObject("roAssociativeArray") as Object, iteratee = Invalid as Dynamic)
     return rodash.internal.baseForEach(obj, iteratee, "right", "omit")
   end function
 end namespace

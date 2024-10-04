@@ -1,33 +1,33 @@
 namespace rodash.internal
-  ' @ignore
-  ' Checks if the supplied values can be compared in a if statement.
-  ' @since 0.0.21
-  ' @category Internal
-  ' @param {Dynamic} valueOne - First value
-  ' @param {Dynamic} valueTwo - Second value
-  ' @return {Boolean} True if the values can be compared in a if statement
-  function canBeCompared(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
-    valueOneType = type(valueOne)
-    valueTwoType = type(valueTwo)
+    ' @ignore
+    ' Checks if the supplied values can be compared in a if statement.
+    ' @since 0.0.21
+    ' @category Internal
+    ' @param {Dynamic} valueOne - First value
+    ' @param {Dynamic} valueTwo - Second value
+    ' @returns {Boolean} True if the values can be compared in a if statement
+    function canBeCompared(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
+        valueOneType = type(valueOne)
+        valueTwoType = type(valueTwo)
 
-    if (valueOneType = "String" OR valueOneType = "roString") then
-        if (valueTwoType = "String" OR valueTwoType = "roString") then
-            return true
+        if (valueOneType = "String" OR valueOneType = "roString") then
+            if (valueTwoType = "String" OR valueTwoType = "roString") then
+                return true
+            end if
+        else if (valueOneType = "Integer" OR valueOneType = "roInt" OR valueOneType = "roInteger" OR valueOneType = "LongInteger" OR valueOneType = "Float" OR valueOneType = "roFloat" OR valueOneType = "Double" OR valueOneType = "roDouble" OR valueOneType = "roIntrinsicDouble") then
+            if (valueTwoType = "Integer" OR valueTwoType = "roInt" OR valueTwoType = "roInteger" OR valueTwoType = "LongInteger" OR valueTwoType = "Float" OR valueTwoType = "roFloat" OR valueTwoType = "Double" OR valueTwoType = "roDouble" OR valueTwoType = "roIntrinsicDouble") then
+                return true
+            end if
+        else if (valueOneType = "Boolean" OR valueOneType = "roBoolean") then
+            if (valueTwoType = "Boolean" OR valueTwoType = "roBoolean") then
+                return true
+            end if
+        else if (valueOneType = "<uninitialized>" OR valueOne = Invalid) then
+            if (valueTwoType = "<uninitialized>" OR valueTwo = Invalid) then
+                return true
+            end if
         end if
-    else if (valueOneType = "Integer" OR valueOneType = "roInt" OR valueOneType = "roInteger" OR valueOneType = "LongInteger" OR valueOneType = "Float" OR valueOneType = "roFloat" OR valueOneType = "Double" OR valueOneType = "roDouble" OR valueOneType = "roIntrinsicDouble") then
-        if (valueTwoType = "Integer" OR valueTwoType = "roInt" OR valueTwoType = "roInteger" OR valueTwoType = "LongInteger" OR valueTwoType = "Float" OR valueTwoType = "roFloat" OR valueTwoType = "Double" OR valueTwoType = "roDouble" OR valueTwoType = "roIntrinsicDouble") then
-            return true
-        end if
-    else if (valueOneType = "Boolean" OR valueOneType = "roBoolean") then
-        if (valueTwoType = "Boolean" OR valueTwoType = "roBoolean") then
-            return true
-        end if
-    else if (valueOneType = "<uninitialized>" OR valueOne = Invalid) then
-        if (valueTwoType = "<uninitialized>" OR valueTwo = Invalid) then
-            return true
-        end if
-    end if
 
-    return false
-  end function
+        return false
+    end function
 end namespace

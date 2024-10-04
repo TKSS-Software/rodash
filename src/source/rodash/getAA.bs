@@ -5,9 +5,14 @@ namespace rodash
   ' @param {Object} aa - Object to drill down into.
   ' @param {String} keyPath - A dot notation based string to the expected value.
   ' @param {Assocarray} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
-  ' @return {Assocarray} The result of the drill down process
+  ' @returns {Assocarray} The result of the drill down process
+  ' @example
+  ' rodash.getAA({a: {b: {c: 3}}}, 'a.b') ' => {c: 3}
+  ' rodash.getAA({a: {b: {c: 3}}}, 'a.b.d') ' => {}
+  ' rodash.getAA({a: {b: {c: 3}}}, 'a.b.c') ' => {}
+  ' rodash.getAA({a: {b: {c: 3}}}, 'a.b.d', {d: 4}) ' => {d: 4}
   @inline
-  function getAA(aa as object, keyPath as string, fallback = CreateObject("roAssociativeArray") as object) as object
+  function getAA(aa as Object, keyPath as String, fallback = CreateObject("roAssociativeArray") as Object) as Object
     return rodash.get(aa, keyPath, fallback, rodash.isAA)
   end function
 end namespace

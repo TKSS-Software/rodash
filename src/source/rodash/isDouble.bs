@@ -3,7 +3,12 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
+  ' @example
+  ' rodash.isDouble(1) // => false
+  ' rodash.isDouble(1.0#) // => true
+  ' rodash.isDouble(1.0!) // => false
+  @inline
   function isDouble(value as Dynamic) as Boolean
     return type(value) = "Double" OR type(value) = "roDouble" OR type(value) = "roIntrinsicDouble"
   end function

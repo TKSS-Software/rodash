@@ -4,17 +4,30 @@ namespace rodash
   ' @category Collection
   ' @param {Dynamic} collection - The collection to iterate over
   ' @param {Dynamic} iteratee - The function invoked per iteration
-  ' @return {Array} Returns the new mapped array
-  function map(collection = CreateObject("roAssociativeArray") as dynamic, iteratee = invalid as dynamic)
-    if NOT rodash.isArray(collection) then return CreateObject("roArray", 0, true)
-
+  ' @returns {Array} Returns the new mapped array
+  ' @example
+  ' rodash.map([4, 8], rodash.square) // => [16, 64]
+  function map(collection = CreateObject("roAssociativeArray") as Dynamic, iteratee = Invalid as Dynamic)
     returnArray = CreateObject("roArray", 0, true)
 
-    for each item in collection
+    collectionToProcess = CreateObject("roArray", 0, true)
+    if rodash.isString(collection) then
+      collectionToProcess.append(collection.split(""))
+    else if rodash.isAA(collection) then
+      for each key in collection.keys()
+        collectionToProcess.push(collection[key])
+      end for
+    else if rodash.isArray(collection) then
+      collectionToProcess.append(collection)
+    end if
+
+    for each item in collectionToProcess
       if rodash.isString(iteratee) then
         if rodash.isAA(item) then returnArray.push(item[iteratee])
       else if rodash.isFunction(iteratee) then
         returnArray.push(iteratee(item))
+      else
+        returnArray.push(item)
       end if
     end for
 

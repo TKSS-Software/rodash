@@ -2,8 +2,8 @@ namespace rodash
   ' Gets the month.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} - The month.
-  function getMonth() as object
+  ' @returns {Object} The month.
+  function getMonth() as Object
     dateObj = rodash.internal.getDateObject()
 
     return {

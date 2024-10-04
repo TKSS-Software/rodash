@@ -3,8 +3,8 @@ namespace rodash
   ' @since 0.0.21
   ' @category Date
   ' @param {String} dateString - The date string to convert.
-  ' @returns {Object} - The date objects.
-  function fromISO8601String(dateString = "" as string) as object
+  ' @returns {Object} The date objects.
+  function fromISO8601String(dateString = "" as String) as Object
     dateObj = rodash.internal.getDateObject()
 
     return {

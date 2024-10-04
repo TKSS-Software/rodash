@@ -52,6 +52,28 @@ namespace Tests
       m.assertEqual(rodash.keyBy(posts, "id"), expected)
     end function
 
+    @it("map")
+    function _mapTest()
+      result = rodash.map([4,8], rodash.square)
+      m.assertEqual(result, [16, 64])
+
+      result = rodash.map({ "a": 4, "b": 8 }, rodash.square)
+      m.assertEqual(result, [16, 64])
+
+      users = [
+        { "user": "barney" },
+        { "user": "fred" }
+      ]
+      result = rodash.map(users, "user")
+      m.assertEqual(result, ["barney", "fred"] )
+
+      result = rodash.map("hello world", rodash.capitalize)
+      m.assertEqual(result, ["H", "E", "L", "L", "O", " ", "W", "O", "R", "L", "D"] )
+
+      result = rodash.map("hello world")
+      m.assertEqual(result, ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"] )
+    end function
+
     @it("orderBy")
     @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }])
     @params(["user", "age"], ["desc", "desc"], [{ "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])

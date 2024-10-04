@@ -3,9 +3,11 @@ namespace rodash
   ' @since 0.0.21
   ' @category Array
   ' @param {Array} array - The array to query
-  ' @return {Dynamic} Returns the first element of array
+  ' @returns {Dynamic} Returns the first element of array
+  ' @example
+  ' rodash.head([1, 2, 3]) // => 1
   @inline
-  function head(array = CreateObject("roArray", 0, true) as object) as dynamic
+  function head(array = CreateObject("roArray", 0, true) as Object) as Dynamic
     return array[0]
   end function
 end namespace

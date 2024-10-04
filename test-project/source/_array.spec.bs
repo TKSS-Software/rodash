@@ -9,7 +9,7 @@ namespace Tests
     @it("chunk")
     @params(["a", "b", "c", "d"], 2, [["a", "b"], ["c", "d"]])
     @params(["a", "b", "c", "d"], 3, [["a", "b", "c"], ["d"]])
-    function _chunkTest(array as object, chunkSize = 1 as integer, matchResult = [] as object)
+    function _chunkTest(array as Object, chunkSize = 1 as Integer, matchResult = [] as Object)
       result = rodash.chunk(array, chunkSize)
       m.assertEqual(result, matchResult)
     end function
@@ -17,7 +17,7 @@ namespace Tests
 
     @it("compact")
     @params([0, 1, false, 2, "", 3], [1, 2, 3])
-    function _compactTest(array as object, matchResult = [] as object)
+    function _compactTest(array as Object, matchResult = [] as Object)
       result = rodash.compact(array)
       m.assertEqual(result, matchResult)
     end function
@@ -25,7 +25,7 @@ namespace Tests
 
     @it("concat")
     @params([1], [2, [3], [[4]]], [1, 2, 3, [4]])
-    function _concatTest(arrayOne as object, arrayTwo as object, matchResult = [] as object)
+    function _concatTest(arrayOne as Object, arrayTwo as Object, matchResult = [] as Object)
       result = rodash.concat(arrayOne, arrayTwo)
       m.assertEqual(result, matchResult)
     end function
@@ -33,18 +33,18 @@ namespace Tests
 
     @it("difference")
     @params([2, 1], [2, 3], [1])
-    function _differenceTest(arrayOne as object, arrayTwo as object, matchResult = [] as object)
+    function _differenceTest(arrayOne as Object, arrayTwo as Object, matchResult = [] as Object)
       result = rodash.difference(arrayOne, arrayTwo)
       m.assertEqual(result, matchResult)
     end function
 
 
     @it("drop")
-    @params([1, 2, 3], invalid, [2, 3])
+    @params([1, 2, 3], Invalid, [2, 3])
     @params([1, 2, 3], 2, [3])
     @params([1, 2, 3], 5, [])
     @params([1, 2, 3], 0, [1, 2, 3])
-    function _dropTest(array as object, n = invalid as dynamic, matchResult = [] as object)
+    function _dropTest(array as Object, n = Invalid as Dynamic, matchResult = [] as Object)
       if rodash.isInvalid(n) then
         result = rodash.drop(array)
       else
@@ -55,11 +55,11 @@ namespace Tests
 
 
     @it("dropRight")
-    @params([1, 2, 3], invalid, [1, 2])
+    @params([1, 2, 3], Invalid, [1, 2])
     @params([1, 2, 3], 2, [1])
     @params([1, 2, 3], 5, [])
     @params([1, 2, 3], 0, [1, 2, 3])
-    function _dropRightTest(array as object, n = invalid as dynamic, matchResult = [] as object)
+    function _dropRightTest(array as Object, n = Invalid as Dynamic, matchResult = [] as Object)
       if rodash.isInvalid(n) then
         result = rodash.dropRight(array)
       else
@@ -70,28 +70,29 @@ namespace Tests
 
 
     @it("fill")
-    @params([1, 2, 3], "a", invalid, invalid, ["a", "a", "a"])
-    @params([1, 2, 3], 2, invalid, invalid, [2, 2, 2])
+    @params([1, 2, 3], "a", Invalid, Invalid, ["a", "a", "a"])
+    @params([1, 2, 3], 2, Invalid, Invalid, [2, 2, 2])
     @params([4, 6, 8, 10], "*", 1, 3, [4, "*", "*", 10])
-    function _fillTest(array as object, value = invalid as dynamic, startPos = invalid, endPos = invalid, matchResult = [] as object)
+    @params([1, 2, 3], "a", 1, Invalid, [1, "a", "a"])
+    function _fillTest(array as Object, value = Invalid as Dynamic, startPos = Invalid, endPos = Invalid, matchResult = [] as Object)
       result = rodash.fill(array, value, startPos, endPos)
       m.assertEqual(result, matchResult)
     end function
 
 
     @it("findIndex")
-    @params(invalid, 0)
+    @params(Invalid, 0)
     @params({ "user": "fred", "active": false }, 1)
     @params(["active", false], 0)
     @params("active", 2)
-    function _findIndexTest(predicate = invalid as dynamic, matchResult = -1 as integer)
+    function _findIndexTest(predicate = Invalid as Dynamic, matchResult = -1 as Integer)
       if rodash.isInvalid(predicate) then predicate = function(o)
         return o.user = "barney"
       end function
 
       users = [
-        { "user": "barney",  "active": false },
-        { "user": "fred",    "active": false },
+        { "user": "barney", "active": false },
+        { "user": "fred", "active": false },
         { "user": "pebbles", "active": true }
       ]
       result = rodash.findIndex(users, predicate)
@@ -100,18 +101,18 @@ namespace Tests
 
 
     @it("findLastIndex")
-    @params(invalid, 2)
+    @params(Invalid, 2)
     @params({ "user": "barney", "active": true }, 0)
     @params(["active", false], 2)
     @params("active", 0)
-    function _findLastIndexTest(predicate = invalid as dynamic, matchResult = -1 as integer)
+    function _findLastIndexTest(predicate = Invalid as Dynamic, matchResult = -1 as Integer)
       if rodash.isInvalid(predicate) then predicate = function(o)
         return o.user = "pebbles"
       end function
 
       users = [
-        { "user": "barney",  "active": true },
-        { "user": "fred",    "active": false },
+        { "user": "barney", "active": true },
+        { "user": "fred", "active": false },
         { "user": "pebbles", "active": false }
       ]
       result = rodash.findLastIndex(users, predicate)
@@ -122,8 +123,8 @@ namespace Tests
     @it("first")
     @params([1, 2, 3], 1)
     @params([2, 3, 1], 2)
-    @params([], invalid)
-    function _firstTest(array = [] as object, matchResult = invalid as dynamic)
+    @params([], Invalid)
+    function _firstTest(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.first(array)
       m.assertEqual(result, matchResult)
     end function
@@ -131,7 +132,7 @@ namespace Tests
 
     @it("flatten")
     @params([1, [2, [3, [4]], 5]], [1, 2, [3, [4]], 5])
-    function _flattenTest(array = [] as object, matchResult = invalid as dynamic)
+    function _flattenTest(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.flatten(array)
       m.assertEqual(result, matchResult)
     end function
@@ -139,7 +140,7 @@ namespace Tests
 
     @it("flattenDeep")
     @params([1, [2, [3, [4]], 5]], [1, 2, 3, 4, 5])
-    function _flattenDeepTest(array = [] as object, matchResult = invalid as dynamic)
+    function _flattenDeepTest(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.flattenDeep(array)
       m.assertEqual(result, matchResult)
     end function
@@ -147,62 +148,62 @@ namespace Tests
     @it("flattenDepth")
     @params([1, [2, [3, [4]], 5]], 1, [1, 2, [3, [4]], 5])
     @params([1, [2, [3, [4]], 5]], 2, [1, 2, 3, [4], 5])
-    function _flattenDeepTest(array = [] as object, depth = 1 as integer, matchResult = invalid as dynamic)
+    function _flattenDeepTest(array = [] as Object, depth = 1 as Integer, matchResult = Invalid as Dynamic)
       result = rodash.flattenDepth(array, depth)
       m.assertEqual(result, matchResult)
     end function
 
     @it("fromPairs")
-    @params([["a", 1], ["b", 2]], {"a": 1, "b": 2})
-    function _firstTest(array = [] as object, matchResult = invalid as dynamic)
+    @params([["a", 1], ["b", 2]], { "a": 1, "b": 2 })
+    function _firstTest(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.fromPairs(array)
       m.assertEqual(result, matchResult)
     end function
 
     @it("indexOf")
-    @params([1, 2, 1, 2], 2, invalid, 1)
+    @params([1, 2, 1, 2], 2, Invalid, 1)
     @params([1, 2, 1, 2], 2, 2, 3)
-    function _indexOfTest(array = [] as object, value = invalid as dynamic, fromIndex = invalid as dynamic, matchResult = invalid as dynamic)
+    function _indexOfTest(array = [] as Object, value = Invalid as Dynamic, fromIndex = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       result = rodash.indexOf(array, value, fromIndex)
       m.assertEqual(result, matchResult)
     end function
 
     @it("initial")
     @params([1, 2, 3], [1, 2])
-    function _initialTest(array = [] as object, matchResult = invalid as dynamic)
+    function _initialTest(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.initial(array)
       m.assertEqual(result, matchResult)
     end function
 
     @it("intersection")
     @params([2, 1], [2, 3], [2])
-    function _(arrayOne = [] as object, arrayTwo = [] as object, matchResult = invalid as dynamic)
+    function _(arrayOne = [] as Object, arrayTwo = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.intersection(arrayOne, arrayTwo)
       m.assertEqual(result, matchResult)
     end function
 
     @it("join")
     @params(["a", "b", "c"], "~", "a~b~c")
-    function _(array = [] as object, separator = "" as string, matchResult = invalid as dynamic)
+    function _(array = [] as Object, separator = "" as String, matchResult = Invalid as Dynamic)
       result = rodash.join(array, separator)
       m.assertEqual(result, matchResult)
     end function
 
     @it("last")
     @params([1, 2, 3], 3)
-    function _(array = [] as object, matchResult = invalid as dynamic)
+    function _(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.last(array)
       m.assertEqual(result, matchResult)
     end function
 
     @it("lastIndexOf")
-    @params([1, 2, 1, 2], 2, invalid, 3)
+    @params([1, 2, 1, 2], 2, Invalid, 3)
     @params([1, 2, 1, 2], 2, 2, 1)
     @params([3, 6, 9], 9, -1, 2)
     @params([3, 6, 9, 9, 0, 0, 9], 9, -1, 6)
     @params([3, 6, 9, 9, 0, 0, 9], 9, 3, 3)
-    function _(array = [] as object, value = "" as dynamic, fromIndex = invalid as dynamic, matchResult = invalid as dynamic)
-      if fromIndex = invalid then
+    function _(array = [] as Object, value = "" as Dynamic, fromIndex = Invalid as Dynamic, matchResult = Invalid as Dynamic)
+      if fromIndex = Invalid then
         result = rodash.lastIndexOf(array, value)
       else
         result = rodash.lastIndexOf(array, value, fromIndex)
@@ -211,39 +212,39 @@ namespace Tests
     end function
 
     @it("slice")
-    @params([1,2,3,4,5,6,7,8,9,10], 4, [1,2,3,4])
-    function _(array = [] as object, n = 0 as integer, matchResult = invalid as dynamic)
+    @params([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, [1, 2, 3, 4])
+    function _(array = [] as Object, n = 0 as Integer, matchResult = Invalid as Dynamic)
       result = rodash.slice(array, 0, n)
       m.assertEqual(result, matchResult)
     end function
 
     @it("toPairs")
-    @params({"a": 1, "b": 2}, [["a", 1], ["b", 2]])
-    function _(obj = {} as object, matchResult = invalid as dynamic)
+    @params({ "a": 1, "b": 2 }, [["a", 1], ["b", 2]])
+    function _(obj = {} as Object, matchResult = Invalid as Dynamic)
       result = rodash.toPairs(obj)
       m.assertEqual(result, matchResult)
     end function
 
     @it("xor")
-    @params([[1,2], [2,3]], [1, 3])
+    @params([[1, 2], [2, 3]], [1, 3])
     @params([[3, 10, 100], [100, 10, 2], [10, 500, 3]], [2, 500])
     @params([["web", "mobile-app"], ["machine-learning", "web"], ["basic-programming", "system-app"], ["mobile-app", "web", "basic-programming"]], ["machine-learning", "system-app"])
-    @params([[{a:1}, {b:2}], [{b:2}, {c:3}]], [{a:1}, {c:3}])
+    @params([[{ a: 1 }, { b: 2 }], [{ b: 2 }, { c: 3 }]], [{ a: 1 }, { c: 3 }])
     @params([[2, 1], [2], ["a", "b"]], [1, "a", "b"])
     @params([[2, 1], ["2"], ["a", "b"]], [2, 1, "2", "a", "b"])
-    @params([[2, 1], ["2"], ["a", "b"], [{a:1}]], [2, 1, "2", "a", "b", {a:1}])
-    function _(obj = [] as object, matchResult = invalid as dynamic)
-      result = rodash.xor(obj)
-      m.assertEqual(result, matchResult)
-    end function
+    @params([[2, 1], ["2"], ["a", "b"], [{ a: 1 }]], [2, 1, "2", "a", "b", { a: 1 }])
+  function _(obj = [] as Object, matchResult = Invalid as Dynamic)
+    result = rodash.xor(obj)
+    m.assertEqual(result, matchResult)
+  end function
 
-    ' @it("reverse")
-    ' @params([1, 2, 3], [3, 2, 1])
-    ' function _(array = [] as object, matchResult = invalid as dynamic)
-    '   result = rodash.r
-    '   m.assertEqual(result, matchResult)
-    ' end function
+  ' @it("reverse")
+  ' @params([1, 2, 3], [3, 2, 1])
+  ' function _(array = [] as object, matchResult = invalid as dynamic)
+  '   result = rodash.r
+  '   m.assertEqual(result, matchResult)
+  ' end function
 
-  end class
+end class
 
 end namespace

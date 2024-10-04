@@ -3,11 +3,11 @@ namespace rodash
   ' @since 0.0.21
   ' @category String
   ' @param {String} source - The string to escape.
-  ' @returns {String} - The escaped string.
-  function escapeRegExp(source = "" as string)
+  ' @returns {String} The escaped string.
+  function escapeRegExp(source = "" as String)
     replaceArray = ["^", "$", "", ".", "*", "+", "?", "(", ")", "[", "]", "{", "}", "|"]
     for each char in replaceArray
-      source = source.replace(char, "\"+char)
+      source = source.replace(char, "\" + char)
     end for
     return source.replace("\/\/", "//")
   end function

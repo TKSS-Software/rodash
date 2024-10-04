@@ -3,9 +3,12 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
+  ' @example
+  ' rodash.isAA({}) // => true
+  ' rodash.isAA([]) // => false
   @inline
-  function isAA(value as dynamic) as boolean
+  function isAA(value as Dynamic) as Boolean
     return type(value) = "roAssociativeArray"
   end function
 end namespace

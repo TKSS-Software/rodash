@@ -3,7 +3,12 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The value to convert.
-  ' @return {String} Results of the conversion.
+  ' @returns {String} Results of the conversion.
+  ' @example
+  ' rodash.toString(1) // => "1"
+  ' rodash.toString(1.0#) // => "1.0"
+  ' rodash.toString(true) // => "true"
+  ' rodash.toString(false) // => "false"
   function toString(value as Dynamic) as String
     if rodash.isString(value) then return value
     if rodash.isNumber(value) then return rodash.internal.numberToString(value)

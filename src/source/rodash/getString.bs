@@ -5,9 +5,14 @@ namespace rodash
   ' @param {Object} aa - Object to drill down into.
   ' @param {String} keyPath - A dot notation based string to the expected value.
   ' @param {String} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
-  ' @return {String} The result of the drill down process
+  ' @returns {String} The result of the drill down process
+  ' @example
+  ' rodash.getString({a: {b: {c: 'hello'}}}, 'a.b.c') ' => 'hello'
+  ' rodash.getString({a: {b: {c: 3}}}, 'a.b.d') ' => ''
+  ' rodash.getString({a: {b: {c: 3}}}, 'a.b.c') ' => ''
+  ' rodash.getString({a: {b: {c: 3}}}, 'a.b.d', 'fallback') ' => 'fallback'
   @inline
-  function getString(aa as object, keyPath as string, fallback = "" as string) as string
+  function getString(aa as Object, keyPath as String, fallback = "" as String) as String
     return rodash.get(aa, keyPath, fallback, rodash.isString)
   end function
 end namespace

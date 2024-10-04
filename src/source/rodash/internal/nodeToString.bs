@@ -5,7 +5,7 @@ namespace rodash.internal
   ' @since 0.0.21
   ' @category Internal
   ' @param {Dynamic} value The value to convert.
-  ' @return {String} Results of the conversion.
+  ' @returns {String} Results of the conversion.
   function nodeToString(node as Object) as String
     if NOT rodash.isNode(node) then return ""
 

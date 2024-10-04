@@ -3,7 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Math
   ' @param {Array} array - The array to iterate over
-  ' @return {Dynamic} Returns the mean value
+  ' @returns {Dynamic} Returns the mean value
+  ' @example
+  ' rodash.mean([4, 2, 8, 6]) // => 5
   @inline
   function mean(array)
     return rodash.meanBy(array)

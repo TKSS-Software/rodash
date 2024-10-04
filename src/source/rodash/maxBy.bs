@@ -3,11 +3,11 @@ namespace rodash
   ' @since 0.0.21
   ' @category Math
   ' @param {Array} array - The array to iterate over
-  ' @return {Dynamic} Returns the maximum value
-  function maxBy(array = CreateObject("roArray", 0, true) as object, iteratee = invalid) as dynamic
-    if rodash.isEmpty(array) then return invalid
+  ' @returns {Dynamic} Returns the maximum value
+  function maxBy(array = CreateObject("roArray", 0, true) as Object, iteratee = Invalid) as Dynamic
+    if rodash.isEmpty(array) then return Invalid
 
-    maxValue = invalid
+    maxValue = Invalid
     if rodash.isInvalid(iteratee) then
       maxValue = rodash.internal.getConstants().min_int
       for each value in array

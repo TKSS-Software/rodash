@@ -4,8 +4,8 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The sorted array to query
   ' @param {Integer} n - The number of elements to take
-  ' @return {Object} Returns the slice of array
-  function take(array = CreateObject("roArray", 0, true) as object, n = invalid as dynamic) as object
+  ' @returns {Object} Returns the slice of array
+  function take(array = CreateObject("roArray", 0, true) as Object, n = Invalid as Dynamic) as Object
     if rodash.isInvalid(n) then n = 1
     if NOT rodash.isNonEmptyArray(array) OR n = 0 then return CreateObject("roArray", 0, true)
     return rodash.slice(array, 0, n)

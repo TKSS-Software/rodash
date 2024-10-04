@@ -4,7 +4,16 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} valueOne - First value.
   ' @param {Dynamic} valueTwo - Second value.
-  ' @return {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
+  ' @returns {Boolean} True if the values are the same and false if not or if any of the values are a type that could not be compared.
+  ' @example
+  ' rodash.isEqual(1, 1) // => true
+  ' rodash.isEqual(1, 2) // => false
+  ' rodash.isEqual([], []) // => true
+  ' rodash.isEqual({}, {}) // => true
+  ' rodash.isEqual({a: 1}, {a: 1}) // => true
+  ' rodash.isEqual({a: 1}, {a: 2}) // => false
+  ' rodash.isEqual("Hello", "Hello") // => true
+  ' rodash.isEqual("Hello", "World") // => false
   function isEqual(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
     ' If the first argument is true we don't need to check the follwing conditionals
     if rodash.internal.canBeCompared(valueOne, valueTwo) then

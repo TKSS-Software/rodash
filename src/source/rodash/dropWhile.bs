@@ -4,8 +4,8 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to query
   ' @param {Dynamic} predicate - The function invoked per iteration
-  ' @return {Array} array - Returns the slice of array
-  function dropWhile(array = CreateObject("roArray", 0, true) as object, predicate = invalid)
+  ' @returns {Array} Returns the slice of array
+  function dropWhile(array = CreateObject("roArray", 0, true) as Object, predicate = Invalid)
     array = rodash.clone(array)
     for i = 0 to array.count() - 1
       item = array[i]

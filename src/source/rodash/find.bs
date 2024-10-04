@@ -5,12 +5,23 @@ namespace rodash
   ' @param {Array} array - The array to inspect
   ' @param {Dynamic} predicate - The function invoked per iteration
   ' @param {Integer} fromIndex - The index to search from
-  ' @returns {Dymanic} match - Returns the matched element, else invalid.
-  function find(array, predicate = invalid as dynamic, fromIndex = 0 as integer) as dynamic
-    if not rodash.isArray(array) then return invalid
+  ' @returns {Dymanic} Returns the matched element, else invalid.
+  ' @example
+  ' users = [
+  '   { "user": "barney", "active": false },
+  '   { "user": "fred", "active": false },
+  '   { "user": "pebbles", "active": true }
+  ' ]
+  '
+  ' rodash.find(users, function(o)
+  '   return o.user = "barney"
+  ' end function)
+  ' // => { "user": "barney", "active": false }
+  function find(array, predicate = Invalid as Dynamic, fromIndex = 0 as Integer) as Dynamic
+    if NOT rodash.isArray(array) then return Invalid
 
     foundIndex = rodash.findIndex(array, predicate, fromIndex)
-    if foundIndex = -1 then return invalid
+    if foundIndex = -1 then return Invalid
 
     return array[foundIndex]
   end function

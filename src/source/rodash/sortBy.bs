@@ -4,8 +4,8 @@ namespace rodash
   ' @category Collection
   ' @param {Dynamic} collection - The collection to sort
   ' @param {Dynamic} iteratee - The iteratees to sort by
-  ' @return {Array} Returns the new sorted array
-  function sortBy(collection = invalid as dynamic, iteratee = invalid as dynamic)
+  ' @returns {Array} Returns the new sorted array
+  function sortBy(collection = Invalid as Dynamic, iteratee = Invalid as Dynamic)
     if rodash.isInvalid(collection) OR NOT rodash.isArray(collection) then return collection
     returnCollection = rodash.clone(collection)
 
@@ -26,6 +26,6 @@ namespace rodash
       if NOT key = "" then returnCollection.sortBy(key)
     end if
 
-   return returnCollection
+    return returnCollection
   end function
 end namespace

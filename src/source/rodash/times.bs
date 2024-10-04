@@ -1,18 +1,22 @@
 namespace rodash
-    ' Invokes the iteratee n times, returning an array of the results of each invocation. The iteratee is invoked with one argument; (index).
-    ' @since 0.0.24
-    ' @category Utils
-    ' @param {Integer} n - The number of times to invoke iteratee.
-    ' @param {Function} iteratee - The function invoked per iteration.
-    ' @return {Array} Returns the array of results.
-    function times(n = 0 as Integer, iteratee = invalid as dynamic) as object
-      returnArray = CreateObject("roArray", 0, true)
-      if not rodash.isInteger(n) then return returnArray
+  ' Invokes the iteratee n times, returning an array of the results of each invocation. The iteratee is invoked with one argument; (index).
+  ' @since 0.0.24
+  ' @category Utils
+  ' @param {Integer} n - The number of times to invoke iteratee.
+  ' @param {Function} iteratee - The function invoked per iteration.
+  ' @returns {Array} Returns the array of results.
+  ' @example
+  ' rodash.times(3, rodash.toString) ' => ["0", "1", "2"]
+  ' rodash.times(4, rodash.isNumber) ' => [true, true, true, true]
+  ' rodash.times(4, rodash.isString) ' => [false, false, false, false]
+  function times(n = 0 as Integer, iteratee = Invalid as Dynamic) as Object
+    returnArray = CreateObject("roArray", 0, true)
+    if NOT rodash.isInteger(n) then return returnArray
 
-      for i = 1 to n
-        returnArray.push(iteratee)
-      end for
+    for i = 0 to n - 1
+      returnArray.push(iteratee(i))
+    end for
 
-      return returnArray
-    end function
-  end namespace
+    return returnArray
+  end function
+end namespace

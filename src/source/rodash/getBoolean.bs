@@ -5,9 +5,14 @@ namespace rodash
   ' @param {Object} aa - Object to drill down into.
   ' @param {String} keyPath - A dot notation based string to the expected value.
   ' @param {Boolean} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
-  ' @return {Boolean} The result of the drill down process
+  ' @returns {Boolean} The result of the drill down process
+  ' @example
+  ' rodash.getBoolean({a: {b: {c: true}}}, 'a.b.c') ' => true
+  ' rodash.getBoolean({a: {b: {c: 3}}}, 'a.b.d') ' => false
+  ' rodash.getBoolean({a: {b: {c: 3}}}, 'a.b.c') ' => false
+  ' rodash.getBoolean({a: {b: {c: 3}}}, 'a.b.d', true) ' => true
   @inline
-  function getBoolean(aa as object, keyPath as string, fallback = false as boolean) as boolean
+  function getBoolean(aa as Object, keyPath as String, fallback = false as Boolean) as Boolean
     return rodash.get(aa, keyPath, fallback, rodash.isBoolean)
   end function
 end namespace

@@ -5,8 +5,8 @@ namespace rodash
   ' @param {Array} mainArray - The main array to inspect
   ' @param {Array} inspect - The array to find matches
   ' @param {Dynamic} iteratee - The iteratee invoked per element
-  ' @return {Array} Returns the new array of intersecting values
-  function intersectionBy(mainArray = CreateObject("roArray", 0, true) as object, inspectArray = CreateObject("roArray", 0, true) as object, iteratee = invalid) as object
+  ' @returns {Array} Returns the new array of intersecting values
+  function intersectionBy(mainArray = CreateObject("roArray", 0, true) as Object, inspectArray = CreateObject("roArray", 0, true) as Object, iteratee = Invalid) as Object
     intersectArray = CreateObject("roArray", 0, true)
 
     mainArray = rodash.clone(mainArray)
@@ -15,7 +15,7 @@ namespace rodash
     if rodash.isInvalid(iteratee) then
       if rodash.isNonEmptyArray(mainArray) then
         for each item in mainArray
-          if NOT rodash.isEqual(rodash.indexOf(inspectArray, item), - 1) then intersectArray.push(item)
+          if NOT rodash.isEqual(rodash.indexOf(inspectArray, item), -1) then intersectArray.push(item)
         end for
       end if
     else if rodash.isFunction(iteratee) then
@@ -23,7 +23,7 @@ namespace rodash
         inspectArray[i] = iteratee(inspectArray[i])
       end for
       for each item in mainArray
-        if NOT rodash.isEqual(rodash.indexOf(inspectArray, iteratee(item)), - 1) then intersectArray.push(item)
+        if NOT rodash.isEqual(rodash.indexOf(inspectArray, iteratee(item)), -1) then intersectArray.push(item)
       end for
     else if rodash.isString(iteratee) then
       for each item in mainArray
@@ -31,7 +31,7 @@ namespace rodash
         if rodash.isNotInvalid(findKey) then
           matchValue = CreateObject("roAssociativeArray")
           matchValue[iteratee] = findKey
-          if NOT rodash.isEqual(rodash.findIndex(inspectArray, matchValue), - 1) then intersectArray.push(item)
+          if NOT rodash.isEqual(rodash.findIndex(inspectArray, matchValue), -1) then intersectArray.push(item)
         end if
       end for
     end if

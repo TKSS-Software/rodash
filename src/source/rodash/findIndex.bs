@@ -5,9 +5,9 @@ namespace rodash
   ' @param {Array} array - The array to inspect
   ' @param {Dynamic} predicate - The function invoked per iteration
   ' @param {Integer} fromIndex - The index to search from
-  ' @returns {Integer} index - Returns the index of the found element, else -1
-  function findIndex(array, predicate = invalid as dynamic, fromIndex = 0 as integer) as integer
-    for index = fromIndex to array.count() -1
+  ' @returns {Integer} Returns the index of the found element, else -1
+  function findIndex(array, predicate = Invalid as Dynamic, fromIndex = 0 as Integer) as Integer
+    for index = fromIndex to array.count() - 1
       item = array[index]
 
       if rodash.isFunction(predicate) then
@@ -16,7 +16,7 @@ namespace rodash
         if rodash.isEqual(item, predicate) then return index
       else if rodash.isArray(predicate) then
         if rodash.isEqual(item[predicate[0]], predicate[1]) then return index
-      else if rodash.isString(predicate) and item.doesExist(predicate) then
+      else if rodash.isString(predicate) AND item.doesExist(predicate) then
         if item[predicate] then return index
       end if
     end for
