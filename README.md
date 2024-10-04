@@ -1,9 +1,5 @@
 ![image](https://github.com/user-attachments/assets/adfcc765-c7c7-418c-8b09-aa1daa5a63dd)
 
----
-
-[Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) utility for Roku apps. Currently supporting over 200 utility functions!
-
 [![build status](https://img.shields.io/github/workflow/status/TKSS-Software/rodash/build.yml?logo=github&branch=master)](https://github.com/TKSS-Software/rodash/actions?query=branch%3Amaster+workflow%3Abuild)
 [![monthly downloads](https://img.shields.io/npm/dm/@tkss/rodash.svg?sanitize=true&logo=npm&logoColor=)](https://npmcharts.com/compare/@tkss/rodash?minimal=true)
 [![npm version](https://img.shields.io/npm/v/@tkss/rodash.svg?logo=npm)](https://www.npmjs.com/package/@tkss/rodash)
@@ -12,8 +8,11 @@
 
 ---
 
-## Important
-This project is not affiliated with Lodash or the Tubitv/rodash project.
+Rodash is a [Lodash](https://lodash.com/docs/4.17.15) inspired [Brightscript](https://developer.roku.com/en-ca/docs/references/brightscript/language/brightscript-language-reference.md)/[ROPM](https://www.npmjs.com/package/ropm) utility for Roku apps. Currently supporting over 200 utility functions!
+
+_This project is not affiliated with Lodash or the Tubitv/rodash project._
+
+---
 
 ## Installation
 ### Using [ropm](https://www.npmjs.com/package/ropm)
