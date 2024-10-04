@@ -1,5 +1,6 @@
 import "camelCase.bs"
 import "capitalize.bs"
+import "deburr.bs"
 import "endsWith.bs"
 import "escape.bs"
 import "escapeRegExp.bs"
