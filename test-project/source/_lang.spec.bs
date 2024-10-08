@@ -105,6 +105,50 @@ namespace Tests
       m.assertEqual(rodash.isEmptyString(value), matchResult)
     end function
 
+    @it("isEqual not strict")
+    @params("", "", true)
+    @params("", " ", false)
+    @params("Applesauce", "Applesauce", true)
+    @params("Applesauce", "Applejuice", false)
+    @params(1, 1, true)
+    @params(1, 2, false)
+    function _(valueOne as Dynamic, valueTwo as Dynamic, matchResult as Boolean)
+      m.assertEqual(rodash.isEqual(valueOne, valueTwo), matchResult)
+
+      node1 = CreateObject("roSGNode", "ContentNode")
+      node2 = CreateObject("roSGNode", "ContentNode")
+      m.assertEqual(rodash.isEqual(node1, node2), false)
+      m.assertEqual(rodash.isEqual(node1, node1), true)
+      m.assertEqual(rodash.isEqual(node2, node2), true)
+    end function
+
+    @it("isEqual strict")
+    function _()
+      one = [1, 2, 3]
+      oneAlso = [1, 2, 3]
+      m.assertEqual(rodash.isEqual(one, oneAlso, true), false)
+      m.assertEqual(rodash.isEqual(one, one, true), true)
+      m.assertEqual(rodash.isEqual(oneAlso, oneAlso, true), true)
+
+      one = { a: 1, b: 2, c: 3 }
+      oneAlso = { a: 1, b: 2, c: 3 }
+      m.assertEqual(rodash.isEqual(one, oneAlso, true), false)
+      m.assertEqual(rodash.isEqual(one, one, true), true)
+      m.assertEqual(rodash.isEqual(oneAlso, oneAlso, true), true)
+
+      m.assertEqual(rodash.isEqual("Applesauce", "Applesauce", true), true)
+      m.assertEqual(rodash.isEqual("Applesauce", "Applejuice", true), false)
+
+      m.assertEqual(rodash.isEqual(1, 1, true), true)
+      m.assertEqual(rodash.isEqual(1, 2, true), false)
+
+      node1 = CreateObject("roSGNode", "ContentNode")
+      node2 = CreateObject("roSGNode", "ContentNode")
+      m.assertEqual(rodash.isEqual(node1, node2, true), false)
+      m.assertEqual(rodash.isEqual(node1, node1, true), true)
+      m.assertEqual(rodash.isEqual(node2, node2, true), true)
+    end function
+
     @it("isFloat")
     @params(1.0, false)
     @params(1.1, true)

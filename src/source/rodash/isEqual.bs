@@ -1,5 +1,6 @@
 namespace rodash
   ' Checks if the supplied values are the same.
+  ' By default, when comparing arrays and associative arrays the function will compare the values on the elements. If the strict parameter is set to true, the function will compare the references of the elements.
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} valueOne - First value.
@@ -14,15 +15,34 @@ namespace rodash
   ' rodash.isEqual({a: 1}, {a: 2}) // => false
   ' rodash.isEqual("Hello", "Hello") // => true
   ' rodash.isEqual("Hello", "World") // => false
-  function isEqual(valueOne as Dynamic, valueTwo as Dynamic) as Boolean
+  function isEqual(valueOne as Dynamic, valueTwo as Dynamic, strict = false as Boolean) as Boolean
     ' If the first argument is true we don't need to check the follwing conditionals
     if rodash.internal.canBeCompared(valueOne, valueTwo) then
       return (valueOne = valueTwo)
     else if rodash.isNode(valueOne) then
       if rodash.isNode(valueTwo) then return valueOne.isSameNode(valueTwo)
-    else if rodash.isAA(valueOne) then
-      if rodash.isAA(valueTwo) AND (rodash.join(valueOne.keys(), ",") = rodash.join(valueTwo.keys(), ",")) then return (formatJson(valueOne) = formatJson(valueTwo))
+    else if rodash.isAA(valueOne) AND rodash.isAA(valueTwo) then
+      if strict then
+        key = `rodash_internal_key_${rodash.random(1000000, 2000000)}`
+        valueOne.addReplace(key, "true")
+
+        isSame = false
+        if valueTwo.doesExist(key) then isSame = true
+        valueOne.delete(key)
+        return isSame
+      end if
+
+      if rodash.join(valueOne.keys(), ",") = rodash.join(valueTwo.keys(), ",") then return (formatJson(valueOne) = formatJson(valueTwo))
     else if rodash.isArray(valueOne) then
+      if strict then
+        key = `rodash_internal_key_${rodash.random(1000000, 2000000)}`
+        valueOne.push(key)
+
+        isSame = rodash.isEqual(rodash.last(valueTwo), key)
+        valueOne.pop()
+        return isSame
+      end if
+
       if rodash.isArray(valueTwo) AND (valueOne.count() = valueTwo.count()) then return (formatJson(valueOne) = formatJson(valueTwo))
     end if
 
