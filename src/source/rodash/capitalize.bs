@@ -3,13 +3,17 @@ namespace rodash
   ' @since 0.0.21
   ' @category String
   ' @param {String} value - The string to capitalize.
-  ' @returns {String} - The capitalized string.
-  function capitalize(value = "" as string)
+  ' @returns {String} The capitalized string.
+  ' @example
+  ' rodash.capitalize("foo bar") // => "Foo bar"
+  function capitalize(value = "" as String)
+    if value = " " then return value
+
     value = value.trim()
     valueArray = value.split("")
     responseValue = ""
 
-    for i = 0 to valueArray.count() -1
+    for i = 0 to valueArray.count() - 1
       valueString = valueArray[i]
 
       if i = 0 then

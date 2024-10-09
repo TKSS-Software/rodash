@@ -4,10 +4,10 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value - The variable to be checked
   ' @param {String} subType - An optional subType parameter to further refine the check
-  ' @return Results of the check
-  function isNodeWithChildren(value as dynamic, subType = "" as string) as boolean
+  ' @returns Results of the check
+  function isNodeWithChildren(value as Dynamic, subType = "" as String) as Boolean
     if type(value) <> "roSGNode" then return false
-    if subType <> "" then return value.isSubtype(subType) and value.getChildCount() > 0
+    if subType <> "" then return value.isSubtype(subType) AND value.getChildCount() > 0
     return value.getChildCount() > 0
   end function
 end namespace

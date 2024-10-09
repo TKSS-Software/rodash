@@ -2,8 +2,8 @@ namespace rodash
   ' Converts a date object to an ISO string
   ' @since 0.0.21
   ' @category Date
-  ' @return {String} Returns the date object as an ISO string
-  function toISOString(dateObj = invalid as dynamic) as string
+  ' @returns {String} Returns the date object as an ISO string
+  function toISOString(dateObj = Invalid as Dynamic) as String
     if rodash.isDate(dateObj) then return ""
     return dateObj.toISOString()
   end function

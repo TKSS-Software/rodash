@@ -4,8 +4,8 @@ namespace rodash
   ' @category Array
   ' @param {Array} mainArray - The main array to inspect
   ' @param {Array} inspect - The array to find matches
-  ' @return {Array} Returns the new array of intersecting values
-  function intersection(mainArray = CreateObject("roArray", 0, true) as object, inspectArray = CreateObject("roArray", 0, true) as object) as object
+  ' @returns {Array} Returns the new array of intersecting values
+  function intersection(mainArray = CreateObject("roArray", 0, true) as Object, inspectArray = CreateObject("roArray", 0, true) as Object) as Object
     return rodash.intersectionBy(mainArray, inspectArray)
   end function
 end namespace

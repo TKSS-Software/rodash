@@ -5,8 +5,12 @@ namespace rodash
   ' @param {Array} array - The array to inspect
   ' @param {Array} values - The values to exclude
   ' @param {Dynamic} iteratee - The iteratee invoked per element
-  ' @returns {Array} returnArray - Returns the new array of filtered values
-  function differenceWith(array = CreateObject("roArray", 0, true) as object, values = CreateObject("roArray", 0, true) as object, comparator = invalid) as object
+  ' @returns {Array} Returns the new array of filtered values
+  ' @example
+  ' objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
+  ' rodash.differenceWith(objects, [{ 'x': 1, 'y': 2 }], rodash.isEqual)
+  ' // => [{ 'x': 2, 'y': 1 }]
+  function differenceWith(array = CreateObject("roArray", 0, true) as Object, values = CreateObject("roArray", 0, true) as Object, comparator = Invalid) as Object
     returnArray = CreateObject("roArray", 0, true)
 
     if rodash.isFunction(comparator) then

@@ -4,8 +4,8 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The property identifiers
   ' @param {Array} values - The property values
-  ' @return {Object} Returns the new object
-  function zipObjectDeep(props = CreateObject("roArray", 0, true) as object, values = CreateObject("roArray", 0, true) as object) as object
+  ' @returns {Object} Returns the new object
+  function zipObjectDeep(props = CreateObject("roArray", 0, true) as Object, values = CreateObject("roArray", 0, true) as Object) as Object
     ' COME BACK
-   end function
+  end function
 end namespace

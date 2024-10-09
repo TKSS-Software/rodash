@@ -3,8 +3,8 @@ namespace rodash
   ' @since 0.0.21
   ' @category Collection
   ' @param {Dynamic} collection - The collection to inspect
-  ' @return {Integer} Returns the collection size.
-  function size(collection = invalid as dynamic)
+  ' @returns {Integer} Returns the collection size.
+  function size(collection = Invalid as Dynamic)
     if rodash.isInvalid(collection) OR (NOT rodash.isArray(collection) AND NOT rodash.isAA(collection) AND NOT rodash.isString(collection)) then return []
     if rodash.isAA(collection) then
       collection = rodash.toArray(collection)

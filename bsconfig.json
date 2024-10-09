@@ -5,7 +5,7 @@
 		"source/**/*"
 	],
 	"plugins": [
-		"./scripts/bsc-plugins/inline"
+		"bsc-plugin-inline-annotation"
 	],
 	"emitDefinitions": true,
 	"createPackage": false,

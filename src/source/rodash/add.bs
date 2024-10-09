@@ -4,7 +4,9 @@ namespace rodash
   ' @category Math
   ' @param {Dynamic} augend - The first number in an addition
   ' @param {Dynamic} addend - The second number in an addition
-  ' @returns {Dynamic} value - Returns the total
+  ' @returns {Dynamic} Returns the total
+  ' @example
+  ' rodash.add(1, 2) // => 3
   function add(augend, addend)
     value = 0
     if rodash.isNumber(augend) then value += augend

@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Array
   ' @param {Array} array - The array to query
-  ' @return {Dynamic} Returns the last element of array
+  ' @returns {Dynamic} Returns the last element of array
   @inline
-  function last(array = CreateObject("roArray", 0, true)) as dynamic
+  function last(array = CreateObject("roArray", 0, true)) as Dynamic
     return array[array.count() - 1]
   end function
 end namespace

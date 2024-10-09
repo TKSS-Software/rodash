@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
   @inline
-  function isByteArray(value as dynamic)
+  function isByteArray(value as Dynamic)
     return type(value) = "roByteArray"
   end function
 end namespace

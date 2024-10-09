@@ -3,11 +3,11 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value - The value to be cloned
-  ' @returns {Dynamic} clonedValue - The cloned value
-  function clone(value = invalid as dynamic) as dynamic
-    if rodash.isInvalid(value) return invalid
+  ' @returns {Dynamic} The cloned value
+  function clone(value = Invalid as Dynamic) as Dynamic
+    if rodash.isInvalid(value) return Invalid
 
-    clonedValue = invalid
+    clonedValue = Invalid
     if rodash.isString(value) then
       clonedValue = "" + value
     else if rodash.isAA(value) then

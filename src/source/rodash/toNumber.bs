@@ -3,7 +3,14 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be converted
-  ' @return {Dynamic} Results of the conversion
+  ' @returns {Dynamic} Results of the conversion
+  ' @example
+  ' rodash.toNumber("1") // => 1
+  ' rodash.toNumber("1.0") // => 1.0
+  ' rodash.toNumber(1) // => 1
+  ' rodash.toNumber(1.0#) // => 1.0
+  ' rodash.toNumber(true) // => 1
+  ' rodash.toNumber(false) // => 0
   function toNumber(value as Dynamic) as Dynamic
     if rodash.isNumber(value) then
       return value

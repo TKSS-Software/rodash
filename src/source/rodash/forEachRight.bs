@@ -4,8 +4,13 @@ namespace rodash
   ' @category Collection
   ' @param {Dynamic} collection - The collection to iterate over
   ' @param {Dynamic} iteratee - The function invoked per iteration
-  ' @return {Dynamic} Returns collection
-  function forEachRight(collection = invalid as dynamic, iteratee = invalid as dynamic)
+  ' @returns {Dynamic} Returns collection
+  ' @example
+  ' rodash.forEachRight([1, 2], function(value)
+  '   print value
+  ' end function)
+  ' // => Logs `2` then `1`
+  function forEachRight(collection = Invalid as Dynamic, iteratee = Invalid as Dynamic)
     return rodash.internal.baseForEach(collection, iteratee, "right")
   end function
 end namespace

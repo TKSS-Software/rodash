@@ -3,8 +3,8 @@ namespace rodash
   ' @since 0.0.26
   ' @category Lang
   ' @param {Object} call - function
-  ' @return {String} The function string name
-  function getFunctionName(call as object) as string
+  ' @returns {String} The function string name
+  function getFunctionName(call as Object) as String
     if rodash.isFunction(call) then return call.toStr().tokenize(" ").peek()
     return ""
   end function

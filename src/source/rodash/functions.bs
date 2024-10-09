@@ -4,8 +4,8 @@ namespace rodash
   ' Creates an array of function property names from own enumerable properties of object.
   ' @category Object
   ' @param {Dynamic} obj - The object to iterate over
-  ' @return {Object} Returns object
-  function functions(obj = CreateObject("roAssociativeArray") as object)
+  ' @returns {Object} Returns object
+  function functions(obj = CreateObject("roAssociativeArray") as Object)
     ' return rodash.base.forEach.baseForEach(obj, invalid, "left", "only")
     return []
   end function

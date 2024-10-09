@@ -5,8 +5,8 @@ namespace rodash
   ' @param {Array} array - The array to inspect
   ' @param {Dynamic} predicate - The function invoked per iteration
   ' @param {Integer} fromIndex - The index to search from
-  ' @returns {Integer} index - Returns the index of the found element, else -1
-  function findLastIndex(array, predicate = invalid, fromIndex = 0 as integer)
+  ' @returns {Integer} Returns the index of the found element, else -1
+  function findLastIndex(array, predicate = Invalid, fromIndex = 0 as Integer)
     array = rodash.clone(array)
     array.reverse()
     foundIndex = rodash.findIndex(array, predicate, fromIndex)

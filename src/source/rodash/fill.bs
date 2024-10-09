@@ -6,8 +6,12 @@ namespace rodash
   ' @param {Dynamic} value - The value to fill array with
   ' @param {Integer} startPos - The start position
   ' @param {Integer} endPos - The end position
-  ' @returns {Array} array - Returns the mutated array
-  function fill(array = CreateObject("roArray", 0, true) as object, value = "" as dynamic, startPos = invalid, endPos = invalid)
+  ' @returns {Array} Returns the mutated array
+  ' @example
+  ' rodash.fill([1, 2, 3], "a", 1, 2) // => [1, "a", 3]
+  ' rodash.fill([1, 2, 3], "a") // => ["a", "a", "a"]
+  ' rodash.fill([1, 2, 3], "a", 1) // => [1, "a", "a"]
+  function fill(array = CreateObject("roArray", 0, true) as Object, value = "" as Dynamic, startPos = Invalid, endPos = Invalid)
     if rodash.isInvalid(startPos) then startPos = 0
     if rodash.isInvalid(endPos) then endPos = array.count()
     endPos = endPos - 1

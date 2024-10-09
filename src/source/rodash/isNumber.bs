@@ -3,7 +3,7 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
   @inline
   function isNumber(value as Dynamic) as Boolean
     return type(value) = "Integer" OR type(value) = "roInt" OR type(value) = "roInteger" OR type(value) = "LongInteger" OR type(value) = "Float" OR type(value) = "roFloat" OR type(value) = "Double" OR type(value) = "roDouble" OR type(value) = "roIntrinsicDouble"

@@ -7,10 +7,11 @@ namespace Tests
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     @it("times")
-    @params(1, [1, 2], [3])
-    @params(2, [1, 2], [3, 3])
-    function _(n as integer, sumValues as dynamic, matchResult as dynamic)
-      m.assertEqual(rodash.times(n, rodash.sum(sumValues)), matchResult)
+    @params(1, ["0"])
+    @params(2, ["0", "1"])
+    @params(3, ["0", "1", "2"])
+    function _(n as Integer, matchResult as Dynamic)
+      m.assertEqual(rodash.times(n, rodash.toString), matchResult)
     end function
 
   end class

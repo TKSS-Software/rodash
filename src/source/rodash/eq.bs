@@ -4,8 +4,11 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value - The value to compare.
   ' @param {Dynamic} other - The other value to compare.
-  ' @returns {Boolean} - Returns `true` if the values are equivalent, else `false`.
-  function eq(value as dynamic, other as dynamic)
+  ' @returns {Boolean} Returns `true` if the values are equivalent, else `false`.
+  ' @example
+  ' rodash.eq(1, 1) // => true
+  ' rodash.eq(1, 2) // => false
+  function eq(value as Dynamic, other as Dynamic)
     return rodash.isEqual(value, other)
   end function
 end namespace

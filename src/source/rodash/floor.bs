@@ -4,8 +4,12 @@ namespace rodash
   ' @category Math
   ' @param {Integer} number - The number to round down
   ' @param {Integer} precision - The precision to round down to
-  ' @return {Integer} Returns the rounded down number
-  function floor(number = 0, precision = 0 as dynamic) as dynamic
-    return abs(int(number * 10^precision) ) / 10^precision
+  ' @returns {Integer} Returns the rounded down number
+  ' @example
+  ' rodash.floor(4.006) // => 4
+  ' rodash.floor(0.046, 2) // => 0.04
+  ' rodash.floor(4060, -2) // => 4000
+  function floor(number = 0, precision = 0 as Dynamic) as Dynamic
+    return abs(int(number * 10 ^ precision)) / 10 ^ precision
   end function
 end namespace

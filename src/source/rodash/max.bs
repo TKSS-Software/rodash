@@ -3,9 +3,11 @@ namespace rodash
   ' @since 0.0.21
   ' @category Math
   ' @param {Array} array - The array to iterate over
-  ' @return {Dynamic} Returns the maximum value
+  ' @returns {Dynamic} Returns the maximum value
+  ' @example
+  ' rodash.max([4, 2, 8, 6]) // => 8
   @inline
-  function max(array = CreateObject("roArray", 0, true) as object) as dynamic
+  function max(array = CreateObject("roArray", 0, true) as Object) as Dynamic
     return rodash.maxBy(array)
   end function
 end namespace

@@ -5,8 +5,14 @@ namespace rodash
   ' @param {Object} aa - Object to drill down into.
   ' @param {String} keyPath - A dot notation based string to the expected value.
   ' @param {Number} fallback - A return fallback value if the requested field could not be found or did not pass the validator function.
-  ' @return {Number} The result of the drill down process
-  function getNumber(aa as object, keyPath as string, fallback = -1 as dynamic) as dynamic
+  ' @returns {Number} The result of the drill down process
+  ' @example
+  ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.c') ' => 3
+  ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.d') ' => 0
+  ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.c') ' => 3
+  ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.d', 25) ' => 25
+  @inline
+  function getNumber(aa as Object, keyPath as String, fallback = 0 as Dynamic) as Dynamic
     return rodash.get(aa, keyPath, fallback, rodash.isNumber)
   end function
 end namespace

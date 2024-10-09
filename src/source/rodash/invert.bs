@@ -10,7 +10,7 @@ namespace rodash
   ' *
   ' const object = { 'a': 1, 'b': 2, 'c': 1 }
   ' rodash.invert(object)
-  ' // => { '1': 'c', '2': 'b' }
+  ' // { '1': 'c', '2': 'b' }
   function invert(originalAA as Object) as Dynamic
     if not rodash.isAA(originalAA) then return invalid
 

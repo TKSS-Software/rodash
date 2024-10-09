@@ -7,8 +7,8 @@ namespace rodash.internal
   ' @param {Dynamic} value - The variable to be converted.
   ' @param {Boolean} removeId - If set to true the nodes ID will also be stripped.
   ' @param {Object} removeFields - List of keys that need to be removed from the node.
-  ' @return {Dynamic} Results of the conversion.
-  function nodeToAA(value as Object, removeId = false as Boolean, removeFields = invalid as dynamic) as Object
+  ' @returns {Dynamic} Results of the conversion.
+  function nodeToAA(value as Object, removeId = false as Boolean, removeFields = Invalid as Dynamic) as Object
     if rodash.isNode(value) then
       fields = value.getFields()
       fields.delete("change")

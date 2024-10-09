@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
   @inline
-  function isNonEmptyAA(value as dynamic)
-    return (rodash.isAA(value) AND value.keys().count() > 0)
+  function isNonEmptyAA(value as Dynamic)
+    return type(value) = "roAssociativeArray" AND value.keys().count() > 0
   end function
 end namespace

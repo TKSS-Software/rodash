@@ -1,4 +1,4 @@
-function testGetFunctionNameFunction() as string
+function testGetFunctionNameFunction() as String
   return "Hello World"
 end function
 
@@ -14,7 +14,7 @@ namespace Tests
     @params(["a", "b", "c", "d"])
     @params([1, 2, 3])
     @params([{ "a": 1 }, { "b": 2 }])
-    function _(cloneItem as dynamic)
+    function _(cloneItem as Dynamic)
       result = rodash.clone(cloneItem)
       m.assertEqual(cloneItem, result)
     end function
@@ -23,8 +23,8 @@ namespace Tests
     @params({ "a": 1 }, { "a": 1 }, true)
     @params("a", "a", true)
     @params(1, 2, false)
-    @params(invalid, invalid, true)
-    function _(itemOne as dynamic, itemTwo as dynamic, matchResult = false as boolean)
+    @params(Invalid, Invalid, true)
+    function _(itemOne as Dynamic, itemTwo as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.eq(itemOne, itemTwo), matchResult)
     end function
 
@@ -36,32 +36,32 @@ namespace Tests
     @it("isAA")
     @params([1, 2, 3], false)
     @params("a", false)
-    @params({"a": 1 }, true)
-    function _(item as dynamic, matchResult = false as boolean)
+    @params({ "a": 1 }, true)
+    function _(item as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isAA(item), matchResult)
     end function
 
     @it("isArray")
     @params([1, 2, 3], true)
     @params("a", false)
-    @params({"a": 1 }, false)
-    function _(item as dynamic, matchResult = false as boolean)
+    @params({ "a": 1 }, false)
+    function _(item as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isArray(item), matchResult)
     end function
 
     @it("isArrayLike")
     @params([1, 2, 3], true)
     @params("abc", true)
-    @params({"a": 1 }, false)
-    function _(item as dynamic, matchResult = false as boolean)
+    @params({ "a": 1 }, false)
+    function _(item as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isArrayLike(item), matchResult)
     end function
 
     @it("isDate")
     @params("Applesauce", false)
     @params("Mon April 23 2012", false)
-    @params(invalid, true)
-    function _(value = invalid as dynamic, matchResult = false as boolean)
+    @params(Invalid, true)
+    function _(value = Invalid as Dynamic, matchResult = false as Boolean)
       if rodash.isInvalid(value) then value = CreateObject("roDateTime")
       m.assertEqual(rodash.isDate(value), matchResult)
     end function
@@ -71,7 +71,7 @@ namespace Tests
     @params("RO_INTRINSIC_DOUBLE", true)
     @params("RO_FLOAT", false)
     @params("AA", false)
-    function _(objectType= invalid as dynamic, matchResult = false as boolean)
+    function _(objectType = Invalid as Dynamic, matchResult = false as Boolean)
       if objectType = "RO_DOUBLE"
         value = createObject("roDouble")
       else if objectType = "RO_INTRINSIC_DOUBLE"
@@ -89,11 +89,11 @@ namespace Tests
     @params("Applesauce", false)
     @params([], true)
     @params([1], false)
-    @params({a: 1}, false)
+    @params({ a: 1 }, false)
     @params({}, true)
-    @params(invalid, true)
+    @params(Invalid, true)
     @params(1, true)
-    function _(value = invalid as dynamic, matchResult = false as boolean)
+    function _(value = Invalid as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isEmpty(value), matchResult)
     end function
 
@@ -101,8 +101,52 @@ namespace Tests
     @params("", true)
     @params("Applesauce", false)
     @params(1, false)
-    function _(value = invalid as dynamic, matchResult = false as boolean)
+    function _(value = Invalid as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isEmptyString(value), matchResult)
+    end function
+
+    @it("isEqual not strict")
+    @params("", "", true)
+    @params("", " ", false)
+    @params("Applesauce", "Applesauce", true)
+    @params("Applesauce", "Applejuice", false)
+    @params(1, 1, true)
+    @params(1, 2, false)
+    function _(valueOne as Dynamic, valueTwo as Dynamic, matchResult as Boolean)
+      m.assertEqual(rodash.isEqual(valueOne, valueTwo), matchResult)
+
+      node1 = CreateObject("roSGNode", "ContentNode")
+      node2 = CreateObject("roSGNode", "ContentNode")
+      m.assertEqual(rodash.isEqual(node1, node2), false)
+      m.assertEqual(rodash.isEqual(node1, node1), true)
+      m.assertEqual(rodash.isEqual(node2, node2), true)
+    end function
+
+    @it("isEqual strict")
+    function _()
+      one = [1, 2, 3]
+      oneAlso = [1, 2, 3]
+      m.assertEqual(rodash.isEqual(one, oneAlso, true), false)
+      m.assertEqual(rodash.isEqual(one, one, true), true)
+      m.assertEqual(rodash.isEqual(oneAlso, oneAlso, true), true)
+
+      one = { a: 1, b: 2, c: 3 }
+      oneAlso = { a: 1, b: 2, c: 3 }
+      m.assertEqual(rodash.isEqual(one, oneAlso, true), false)
+      m.assertEqual(rodash.isEqual(one, one, true), true)
+      m.assertEqual(rodash.isEqual(oneAlso, oneAlso, true), true)
+
+      m.assertEqual(rodash.isEqual("Applesauce", "Applesauce", true), true)
+      m.assertEqual(rodash.isEqual("Applesauce", "Applejuice", true), false)
+
+      m.assertEqual(rodash.isEqual(1, 1, true), true)
+      m.assertEqual(rodash.isEqual(1, 2, true), false)
+
+      node1 = CreateObject("roSGNode", "ContentNode")
+      node2 = CreateObject("roSGNode", "ContentNode")
+      m.assertEqual(rodash.isEqual(node1, node2, true), false)
+      m.assertEqual(rodash.isEqual(node1, node1, true), true)
+      m.assertEqual(rodash.isEqual(node2, node2, true), true)
     end function
 
     @it("isFloat")
@@ -110,7 +154,7 @@ namespace Tests
     @params(1.1, true)
     @params(1111111111.1, true)
     @params("1", false)
-    function _(item as dynamic, matchResult = false as boolean)
+    function _(item as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isFloat(item), matchResult)
     end function
 
@@ -119,7 +163,7 @@ namespace Tests
     @params(false, false)
     @params({}, false)
     @params("item", false)
-    function _(item as dynamic, matchResult = false as boolean)
+    function _(item as Dynamic, matchResult = false as Boolean)
       if rodash.isBoolean(item) AND item then
         item = function()
         end function
@@ -128,11 +172,11 @@ namespace Tests
     end function
 
     @it("isInvalid")
-    @params(invalid, true)
-    @params({a: 2}, false)
+    @params(Invalid, true)
+    @params({ a: 2 }, false)
     @params(1, false)
     @params(uninitializedVar, true) 'bs:disable-line 1001
-    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+    function _(value = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       m.assertEqual(rodash.isInvalid(value), matchResult)
     end function
 
@@ -141,10 +185,10 @@ namespace Tests
     @params("Applesauce", false)
     @params([], false)
     @params([1], false)
-    @params({a: 1}, true)
+    @params({ a: 1 }, true)
     @params({}, false)
-    @params(invalid, false)
-    function _(value = invalid as dynamic, matchResult = false as boolean)
+    @params(Invalid, false)
+    function _(value = Invalid as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isNonEmptyAA(value), matchResult)
     end function
 
@@ -153,10 +197,10 @@ namespace Tests
     @params("Applesauce", false)
     @params([], false)
     @params([1], true)
-    @params({a: 1}, false)
+    @params({ a: 1 }, false)
     @params({}, false)
-    @params(invalid, false)
-    function _(value = invalid as dynamic, matchResult = false as boolean)
+    @params(Invalid, false)
+    function _(value = Invalid as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isNonEmptyArray(value), matchResult)
     end function
 
@@ -165,29 +209,29 @@ namespace Tests
     @params("Applesauce", true)
     @params([], false)
     @params([1], false)
-    @params({a: 1}, false)
+    @params({ a: 1 }, false)
     @params({}, false)
-    @params(invalid, false)
-    function _(value = invalid as dynamic, matchResult = false as boolean)
+    @params(Invalid, false)
+    function _(value = Invalid as Dynamic, matchResult = false as Boolean)
       m.assertEqual(rodash.isNonEmptyString(value), matchResult)
     end function
 
     @it("isLength")
     @params(0, true)
     @params(3, true)
-    @params({a: 2}, false)
+    @params({ a: 2 }, false)
     @params("apple", false)
-    @params(invalid, false)
-    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+    @params(Invalid, false)
+    function _(value = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       m.assertEqual(rodash.isLength(value), matchResult)
     end function
 
     @it("isNotInvalid")
-    @params(invalid, false)
-    @params({a: 2}, true)
+    @params(Invalid, false)
+    @params({ a: 2 }, true)
     @params(1, true)
     @params(uninitializedVar, false) 'bs:disable-line 1001
-    function isNotInvalid(value = invalid as dynamic, matchResult = invalid as dynamic)
+    function isNotInvalid(value = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       m.assertEqual(rodash.isNotInvalid(value), matchResult)
     end function
 
@@ -196,16 +240,16 @@ namespace Tests
     @params("abc", ["a", "b", "c"])
     @params("hello world", ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
     @params(1, [])
-    @params(invalid, [])
-    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+    @params(Invalid, [])
+    function _(value = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       m.assertEqual(rodash.toArray(value), matchResult)
     end function
 
     @it("toString")
     @params([1], "[1]")
-    @params({a: 2}, "{a: 2}")
+    @params({ a: 2 }, "{a: 2}")
     @params(1, "1")
-    function _(value = invalid as dynamic, matchResult = invalid as dynamic)
+    function _(value = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       m.assertEqual(rodash.toString(value), matchResult)
     end function
   end class

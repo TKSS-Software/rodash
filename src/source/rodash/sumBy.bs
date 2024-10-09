@@ -5,11 +5,11 @@ namespace rodash
   ' @category Math
   ' @param {Array} array - The array to iterate over
   ' @param {Function} iteratee - The iteratee invoked per element
-  ' @return {Integer} Returns the sum
-  function sumBy(array = CreateObject("roArray", 0, true) as object, iteratee = invalid) as dynamic
-    if rodash.isEmpty(array) then return invalid
+  ' @returns {Integer} Returns the sum
+  function sumBy(array = CreateObject("roArray", 0, true) as Object, iteratee = Invalid) as Dynamic
+    if rodash.isEmpty(array) then return Invalid
 
-    sumValue = invalid
+    sumValue = Invalid
     if rodash.isInvalid(iteratee) then
       sumValue = 0
       for each value in array
