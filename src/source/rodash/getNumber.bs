@@ -8,11 +8,11 @@ namespace rodash
   ' @returns {Number} The result of the drill down process
   ' @example
   ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.c') ' => 3
-  ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.d') ' => -1
+  ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.d') ' => 0
   ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.c') ' => 3
   ' rodash.getNumber({a: {b: {c: 3}}}, 'a.b.d', 25) ' => 25
   @inline
-  function getNumber(aa as Object, keyPath as String, fallback = -1 as Dynamic) as Dynamic
+  function getNumber(aa as Object, keyPath as String, fallback = 0 as Dynamic) as Dynamic
     return rodash.get(aa, keyPath, fallback, rodash.isNumber)
   end function
 end namespace
