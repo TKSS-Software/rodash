@@ -31,6 +31,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.7.16",
     "better-docs": "^2.7.3",
+    "bsc-plugin-inline-annotation": "https://github.com/rokucommunity/bsc-plugin-inline-annotation/releases/download/v0.0.0-packages/bsc-plugin-inline-annotation-1.0.0-plugin-logic.20241003135359.tgz",
     "braintree-jsdoc-template": "^3.3.0",
     "brighterscript": "^0.67.7",
     "brighterscript-jsdocs-plugin": "^0.7.3",

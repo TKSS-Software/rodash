@@ -1,12 +1,15 @@
 namespace rodash
-  ' Checks if the supplied value is a valid unempty Array like type
+  ' Checks if value is array-like. A value is considered array-like if it is an array, a string, or an node with children.
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
+  ' @example
+  ' rodash.isArrayLike([]) // => true
+  ' rodash.isArrayLike({}) // => false
   @inline
-  function isArrayLike(value as dynamic) as boolean
-    return rodash.isNonEmptyArray(value) OR rodash.isNonEmptyString(value)
+  function isArrayLike(value as Dynamic) as Boolean
+    return rodash.isArray(value) OR rodash.isString(value) OR rodash.isNodeWithChildren(value)
   end function
 end namespace
 

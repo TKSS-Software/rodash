@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
   @inline
-  function isString(value as dynamic)
-	  return type(value) = "String" OR type(value) = "roString"
+  function isString(value as Dynamic)
+    return type(value) = "String" OR type(value) = "roString"
   end function
 end namespace

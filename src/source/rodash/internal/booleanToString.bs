@@ -4,7 +4,7 @@ namespace rodash.internal
   ' @since 0.0.21
   ' @category Internal
   ' @param {Dynamic} value The value to convert.
-  ' @return {String} Results of the conversion.
+  ' @returns {String} Results of the conversion.
   function booleanToString(bool as Boolean) as String
     if bool then return "true"
     return "false"

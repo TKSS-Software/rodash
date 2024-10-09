@@ -4,9 +4,9 @@ namespace rodash
   ' @category Collection
   ' @param {Object} collection - The collection to iterate over.
   ' @param {Function|String} iteratee - The iteratee to transform keys.
-  ' @returns {Object} - Returns the composed aggregate object.
-  function groupBy(collection as Object, iteratee = invalid as dynamic) as Object
-    if not rodash.isArray(collection) then return CreateObject("roAssociativeArray")
+  ' @returns {Object} Returns the composed aggregate object.
+  function groupBy(collection as Object, iteratee = Invalid as Dynamic) as Object
+    if NOT rodash.isArray(collection) then return CreateObject("roAssociativeArray")
     collection = rodash.clone(collection)
 
     acc = CreateObject("roAssociativeArray")
@@ -14,19 +14,19 @@ namespace rodash
       for each value in collection
         key = rodash.toString(iteratee(value))
         if acc.doesExist(key)
-            acc[key].push(value)
+          acc[key].push(value)
         else
-            acc[key] = [value]
+          acc[key] = [value]
         end if
       end for
     else if rodash.isString(iteratee) then
       for each value in collection
-        if rodash.isAA(value) and value.doesExist(iteratee) then
+        if rodash.isAA(value) AND value.doesExist(iteratee) then
           key = rodash.toString(value[iteratee])
           if acc.doesExist(key)
-              acc[key].push(value)
+            acc[key].push(value)
           else
-              acc[key] = [value]
+            acc[key] = [value]
           end if
         end if
       end for

@@ -3,8 +3,10 @@ namespace rodash
   ' @since 0.0.21
   ' @category String
   ' @param {String} source - The string to escape.
-  ' @returns {String} - The escaped string.
-  function escape(source = "" as string)
+  ' @returns {String} The escaped string.
+  ' @example
+  ' rodash.escape("fred, barney, & pebbles") // => 'fred, barney, &amp; pebbles'
+  function escape(source = "" as String)
     return source.escape()
   end function
 end namespace

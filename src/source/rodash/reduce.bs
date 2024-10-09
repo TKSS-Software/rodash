@@ -5,8 +5,8 @@ namespace rodash
   ' @param {Dynamic} collection - The collection to iterate over
   ' @param {Dynamic} iteratee - The function invoked per iteration
   ' @param {Integer} accumulator - The initial value
-  ' @return {Array} Returns the accumulated value
-  function reduce(collection = invalid as dynamic, iteratee = invalid as dynamic, accumulator = invalid as dynamic)
+  ' @returns {Array} Returns the accumulated value
+  function reduce(collection = Invalid as Dynamic, iteratee = Invalid as Dynamic, accumulator = Invalid as Dynamic)
     result = accumulator
 
     if rodash.isInvalid(iteratee) then

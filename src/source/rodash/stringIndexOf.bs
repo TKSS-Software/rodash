@@ -4,7 +4,7 @@ namespace rodash
   ' @category String
   ' @param {String} value The string to search
   ' @param {String} subString The sub string to search for
-  ' @return {Integer} Results of the search
+  ' @returns {Integer} Results of the search
   @inline
   function stringIndexOf(value as String, subString as String) as Integer
     return value.Instr(subString)

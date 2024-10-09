@@ -4,10 +4,12 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to query
   ' @param {Integer} n - The number of elements to drop
-  ' @returns {Array} array - Returns the slice of array
-  function drop(array = CreateObject("roAssociativeArray") as object, n = 1 as integer)
+  ' @returns {Array} Returns the slice of array
+  ' @example
+  ' rodash.drop([1, 2, 3], 1) // => [2, 3]
+  function drop(array = CreateObject("roAssociativeArray") as Object, n = 1 as Integer)
     array = rodash.clone(array)
-    for i = 0 to n -1
+    for i = 0 to n - 1
       array.shift()
       if array.count() = 0 then exit for
     end for

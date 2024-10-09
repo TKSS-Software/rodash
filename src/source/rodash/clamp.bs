@@ -5,9 +5,12 @@ namespace rodash
   ' @param {Integer} number - The number to clamp
   ' @param {Integer} lower - The lower bound
   ' @param {Integer} upper - The upper bound
-  ' @return {Integer} Returns the clamped number
+  ' @returns {Integer} Returns the clamped number
+  ' @example
+  ' rodash.clamp(-10, -5, 5) // => -5
+  ' rodash.clamp(10, -5, 5) // => 5
   @inline
-  function clamp(number, lower, upper) as dynamic
+  function clamp(number, lower, upper) as Dynamic
     return rodash.max([lower, rodash.min([upper, number])])
   end function
 end namespace

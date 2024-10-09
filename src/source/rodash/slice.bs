@@ -5,9 +5,9 @@ namespace rodash
   ' @param {Array} array - The array to slice
   ' @param {Integer} startPos - The start position
   ' @param {Integer} endPos - The end position
-  ' @return {Dynamic} Returns the slice of array
-  function slice(array = CreateObject("roArray", 0, true) as object, startPos = 0, endPos = invalid)
-    if NOT rodash.isArray(array) then return invalid
+  ' @returns {Dynamic} Returns the slice of array
+  function slice(array = CreateObject("roArray", 0, true) as Object, startPos = 0, endPos = Invalid)
+    if NOT rodash.isArray(array) then return Invalid
     if rodash.isNotInvalid(endPos) then endPos = endPos - 1
 
     array = rodash.clone(array)
@@ -16,14 +16,14 @@ namespace rodash
     slicedArray = CreateObject("roArray", 0, true)
 
     if startPos < 0 then startPos = arraySize + startPos
-    if endPos = invalid then endPos = lastIndex
+    if endPos = Invalid then endPos = lastIndex
     if endPos < 0 then endPos = arraySize + endPos
     if endPos >= arraySize then endPos = lastIndex
 
     if startPos >= arraySize OR startPos > endPos then return slicedArray
 
     for i = startPos to endPos
-        slicedArray.push(array[i])
+      slicedArray.push(array[i])
     end for
 
     return slicedArray

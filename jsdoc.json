@@ -34,7 +34,8 @@
   "opts": {
     "recurse": true,
     "brighterscript-jsdocs-plugin": {
-        "addModule": false
+        "addModule": false,
+        "escapeHTMLCharacters": false
     }
   }
 }

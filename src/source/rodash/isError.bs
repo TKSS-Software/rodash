@@ -4,8 +4,8 @@ namespace rodash
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value - the object to assess
-  ' @return {Boolean} True if the object represents and error.
-  function isError(value as dynamic) as boolean
+  ' @returns {Boolean} True if the object represents and error.
+  function isError(value as Dynamic) as Boolean
     if rodash.isAA(value) then
       if rodash.isNonEmptyString(value.status) AND rodash.stringIncludes(value.status, "error") then return true
 

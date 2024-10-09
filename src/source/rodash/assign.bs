@@ -6,7 +6,10 @@ namespace rodash
   ' @param {Dynamic} baseAA - The destination object
   ' @params {Object} sources - The source objects
   ' @params {Dynamic} Mutaded baseAA
-  function assign(baseAA as Dynamic, sources = invalid as dynamic) as Dynamic
+  ' @returns {Dynamic} Returns the destination object
+  ' @example
+  ' rodash.assign({ 'a': 0 }, { 'b': 1 }, { 'a': 2 }) // => { 'a': 2, 'b': 1 }
+  function assign(baseAA as Dynamic, sources = Invalid as Dynamic) as Dynamic
     if NOT rodash.isAA(baseAA) then return Invalid
 
     if rodash.isNonEmptyArray(sources) then

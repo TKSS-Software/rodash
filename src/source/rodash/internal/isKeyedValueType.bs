@@ -4,7 +4,7 @@ namespace rodash.internal
   ' @since 0.0.21
   ' @category Internal
   ' @param {Dynamic} value The variable to be checked
-  ' @return {Boolean} Results of the check
+  ' @returns {Boolean} Results of the check
   @inline
   function isKeyedValueType(value as Dynamic) as Boolean
     return getInterface(value, "ifAssociativeArray") <> Invalid

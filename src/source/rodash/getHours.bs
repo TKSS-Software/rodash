@@ -2,8 +2,8 @@ namespace rodash
   ' Gets the hours.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} - The hours.
-  function getHours() as object
+  ' @returns {Object} The hours.
+  function getHours() as Object
     dateObj = rodash.internal.getDateObject()
 
     return {

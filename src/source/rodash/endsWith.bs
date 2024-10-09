@@ -6,8 +6,11 @@ namespace rodash
   ' @param {String} source - The string to search.
   ' @param {String} target - The string to search for.
   ' @param {Number} position - The position to search up to.
-  ' @returns {Boolean} - Returns `true` if `string` ends with `target`, else `false`.
-  function endsWith(source = "" as string, target = "" as string, position = invalid as dynamic)
+  ' @returns {Boolean} Returns `true` if `string` ends with `target`, else `false`.
+  ' @example
+  ' rodash.endsWith("abc", "c") // => true
+  ' rodash.endsWith("abc", "b") // => false
+  function endsWith(source = "" as String, target = "" as String, position = Invalid as Dynamic)
     if rodash.isInvalid(position) then position = source.len()
 
     return source.endsWith(target, position)

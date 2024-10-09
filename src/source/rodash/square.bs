@@ -1,0 +1,11 @@
+namespace rodash
+  ' Computes the square of the value.
+  ' @since 0.0.30
+  ' @category Math
+  ' @param {Integer} value - The value to multiple by itself
+  ' @returns {Integer} Returns the square of the value
+  function square(value as Integer) as Dynamic
+    if NOT rodash.isNumber(value) then return Invalid
+    return value * value
+  end function
+end namespace

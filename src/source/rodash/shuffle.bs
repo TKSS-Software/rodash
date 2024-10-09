@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Collection
   ' @param {Dynamic} collection - The collection to shuffle
-  ' @return {Array} Returns the new shuffled array
+  ' @returns {Array} Returns the new shuffled array
   @inline
-  function shuffle(collection = CreateObject("roArray", 0, true) as object)
+  function shuffle(collection = CreateObject("roArray", 0, true) as Object)
     return rodash.sampleSize(collection, collection.count())
   end function
 end namespace

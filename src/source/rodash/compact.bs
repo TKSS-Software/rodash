@@ -3,26 +3,28 @@ namespace rodash
   ' @since 0.0.21
   ' @category Array
   ' @param {Array} array - The array to compact
-  ' @returns {Array} returnArray - Returns the new array of filtered values
-  function compact(array as object) as object
+  ' @returns {Array} Returns the new array of filtered values
+  ' @example
+  ' rodash.compact([0, 1, false, 2, '', 3]) // => [1, 2, 3]
+  function compact(array as Object) as Object
     returnArray = CreateObject("roArray", 0, true)
 
     if rodash.isNonEmptyArray(array) then
-        for each item in array
-          shallPass = true
-          typeName = type(item)
+      for each item in array
+        shallPass = true
+        typeName = type(item)
 
-          if rodash.isInvalid(item) then
-            shallPass = false
-          else if rodash.isEmptyString(item) then
-            shallPass = false
-          else if rodash.isNumber(item) then
-            if item = 0 then shallPass = false
-          else if rodash.isBoolean(item) then
-            shallPass = item
-          end if
+        if rodash.isInvalid(item) then
+          shallPass = false
+        else if rodash.isEmptyString(item) then
+          shallPass = false
+        else if rodash.isNumber(item) then
+          if item = 0 then shallPass = false
+        else if rodash.isBoolean(item) then
+          shallPass = item
+        end if
 
-          if shallPass then returnArray.push(item)
+        if shallPass then returnArray.push(item)
       end for
     end if
 

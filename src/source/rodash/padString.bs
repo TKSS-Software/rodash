@@ -5,7 +5,7 @@ namespace rodash
   ' @param {String} value The value to add padding to.
   ' @param {Integer} padLength The minimum output string length.
   ' @param {String} paddingCharacter The string to use as padding.
-  ' @return {String} Resulting padded string.
+  ' @returns {String} Resulting padded string.
   function padString(value as Dynamic, padLength = 2 as Integer, paddingCharacter = "0" as Dynamic) as String
     value = rodash.toString(value)
     while value.len() < padLength

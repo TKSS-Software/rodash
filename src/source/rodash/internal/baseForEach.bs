@@ -7,9 +7,9 @@ namespace rodash.internal
   ' @param {Function} iteratee The function invoked per iteration
   ' @param {String} direction - the direction to traverse the collection
   ' @param {String} funcValueRule - Filters functions from collection. `allow`, `omit`, `only`.
-  ' @return {Array|Object} Returns `collection`
-  function baseForEach(collection = invalid as dynamic, iteratee = invalid as dynamic, direction = "left", funcValueRule = "allow" as string)
-    if rodash.isInvalid(collection) OR collection.isEmpty() then return invalid
+  ' @returns {Array|Object} Returns `collection`
+  function baseForEach(collection = Invalid as Dynamic, iteratee = Invalid as Dynamic, direction = "left", funcValueRule = "allow" as String)
+    if rodash.isInvalid(collection) OR collection.isEmpty() then return Invalid
 
     isRight = direction = "right"
     if rodash.isAA(collection) then

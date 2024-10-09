@@ -4,8 +4,13 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to process
   ' @param {Integer} chunkSize - The length of each chunk
-  ' @returns {Array} returnArray - Returns the new array of chunks
-  function chunk(array = CreateObject("roArray", 0, true) as object, chunkSize = 1 as integer) as object
+  ' @returns {Array} Returns the new array of chunks
+  ' @example
+  ' rodash.chunk([1, 2, 3, 4, 5], 2) // => [[1, 2], [3, 4], [5]]
+  ' rodash.chunk([1, 2, 3, 4, 5], 3) // => [[1, 2, 3], [4, 5]]
+  function chunk(array as Object, chunkSize = 1 as Integer) as Object
+    if NOT rodash.isNonEmptyArray(array) then return CreateObject("roArray", 0, true)
+
     array = rodash.clone(array)
     numberOfChunks = rodash.floor(array.count() / chunkSize)
     returnArray = CreateObject("roArray", numberOfChunks, true)
@@ -16,7 +21,7 @@ namespace rodash
 
       for i = 0 to chunkSize - 1
         chunkArray.push(array[arrayIndex])
-        arrayIndex ++
+        arrayIndex++
         if arrayIndex = array.count() then exit for
       end for
       returnArray[index] = chunkArray

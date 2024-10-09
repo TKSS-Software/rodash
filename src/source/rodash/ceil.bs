@@ -5,7 +5,10 @@ namespace rodash
   ' @param {Integer} number - The number to round up
   ' @param {Integer} precision - The precision to round up to
   ' @returns {Integer} Returns the rounded up number
-  function ceil(number = 0, precision = 0 as dynamic) as dynamic
-    return abs(int(-number * 10^precision) ) / 10^precision
+  ' @example
+  ' rodash.ceil(4.006) // => 5
+  ' rodash.ceil(0.056789, 4) // => 0.0568
+  function ceil(number = 0, precision = 0 as Dynamic) as Dynamic
+    return abs(int(-number * 10 ^ precision)) / 10 ^ precision
   end function
 end namespace

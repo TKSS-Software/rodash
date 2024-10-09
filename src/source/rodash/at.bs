@@ -4,9 +4,15 @@ namespace rodash
   ' @category Object
   ' @param {AssocArray} obj - The object to iterate over.
   ' @param {Array} paths - The property paths to pick.
-  ' @returns {Array} value - Returns the picked values.
-  function at(obj = CreateObject("roAssociativeArray") as object, paths = CreateObject("roArray", 0, true) as object)
+  ' @returns {Array} Returns the picked values.
+  ' @example
+  ' rodash.at({a: {b: 2}}, ["a.b"])
+  ' // [2]
+  ' rodash.at({a: {b: 2}}, ["a.b", "a.c"])
+  ' // [2, invalid]
+  function at(obj as Object, paths as Object)
     returnArray = CreateObject("roArray", 0, true)
+    if NOT rodash.isNonEmptyAA(obj) OR rodash.isNonEmptyArray(paths) then return returnArray
 
     for each path in paths
       result = rodash.get(obj, path)

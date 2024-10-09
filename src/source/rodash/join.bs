@@ -4,9 +4,9 @@ namespace rodash
   ' @category Array
   ' @param {Array} array - The array to convert
   ' @param {String} separator - The element separator
-  ' @return {Array} Returns the joined string
+  ' @returns {Array} Returns the joined string
   @inline
-  function join(array = CreateObject("roArray", 0, true) as object, separator = "" as string)
+  function join(array = CreateObject("roArray", 0, true) as Object, separator = "" as String)
     return rodash.clone(array).join(separator)
   end function
 end namespace
