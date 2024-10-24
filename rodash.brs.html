@@ -182,10 +182,10 @@ end function
 ' rodash.at({a: {b: 2}}, ["a.b", "a.c"])
 ' // [2, invalid]
 function at(obj as Object, paths as Object)
-    returnArray = CreateObject("roArray", 0, true)
-    if NOT (type(obj) = "roAssociativeArray" AND obj.keys().count() > 0) OR (type(paths) = "roArray" AND NOT paths.isEmpty()) then
-        return returnArray
+    if NOT (type(obj) = "roAssociativeArray" AND obj.keys().count() > 0) OR NOT (type(paths) = "roArray" AND NOT paths.isEmpty()) then
+        return CreateObject("roArray", 0, true)
     end if
+    returnArray = CreateObject("roArray", paths.count(), true)
     for each path in paths
         result = get(obj, path)
         returnArray.push(result)
@@ -1303,7 +1303,7 @@ function get(aa as Object, keyPath as String, fallback = Invalid as Dynamic, val
     for each key in keyPath.tokenize(".")
         if (getInterface(nextValue, "ifAssociativeArray") &lt;> Invalid) then
             nextValue = nextValue[key]
-        else if type(nextValue) = "roArray" AND NOT nextValue.isEmpty() then
+        else if (type(nextValue) = "roArray" AND NOT nextValue.isEmpty()) then
             index = 0
             if (type(key) = "String" OR type(key) = "roString") then
                 if key.instr(".") > -1 then
