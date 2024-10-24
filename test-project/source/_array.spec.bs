@@ -255,6 +255,13 @@ namespace Tests
     m.assertEqual(result, [])
   end function
 
+  @it("zip")
+  @params([["a", "b"], [1, 2], [true, false]], [["a", 1, true], ["b", 2, false]])
+  function _(arrays = [] as Dynamic, matchResult = Invalid as Dynamic)
+    result = rodash.zip(arrays)
+    m.assertEqual(result, matchResult)
+  end function
+
 
   ' @it("reverse")
   ' @params([1, 2, 3], [3, 2, 1])
