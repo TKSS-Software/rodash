@@ -27,6 +27,8 @@ namespace Tests
 
     @it("concat")
     @params([1], [2, [3], [[4]]], [1, 2, 3, [4]])
+    @params([1], [2, 3], [1, 2, 3])
+    @params([1], ["a"], [1, "a"])
     function _concatTest(arrayOne as Object, arrayTwo as Object, matchResult = [] as Object)
       result = rodash.concat(arrayOne, arrayTwo)
       m.assertEqual(result, matchResult)
