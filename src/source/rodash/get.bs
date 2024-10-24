@@ -19,7 +19,7 @@ namespace rodash
         for each key in keyPath.tokenize(".")
             if rodash.internal.isKeyedValueType(nextValue) then
                 nextValue = nextValue[key]
-            else if type(nextValue) = "roArray" AND NOT nextValue.isEmpty() then
+            else if rodash.isNonEmptyArray(nextValue) then
                 index = 0
                 if rodash.isString(key) then
                     if key.instr(".") > -1 then

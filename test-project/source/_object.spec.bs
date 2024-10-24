@@ -12,6 +12,12 @@ namespace Tests
       m.assertEqual(rodash.assign(obj, sources), matchResult)
     end function
 
+    @it("at")
+    @params({ a: { b: 2 } }, ["a.b"], [2])
+    function _(obj as Dynamic, sources as Dynamic, matchResult as Dynamic)
+      m.assertEqual(rodash.at(obj, sources), matchResult)
+    end function
+
     @it("get")
     @params({ "a": 1, "b": 2, "c": 1 }, "b", 2)
     @params({ "a": { "d": 3 }, "b": 2, "c": 1 }, "a.d", 3)

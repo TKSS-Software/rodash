@@ -11,8 +11,8 @@ namespace rodash
   ' rodash.at({a: {b: 2}}, ["a.b", "a.c"])
   ' // [2, invalid]
   function at(obj as Object, paths as Object)
-    returnArray = CreateObject("roArray", 0, true)
-    if NOT rodash.isNonEmptyAA(obj) OR rodash.isNonEmptyArray(paths) then return returnArray
+    if NOT rodash.isNonEmptyAA(obj) OR NOT rodash.isNonEmptyArray(paths) then return CreateObject("roArray", 0, true)
+    returnArray = CreateObject("roArray", paths.count(), true)
 
     for each path in paths
       result = rodash.get(obj, path)
