@@ -6,10 +6,11 @@ namespace rodash
   ' @param {Integer} n - The number of elements to sample
   ' @returns {Dynamic} - Returns the random elements.
   function sampleSize(collection as Object, n as Integer) as Object
-    result = CreateObject("roArray", 0, true)
+    if n <= 0 then return CreateObject("roArray", 0, true)
 
+    result = CreateObject("roArray", n, true)
     if rodash.isNonEmptyArray(collection) then
-    ' Create a copy of the original array to avoid modifying it
+      ' Create a copy of the original array to avoid modifying it
       copyCollection = rodash.clone(collection)
       count = copyCollection.count()
 
@@ -18,16 +19,16 @@ namespace rodash
 
       ' Perform Fisher-Yates shuffle for the first n elements
       for i = 0 to n - 1
-          ' Generate random index between i and count - 1
-          j = rodash.random(i, count - 1)
+        ' Generate random index between i and count - 1
+        j = rodash.random(i, count - 1)
 
-          ' Swap the current element with the element at index j
-          temp = copyCollection[i]
-          copyCollection[i] = copyCollection[j]
-          copyCollection[j] = temp
+        ' Swap the current element with the element at index j
+        temp = copyCollection[i]
+        copyCollection[i] = copyCollection[j]
+        copyCollection[j] = temp
 
-          ' Add the swapped element to the result
-          result.push(copyCollection[i])
+        ' Add the swapped element to the result
+        result.push(copyCollection[i])
       end for
     end if
 

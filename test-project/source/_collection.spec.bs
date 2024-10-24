@@ -7,12 +7,12 @@ namespace Tests
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     @it("find")
-    @params(invalid, { "user": "barney",  "active": false })
+    @params(Invalid, { "user": "barney", "active": false })
     @params({ "user": "fred", "active": false }, { "user": "fred", "active": false })
     @params(["active", false], { "user": "barney", "active": false })
     @params("active", { "user": "pebbles", "active": true })
-    @params("somethingtogetinvalid", invalid)
-    function _findTest(predicate = invalid as dynamic, matchResult = invalid as dynamic)
+    @params("somethingtogetinvalid", Invalid)
+    function _findTest(predicate = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       if rodash.isInvalid(predicate) then predicate = function(o)
         return o.user = "barney"
       end function
@@ -29,7 +29,7 @@ namespace Tests
     @it("groupBy")
     function _()
       m.assertEqual(rodash.groupBy([6.1, 4.2, 6.3], rodash.floor), { "4": [4.2], "6": [6.1, 6.3] })
-      m.assertEqual(rodash.groupBy([{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}, {"species": "dog", "name": "Darwin"}], "species"), { "cat": [{"species": "cat", "name": "Maddie"}, {"species": "cat", "name": "Rosie"}, {"species": "cat", "name": "Lucy"}], "dog": [{"species": "dog", "name": "Darwin"}] })
+      m.assertEqual(rodash.groupBy([{ "species": "cat", "name": "Maddie" }, { "species": "cat", "name": "Rosie" }, { "species": "cat", "name": "Lucy" }, { "species": "dog", "name": "Darwin" }], "species"), { "cat": [{ "species": "cat", "name": "Maddie" }, { "species": "cat", "name": "Rosie" }, { "species": "cat", "name": "Lucy" }], "dog": [{ "species": "dog", "name": "Darwin" }] })
     end function
 
     @it("keyBy")
@@ -54,7 +54,7 @@ namespace Tests
 
     @it("map")
     function _mapTest()
-      result = rodash.map([4,8], rodash.square)
+      result = rodash.map([4, 8], rodash.square)
       m.assertEqual(result, [16, 64])
 
       result = rodash.map({ "a": 4, "b": 8 }, rodash.square)
@@ -65,24 +65,24 @@ namespace Tests
         { "user": "fred" }
       ]
       result = rodash.map(users, "user")
-      m.assertEqual(result, ["barney", "fred"] )
+      m.assertEqual(result, ["barney", "fred"])
 
       result = rodash.map("hello world", rodash.capitalize)
-      m.assertEqual(result, ["H", "E", "L", "L", "O", " ", "W", "O", "R", "L", "D"] )
+      m.assertEqual(result, ["H", "E", "L", "L", "O", " ", "W", "O", "R", "L", "D"])
 
       result = rodash.map("hello world")
-      m.assertEqual(result, ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"] )
+      m.assertEqual(result, ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"])
     end function
 
     @it("orderBy")
-    @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }])
-    @params(["user", "age"], ["desc", "desc"], [{ "user": "fred",   "age": 48 }, { "user": "fred",   "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])
-    @params(["user", "age"], ["desc"], [{ "user": "fred",   "age": 40 }, { "user": "fred",   "age": 48 }, { "user": "barney", "age": 34 }, { "user": "barney", "age": 36 }])
-    function _orderTest(iterees = invalid as dynamic, orders = invalid as dynamic, matchResult = invalid as dynamic)
+    @params(["user", "age"], ["asc", "desc"], [{ "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }, { "user": "fred", "age": 48 }, { "user": "fred", "age": 40 }])
+    @params(["user", "age"], ["desc", "desc"], [{ "user": "fred", "age": 48 }, { "user": "fred", "age": 40 }, { "user": "barney", "age": 36 }, { "user": "barney", "age": 34 }])
+    @params(["user", "age"], ["desc"], [{ "user": "fred", "age": 40 }, { "user": "fred", "age": 48 }, { "user": "barney", "age": 34 }, { "user": "barney", "age": 36 }])
+    function _orderTest(iterees = Invalid as Dynamic, orders = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       users = [
-        { "user": "fred",   "age": 48 },
+        { "user": "fred", "age": 48 },
         { "user": "barney", "age": 34 },
-        { "user": "fred",   "age": 40 },
+        { "user": "fred", "age": 40 },
         { "user": "barney", "age": 36 }
       ]
       result = rodash.orderBy(users, iterees, orders)
@@ -90,11 +90,13 @@ namespace Tests
     end function
 
     @it("sampleSize")
+    @params([1, 2], -2, 0)
     @params([1, 2], 2, 2)
     @params([1, 2, 3], 4, 3)
-    @params([1, 2, 3, 4, 5 , 6 , 7], 5, 5)
-    @params([1, 2, 3, 4, 5 , 6 , 7], 5, 5)
-    @params([1, 2, 3, 4, 5 , 6 , 7, 8, 9, 10], 10, 10)
+    @params([1, 2, 3, 4, 5, 6, 7], 5, 5)
+    @params([1, 2, 3, 4, 5, 6, 7], 5, 5)
+    @params([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 10)
+    @params([1, "string", { key: "value" }, [1, 2, 3], true], 2, 2)
     function _(array as Object, n as Integer, matchResult as Object)
       result = rodash.sampleSize(array, n)
       m.assertEqual(result.count(), matchResult)
@@ -103,9 +105,9 @@ namespace Tests
     @it("shuffle")
     @params([1, 2], 2)
     @params([1, 2, 3], 3)
-    @params([1, 2, 3, 4, 5 , 6 , 7], 7)
-    @params([1, 2, 3, 4, 5 , 6 , 7, 8, 9, 10], 10)
-    @params([1, 2, 3, 4, 5 , 6 , 7, 8, 9, 10, 11, 12], 12)
+    @params([1, 2, 3, 4, 5, 6, 7], 7)
+    @params([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10)
+    @params([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 12)
     function _(array as Object, matchResult as Object)
       n = array.count()
       result = rodash.shuffle(array)
