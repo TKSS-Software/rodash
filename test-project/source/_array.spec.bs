@@ -9,6 +9,8 @@ namespace Tests
     @it("chunk")
     @params(["a", "b", "c", "d"], 2, [["a", "b"], ["c", "d"]])
     @params(["a", "b", "c", "d"], 3, [["a", "b", "c"], ["d"]])
+    @params(["a", "b", "c", "d", "e", "f", "g"], 3, [["a", "b", "c"], ["d", "e", "f"], ["g"]])
+    @params(["a", "b", "c", "d", "e", "f", "g"], 4, [["a", "b", "c", "d"], ["e", "f", "g"]])
     function _chunkTest(array as Object, chunkSize = 1 as Integer, matchResult = [] as Object)
       result = rodash.chunk(array, chunkSize)
       m.assertEqual(result, matchResult)

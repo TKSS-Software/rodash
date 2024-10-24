@@ -17,7 +17,7 @@ namespace rodash
 
     arrayIndex = 0
     for index = 0 to numberOfChunks
-      chunkArray = CreateObject("roArray", 0, true)
+      chunkArray = CreateObject("roArray", chunkSize, true)
 
       for i = 0 to chunkSize - 1
         chunkArray.push(array[arrayIndex])
