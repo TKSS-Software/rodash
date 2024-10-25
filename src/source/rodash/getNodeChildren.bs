@@ -1,0 +1,11 @@
+namespace rodash
+    ' Gets the children of a node.
+    ' @since 0.0.32
+    ' @category Node
+    ' @param {Object} node - The node to get the children of
+    ' @returns {Object} Returns the children of the node
+    function getNodeChildren(node as Object) as Object
+        if rodash.isNode(node) then return node.getChildren(-1, 0)
+        return []
+    end function
+end namespace
