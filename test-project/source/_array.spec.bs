@@ -9,6 +9,8 @@ namespace Tests
     @it("chunk")
     @params(["a", "b", "c", "d"], 2, [["a", "b"], ["c", "d"]])
     @params(["a", "b", "c", "d"], 3, [["a", "b", "c"], ["d"]])
+    @params(["a", "b", "c", "d", "e", "f", "g"], 3, [["a", "b", "c"], ["d", "e", "f"], ["g"]])
+    @params(["a", "b", "c", "d", "e", "f", "g"], 4, [["a", "b", "c", "d"], ["e", "f", "g"]])
     function _chunkTest(array as Object, chunkSize = 1 as Integer, matchResult = [] as Object)
       result = rodash.chunk(array, chunkSize)
       m.assertEqual(result, matchResult)
@@ -25,6 +27,8 @@ namespace Tests
 
     @it("concat")
     @params([1], [2, [3], [[4]]], [1, 2, 3, [4]])
+    @params([1], [2, 3], [1, 2, 3])
+    @params([1], ["a"], [1, "a"])
     function _concatTest(arrayOne as Object, arrayTwo as Object, matchResult = [] as Object)
       result = rodash.concat(arrayOne, arrayTwo)
       m.assertEqual(result, matchResult)
@@ -212,9 +216,11 @@ namespace Tests
     end function
 
     @it("slice")
-    @params([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, [1, 2, 3, 4])
-    function _(array = [] as Object, n = 0 as Integer, matchResult = Invalid as Dynamic)
-      result = rodash.slice(array, 0, n)
+    @params([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0, 4, [1, 2, 3, 4])
+    @params(["ape", "bat", "cow", "dog", "elk"], 2, -1, ["cow", "dog", "elk"])
+    @params(["ape", "bat", "cow", "dog", "elk"], 1, 3, ["bat", "cow"])
+    function _(array = [] as Object, a = 0 as Integer, n = -1 as Integer, matchResult = Invalid as Dynamic)
+      result = rodash.slice(array, a, n)
       m.assertEqual(result, matchResult)
     end function
 
@@ -249,6 +255,13 @@ namespace Tests
     one = { name: "one" }
     result = rodash.xor([[one], [one]], true)
     m.assertEqual(result, [])
+  end function
+
+  @it("zip")
+  @params([["a", "b"], [1, 2], [true, false]], [["a", 1, true], ["b", 2, false]])
+  function _(arrays = [] as Dynamic, matchResult = Invalid as Dynamic)
+    result = rodash.zip(arrays)
+    m.assertEqual(result, matchResult)
   end function
 
 

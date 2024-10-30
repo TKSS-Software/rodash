@@ -26,16 +26,12 @@ namespace rodash
             end for
         end for
 
-        print "resultArray: "; resultArray
-        print "removeArray: "; removeArray
-
         while removeArray.count() > 0
             ' Remove the first occurrence of the item in removeArray from resultArray
             resultArray.delete(rodash.findIndex(resultArray, removeArray[0]))
             ' Remove the first item from removeArray
             removeArray.delete(0)
         end while
-
 
         return resultArray
     end function

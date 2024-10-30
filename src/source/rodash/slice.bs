@@ -6,26 +6,10 @@ namespace rodash
   ' @param {Integer} startPos - The start position
   ' @param {Integer} endPos - The end position
   ' @returns {Dynamic} Returns the slice of array
-  function slice(array = CreateObject("roArray", 0, true) as Object, startPos = 0, endPos = Invalid)
+  function slice(array = CreateObject("roArray", 0, true) as Object, startPos = 0 as Integer, endPos = -1 as Integer) as Object
     if NOT rodash.isArray(array) then return Invalid
-    if rodash.isNotInvalid(endPos) then endPos = endPos - 1
 
-    array = rodash.clone(array)
-    arraySize = array.count()
-    lastIndex = arraySize - 1
-    slicedArray = CreateObject("roArray", 0, true)
-
-    if startPos < 0 then startPos = arraySize + startPos
-    if endPos = Invalid then endPos = lastIndex
-    if endPos < 0 then endPos = arraySize + endPos
-    if endPos >= arraySize then endPos = lastIndex
-
-    if startPos >= arraySize OR startPos > endPos then return slicedArray
-
-    for i = startPos to endPos
-      slicedArray.push(array[i])
-    end for
-
-    return slicedArray
+    if endPos = -1 then endPos = array.count()
+    return rodash.clone(array).slice(startPos, endPos)
   end function
 end namespace

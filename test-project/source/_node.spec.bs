@@ -1,0 +1,66 @@
+namespace Tests
+    @suite("RodashNodeTests")
+    class NodeTests extends Rooibos.BaseTestSuite
+
+        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        @describe("Tests the rodash node methods")
+        '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        @it("createNode")
+        function _()
+            node = rodash.createNode("Rectangle", { id: "test" })
+            m.assertEqual(rodash.isNode(node, "Rectangle"), true)
+            m.assertEqual(rodash.isNode(node, "Label"), false)
+            m.assertEqual(node.id, "test")
+        end function
+
+        @it("getNodeChildren")
+        function _()
+            node = rodash.createNode("Rectangle", { id: "test" })
+            m.assertEqual(rodash.getNodeChildren(node), [])
+            m.assertEqual(rodash.getNodeChildren(node).count(), 0)
+
+            secondNode = rodash.createNode("Rectangle", { id: "test2" })
+            node.appendChild(secondNode)
+            m.assertEqual(rodash.getNodeChildren(node).count(), 1)
+        end function
+
+        @it("getNodeLastChild")
+        function _()
+            node = rodash.createNode("Rectangle", { id: "test" })
+            secondNode = rodash.createNode("Rectangle", { id: "test2" })
+            node.appendChild(secondNode)
+            m.assertEqual(rodash.getNodeLastChild(node).id, "test2")
+            thirdNode = rodash.createNode("Rectangle", { id: "test3" })
+            node.appendChild(thirdNode)
+            m.assertEqual(rodash.getNodeLastChild(node).id, "test3")
+        end function
+
+        @it("removeNode")
+        function _()
+            node = rodash.createNode("Rectangle", { id: "test" })
+            m.assertEqual(rodash.getNodeChildren(node).count(), 0)
+            secondNode = rodash.createNode("Rectangle", { id: "test2" })
+            node.appendChild(secondNode)
+            m.assertEqual(rodash.getNodeChildren(node).count(), 1)
+            rodash.removeNode(secondNode)
+            m.assertEqual(rodash.getNodeChildren(node).count(), 0)
+        end function
+
+        @it("removeNodeChildren")
+        function _()
+            node = rodash.createNode("Rectangle", { id: "test" })
+            m.assertEqual(rodash.getNodeChildren(node).count(), 0)
+            secondNode = rodash.createNode("Rectangle", { id: "test2" })
+            node.appendChild(secondNode)
+            m.assertEqual(rodash.getNodeChildren(node).count(), 1)
+            thirdNode = rodash.createNode("Rectangle", { id: "test3" })
+            node.appendChild(thirdNode)
+            m.assertEqual(rodash.getNodeChildren(node).count(), 2)
+            rodash.removeNodeChildren(node)
+            m.assertEqual(rodash.getNodeChildren(node).count(), 0)
+        end function
+
+    end class
+
+end namespace

@@ -1,0 +1,9 @@
+namespace rodash
+    ' Removes all children of a node.
+    ' @since 0.0.32
+    ' @category Node
+    ' @param {Object} node - The node to remove the children of
+    sub removeNodeChildren(node as Object)
+        if rodash.isNode(node) then node.removeChildrenIndex(node.getChildCount(), 0)
+    end sub
+end namespace

@@ -1,0 +1,12 @@
+namespace rodash
+    ' Gets the last child of a node.
+    ' @since 0.0.32
+    ' @category Node
+    ' @param {Object} node - The node to get the last child of
+    ' @returns {Object} Returns the last child of the node
+    function getNodeLastChild(node as Object) as Object
+        children = rodash.getNodeChildren(node)
+        if children.count() > 0 then return children[children.count() - 1]
+        return Invalid
+    end function
+end namespace

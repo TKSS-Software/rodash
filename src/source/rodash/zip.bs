@@ -5,9 +5,10 @@ namespace rodash
   ' @param {Array} arrays - The property identifiers
   ' @returns {Object} Returns the new array of grouped elements
   function zip(arrays = CreateObject("roArray", 0, true) as Object) as Object
-    returnArray = CreateObject("roArray", 0, true)
+    arrayCount = arrays.count()
+    returnArray = CreateObject("roArray", arrayCount, true)
 
-    for i = 0 to arrays.count() - 1
+    for i = 0 to arrayCount - 1
       array = arrays[i]
       for ii = 0 to array.count() - 1
         if rodash.isInvalid(returnArray[ii]) then returnArray[ii] = CreateObject("roArray", 0, true)

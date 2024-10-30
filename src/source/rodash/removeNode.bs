@@ -1,0 +1,22 @@
+namespace rodash
+    ' Removes the supplied node from it's parent. Can be set as an observer callback.
+    ' @since 0.0.32
+    ' @category Node
+    ' @param {roSGNode|roSGNodeEvent} nodeOrEvent - The node or node event to be removed.
+    sub removeNode(nodeOrEvent as Dynamic)
+        if rodash.isNodeEvent(nodeOrEvent) then
+            node = nodeOrEvent.getRoSGNode()
+            node.unobserveFieldScoped(nodeOrEvent.getField())
+        else
+            node = nodeOrEvent
+        end if
+
+        if rodash.isNode(node) then
+            parent = node.getParent()
+            if rodash.isNode(parent) then
+                parent.removeChild(node)
+            end if
+            node = Invalid'bs:disable-line LINT1005 1005
+        end if
+    end sub
+end namespace

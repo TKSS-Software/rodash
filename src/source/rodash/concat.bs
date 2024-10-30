@@ -8,18 +8,18 @@ namespace rodash
   ' @example
   ' rodash.concat([1], [2, [3], [[4]]]) // => [1, 2, [3], [[4]]]
   function concat(array as Object, values as Object) as Object
-    returnArray = CreateObject("roArray", 0, true)
-    returnArray.append(array)
+    if NOT rodash.isArray(array) then return CreateObject("roArray", 0, true)
+    if NOT rodash.isArray(values) then return array
 
-    if rodash.isArray(array) AND rodash.isArray(values) then
-      for each value in values
-        if rodash.isArray(value) then
-          returnArray.append(value)
-        else
-          returnArray.push(value)
-        end if
-      end for
-    end if
+    returnArray = rodash.clone(array)
+
+    for each value in values
+      if rodash.isArray(value) then
+        returnArray.append(value)
+      else
+        returnArray.push(value)
+      end if
+    end for
 
     return returnArray
   end function
