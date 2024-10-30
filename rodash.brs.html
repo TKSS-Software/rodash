@@ -401,6 +401,9 @@ end function
 ' @param {String} nodeType - The type of node to create
 ' @param {Object} fields - The fields to set on the node
 ' @returns {Object} Returns the new roSGNode object
+' @example
+' rodash.createNode("Rectangle", { id: "myRectangle" }) // => &lt;Rectangle: roSGNode>
+' rodash.createNode("Label", { id: "myLabel" }) // => &lt;Label: roSGNode>
 function createNode(nodeType = "Node" as String, fields = {} as Dynamic) as Object
     node = createObject("roSGNode", nodeType)
     if isNode(node, nodeType) then
