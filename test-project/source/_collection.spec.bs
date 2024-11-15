@@ -115,4 +115,14 @@ namespace Tests
     end function
   end class
 
+  @it("merge")
+  @params({ "a": 1 }, { "b": 2 }, { "a": 1, "b": 2 })
+  @params({ "a": 1 }, [{ "a": 2 }], { "a": 2 })
+  @params({ "a": 1 }, [{ "a": 2 }, { "b": 3 }], { "a": 2, "b": 3 })
+  @params({ "a": { "b": { "c": 1, "d": { "e": 1 } } } }, { "a": { "b": { "c": 3 } } }, { "a": { "b": { "c": 3, "d": { "e": 1 } } } })
+  function _(target as Object, source as Object, matchResult as Object)
+    result = rodash.merge(target, source)
+    m.assertEqual(result, matchResult)
+  end function
+
 end namespace

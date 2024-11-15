@@ -1,0 +1,37 @@
+namespace rodash
+    ' Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
+    ' @since 0.0.33
+    ' @category Collection
+    ' @param {Dynamic} target - The target object to merge into
+    ' @param {Dynamic} source - The source object to merge from
+    ' @returns {Object} Returns the merged object
+    ' @example
+    ' rodash.merge({a:1}, {b:2}) // => {a:1, b:2}
+    ' rodash.merge({a:1}, {a:2}) // => {a:2}
+    ' rodash.merge({a:1}, {a:{b:2}}) // => {a:{b:2}}
+    ' rodash.merge({a:{b:1}}, {a:{c:2}}) // => {a:{b:1, c:2}}
+    ' rodash.merge({a:{b:1}}, [{a:{b:2}}, {a:{c:3}}]) // => {a:{b:2, c:3}}
+    function merge(target as Object, sources as Object) as Object
+        if rodash.isAA(sources) then sources = [sources]
+
+        ' Iterate through each key in the source object
+        for each source in sources
+            for each key in source
+                if target.doesExist(key) then
+                    ' If the key exists in both target and source, check for nested objects
+                    if type(target[key]) = "roAssociativeArray" AND type(source[key]) = "roAssociativeArray" then
+                        ' Recursive merge for nested objects
+                        target[key] = rodash.merge(target[key], source[key])
+                    else
+                        ' Overwrite the value if it exists and isn't a nested object
+                        target[key] = source[key]
+                    end if
+                else
+                    ' Add the key to the target if it doesn't exist
+                    target[key] = source[key]
+                end if
+            end for
+        end for
+        return target
+    end function
+end namespace
