@@ -27645,7 +27645,7 @@ rodash.isMap({}) // => false</code></pre>
     
     
     <div class="description">
-        <p>Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)</p>
+        <p>This method is like rodash.assign except that it recursively merges own and inherited enumerable string keyed properties of source objects into the destination object. Source properties that resolve to undefined are skipped if a destination value exists. Array and plain object properties are merged recursively. Other objects and value types are overridden by assignment. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.</p>
     </div>
     
 

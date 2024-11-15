@@ -2913,7 +2913,7 @@ function meanBy(array, iteratee = Invalid)
     return divide(sumBy(array, iteratee), array.count())
 end function
 
-' Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection)
+' This method is like rodash.assign except that it recursively merges own and inherited enumerable string keyed properties of source objects into the destination object. Source properties that resolve to undefined are skipped if a destination value exists. Array and plain object properties are merged recursively. Other objects and value types are overridden by assignment. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
 ' @since 0.0.33
 ' @category Collection
 ' @param {Dynamic} target - The target object to merge into
