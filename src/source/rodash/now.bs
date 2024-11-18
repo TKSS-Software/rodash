@@ -5,9 +5,6 @@ namespace rodash
   ' @returns {Object} The number of milliseconds that have elapsed since the Unix epoch.
   function now() as Object
     dateObj = rodash.internal.getDateObject()
-    return {
-      "utc": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds(),
-      "local": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds()
-    }
+    return dateObj.asSeconds() + dateObj.getMilliseconds()
   end function
 end namespace

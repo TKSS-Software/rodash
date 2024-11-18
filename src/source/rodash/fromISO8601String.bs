@@ -3,13 +3,10 @@ namespace rodash
   ' @since 0.0.21
   ' @category Date
   ' @param {String} dateString - The date string to convert.
+  ' @param {Boolean} asLocal - Whether to get the local date. Default is false.
   ' @returns {Object} The date objects.
-  function fromISO8601String(dateString = "" as String) as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.fromISO8601String(dateString),
-      "local": dateObj.local.fromISO8601String(dateString)
-    }
+  @inline
+  function fromISO8601String(dateString = "" as String, asLocal = false as Boolean) as Object
+    return rodash.internal.getDateObject(asLocal).fromISO8601String(dateString)
   end function
 end namespace

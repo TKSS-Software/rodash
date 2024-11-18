@@ -2,13 +2,9 @@ namespace rodash
   ' Gets the milliseconds.
   ' @since 0.0.21
   ' @category Date
+  ' @param {Boolean} asLocal - Whether to get the local milliseconds. Default is false.
   ' @returns {Object} The milliseconds.
-  function getMilliseconds() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getMilliseconds(),
-      "local": dateObj.local.getMilliseconds()
-    }
+  function getMilliseconds(asLocal = false as Boolean) as Object
+    return rodash.internal.getDateObject(asLocal).getMilliseconds()
   end function
 end namespace

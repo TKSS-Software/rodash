@@ -8,7 +8,12 @@ namespace Tests
 
     @it("Test rodash date")
     function testNow()
-      m.assertAAHasKeys(rodash.now(), ["local", "utc"])
+      a = rodash.now()
+      b = rodash.now()
+      sleep(10)
+      c = rodash.now()
+      m.assertEqual(a, b)
+      m.assertNotEqual(a, c)
     end function
 
   end class
