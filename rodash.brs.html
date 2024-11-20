@@ -125,25 +125,19 @@ end function
 ' @since 0.0.21
 ' @category Date
 ' @param {String} format - The date format
-' @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
-function asDateString(format = "long-date" as string) as object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.asDateString(format)
-        "local": dateObj.local.asDateString(format)
-    }
+' @param {Boolean} asLocal - Whether to get the local date. Default is false.
+' @returns {String} value - Returns a formatted version of the current time/date
+function asDateString(format = "long-date" as String, asLocal = false as Boolean) as String
+    return internal_getDateObject(asLocal).asDateString(format)
 end function
 
 ' Returns the current time in seconds.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} value - Returns a object containing the date/time in seconds for both UTC and Local time
-function asSeconds() as object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.asSeconds()
-        "local": dateObj.local.asSeconds()
-    }
+' @param {Boolean} asLocal - Whether to get the local time. Default is false.
+' @returns {Integer} value - Returns the current time in seconds
+function asSeconds(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).asSeconds()
 end function
 
 ' Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
@@ -1245,13 +1239,10 @@ end function
 ' @since 0.0.21
 ' @category Date
 ' @param {String} dateString - The date string to convert.
-' @returns {Object} The date objects.
-function fromISO8601String(dateString = "" as String) as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.fromISO8601String(dateString)
-        "local": dateObj.local.fromISO8601String(dateString)
-    }
+' @param {Boolean} asLocal - Whether to get the local date. Default is false.
+' @returns {Object} The date object.
+function fromISO8601String(dateString = "" as String, asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).fromISO8601String(dateString)
 end function
 
 ' The inverse of rodash.toPairs; this method returns an object composed from key-value pairs.
@@ -1276,13 +1267,10 @@ end function
 ' @since 0.0.21
 ' @category Date
 ' @param {Number} numSeconds - The number of seconds to convert.
-' @returns {Object} The date objects.
-function fromSeconds(numSeconds = 0 as Integer) as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.fromSeconds(numSeconds)
-        "local": dateObj.local.fromSeconds(numSeconds)
-    }
+' @param {Boolean} asLocal - Whether to get the local date. Default is false.
+' @returns {Object} The date object.
+function fromSeconds(numSeconds = 0 as Integer, asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).fromSeconds(numSeconds)
 end function
 
 ' TODO: Rewrite this due to scoping issue
@@ -1405,25 +1393,19 @@ end function
 ' Gets the day of the month.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The day of the month.
-function getDayOfMonth() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getDayOfMonth()
-        "local": dateObj.local.getDayOfMonth()
-    }
+' @param {Boolean} asLocal - Whether to get the local day of the month. Default is false.
+' @returns {Integer} The day of the month.
+function getDayOfMonth(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getDayOfMonth()
 end function
 
 ' Gets the day of the week.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The day of the week.
-function getDayOfWeek() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getDayOfWeek()
-        "local": dateObj.local.getDayOfWeek()
-    }
+' @param {Boolean} asLocal - Whether to get the local day of the week. Default is false.
+' @returns {Integer} The day of the week.
+function getDayOfWeek(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getDayOfWeek()
 end function
 
 ' Gets the function name from a function object.
@@ -1441,61 +1423,46 @@ end function
 ' Gets the hours.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The hours.
-function getHours() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getHours()
-        "local": dateObj.local.getHours()
-    }
+' @param {Boolean} asLocal - Whether to get the local hours. Default is false.
+' @Returns {Integer} The hours.
+function getHours(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getHours()
 end function
 
 ' Gets the last day of the month.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The last day of the month.
-function getLastDayOfMonth() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getLastDayOfMonth()
-        "local": dateObj.local.getLastDayOfMonth()
-    }
+' @param {Boolean} asLocal - Whether to get the local last day of the month. Default is false.
+' @returns {Integer} The last day of the month.
+function getLastDayOfMonth(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getLastDayOfMonth()
 end function
 
 ' Gets the milliseconds.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The milliseconds.
-function getMilliseconds() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getMilliseconds()
-        "local": dateObj.local.getMilliseconds()
-    }
+' @param {Boolean} asLocal - Whether to get the local milliseconds. Default is false.
+' @returns {Integer} The milliseconds.
+function getMilliseconds(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getMilliseconds()
 end function
 
 ' Gets the minutes.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The minutes.
-function getMinutes() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getMinutes()
-        "local": dateObj.local.getMinutes()
-    }
+' @param {Boolean} asLocal - Whether to get the local minutes. Default is false.
+' @returns {Integer} The minutes.
+function getMinutes(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getMinutes()
 end function
 
 ' Gets the month.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The month.
-function getMonth() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getMonth()
-        "local": dateObj.local.getMonth()
-    }
+' @param {Boolean} asLocal - Whether to get the local month. Default is false.
+' @returns {Integer} The month.
+function getMonth(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getMonth()
 end function
 
 ' Gets the children of a node.
@@ -1542,13 +1509,10 @@ end function
 ' Gets the seconds.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The seconds.
-function getSeconds() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getSeconds()
-        "local": dateObj.local.getSeconds()
-    }
+' @param {Boolean} asLocal - Whether to get the local seconds. Default is false.
+' @returns {Integer} The seconds.
+function getSeconds(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getSeconds()
 end function
 
 ' Gets the String value at path of object. Calls rodash.get with the isString validator function.
@@ -1570,13 +1534,10 @@ end function
 ' Gets the year.
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The year.
-function getYear() as Object
-    dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.getYear()
-        "local": dateObj.local.getYear()
-    }
+' @param {Boolean} asLocal - Whether to get the local year. Default is false.
+' @returns {Integer} The year.
+function getYear(asLocal = false as Boolean) as Integer
+    return internal_getDateObject(asLocal).getYear()
 end function
 
 ' Creates an object composed of keys generated from the results of running each element of collection thru iteratee. The order of grouped values is determined by the order they occur in collection. The corresponding value of each key is an array of elements responsible for generating the key. The iteratee is invoked with one argument: (value).
@@ -1963,15 +1924,12 @@ function internal_getConstants()
 end function
 
 ' @ignore
-function internal_getDateObject() as object
+function internal_getDateObject(asLocal = false as Boolean) as Object
     dateObj = CreateObject("roDateTime")
-    utc = dateObj
-    dateObj.toLocalTime()
-    local = dateObj
-    return {
-        "utc": utc
-        "local": local
-    }
+    if asLocal then
+        dateObj.toLocalTime()
+    end if
+    return dateObj
 end function
 
 ' @ignore
@@ -3012,13 +2970,10 @@ end function
 ' Gets the number of milliseconds that have elapsed since the Unix epoch (1 January 1970 00:00:00 UTC).
 ' @since 0.0.21
 ' @category Date
-' @returns {Object} The number of milliseconds that have elapsed since the Unix epoch.
-function now() as Object
+' @returns {Integer} The number of milliseconds that have elapsed since the Unix epoch.
+function now() as Integer
     dateObj = internal_getDateObject()
-    return {
-        "utc": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds()
-        "local": dateObj.utc.asSeconds() + dateObj.utc.getMilliseconds()
-    }
+    return dateObj.asSeconds() + dateObj.getMilliseconds()
 end function
 
 ' The opposite of rodash.pick; this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
