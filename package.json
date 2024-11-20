@@ -1,6 +1,6 @@
 {
   "name": "@tkss/rodash",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "A lodash inspired utility for Roku development",
   "main": "index.js",
   "keywords": [
