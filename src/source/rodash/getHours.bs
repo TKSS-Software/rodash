@@ -2,13 +2,10 @@ namespace rodash
   ' Gets the hours.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} The hours.
-  function getHours() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getHours(),
-      "local": dateObj.local.getHours()
-    }
+  ' @param {Boolean} asLocal - Whether to get the local hours. Default is false.
+  ' @Returns {Integer} The hours.
+  @inline
+  function getHours(asLocal = false as Boolean) as Integer
+    return rodash.internal.getDateObject(asLocal).getHours()
   end function
 end namespace

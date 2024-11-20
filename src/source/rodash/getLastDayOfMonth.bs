@@ -2,13 +2,10 @@ namespace rodash
   ' Gets the last day of the month.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} The last day of the month.
-  function getLastDayOfMonth() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getLastDayOfMonth(),
-      "local": dateObj.local.getLastDayOfMonth()
-    }
+  ' @param {Boolean} asLocal - Whether to get the local last day of the month. Default is false.
+  ' @returns {Integer} The last day of the month.
+  @inline
+  function getLastDayOfMonth(asLocal = false as Boolean) as Integer
+    return rodash.internal.getDateObject(asLocal).getLastDayOfMonth()
   end function
 end namespace

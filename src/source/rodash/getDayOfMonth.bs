@@ -2,13 +2,10 @@ namespace rodash
   ' Gets the day of the month.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} The day of the month.
-  function getDayOfMonth() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getDayOfMonth(),
-      "local": dateObj.local.getDayOfMonth()
-    }
+  ' @param {Boolean} asLocal - Whether to get the local day of the month. Default is false.
+  ' @returns {Integer} The day of the month.
+  @inline
+  function getDayOfMonth(asLocal = false as Boolean) as Integer
+    return rodash.internal.getDateObject(asLocal).getDayOfMonth()
   end function
 end namespace

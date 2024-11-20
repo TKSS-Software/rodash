@@ -2,13 +2,10 @@ namespace rodash
   ' Gets the seconds.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} The seconds.
-  function getSeconds() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getSeconds(),
-      "local": dateObj.local.getSeconds()
-    }
+  ' @param {Boolean} asLocal - Whether to get the local seconds. Default is false.
+  ' @returns {Integer} The seconds.
+  @inline
+  function getSeconds(asLocal = false as Boolean) as Integer
+    return rodash.internal.getDateObject(asLocal).getSeconds()
   end function
 end namespace

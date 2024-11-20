@@ -2,13 +2,10 @@ namespace rodash
   ' Gets the day of the week.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} The day of the week.
-  function getDayOfWeek() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getDayOfWeek(),
-      "local": dateObj.local.getDayOfWeek()
-    }
+  ' @param {Boolean} asLocal - Whether to get the local day of the week. Default is false.
+  ' @returns {Integer} The day of the week.
+  @inline
+  function getDayOfWeek(asLocal = false as Boolean) as Integer
+    return rodash.internal.getDateObject(asLocal).getDayOfWeek()
   end function
 end namespace

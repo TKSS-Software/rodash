@@ -2,13 +2,9 @@ namespace rodash
   ' Gets the month.
   ' @since 0.0.21
   ' @category Date
-  ' @returns {Object} The month.
-  function getMonth() as Object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.getMonth(),
-      "local": dateObj.local.getMonth()
-    }
+  ' @param {Boolean} asLocal - Whether to get the local month. Default is false.
+  ' @returns {Integer} The month.
+  function getMonth(asLocal = false as Boolean) as Integer
+    return rodash.internal.getDateObject(asLocal).getMonth()
   end function
 end namespace
