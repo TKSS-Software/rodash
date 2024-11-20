@@ -1,16 +1,13 @@
 
 namespace rodash.internal
   ' @ignore
-  function getDateObject() as object
+  function getDateObject(asLocal = false as Boolean) as Object
     dateObj = CreateObject("roDateTime")
 
-    utc = dateObj
-    dateObj.toLocalTime()
-    local = dateObj
+    if asLocal then
+      dateObj.toLocalTime()
+    end if
 
-    return {
-      "utc": utc,
-      "local": local
-    }
+    return dateObj
   end function
 end namespace

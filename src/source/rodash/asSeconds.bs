@@ -2,13 +2,10 @@ namespace rodash
   ' Returns the current time in seconds.
   ' @since 0.0.21
   ' @category Date
+  ' @param {Boolean} asLocal - Whether to get the local time. Default is false.
   ' @returns {Object} value - Returns a object containing the date/time in seconds for both UTC and Local time
-  function asSeconds() as object
-    dateObj = rodash.internal.getDateObject()
-
-    return {
-      "utc": dateObj.utc.asSeconds(),
-      "local": dateObj.local.asSeconds()
-    }
+  @inline
+  function asSeconds(asLocal = false as Boolean) as Object
+    return rodash.internal.getDateObject(asLocal).asSeconds()
   end function
 end namespace
