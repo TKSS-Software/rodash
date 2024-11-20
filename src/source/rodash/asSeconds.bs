@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Date
   ' @param {Boolean} asLocal - Whether to get the local time. Default is false.
-  ' @returns {Object} value - Returns a object containing the date/time in seconds for both UTC and Local time
+  ' @returns {Integer} value - Returns the current time in seconds
   @inline
-  function asSeconds(asLocal = false as Boolean) as Object
+  function asSeconds(asLocal = false as Boolean) as Integer
     return rodash.internal.getDateObject(asLocal).asSeconds()
   end function
 end namespace

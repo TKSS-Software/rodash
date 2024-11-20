@@ -3,9 +3,9 @@ namespace rodash
   ' @since 0.0.21
   ' @category Date
   ' @param {Boolean} asLocal - Whether to get the local last day of the month. Default is false.
-  ' @returns {Object} The last day of the month.
+  ' @returns {Integer} The last day of the month.
   @inline
-  function getLastDayOfMonth(asLocal = false as Boolean) as Object
+  function getLastDayOfMonth(asLocal = false as Boolean) as Integer
     return rodash.internal.getDateObject(asLocal).getLastDayOfMonth()
   end function
 end namespace

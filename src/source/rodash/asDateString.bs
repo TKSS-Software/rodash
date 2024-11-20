@@ -4,9 +4,9 @@ namespace rodash
   ' @category Date
   ' @param {String} format - The date format
   ' @param {Boolean} asLocal - Whether to get the local date. Default is false.
-  ' @returns {Object} value - Returns a object containing the formatted date for both UTC and Local time
+  ' @returns {String} value - Returns a formatted version of the current time/date
   @inline
-  function asDateString(format = "long-date" as String, asLocal = false as Boolean) as Object
+  function asDateString(format = "long-date" as String, asLocal = false as Boolean) as String
     return rodash.internal.getDateObject(asLocal).asDateString(format)
   end function
 end namespace

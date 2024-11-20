@@ -4,9 +4,9 @@ namespace rodash
   ' @category Date
   ' @param {Number} numSeconds - The number of seconds to convert.
   ' @param {Boolean} asLocal - Whether to get the local date. Default is false.
-  ' @returns {Object} The date objects.
+  ' @returns {Object} The date object.
   @inline
-  function fromSeconds(numSeconds = 0 as Integer, asLocal = false as Boolean) as Object
+  function fromSeconds(numSeconds = 0 as Integer, asLocal = false as Boolean) as Integer
     return rodash.internal.getDateObject(asLocal).fromSeconds(numSeconds)
   end function
 end namespace
