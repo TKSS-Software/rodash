@@ -1,3 +1,4 @@
+import "filter.bs"
 import "find.bs"
 import "forEach.bs"
 import "forEachRight.bs"
