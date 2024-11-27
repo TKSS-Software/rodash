@@ -1,0 +1,80 @@
+namespace rodash
+    ' Iterates over elements of collection, returning an array of all elements predicate returns truthy for.
+    ' @since 0.0.35
+    ' @category Collection
+    ' @param {Array} sourceArray - The array to inspect
+    ' @param {Function} predicate - The function invoked per iteration
+    ' @returns {Array} Returns the matched elements
+    ' @example
+    ' users = [
+    '   { "user": "barney", "active": false, "age": 50 },
+    '   { "user": "fred", "active": false, "age": 40 },
+    '   { "user": "pebbles", "active": true, "age": 10 }
+    ' ]
+    '
+    ' rodash.filter(users, function(o)
+    '   return o.active
+    ' end function)
+    ' // => [{ "user": "pebbles", "active": true, "age": 10 }]
+    '
+    ' rodash.filter(users, { "age": 40 })
+    ' // => [{ "user": "fred", "active": false, "age": 40 }]
+    function filter(sourceArray as Object, predicate as Dynamic) as Object
+        ' Create a new array to hold filtered results
+        filteredArray = []
+        validPredicate = false
+
+        if rodash.isNonEmptyArray(sourceArray) then
+            ' Iterate through the source array
+            for each item in sourceArray
+                ' Apply the predicate to each item
+                if rodash.isFunction(predicate) then
+                    if predicate(item) then
+                        ' Add item to filteredArray if predicate returns true
+                        filteredArray.push(item)
+                    end if
+                    validPredicate = true
+                else if rodash.isNonEmptyAA(predicate) then
+                    ' Check if the item matches the predicate
+                    matches = true
+                    for each key in predicate
+                        if item[key] <> predicate[key] then
+                            matches = false
+                            exit for
+                        end if
+                    end for
+
+                    ' Add item to filteredArray if it matches the predicate
+                    if matches then
+                        filteredArray.push(item)
+                    end if
+                    validPredicate = true
+                else if rodash.isNonEmptyArray(predicate) then
+                    if predicate.count() <= 2 then
+                        ' Add item to filteredArray if it matches the predicate
+                        if item[predicate[0]] = predicate[1] then
+                            filteredArray.push(item)
+                        end if
+                        validPredicate = true
+                    end if
+                else if rodash.isNonEmptyString(predicate) then
+                    ' Add item to filteredArray if it matches the predicate
+                    if rodash.isBoolean(item[predicate]) then
+                        if item[predicate] then
+                            filteredArray.push(item)
+                        end if
+                        validPredicate = true
+                    end if
+                end if
+            end for
+        end if
+
+        if NOT validPredicate then
+            ' If the predicate is invalid, return the source array
+            return sourceArray
+        end if
+
+        ' Return the new filtered array
+        return filteredArray
+    end function
+end namespace

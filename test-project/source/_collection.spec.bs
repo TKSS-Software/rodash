@@ -6,6 +6,22 @@ namespace Tests
     @describe("Tests the rodash collection methods")
     '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    @it("filter")
+    @params("active", [{ "user": "pebbles", "active": true, "age": 10 }])
+    @params({ "age": 10 }, [{ "user": "pebbles", "active": true, "age": 10 }])
+    @params(["active", false], [{ "user": "barney", "active": false, "age": 50 }, { "user": "fred", "active": false, "age": 40 }])
+    @params(Invalid, [{ "user": "barney", "active": false, "age": 50 }, { "user": "fred", "active": false, "age": 40 }, { "user": "pebbles", "active": true, "age": 10 }])
+    function _filterTest(predicate = Invalid as Dynamic, matchResult = Invalid as Dynamic)
+      users = [
+        { "user": "barney", "active": false, "age": 50 },
+        { "user": "fred", "active": false, "age": 40 },
+        { "user": "pebbles", "active": true, "age": 10 }
+      ]
+
+      result = rodash.filter(users, predicate)
+      m.assertEqual(result, matchResult)
+    end function
+
     @it("find")
     @params(Invalid, { "user": "barney", "active": false })
     @params({ "user": "fred", "active": false }, { "user": "fred", "active": false })
