@@ -237,6 +237,25 @@ namespace Tests
       m.assertEqual(rodash.isLength(value), matchResult)
     end function
 
+    @it("isList")
+    @params("AA", false)
+    @params("ARRAY", false)
+    @params("NODE", false)
+    @params("LIST", true)
+    function _(objectType = Invalid as Dynamic, matchResult = Invalid as Dynamic)
+      value = Invalid
+      if objectType = "AA"
+        value = {}
+      else if objectType = "ARRAY"
+        value = []
+      else if objectType = "NODE"
+        value = createObject("roSgNode", "Node")
+      else if objectType = "LIST"
+        value = createObject("roList")
+      end if
+      m.assertEqual(rodash.isList(value), matchResult)
+    end function
+
     @it("isNotInvalid")
     @params(Invalid, false)
     @params({ a: 2 }, true)
