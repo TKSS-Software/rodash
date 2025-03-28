@@ -25,6 +25,10 @@
 	"rooibos": {
 		"showOnlyFailures": true,
 		"lineWidth": 70,
-		"logLevel": 0
+		"logLevel": 0,
+		"colorizeOutput": true,
+		"reporters": [
+			"mocha"
+		]
 	}
 }
