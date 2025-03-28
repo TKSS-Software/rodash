@@ -15,30 +15,30 @@ namespace rodash
     ' rodash.get({a: {b: {c: 3}}}, 'a.b.d', -1, rodash.isNumber) ' => -1
     function get(aa as Object, keyPath as String, fallback = Invalid as Dynamic, validator = rodash.isNotInvalid as Function) as Dynamic
         nextValue = aa
-		for each key in keyPath.split(".")
-			if rodash.internal.isKeyedValueType(nextValue) then
-				nextValue = nextValue[key]
-			else if rodash.isArray(nextValue) then
-				index = val(key, 10)
-				if index = 0 and key <> "0" then
-                    nextValue = invalid
-					exit for
-				end if
+        for each key in keyPath.split(".")
+            if rodash.internal.isKeyedValueType(nextValue) then
+                nextValue = nextValue[key]
+            else if rodash.isArrayLike(nextValue) then
+                index = val(key, 10)
+                if index = 0 AND key <> "0" then
+                    nextValue = Invalid
+                    exit for
+                end if
 
-				nextValue = nextValue[index]
-				if nextValue = invalid then
-					exit for
-				end if
-			else
-				' item was not a container
-                nextValue = invalid
-				exit for
-			end if
+                nextValue = nextValue[index]
+                if nextValue = Invalid then
+                    exit for
+                end if
+            else
+                ' item was not a container
+                nextValue = Invalid
+                exit for
+            end if
 
-			if nextValue = invalid then
-				exit for
-			end if
-		end for
+            if nextValue = Invalid then
+                exit for
+            end if
+        end for
 
         if validator(nextValue) then return nextValue
 
