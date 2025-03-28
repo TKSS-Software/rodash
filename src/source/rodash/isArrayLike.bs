@@ -1,5 +1,5 @@
 namespace rodash
-  ' Checks if value is array-like. A value is considered array-like if it is an array or an roList
+  ' Checks if value is array-like. A value is considered array-like if it is an array, roList, roByteArray, or roXMLList
   ' @since 0.0.21
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
@@ -7,11 +7,13 @@ namespace rodash
   ' @example
   ' rodash.isArrayLike([]) // => true
   ' rodash.isArrayLike(CreateObject("roList")) // => true
+  ' rodash.isArrayLike(CreateObject("roByteArray")) // => true
+  ' rodash.isArrayLike(CreateObject("roXMLList")) // => true
   ' rodash.isArrayLike({}) // => false
   ' rodash.isArrayLike("example string") // => false
   @inline
   function isArrayLike(value as Dynamic) as Boolean
-    return rodash.isArray(value) OR rodash.isList(value)
+    return rodash.isNotInvalid(value) AND getInterface(value, "ifArrayGet") <> Invalid
   end function
 end namespace
 

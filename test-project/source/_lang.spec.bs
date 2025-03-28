@@ -52,6 +52,9 @@ namespace Tests
     @it("isArrayLike")
     @params("ARRAY", true)
     @params("LIST", true)
+    @params("BYTEARRAY", true)
+    @params("XMLLIST", true)
+    @params("STRING", false)
     @params("STRING", false)
     @params("AA", false)
     function _(objectType as Dynamic, matchResult = false as Boolean)
@@ -60,6 +63,10 @@ namespace Tests
         item = [1, 2, 3]
       else if objectType = "LIST"
         item = CreateObject("roList")
+      else if objectType = "BYTEARRAY"
+        item = CreateObject("roByteArray")
+      else if objectType = "XMLLIST"
+        item = CreateObject("roXMLList")
       else if objectType = "STRING"
         item = "abc"
       else if objectType = "AA"

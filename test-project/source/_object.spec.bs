@@ -40,6 +40,20 @@ namespace Tests
       end if
     end function
 
+    @it("get roByteArray and roXMLList")
+    function _()
+      ba = CreateObject("roByteArray")
+      ba.fromHexString("00FF1001")
+      m.assertEqual(rodash.get(ba, "2"), 16)
+      m.assertEqual(rodash.get(ba, "5"), Invalid)
+
+      xml = CreateObject("roXMLElement")
+      xml.parse("<root><a>1</a><b>2</b></root>")
+      xmlList = xml.GetChildElements()
+      m.assertEqual(rodash.get(xmlList, "1").GetName(), "b")
+      m.assertEqual(rodash.get(xmlList, "2"), Invalid)
+    end function
+
     @it("getAA")
     @params({ "a": { "a": "a" }, "b": { "b": "b" }, "c": { "c": "c" } }, "b", { "b": "b" }, Invalid)
     @params({ "a": { "a": "a" }, "b": 1, "c": { "c": "c" } }, "b", {}, Invalid)
