@@ -16,7 +16,7 @@ namespace rodash
   ' rodash.isEqual("Hello", "Hello") // => true
   ' rodash.isEqual("Hello", "World") // => false
   function isEqual(valueOne as Dynamic, valueTwo as Dynamic, strict = false as Boolean) as Boolean
-    ' If the first argument is true we don't need to check the follwing conditionals
+    ' If the first argument is true we don't need to check the following conditionals
     if rodash.internal.canBeCompared(valueOne, valueTwo) then
       return (valueOne = valueTwo)
     else if rodash.isNode(valueOne) then

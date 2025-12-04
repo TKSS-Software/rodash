@@ -6,8 +6,8 @@ namespace rodash
   ' @returns {Dynamic} Returns the first element of array
   ' @example
   ' rodash.head([1, 2, 3]) // => 1
-  @inline
   function head(array = CreateObject("roArray", 0, true) as Object) as Dynamic
+    if NOT rodash.isArray(array) then return Invalid
     return array[0]
   end function
 end namespace

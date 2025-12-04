@@ -8,8 +8,8 @@ namespace rodash
   ' rodash.isFloat(1) // => false
   ' rodash.isFloat(1.0!) // => true
   ' rodash.isFloat(1.0#) // => false
-  @inline
   function isFloat(value as Dynamic) as Boolean
-    return type(value) = "Float" OR type(value) = "roFloat"
+    valueType = type(value)
+    return valueType = "Float" OR valueType = "roFloat"
   end function
 end namespace

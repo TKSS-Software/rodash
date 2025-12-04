@@ -9,8 +9,8 @@ namespace rodash
   ' rodash.isBoolean(false) // => true
   ' rodash.isBoolean(1) // => false
   ' rodash.isBoolean("true") // => false
-  @inline
   function isBoolean(value as Dynamic) as Boolean
-    return type(value) = "Boolean" OR type(value) = "roBoolean"
+    typeValue = type(value)
+    return typeValue = "Boolean" OR typeValue = "roBoolean"
   end function
 end namespace

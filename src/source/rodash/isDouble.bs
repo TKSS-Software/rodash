@@ -8,8 +8,8 @@ namespace rodash
   ' rodash.isDouble(1) // => false
   ' rodash.isDouble(1.0#) // => true
   ' rodash.isDouble(1.0!) // => false
-  @inline
   function isDouble(value as Dynamic) as Boolean
-    return type(value) = "Double" OR type(value) = "roDouble" OR type(value) = "roIntrinsicDouble"
+    valueType = type(value)
+    return valueType = "Double" OR valueType = "roDouble" OR valueType = "roIntrinsicDouble"
   end function
 end namespace
