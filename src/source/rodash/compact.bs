@@ -7,24 +7,25 @@ namespace rodash
   ' @example
   ' rodash.compact([0, 1, false, 2, '', 3]) // => [1, 2, 3]
   function compact(array as Object) as Object
+    if NOT rodash.isNonEmptyArray(array) then return array
+
     returnArray = CreateObject("roArray", 0, true)
 
     if rodash.isNonEmptyArray(array) then
       for each item in array
-        shallPass = true
-        typeName = type(item)
-
-        if rodash.isInvalid(item) then
-          shallPass = false
-        else if rodash.isEmptyString(item) then
-          shallPass = false
+        if rodash.isInvalid(item) OR rodash.isEmptyString(item) then
+          continue for
         else if rodash.isNumber(item) then
-          if item = 0 then shallPass = false
+          if item = 0 then
+            continue for
+          end if
         else if rodash.isBoolean(item) then
-          shallPass = item
+          if item = false then
+            continue for
+          end if
         end if
 
-        if shallPass then returnArray.push(item)
+        returnArray.push(item)
       end for
     end if
 

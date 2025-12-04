@@ -7,48 +7,73 @@ namespace rodash
     ' @param {Object} options - The options object
     ' @param {Dynamic} options[context] - The context to be used when calling the callback
     ' @param {Float} options[maxWait] - The maximum time the sub is allowed to be delayed before it's invoked.
-    sub debounce(callback as function, wait = 0 as dynamic, options = {maxWait: -1} as object)
+    sub debounce(callback as Function, wait = 0 as Dynamic, options = { maxWait: -1 } as Object)
         id = "__debounce_" + callback.toStr()
 
-        duration = wait = 0 ? 0.001 : wait / 1000
+        ' Convert ms -> seconds for Timer; use a minimal non-zero duration for 0
+        duration = 0.001
+        if wait <> 0 then
+            duration = wait / 1000.0
+        end if
 
-        if m[id] = invalid then
+        container = Invalid
+
+        ' Initialize state on first call for this callback
+        if NOT m.doesExist(id) then
             timer = createObject("RoSGNode", "Timer")
-            timer.update({duration: duration, id: id}, true)
+            timer.update({ duration: duration, id: id }, true)
 
-            m[id] = {
+            container = {
                 callback: callback
                 timer: timer
                 timespan: CreateObject("roTimeSpan")
                 context: rodash.get(options, "context", {})
             }
 
-            m[id].timespan.mark()
+            container.timespan.mark()
+            m[id] = container
 
-            timer.observeFieldScoped("fire", (sub(event as object)
-                id = event.getRoSgNode().id
-                container = m[id]
-                callback = container.callback
-                callback(container.context)
-                container.timer.unobserveFieldScoped("fire")
-                m.delete(id)
+            timer.observeFieldScoped("fire", (sub(event as Object)
+                node = event.getRoSgNode()
+                localId = node.id
+
+                ' Guard in case it was already cleared
+                if NOT m.doesExist(localId) then return
+
+                localContainer = m[localId]
+                cb = localContainer.callback
+                ctx = localContainer.context
+
+                cb(ctx)
+
+                node.unobserveFieldScoped("fire")
+                m.delete(localId)
             end sub).toStr().mid(10))
+        else
+            container = m[id]
         end if
 
-        if m[id] <> invalid then
-            maxWait = rodash.get(options, "maxWait", -1)
-            if maxWait > 0 and m[id].timespan.TotalMilliseconds() >= maxWait then
-                m[id].timespan.mark()
-                container = m[id]
-                callback = container.callback
-                callback(container.context)
-                container.timer.unobserveFieldScoped("fire")
-                m.delete(id)
-            else
-                timer = m[id].timer
-                timer.duration = duration
-                timer.control = "start"
-            end if
+        ' If we somehow failed to get a container, bail early
+        if container = Invalid then return
+
+        maxWait = rodash.get(options, "maxWait", -1)
+
+        ' If we've exceeded maxWait, fire immediately and clear
+        if maxWait > 0 AND container.timespan.TotalMilliseconds() >= maxWait then
+            container.timespan.mark()
+
+            cb = container.callback
+            ctx = container.context
+            cb(ctx)
+
+            t = container.timer
+            t.unobserveFieldScoped("fire")
+            m.delete(id)
+        else
+            ' Otherwise, restart the timer with the latest duration
+            t = container.timer
+            t.duration = duration
+            t.control = "start"
         end if
     end sub
 end namespace
