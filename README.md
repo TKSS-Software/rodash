@@ -78,4 +78,4 @@ If imported into a project that leverages the Brighterscript compiler, you can u
 
 ## Development
 
-Currently in development
+Currently in development!

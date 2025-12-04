@@ -1,0 +1,16 @@
+namespace rodash
+  ' Checks if the supplied value is a valid roList type
+  ' @since 0.0.36
+  ' @category Lang
+  ' @param {Dynamic} value The variable to be checked
+  ' @returns {Boolean} Results of the check
+  ' @example
+  ' rodash.isArray(CreateObject("roList")) // => true
+  ' rodash.isArray([]) // => false
+  ' rodash.isArray({}) // => false
+  ' rodash.isArray("") // => false
+  @inline
+  function isList(value as Dynamic) as Boolean
+    return type(value) = "roList"
+  end function
+end namespace
