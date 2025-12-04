@@ -10,7 +10,7 @@ namespace rodash
   ' rodash.isBoolean(1) // => false
   ' rodash.isBoolean("true") // => false
   function isBoolean(value as Dynamic) as Boolean
-    typeValue = type(value)
-    return typeValue = "Boolean" OR typeValue = "roBoolean"
+    valueType = type(value)
+    return valueType = "Boolean" OR valueType = "roBoolean"
   end function
 end namespace
