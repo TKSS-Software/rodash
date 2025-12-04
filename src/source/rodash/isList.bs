@@ -5,10 +5,10 @@ namespace rodash
   ' @param {Dynamic} value The variable to be checked
   ' @returns {Boolean} Results of the check
   ' @example
-  ' rodash.isArray(CreateObject("roList")) // => true
-  ' rodash.isArray([]) // => false
-  ' rodash.isArray({}) // => false
-  ' rodash.isArray("") // => false
+  ' rodash.isList(CreateObject("roList")) // => true
+  ' rodash.isList([]) // => false
+  ' rodash.isList({}) // => false
+  ' rodash.isList("") // => false
   @inline
   function isList(value as Dynamic) as Boolean
     return type(value) = "roList"
