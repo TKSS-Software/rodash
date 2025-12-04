@@ -1,33 +1,54 @@
 namespace rodash
-  ' Invokes sub after wait milliseconds. Any additional arguments are provided to subwhen it's invoked.
+  ' Invokes sub after wait milliseconds. Any additional arguments are provided to sub when it's invoked.
   ' @since 0.0.22
   ' @category Function
   ' @param {Sub} callback - The sub to be called after a set delay
   ' @param {Float} [wait] - The number of milliseconds to delay invocation
-  ' @param {Dynamic} context - a single item of data to be passed into the callback when invoked
-  sub delay(callback as function, wait = 0 as float, context = invalid as dynamic)
-    duration = wait = 0 ? 0.0001 : wait / 1000
-    timer = createObject("RoSGNode", "Timer")
-    timer.update({duration: duration, repeat: false, id: "__delay_" + createObject("roDeviceInfo").getRandomUUID() })
+  ' @param {Dynamic} context - A single item of data to be passed into the callback when invoked
+  sub delay(callback as Function, wait = 0 as Float, context = Invalid as Dynamic)
+    ' Convert ms -> seconds for Timer; use minimal non-zero duration for 0
+    duration = 0.0001
+    if wait <> 0 then
+      duration = wait / 1000.0
+    end if
 
-    m[timer.id] = {
+    timer = createObject("RoSGNode", "Timer")
+    timer.update({
+      duration: duration
+      repeat: false
+      id: "__delay_" + createObject("roDeviceInfo").getRandomUUID()
+    })
+
+    id = timer.id
+
+    container = {
       timer: timer
       callback: callback
       context: context
     }
 
-    timer.observeFieldScoped("fire", (sub(event as object)
-      delayId = event.getNode()
-      options = m[delayId]
-      callback = options.callback
+    m[id] = container
+
+    timer.observeFieldScoped("fire", (sub(event as Object)
+      node = event.getRoSgNode()
+      localId = node.id
+
+      ' Guard in case entry was already cleared
+      if NOT m.doesExist(localId) then return
+
+      localContainer = m[localId]
+      cb = localContainer.callback
+      ctx = localContainer.context
+
       try
-        callback(options.context)
+        cb(ctx)
       catch e
         print "Crash during utils.delay:"
         print e
       end try
-      m[delayId].timer.unobserveFieldScoped("fire")
-      m.delete(delayId)
+
+      node.unobserveFieldScoped("fire")
+      m.delete(localId)
     end sub).toStr().mid(10))
 
     timer.control = "start"
