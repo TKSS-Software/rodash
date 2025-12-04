@@ -1,5 +1,7 @@
 namespace rodash
-  ' This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:(value).
+  ' This method is like rodash.difference except that it accepts iteratee which is invoked for each element of array and values
+  ' to generate the criterion by which they're compared. The order and references of result values are determined by the first array.
+  ' The iteratee is invoked with one argument: (value).
   ' @since 0.0.21
   ' @category Array
   ' @param {Array} array - The array to inspect
@@ -8,33 +10,81 @@ namespace rodash
   ' @returns {Array} Returns the new array of filtered values
   ' @example
   ' rodash.differenceBy([2.1, 1.2], [2.3, 3.4], rodash.floor) // => [1.2]
-  ' rodash.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x') // => [{ 'x': 2 }]
-  function differenceBy(array = CreateObject("roArray", 0, true) as Object, values = CreateObject("roArray", 0, true) as Object, iteratee = Invalid) as Object
+  ' rodash.differenceBy([{ "x": 2 }, { "x": 1 }], [{ "x": 1 }], "x") // => [{ "x": 2 }]
+  function differenceBy(array = CreateObject("roArray", 0, true) as Object, values = CreateObject("roArray", 0, true) as Object, iteratee = Invalid as Dynamic) as Object
     iterateeIsFunction = rodash.isFunction(iteratee)
     iterateeIsProperty = NOT iterateeIsFunction AND rodash.isString(iteratee)
 
-    returnArray = CreateObject("roArray", 0, true)
-    for each item in array
-      convertedItem = item
-      if iterateeIsFunction then
-        convertedItem = iteratee(item)
-      else if iterateeIsProperty then
-        convertedItem = item[iteratee]
-      end if
-      found = false
+    ' Build a transformed copy of values once
+    transformedValues = CreateObject("roArray", 0, true)
+    if iterateeIsFunction then
+      for each v in values
+        transformedValues.push(iteratee(v))
+      end for
+    else if iterateeIsProperty then
+      for each v in values
+        transformedValues.push(v[iteratee])
+      end for
+    else
+      for each v in values
+        transformedValues.push(v)
+      end for
+    end if
 
-      for each valueToMatch in values
-        if iterateeIsFunction then
-          valueToMatch = iteratee(valueToMatch)
-        else if iterateeIsProperty
-          valueToMatch = valueToMatch[iteratee]
-        end if
-        if convertedItem = valueToMatch then found = true : exit for
+    result = CreateObject("roArray", 0, true)
+
+    ' Specialized loops to avoid per-item branching on iteratee type
+    if iterateeIsFunction then
+
+      for each item in array
+        convertedItem = iteratee(item)
+        found = false
+
+        for each valueToMatch in transformedValues
+          if convertedItem = valueToMatch then
+            found = true
+            exit for
+          end if
+        end for
+
+        if NOT found then result.push(item)
       end for
 
-      if NOT found then returnArray.push(item)
-    end for
+    else if iterateeIsProperty then
 
-    return returnArray
+      for each item in array
+        convertedItem = item[iteratee]
+        found = false
+
+        for each valueToMatch in transformedValues
+          if convertedItem = valueToMatch then
+            found = true
+            exit for
+          end if
+        end for
+
+        if NOT found then result.push(item)
+      end for
+
+    else
+
+      ' No iteratee: behave like plain difference
+      for each item in array
+        convertedItem = item
+        found = false
+
+        for each valueToMatch in transformedValues
+          if convertedItem = valueToMatch then
+            found = true
+            exit for
+          end if
+        end for
+
+        if NOT found then result.push(item)
+      end for
+
+    end if
+
+    return result
   end function
 end namespace
