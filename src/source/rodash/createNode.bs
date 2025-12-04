@@ -11,7 +11,10 @@ namespace rodash
     function createNode(nodeType = "Node" as String, fields = {} as Dynamic) as Object
         node = createObject("roSGNode", nodeType)
         if rodash.isNode(node, nodeType) then
-            if rodash.isNonEmptyAA(fields) OR rodash.isNonEmptyArray(fields) then node.update(fields, true)
+            fieldsType = type(fields)
+            if (fieldsType = "roAssociativeArray" AND fields.keys().count() > 0) OR (fieldsType = "roArray" AND NOT fields.isEmpty()) then
+                node.update(fields, true)
+            end if
             return node
         end if
 
