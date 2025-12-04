@@ -50,10 +50,28 @@ namespace Tests
     end function
 
     @it("isArrayLike")
-    @params([1, 2, 3], true)
-    @params("abc", true)
-    @params({ "a": 1 }, false)
-    function _(item as Dynamic, matchResult = false as Boolean)
+    @params("ARRAY", true)
+    @params("LIST", true)
+    @params("BYTEARRAY", true)
+    @params("XMLLIST", true)
+    @params("STRING", false)
+    @params("STRING", false)
+    @params("AA", false)
+    function _(objectType as Dynamic, matchResult = false as Boolean)
+      item = Invalid
+      if objectType = "ARRAY"
+        item = [1, 2, 3]
+      else if objectType = "LIST"
+        item = CreateObject("roList")
+      else if objectType = "BYTEARRAY"
+        item = CreateObject("roByteArray")
+      else if objectType = "XMLLIST"
+        item = CreateObject("roXMLList")
+      else if objectType = "STRING"
+        item = "abc"
+      else if objectType = "AA"
+        item = { "a": 1 }
+      end if
       m.assertEqual(rodash.isArrayLike(item), matchResult)
     end function
 
@@ -224,6 +242,25 @@ namespace Tests
     @params(Invalid, false)
     function _(value = Invalid as Dynamic, matchResult = Invalid as Dynamic)
       m.assertEqual(rodash.isLength(value), matchResult)
+    end function
+
+    @it("isList")
+    @params("AA", false)
+    @params("ARRAY", false)
+    @params("NODE", false)
+    @params("LIST", true)
+    function _(objectType = Invalid as Dynamic, matchResult = Invalid as Dynamic)
+      value = Invalid
+      if objectType = "AA"
+        value = {}
+      else if objectType = "ARRAY"
+        value = []
+      else if objectType = "NODE"
+        value = createObject("roSgNode", "Node")
+      else if objectType = "LIST"
+        value = createObject("roList")
+      end if
+      m.assertEqual(rodash.isList(value), matchResult)
     end function
 
     @it("isNotInvalid")
