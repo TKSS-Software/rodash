@@ -4,9 +4,9 @@ namespace rodash
   ' @category Lang
   ' @param {Dynamic} value The variable to be checked
   ' @returns {Boolean} Results of the check
-  @inline
   function isNumber(value as Dynamic) as Boolean
-    return type(value) = "Integer" OR type(value) = "roInt" OR type(value) = "roInteger" OR type(value) = "LongInteger" OR type(value) = "Float" OR type(value) = "roFloat" OR type(value) = "Double" OR type(value) = "roDouble" OR type(value) = "roIntrinsicDouble"
+    valueType = type(value)
+    return valueType = "Integer" OR valueType = "roInt" OR valueType = "roInteger" OR valueType = "LongInteger" OR valueType = "Float" OR valueType = "roFloat" OR valueType = "Double" OR valueType = "roDouble" OR valueType = "roIntrinsicDouble"
   end function
 end namespace
 
