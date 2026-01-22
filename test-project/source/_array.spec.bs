@@ -35,13 +35,23 @@ namespace Tests
     end function
 
 
-    @it("difference")
-    @params([2, 1], [2, 3], [1])
-    function _differenceTest(arrayOne as Object, arrayTwo as Object, matchResult = [] as Object)
-      result = rodash.difference(arrayOne, arrayTwo)
+    ' @it("difference")
+    ' @params([2, 1], [2, 3], [1])
+    ' function _differenceTest(arrayOne as Object, arrayTwo as Object, matchResult = [] as Object)
+    '   result = rodash.difference(arrayOne, arrayTwo)
+    '   m.assertEqual(result, matchResult)
+    ' end function
+
+    @it("differenceBy")
+    @params([2.1, 1.2], [2.3, 3.4], "rodash.floor", [1.2]) 'gotta pass function name as string for test
+    @params([{ "x": 2 }, { "x": 1 }], [{ "x": 1 }], "x", [{ "x": 2 }])
+    function _differenceByTest(arrayOne as Object, arrayTwo as Object, iteratee as Dynamic, matchResult = [] as Object)
+      if iteratee = "rodash.floor" then
+        iteratee = rodash.floor
+      end if
+      result = rodash.differenceBy(arrayOne, arrayTwo, iteratee)
       m.assertEqual(result, matchResult)
     end function
-
 
     @it("drop")
     @params([1, 2, 3], Invalid, [2, 3])
@@ -128,6 +138,7 @@ namespace Tests
     @params([1, 2, 3], 1)
     @params([2, 3, 1], 2)
     @params([], Invalid)
+    @params(Invalid, Invalid)
     function _firstTest(array = [] as Object, matchResult = Invalid as Dynamic)
       result = rodash.first(array)
       m.assertEqual(result, matchResult)

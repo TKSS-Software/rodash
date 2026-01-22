@@ -19,57 +19,130 @@ namespace Tests
     end function
 
     @it("get")
-    @params({ "a": 1, "b": 2, "c": 1 }, "b", 2)
-    @params({ "a": { "d": 3 }, "b": 2, "c": 1 }, "a.d", 3)
-    function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic)
-      m.assertEqual(rodash.get(obj, path), matchResult)
+    @params({ "a": 1, "b": 2, "c": 1 }, "b", 2, Invalid)
+    @params({ "a": { "d": 3 }, "b": 2, "c": 1 }, "a.d", 3, Invalid)
+    @params({ "a": [{ "b": 2 }, { "d": 3 }], "c": 1 }, "a.1.d", 3, Invalid)
+
+    @params({ "a": 1, "b": 2, "c": 1 }, "0", Invalid, Invalid)
+    @params({ "a": { "d": 3 }, "b": 2, "c": 1 }, "b.d", Invalid, Invalid)
+    @params({ "a": [{ "b": 2 }, { "d": 3 }], "c": 1 }, "a.4.d", Invalid, Invalid)
+    @params({ "a": [{ "b": 2 }, { "d": 3 }], "c": 1 }, "a.d", Invalid, Invalid)
+
+    @params({ "a": 1, "b": 2, "c": 1 }, "0", "fallback", "fallback")
+    @params({ "a": { "d": 3 }, "b": 2, "c": 1 }, "b.d", "fallback", "fallback")
+    @params({ "a": [{ "b": 2 }, { "d": 3 }], "c": 1 }, "a.4.d", "fallback", "fallback")
+    @params({ "a": [{ "b": 2 }, { "d": 3 }], "c": 1 }, "a.d", "fallback", "fallback")
+    function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as Dynamic)
+      if fallback = Invalid then
+        m.assertEqual(rodash.get(obj, path), matchResult)
+      else
+        m.assertEqual(rodash.get(obj, path, fallback), matchResult)
+      end if
+    end function
+
+    @it("get roByteArray and roXMLList")
+    function _()
+      ba = CreateObject("roByteArray")
+      ba.fromHexString("00FF1001")
+      m.assertEqual(rodash.get(ba, "2"), 16)
+      m.assertEqual(rodash.get(ba, "5"), Invalid)
+
+      xml = CreateObject("roXMLElement")
+      xml.parse("<root><a>1</a><b>2</b></root>")
+      xmlList = xml.GetChildElements()
+      m.assertEqual(rodash.get(xmlList, "1").GetName(), "b")
+      m.assertEqual(rodash.get(xmlList, "2"), Invalid)
     end function
 
     @it("getAA")
-    @params({ "a": { "a": "a" }, "b": { "b": "b" }, "c": { "c": "c" } }, "b", { "b": "b" }, {})
-    @params({ "a": { "a": "a" }, "b": 1, "c": { "c": "c" } }, "b", {}, {})
-    @params({ "a": { "a": "a" }, "c": { "c": "c" } }, "b", {}, {})
-    @params({ "a": { "a": "a" }, "b": 1, "c": { "c": "c" } }, "b", { "3": "3" }, { "3": "3" })
+    @params({ "a": { "a": "a" }, "b": { "b": "b" }, "c": { "c": "c" } }, "b", { "b": "b" }, Invalid)
+    @params({ "a": { "a": "a" }, "b": 1, "c": { "c": "c" } }, "b", {}, Invalid)
+    @params({ "a": { "a": "a" }, "c": { "c": "c" } }, "b", {}, Invalid)
+
+    @params({ "a": { "a": "a" }, "b": { "b": "b" }, "c": { "c": "c" } }, "b", { "b": "b" }, { "a": "fallback" })
+    @params({ "a": { "a": "a" }, "b": 1, "c": { "c": "c" } }, "b", { "a": "fallback" }, { "a": "fallback" })
+    @params({ "a": { "a": "a" }, "c": { "c": "c" } }, "b", { "a": "fallback" }, { "a": "fallback" })
     function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as Object)
-      m.assertEqual(rodash.getAA(obj, path, fallback), matchResult)
+      if fallback = Invalid then
+        m.assertEqual(rodash.getAA(obj, path), matchResult)
+      else
+        m.assertEqual(rodash.getAA(obj, path, fallback), matchResult)
+      end if
     end function
 
     @it("getArray")
-    @params({ "a": ["a"], "b": ["b"], "c": ["c"] }, "b", ["b"], [])
-    @params({ "a": ["a"], "b": "b", "c": ["c"] }, "b", [], [])
-    @params({ "a": ["a"], "c": ["c"] }, "b", [], [])
-    @params({ "a": ["a"], "b": "b", "c": ["c"] }, "b", ["3"], ["3"])
+    @params({ "a": ["a"], "b": ["b"], "c": ["c"] }, "b", ["b"], Invalid)
+    @params({ "a": ["a"], "b": "b", "c": ["c"] }, "b", [], Invalid)
+    @params({ "a": ["a"], "c": ["c"] }, "b", [], Invalid)
+
+    @params({ "a": ["a"], "b": ["b"], "c": ["c"] }, "b", ["b"], ["fallback"])
+    @params({ "a": ["a"], "b": "b", "c": ["c"] }, "b", ["fallback"], ["fallback"])
+    @params({ "a": ["a"], "c": ["c"] }, "b", ["fallback"], ["fallback"])
     function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as Object)
-      m.assertEqual(rodash.getArray(obj, path, fallback), matchResult)
+      if fallback = Invalid then
+        m.assertEqual(rodash.getArray(obj, path), matchResult)
+      else
+        m.assertEqual(rodash.getArray(obj, path, fallback), matchResult)
+      end if
     end function
 
     @it("getBoolean")
+    @params({ "a": true, "b": true, "c": true }, "b", true, Invalid)
+    @params({ "a": true, "b": false, "c": true }, "b", false, Invalid)
+    @params({ "a": true, "c": true }, "b", false, Invalid)
+    @params({ "a": true, "b": "b", "c": true }, "b", false, Invalid)
+
     @params({ "a": true, "b": true, "c": true }, "b", true, false)
     @params({ "a": true, "b": false, "c": true }, "b", false, false)
     @params({ "a": true, "c": true }, "b", false, false)
-    @params({ "a": true, "c": true }, "b", true, true)
     @params({ "a": true, "b": "b", "c": true }, "b", false, false)
+
+    @params({ "a": true, "b": true, "c": true }, "b", true, true)
+    @params({ "a": true, "b": false, "c": true }, "b", false, true)
+    @params({ "a": true, "c": true }, "b", true, true)
+    @params({ "a": true, "b": "b", "c": true }, "b", true, true)
     function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as Object)
-      m.assertEqual(rodash.getBoolean(obj, path, fallback), matchResult)
+      if fallback = Invalid then
+        m.assertEqual(rodash.getBoolean(obj, path), matchResult)
+      else
+        m.assertEqual(rodash.getBoolean(obj, path, fallback), matchResult)
+      end if
     end function
 
     @it("getNumber")
-    @params({ "a": 1, "b": 2, "c": 3 }, "b", 2, 0)
-    @params({ "a": 1, "c": 3 }, "b", 0, 0)
-    @params({ "a": 1, "b": "2", "c": 3 }, "b", 0, 0)
+    @params({ "a": 1, "b": 2, "c": 3 }, "b", 2, Invalid)
+    @params({ "a": 1, "c": 3 }, "b", 0, Invalid)
+    @params({ "a": 1, "b": "2", "c": 3 }, "b", 0, Invalid)
+
+    @params({ "a": 1, "b": 2, "c": 3 }, "b", 2, 6)
+    @params({ "a": 1, "b": "2", "c": 3 }, "b", 6, 6)
     @params({ "a": 1, "c": 3 }, "b", 6, 6)
     function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as Object)
-      m.assertEqual(rodash.getNumber(obj, path, fallback), matchResult)
+      if fallback = Invalid then
+        m.assertEqual(rodash.getNumber(obj, path), matchResult)
+      else
+        m.assertEqual(rodash.getNumber(obj, path, fallback), matchResult)
+      end if
     end function
 
     @it("getString")
-    @params({ "a": 1, "b": "2", "c": 1 }, "b", "2", "")
-    @params({ "a": 1, "b": 2, "c": 1 }, "b", "", "")
-    @params({ "a": 1, "c": 1 }, "b", "", "")
-    @params({ "a": 1, "c": 1 }, "b", "AA", "AA")
-    @params({ "a": { "b": { "c": "value" } } }, "a.b.c", "value", "")
-    function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as String)
-      m.assertEqual(rodash.getString(obj, path, fallback), matchResult)
+    @params({ "a": 1, "b": "2", "c": 1 }, "b", "2", Invalid)
+    @params({ "a": 1, "b": "", "c": 1 }, "b", "", Invalid)
+    @params({ "a": 1, "b": 2, "c": 1 }, "b", "", Invalid)
+    @params({ "a": 1, "c": 1 }, "b", "", Invalid)
+    @params({ "a": { "b": { "c": "value" } } }, "a.b.c", "value", Invalid)
+
+    @params({ "a": 1, "b": "2", "c": 1 }, "b", "2", "fallback")
+    @params({ "a": 1, "b": "", "c": 1 }, "b", "", "fallback")
+    @params({ "a": 1, "b": 2, "c": 1 }, "b", "fallback", "fallback")
+    @params({ "a": 1, "c": 1 }, "b", "fallback", "fallback")
+    @params({ "a": { "b": { "c": "value" } } }, "a.b.c", "value", "fallback")
+    function _(obj as Dynamic, path as Dynamic, matchResult as Dynamic, fallback as Object)
+      if fallback = Invalid then
+        m.assertEqual(rodash.getString(obj, path), matchResult)
+      else
+        m.assertEqual(rodash.getString(obj, path, fallback), matchResult)
+      end if
     end function
 
     @it("invert")
