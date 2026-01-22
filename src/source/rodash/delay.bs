@@ -6,6 +6,9 @@ namespace rodash
   ' @param {Float} [wait] - The number of milliseconds to delay invocation
   ' @param {Dynamic} context - A single item of data to be passed into the callback when invoked
   sub delay(callback as Function, wait = 0 as Float, context = Invalid as Dynamic)
+    ' prevent scope issues
+    m = getGlobalAA()
+
     ' Convert ms -> seconds for Timer; use minimal non-zero duration for 0
     duration = 0.0001
     if wait <> 0 then

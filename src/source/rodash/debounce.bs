@@ -8,6 +8,9 @@ namespace rodash
     ' @param {Dynamic} options[context] - The context to be used when calling the callback
     ' @param {Float} options[maxWait] - The maximum time the sub is allowed to be delayed before it's invoked.
     sub debounce(callback as Function, wait = 0 as Dynamic, options = { maxWait: -1 } as Object)
+        ' prevent scope issues
+        m = getGlobalAA()
+
         id = "__debounce_" + callback.toStr()
 
         ' Convert ms -> seconds for Timer; use a minimal non-zero duration for 0
