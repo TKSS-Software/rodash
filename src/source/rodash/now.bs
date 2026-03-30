@@ -5,8 +5,8 @@ namespace rodash
   ' @returns {Longinteger} The number of milliseconds that have elapsed since the Unix epoch.
   function now() as Longinteger
     dateObj = rodash.internal.getDateObject()
-    seconds& = dateObj.AsSeconds()
+    seconds& = dateObj.asSeconds()
     milliseconds& = seconds& * 1000
-    return milliseconds& + dateObj.GetMilliseconds()
+    return milliseconds& + dateObj.getMilliseconds()
   end function
 end namespace
