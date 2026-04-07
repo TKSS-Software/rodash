@@ -10,6 +10,7 @@ namespace Tests
     function testNow()
       a = rodash.now()
       b = rodash.now()
+      m.assertTrue(len(a.toStr()), 13)
       diff = b - a
       m.assertTrue(diff <= 1)
       sleep(10)
