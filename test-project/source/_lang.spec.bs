@@ -110,8 +110,21 @@ namespace Tests
     @params({ a: 1 }, false)
     @params({}, true)
     @params(Invalid, true)
-    @params(1, true)
+    @params(0, true)
+    @params(1, false)
+    @params(false, true)
+    @params(true, false)
+    @params("NODE", false)
+    @params("FUNCTION", false)
     function _(value = Invalid as Dynamic, matchResult = false as Boolean)
+      if type(value) = "String" OR type(value) = "roString"
+        if value = "NODE"
+          value = CreateObject("roSGNode", "ContentNode")
+        else if value = "FUNCTION"
+          value = function()
+          end function
+        end if
+      end if
       m.assertEqual(rodash.isEmpty(value), matchResult)
     end function
 

@@ -13,8 +13,14 @@ namespace rodash
   ' rodash.isEmpty(invalid) // => true
   ' rodash.isEmpty("Hello") // => false
   function isEmpty(value as Dynamic)
-    if rodash.isInvalid(value) OR rodash.isNumber(value) OR rodash.isBoolean(value) then
+    if rodash.isInvalid(value) then
       return true
+    else if rodash.isNumber(value)
+      return value = 0
+    else if rodash.isBoolean(value)
+      return NOT value
+    else if rodash.isNode(value) OR rodash.isFunction(value)
+      return false
     else
       return value.isEmpty()
     end if
